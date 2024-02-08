@@ -1,0 +1,65 @@
+name: Deploy Pull Request to Netlify
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21.1.0
+
+      - name: Caching node_modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create UAT Build
+        run: npm run build-uat
+
+      - name: Get and set commit details
+        id: commit-details
+        run: |
+          LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%s)
+          COMMIT_AUTHOR=$(git log -1 --pretty=%an)
+          echo "COMMIT_AUTHOR=$COMMIT_AUTHOR" >> "$GITHUB_OUTPUT"
+          echo "LAST_COMMIT_MESSAGE=$LAST_COMMIT_MESSAGE" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy to netlify
+        id: deploy
+        uses: netlify/actions/cli@master
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        with:
+          args: deploy --dir=./frontend/dist -m '${{ steps.commit-details.outputs.COMMIT_AUTHOR }} ・ ${{ steps.commit-details.outputs.LAST_COMMIT_MESSAGE }}'
+
+      - name: Get Netlify Link
+        env:
+          GH_AUTH_TOKEN: ${{ secrets.GH_AUTH_TOKEN }}
+          PR_URL: ${{ steps.deploy.outputs.NETLIFY_URL }}
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+          COMMENT="This pull request is automatically being deployed.\nYou can view changes at [$PR_URL]($PR_URL)."
+          curl -X POST -H "Authorization: token $GH_AUTH_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d "{\"body\": \"$COMMENT\"}" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments"
