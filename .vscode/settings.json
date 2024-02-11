@@ -10,6 +10,16 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
-  "cSpell.words": ["fluentui", "pipesort", "tanstack", "preaccred"],
+  "cSpell.words": [
+    "appspot",
+    "compat",
+    "datepicker",
+    "firebaseapp",
+    "fluentui",
+    "hasura",
+    "pipesort",
+    "preaccred",
+    "tanstack"
+  ],
   "typescript.tsdk": "frontend\\node_modules\\typescript\\lib"
 }

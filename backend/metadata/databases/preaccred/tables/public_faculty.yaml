@@ -1,0 +1,22 @@
+table:
+  name: faculty
+  schema: public
+object_relationships:
+  - name: institute
+    using:
+      foreign_key_constraint_on: institute_id
+array_relationships:
+  - name: faculty_fundings
+    using:
+      foreign_key_constraint_on:
+        column: faculty_id
+        table:
+          name: faculty_funding
+          schema: public
+  - name: fdp_pdps
+    using:
+      foreign_key_constraint_on:
+        column: faculty_id
+        table:
+          name: fdp_pdp
+          schema: public

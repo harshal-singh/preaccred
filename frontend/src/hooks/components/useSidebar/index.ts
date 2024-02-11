@@ -70,95 +70,44 @@ const useSidebar = () => {
             onClick: handleLinkClick,
           },
           {
-            name: 'User Management',
-            url: '/users/active',
+            name: 'Institute Management',
+            url: '/institutes/active',
             iconProps: {
-              iconName: 'ContactList',
+              iconName: 'CityNext',
               ...commonIconProps,
             },
             key: 'user-management',
-            expandAriaLabel: 'Expand User Management',
-            collapseAriaLabel: 'Collapse User Management',
-            onClick: () => setSelectedKey('/users/active'),
+            expandAriaLabel: 'Expand Institute Management',
+            collapseAriaLabel: 'Collapse Institute Management',
+            onClick: () => setSelectedKey('/institutes/active'),
             links: [
               {
-                name: 'Active User',
-                url: '/users/active',
+                name: 'Active Institute',
+                url: '/institutes/active',
                 iconProps: {
-                  iconName: 'UserFollowed',
+                  iconName: 'ReceiptCheck',
                   ...commonIconProps,
                 },
-                key: '/users/active',
-                ariaLabel: 'Active User',
+                key: '/institutes/active',
+                ariaLabel: 'Active Institute',
                 onClick: handleLinkClick,
               },
               {
-                name: 'Deleted User',
-                url: '/users/deleted',
+                name: 'Deleted Institute',
+                url: '/institutes/deleted',
                 iconProps: {
-                  iconName: 'BlockContact',
+                  iconName: 'ReceiptUndelivered',
                   ...commonIconProps,
                 },
-                key: '/users/deleted',
-                ariaLabel: 'Deleted User',
+                key: '/institutes/deleted',
+                ariaLabel: 'Deleted Institute',
                 onClick: handleLinkClick,
               },
             ],
             isExpanded:
               selectedKey === 'user-management' ||
-              selectedKey === '/users/active' ||
-              selectedKey === '/users/deleted',
-          },
-          {
-            name: 'Group Management',
-            url: '/groups/active',
-            iconProps: {
-              iconName: 'Group',
-              ...commonIconProps,
-            },
-            key: 'group-management',
-            expandAriaLabel: 'Expand Group Management',
-            collapseAriaLabel: 'Collapse Group Management',
-            onClick: () => setSelectedKey('/groups/active'),
-            links: [
-              {
-                name: 'Active Group',
-                url: '/groups/active',
-                iconProps: {
-                  iconName: 'ReminderGroup',
-                  ...commonIconProps,
-                },
-                key: '/groups/active',
-                ariaLabel: 'Active Group',
-                onClick: handleLinkClick,
-              },
-              {
-                name: 'Deleted Group',
-                url: '/groups/deleted',
-                iconProps: {
-                  iconName: 'PeopleBlock',
-                  ...commonIconProps,
-                },
-                key: '/groups/deleted',
-                ariaLabel: 'Deleted Group',
-                onClick: handleLinkClick,
-              },
-            ],
-            isExpanded:
-              selectedKey === 'group-management' ||
-              selectedKey === '/groups/active' ||
-              selectedKey === '/groups/deleted',
-          },
-          {
-            name: 'Industries',
-            url: '/industries',
-            iconProps: {
-              iconName: 'Suitcase',
-              ...commonIconProps,
-            },
-            key: '/industries',
-            ariaLabel: 'Industries',
-            onClick: handleLinkClick,
+              selectedKey === '/institutes/active' ||
+              selectedKey === '/institutes/deleted',
           },
         ],
       },

@@ -11,7 +11,8 @@ import HomeSpinner from 'components/Loaders/HomeLoader';
 import PageSkeleton from 'components/Skeletons/PageSkeleton';
 
 const Home = lazy(() => import('pages/Home'));
-const Industries = lazy(() => import('pages/Industries'));
+const ActiveInstitutes = lazy(() => import('pages/Institutes/Active'));
+const DeletedInstitutes = lazy(() => import('pages/Institutes/Deleted'));
 
 const SentryRoutes = withSentryReactRouterV6Routing(Routes);
 
@@ -43,10 +44,18 @@ const AppRoutes = () => {
         />
 
         <Route
-          path="industries"
+          path="institutes/active"
           element={
             <Element fallback={<PageSkeleton />}>
-              <Industries />
+              <ActiveInstitutes />
+            </Element>
+          }
+        />
+        <Route
+          path="institutes/deleted"
+          element={
+            <Element fallback={<PageSkeleton />}>
+              <DeletedInstitutes />
             </Element>
           }
         />

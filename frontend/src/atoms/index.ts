@@ -1,4 +1,5 @@
 import { ToastIntent } from '@fluentui/react-components';
+import { ModelTypes } from 'api/zeus';
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 
@@ -12,5 +13,12 @@ type ToastDetail = {
 };
 
 export const isLoggedInAtom = atomWithStorage<boolean>('isLoggedIn', false);
-export const isDeleteDrawerOpenAtom = atom<boolean>(false);
 export const toastDetailAtom = atom<ToastDetail | null>(null);
+
+export const isAddDrawerOpenAtom = atom<boolean>(false);
+export const isUpdateDrawerOpenAtom = atom<boolean>(false);
+export const isDeleteDrawerOpenAtom = atom<boolean>(false);
+
+export const selectedInstituteAtom = atom<Partial<
+  ModelTypes['institute']
+> | null>(null);

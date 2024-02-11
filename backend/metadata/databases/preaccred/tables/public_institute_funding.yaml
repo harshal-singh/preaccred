@@ -1,0 +1,7 @@
+table:
+  name: institute_funding
+  schema: public
+object_relationships:
+  - name: institute
+    using:
+      foreign_key_constraint_on: institute_id

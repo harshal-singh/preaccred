@@ -1,0 +1,7 @@
+table:
+  name: e_governance
+  schema: public
+object_relationships:
+  - name: institute
+    using:
+      foreign_key_constraint_on: institute_id

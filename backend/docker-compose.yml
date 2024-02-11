@@ -10,7 +10,7 @@ services:
       - .env
 
   graphql-engine:
-    image: hasura/graphql-engine:v2.11.13
+    image: hasura/graphql-engine:v2.37.0
     ports:
       - "8080:8080"
     restart: always

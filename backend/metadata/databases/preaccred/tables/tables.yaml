@@ -1,1 +1,8 @@
-[]
+- "!include public_STATUS.yaml"
+- "!include public_e_governance.yaml"
+- "!include public_faculty.yaml"
+- "!include public_faculty_funding.yaml"
+- "!include public_fdp_pdp.yaml"
+- "!include public_genesis.yaml"
+- "!include public_institute.yaml"
+- "!include public_institute_funding.yaml"
