@@ -12,7 +12,7 @@ function stop_container () {
 # call function
 trap "stop_container" 2
 
-cd backend
+cd hasura
 
 docker-compose up --build -d
 
