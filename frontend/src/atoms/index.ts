@@ -20,5 +20,5 @@ export const isUpdateDrawerOpenAtom = atom<boolean>(false);
 export const isDeleteDrawerOpenAtom = atom<boolean>(false);
 
 export const selectedInstituteAtom = atom<Partial<
-  ModelTypes['institute']
+  ModelTypes['Institute']
 > | null>(null);

@@ -18,11 +18,11 @@ const useAddInstitute = () => {
   }, [setIsAddInstituteDrawerOpen]);
 
   const handleAddInstitute = useCallback(
-    async (formData: Partial<ModelTypes['institute']>) => {
+    async (formData: Partial<ModelTypes['Institute']>) => {
       const res = await mutateAsync({
         name: formData.name,
         website: formData.website,
-        date_of_establishment: formData.date_of_establishment as string,
+        dateOfEstablishment: formData.dateOfEstablishment as string,
         type: formData.type,
         address: formData.address,
         landmark: formData.landmark,

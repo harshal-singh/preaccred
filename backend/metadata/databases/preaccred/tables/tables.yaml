@@ -1,0 +1,8 @@
+- "!include public_EGovernance.yaml"
+- "!include public_Faculty.yaml"
+- "!include public_FacultyFunding.yaml"
+- "!include public_FdpPdp.yaml"
+- "!include public_Genesis.yaml"
+- "!include public_Institute.yaml"
+- "!include public_InstituteFunding.yaml"
+- "!include public_Status.yaml"

@@ -23,7 +23,7 @@ const useUpdateInstitute = () => {
   }, [setSelectedInstitute, setIsUpdateInstituteDrawerOpen]);
 
   const handleUpdateInstitute = useCallback(
-    async (formData: Partial<ModelTypes['institute']>) => {
+    async (formData: Partial<ModelTypes['Institute']>) => {
       if (!selectedInstitute) return;
 
       const res = await mutateAsync({
@@ -31,7 +31,7 @@ const useUpdateInstitute = () => {
         data: {
           name: formData.name,
           website: formData.website,
-          date_of_establishment: formData.date_of_establishment as string,
+          dateOfEstablishment: formData.dateOfEstablishment as string,
           type: formData.type,
           address: formData.address,
           landmark: formData.landmark,

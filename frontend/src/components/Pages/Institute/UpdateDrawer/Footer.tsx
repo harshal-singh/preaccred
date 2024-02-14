@@ -13,8 +13,7 @@ const useUpdateButton = () => {
   const hasChanges =
     selectedInstitute?.name !== watch('name') ||
     selectedInstitute?.website !== watch('website') ||
-    selectedInstitute?.date_of_establishment !==
-      watch('date_of_establishment') ||
+    selectedInstitute?.dateOfEstablishment !== watch('dateOfEstablishment') ||
     selectedInstitute?.type !== watch('type') ||
     selectedInstitute?.address !== watch('address') ||
     selectedInstitute?.landmark !== watch('landmark') ||

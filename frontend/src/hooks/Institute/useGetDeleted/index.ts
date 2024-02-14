@@ -1,5 +1,5 @@
 import { useGetInstitute } from 'api/queries/useInstituteQueries';
-import { STATUS_enum } from 'api/zeus';
+import { Status } from 'api/zeus';
 import { useMemo } from 'react';
 
 const useGetActive = () => {
@@ -15,7 +15,7 @@ const useGetActive = () => {
   } = useGetInstitute({
     filter: {
       status: {
-        _eq: STATUS_enum.ACTIVE,
+        _eq: Status.ACTIVE,
       },
     },
     queryKey: 'ActiveInstitutes',

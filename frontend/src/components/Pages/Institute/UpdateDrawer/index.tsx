@@ -28,13 +28,13 @@ const useDrawerProps = (): DrawerProps => {
 const useUpdate = () => {
   const selectedInstitute = useAtomValue(selectedInstituteAtom);
 
-  const formMethods = useForm<Partial<ModelTypes['institute']>>({
+  const formMethods = useForm<Partial<ModelTypes['Institute']>>({
     mode: 'all',
     reValidateMode: 'onChange',
     defaultValues: {
       name: selectedInstitute?.name,
       website: selectedInstitute?.website,
-      date_of_establishment: selectedInstitute?.date_of_establishment as string,
+      dateOfEstablishment: selectedInstitute?.dateOfEstablishment as string,
       type: selectedInstitute?.type,
       address: selectedInstitute?.address,
       landmark: selectedInstitute?.landmark,

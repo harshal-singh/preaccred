@@ -56,7 +56,7 @@ const Name = ({
           label="Name"
           className="h-fit"
           validationState={errors.name && 'error'}
-          validationMessage={errors.name?.message}
+          validationMessage={errors.name?.message as string}
         >
           <Input
             as="input"
@@ -113,7 +113,7 @@ const Type = ({
           label="Type"
           className="h-fit"
           validationState={errors.type && 'error'}
-          validationMessage={errors.type?.message}
+          validationMessage={errors.type?.message as string}
         >
           <Dropdown
             name={name}
@@ -143,7 +143,7 @@ const useDateOfEstablishment = () => {
 
   const handleSelectDate = useCallback(
     (date: Date | null | undefined) => {
-      setValue('date_of_establishment', date);
+      setValue('dateOfEstablishment', date);
     },
     [setValue],
   );
@@ -165,7 +165,7 @@ const DateOfEstablishment = ({
   return (
     <Controller
       control={control}
-      name="date_of_establishment"
+      name="dateOfEstablishment"
       rules={rules.textRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
@@ -173,8 +173,8 @@ const DateOfEstablishment = ({
           required
           label="Date Of Establishment"
           className="h-fit"
-          validationState={errors.date_of_establishment && 'error'}
-          validationMessage={errors.date_of_establishment?.message}
+          validationState={errors.dateOfEstablishment && 'error'}
+          validationMessage={errors.dateOfEstablishment?.message as string}
         >
           <DatePicker
             name={name}
@@ -211,7 +211,7 @@ const Website = ({
           label="Website"
           className="h-fit"
           validationState={errors.website && 'error'}
-          validationMessage={errors.website?.message}
+          validationMessage={errors.website?.message as string}
         >
           <Input
             as="input"
@@ -248,7 +248,7 @@ const Landmark = ({
           label="Landmark"
           className="h-fit"
           validationState={errors.landmark && 'error'}
-          validationMessage={errors.landmark?.message}
+          validationMessage={errors.landmark?.message as string}
         >
           <Input
             as="input"
@@ -285,7 +285,7 @@ const City = ({
           label="City"
           className="h-fit"
           validationState={errors.city && 'error'}
-          validationMessage={errors.city?.message}
+          validationMessage={errors.city?.message as string}
         >
           <Input
             as="input"
@@ -322,7 +322,7 @@ const State = ({
           label="State"
           className="h-fit"
           validationState={errors.state && 'error'}
-          validationMessage={errors.state?.message}
+          validationMessage={errors.state?.message as string}
         >
           <Input
             as="input"
@@ -359,7 +359,7 @@ const PinCode = ({
           label="Pin Code"
           className="h-fit"
           validationState={errors.pin && 'error'}
-          validationMessage={errors.pin?.message}
+          validationMessage={errors.pin?.message as string}
         >
           <Input
             as="input"
@@ -396,7 +396,7 @@ const Address = ({
           label="Address"
           className="col-span-2"
           validationState={errors.address && 'error'}
-          validationMessage={errors.address?.message}
+          validationMessage={errors.address?.message as string}
         >
           <Textarea
             resize="vertical"

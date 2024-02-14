@@ -67,7 +67,7 @@ const columnSizingOptions: TableColumnSizingOptions = {
   },
 };
 
-const useName = (): TableColumnDefinition<ModelTypes['institute']> => {
+const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
   const setSelectedInstitute = useSetAtom(selectedInstituteAtom);
   const setIsUpdateDrawerOpen = useSetAtom(isUpdateDrawerOpenAtom);
   const setIsDeleteDrawerOpen = useSetAtom(isDeleteDrawerOpenAtom);
@@ -122,7 +122,7 @@ const useName = (): TableColumnDefinition<ModelTypes['institute']> => {
   }, [setIsUpdateDrawerOpen, setIsDeleteDrawerOpen, setSelectedInstitute]);
 };
 
-const getType = (): TableColumnDefinition<ModelTypes['institute']> => {
+const getType = (): TableColumnDefinition<ModelTypes['Institute']> => {
   return {
     columnId: 'type',
     compare: (a, b) => compareString(a.type, b.type),
@@ -136,29 +136,29 @@ const getType = (): TableColumnDefinition<ModelTypes['institute']> => {
 };
 
 const getDateOfEstablishment = (): TableColumnDefinition<
-  ModelTypes['institute']
+  ModelTypes['Institute']
 > => {
   return {
     columnId: 'dateOfEstablishment',
     compare: (a, b) =>
       compareString(
-        a.date_of_establishment as string,
-        b.date_of_establishment as string,
+        a.dateOfEstablishment as string,
+        b.dateOfEstablishment as string,
       ),
     renderHeaderCell: (data) => 'Date Of Establishment',
     renderCell: (item) => (
       <Tooltip
-        content={item.date_of_establishment as string}
+        content={item.dateOfEstablishment as string}
         relationship="inaccessible"
         withArrow
       >
-        <TableCellLayout truncate>{item.date_of_establishment}</TableCellLayout>
+        <TableCellLayout truncate>{item.dateOfEstablishment}</TableCellLayout>
       </Tooltip>
     ),
   };
 };
 
-const getWebsite = (): TableColumnDefinition<ModelTypes['institute']> => {
+const getWebsite = (): TableColumnDefinition<ModelTypes['Institute']> => {
   return {
     columnId: 'website',
     compare: (a, b) => compareString(a.website, b.website),
@@ -173,7 +173,7 @@ const getWebsite = (): TableColumnDefinition<ModelTypes['institute']> => {
   };
 };
 
-const getAddress = (): TableColumnDefinition<ModelTypes['institute']> => {
+const getAddress = (): TableColumnDefinition<ModelTypes['Institute']> => {
   return {
     columnId: 'address',
     compare: (a, b) =>
@@ -190,7 +190,7 @@ const getAddress = (): TableColumnDefinition<ModelTypes['institute']> => {
   };
 };
 
-const getCreateAt = (): TableColumnDefinition<ModelTypes['institute']> => {
+const getCreateAt = (): TableColumnDefinition<ModelTypes['Institute']> => {
   return {
     columnId: 'createdAt',
     compare: (a, b) =>
@@ -217,7 +217,7 @@ const useTableProps = () => {
 
   const name = useName();
 
-  const columns: TableColumnDefinition<ModelTypes['institute']>[] = useMemo(
+  const columns: TableColumnDefinition<ModelTypes['Institute']>[] = useMemo(
     () => [
       name,
       getType(),

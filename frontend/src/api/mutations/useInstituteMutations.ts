@@ -4,16 +4,16 @@ import { ModelTypes } from 'api/zeus';
 
 type UpdateInstitute = {
   id: string;
-  data: Omit<ModelTypes['institute_insert_input'], 'id'>;
+  data: Omit<ModelTypes['Institute_insert_input'], 'id'>;
 };
 
 export const useAddInstituteMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (data: ModelTypes['institute_insert_input']) => {
+    mutationFn: async (data: ModelTypes['Institute_insert_input']) => {
       try {
         const res = await client('mutation')({
-          insert_institute_one: [
+          insert_Institute_one: [
             {
               object: {
                 ...data,
@@ -39,7 +39,7 @@ export const useAddInstituteMutation = () => {
             },
           ],
         });
-        return { status: 'success', data: res.insert_institute_one };
+        return { status: 'success', data: res.insert_Institute_one };
       } catch (error) {
         return { status: 'error', error };
       }
@@ -61,7 +61,7 @@ export const useUpdateInstituteMutation = () => {
     mutationFn: async ({ id, data }: UpdateInstitute) => {
       try {
         const res = await client('mutation')({
-          update_institute_by_pk: [
+          update_Institute_by_pk: [
             {
               pk_columns: { id },
               _set: { ...data },
@@ -86,7 +86,7 @@ export const useUpdateInstituteMutation = () => {
             },
           ],
         });
-        return { status: 'success', data: res.update_institute_by_pk };
+        return { status: 'success', data: res.update_Institute_by_pk };
       } catch (error) {
         return { status: 'error', error };
       }

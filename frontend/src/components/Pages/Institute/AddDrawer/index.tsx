@@ -26,13 +26,13 @@ const useDrawerProps = (): DrawerProps => {
 };
 
 const useAdd = () => {
-  const formMethods = useForm<Partial<ModelTypes['institute']>>({
+  const formMethods = useForm<Partial<ModelTypes['Institute']>>({
     mode: 'all',
     reValidateMode: 'onChange',
     defaultValues: {
       name: '',
       website: '',
-      date_of_establishment: '',
+      dateOfEstablishment: '',
       type: '',
       address: '',
       landmark: '',

@@ -89,7 +89,7 @@ const Login = () => {
                 label="Password"
                 className="h-fit"
                 validationState={errors.password && 'error'}
-                validationMessage={errors.password?.message}
+                validationMessage={errors.password?.message as string}
               >
                 <Input
                   as="input"

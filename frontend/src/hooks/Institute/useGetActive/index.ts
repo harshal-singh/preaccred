@@ -1,5 +1,5 @@
 import { useGetInstitute } from 'api/queries/useInstituteQueries';
-import { STATUS_enum } from 'api/zeus';
+import { Status } from 'api/zeus';
 import { useMemo } from 'react';
 
 const useGetDeleted = () => {
@@ -15,7 +15,7 @@ const useGetDeleted = () => {
   } = useGetInstitute({
     filter: {
       status: {
-        _eq: STATUS_enum.DELETED,
+        _eq: Status.DELETED,
       },
     },
     queryKey: 'DeletedInstitutes',
