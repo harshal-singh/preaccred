@@ -15,33 +15,38 @@ export const AllTypesProps: Record<string,any> = {
 		_or:"EGovernance_bool_exp",
 		address:"String_comparison_exp",
 		area:"String_comparison_exp",
+		createdAt:"timestamptz_comparison_exp",
 		createdById:"uuid_comparison_exp",
-		created_at:"timestamptz_comparison_exp",
-		cursorId:"String_comparison_exp",
+		cursorId:"bigint_comparison_exp",
 		description:"String_comparison_exp",
 		file:"String_comparison_exp",
 		id:"uuid_comparison_exp",
-		institute_id:"uuid_comparison_exp",
+		instituteId:"uuid_comparison_exp",
 		name:"String_comparison_exp",
-		phone_no:"String_comparison_exp",
-		service_end_date:"date_comparison_exp",
-		service_start_date:"date_comparison_exp",
-		status:"String_comparison_exp",
-		total_amount:"String_comparison_exp",
+		phoneNo:"String_comparison_exp",
+		serviceEndDate:"date_comparison_exp",
+		serviceStartDate:"date_comparison_exp",
+		status:"Status_enum_comparison_exp",
+		totalAmount:"String_comparison_exp",
+		updatedAt:"timestamptz_comparison_exp",
 		updatedById:"uuid_comparison_exp",
-		updated_at:"timestamptz_comparison_exp",
 		website:"String_comparison_exp"
 	},
 	EGovernance_constraint: "enum" as const,
+	EGovernance_inc_input:{
+		cursorId:"bigint"
+	},
 	EGovernance_insert_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
+		cursorId:"bigint",
 		id:"uuid",
-		institute_id:"uuid",
-		service_end_date:"date",
-		service_start_date:"date",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		serviceEndDate:"date",
+		serviceStartDate:"date",
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	EGovernance_on_conflict:{
 		constraint:"EGovernance_constraint",
@@ -51,21 +56,21 @@ export const AllTypesProps: Record<string,any> = {
 	EGovernance_order_by:{
 		address:"order_by",
 		area:"order_by",
+		createdAt:"order_by",
 		createdById:"order_by",
-		created_at:"order_by",
 		cursorId:"order_by",
 		description:"order_by",
 		file:"order_by",
 		id:"order_by",
-		institute_id:"order_by",
+		instituteId:"order_by",
 		name:"order_by",
-		phone_no:"order_by",
-		service_end_date:"order_by",
-		service_start_date:"order_by",
+		phoneNo:"order_by",
+		serviceEndDate:"order_by",
+		serviceStartDate:"order_by",
 		status:"order_by",
-		total_amount:"order_by",
+		totalAmount:"order_by",
+		updatedAt:"order_by",
 		updatedById:"order_by",
-		updated_at:"order_by",
 		website:"order_by"
 	},
 	EGovernance_pk_columns_input:{
@@ -73,31 +78,36 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	EGovernance_select_column: "enum" as const,
 	EGovernance_set_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
+		cursorId:"bigint",
 		id:"uuid",
-		institute_id:"uuid",
-		service_end_date:"date",
-		service_start_date:"date",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		serviceEndDate:"date",
+		serviceStartDate:"date",
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	EGovernance_stream_cursor_input:{
 		initial_value:"EGovernance_stream_cursor_value_input",
 		ordering:"cursor_ordering"
 	},
 	EGovernance_stream_cursor_value_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
+		cursorId:"bigint",
 		id:"uuid",
-		institute_id:"uuid",
-		service_end_date:"date",
-		service_start_date:"date",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		serviceEndDate:"date",
+		serviceStartDate:"date",
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	EGovernance_update_column: "enum" as const,
 	EGovernance_updates:{
+		_inc:"EGovernance_inc_input",
 		_set:"EGovernance_set_input",
 		where:"EGovernance_bool_exp"
 	},
@@ -111,31 +121,36 @@ export const AllTypesProps: Record<string,any> = {
 		_not:"FacultyFunding_bool_exp",
 		_or:"FacultyFunding_bool_exp",
 		amount:"String_comparison_exp",
+		createdAt:"timestamptz_comparison_exp",
 		createdById:"uuid_comparison_exp",
-		created_at:"timestamptz_comparison_exp",
-		cursorId:"String_comparison_exp",
-		faculty_id:"uuid_comparison_exp",
+		cursorId:"bigint_comparison_exp",
+		facultyId:"uuid_comparison_exp",
 		file:"String_comparison_exp",
 		id:"uuid_comparison_exp",
-		institute_id:"uuid_comparison_exp",
+		instituteId:"uuid_comparison_exp",
 		nature:"String_comparison_exp",
-		status:"String_comparison_exp",
-		transaction_date:"date_comparison_exp",
-		transaction_type:"String_comparison_exp",
+		status:"Status_enum_comparison_exp",
+		transactionDate:"date_comparison_exp",
+		transactionType:"String_comparison_exp",
 		type:"String_comparison_exp",
-		updatedById:"uuid_comparison_exp",
-		updated_at:"timestamptz_comparison_exp"
+		updatedAt:"timestamptz_comparison_exp",
+		updatedById:"uuid_comparison_exp"
 	},
 	FacultyFunding_constraint: "enum" as const,
+	FacultyFunding_inc_input:{
+		cursorId:"bigint"
+	},
 	FacultyFunding_insert_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		faculty_id:"uuid",
+		cursorId:"bigint",
+		facultyId:"uuid",
 		id:"uuid",
-		institute_id:"uuid",
-		transaction_date:"date",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		transactionDate:"date",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FacultyFunding_on_conflict:{
 		constraint:"FacultyFunding_constraint",
@@ -144,51 +159,56 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	FacultyFunding_order_by:{
 		amount:"order_by",
+		createdAt:"order_by",
 		createdById:"order_by",
-		created_at:"order_by",
 		cursorId:"order_by",
-		faculty_id:"order_by",
+		facultyId:"order_by",
 		file:"order_by",
 		id:"order_by",
-		institute_id:"order_by",
+		instituteId:"order_by",
 		nature:"order_by",
 		status:"order_by",
-		transaction_date:"order_by",
-		transaction_type:"order_by",
+		transactionDate:"order_by",
+		transactionType:"order_by",
 		type:"order_by",
-		updatedById:"order_by",
-		updated_at:"order_by"
+		updatedAt:"order_by",
+		updatedById:"order_by"
 	},
 	FacultyFunding_pk_columns_input:{
 		id:"uuid"
 	},
 	FacultyFunding_select_column: "enum" as const,
 	FacultyFunding_set_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		faculty_id:"uuid",
+		cursorId:"bigint",
+		facultyId:"uuid",
 		id:"uuid",
-		institute_id:"uuid",
-		transaction_date:"date",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		transactionDate:"date",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FacultyFunding_stream_cursor_input:{
 		initial_value:"FacultyFunding_stream_cursor_value_input",
 		ordering:"cursor_ordering"
 	},
 	FacultyFunding_stream_cursor_value_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		faculty_id:"uuid",
+		cursorId:"bigint",
+		facultyId:"uuid",
 		id:"uuid",
-		institute_id:"uuid",
-		transaction_date:"date",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		transactionDate:"date",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FacultyFunding_update_column: "enum" as const,
 	FacultyFunding_updates:{
+		_inc:"FacultyFunding_inc_input",
 		_set:"FacultyFunding_set_input",
 		where:"FacultyFunding_bool_exp"
 	},
@@ -203,40 +223,46 @@ export const AllTypesProps: Record<string,any> = {
 		_or:"Faculty_bool_exp",
 		address:"String_comparison_exp",
 		cast:"String_comparison_exp",
+		createdAt:"timestamptz_comparison_exp",
 		createdById:"uuid_comparison_exp",
-		created_at:"timestamptz_comparison_exp",
-		cursorId:"String_comparison_exp",
-		date_of_joining:"date_comparison_exp",
+		cursorId:"bigint_comparison_exp",
+		dateOfJoining:"date_comparison_exp",
 		designation:"String_comparison_exp",
 		dob:"date_comparison_exp",
-		email_id:"String_comparison_exp",
+		emailId:"String_comparison_exp",
 		experience:"String_comparison_exp",
 		gender:"String_comparison_exp",
 		id:"uuid_comparison_exp",
-		institute_id:"uuid_comparison_exp",
-		job_type:"String_comparison_exp",
+		instituteId:"uuid_comparison_exp",
+		isVerified:"Boolean_comparison_exp",
+		jobType:"String_comparison_exp",
 		minority:"String_comparison_exp",
 		name:"String_comparison_exp",
-		pan_card_no:"String_comparison_exp",
-		phone:"String_comparison_exp",
+		panCardNo:"String_comparison_exp",
+		phoneNo:"String_comparison_exp",
 		qualification:"String_comparison_exp",
 		section:"String_comparison_exp",
-		staff_type:"String_comparison_exp",
-		status:"String_comparison_exp",
-		status_of_approval:"String_comparison_exp",
-		updatedById:"uuid_comparison_exp",
-		updated_at:"timestamptz_comparison_exp"
+		staffType:"String_comparison_exp",
+		status:"Status_enum_comparison_exp",
+		statusOfApproval:"String_comparison_exp",
+		updatedAt:"timestamptz_comparison_exp",
+		updatedById:"uuid_comparison_exp"
 	},
 	Faculty_constraint: "enum" as const,
+	Faculty_inc_input:{
+		cursorId:"bigint"
+	},
 	Faculty_insert_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		date_of_joining:"date",
+		cursorId:"bigint",
+		dateOfJoining:"date",
 		dob:"date",
 		id:"uuid",
-		institute_id:"uuid",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	Faculty_on_conflict:{
 		constraint:"Faculty_constraint",
@@ -246,60 +272,66 @@ export const AllTypesProps: Record<string,any> = {
 	Faculty_order_by:{
 		address:"order_by",
 		cast:"order_by",
+		createdAt:"order_by",
 		createdById:"order_by",
-		created_at:"order_by",
 		cursorId:"order_by",
-		date_of_joining:"order_by",
+		dateOfJoining:"order_by",
 		designation:"order_by",
 		dob:"order_by",
-		email_id:"order_by",
+		emailId:"order_by",
 		experience:"order_by",
 		gender:"order_by",
 		id:"order_by",
-		institute_id:"order_by",
-		job_type:"order_by",
+		instituteId:"order_by",
+		isVerified:"order_by",
+		jobType:"order_by",
 		minority:"order_by",
 		name:"order_by",
-		pan_card_no:"order_by",
-		phone:"order_by",
+		panCardNo:"order_by",
+		phoneNo:"order_by",
 		qualification:"order_by",
 		section:"order_by",
-		staff_type:"order_by",
+		staffType:"order_by",
 		status:"order_by",
-		status_of_approval:"order_by",
-		updatedById:"order_by",
-		updated_at:"order_by"
+		statusOfApproval:"order_by",
+		updatedAt:"order_by",
+		updatedById:"order_by"
 	},
 	Faculty_pk_columns_input:{
 		id:"uuid"
 	},
 	Faculty_select_column: "enum" as const,
 	Faculty_set_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		date_of_joining:"date",
+		cursorId:"bigint",
+		dateOfJoining:"date",
 		dob:"date",
 		id:"uuid",
-		institute_id:"uuid",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	Faculty_stream_cursor_input:{
 		initial_value:"Faculty_stream_cursor_value_input",
 		ordering:"cursor_ordering"
 	},
 	Faculty_stream_cursor_value_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		date_of_joining:"date",
+		cursorId:"bigint",
+		dateOfJoining:"date",
 		dob:"date",
 		id:"uuid",
-		institute_id:"uuid",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	Faculty_update_column: "enum" as const,
 	Faculty_updates:{
+		_inc:"Faculty_inc_input",
 		_set:"Faculty_set_input",
 		where:"Faculty_bool_exp"
 	},
@@ -312,35 +344,40 @@ export const AllTypesProps: Record<string,any> = {
 		_and:"FdpPdp_bool_exp",
 		_not:"FdpPdp_bool_exp",
 		_or:"FdpPdp_bool_exp",
+		createdAt:"timestamptz_comparison_exp",
 		createdById:"uuid_comparison_exp",
-		created_at:"timestamptz_comparison_exp",
-		cursorId:"String_comparison_exp",
-		date_from:"date_comparison_exp",
-		date_to:"date_comparison_exp",
+		cursorId:"bigint_comparison_exp",
+		dateFrom:"date_comparison_exp",
+		dateTo:"date_comparison_exp",
 		description:"String_comparison_exp",
-		faculty_id:"uuid_comparison_exp",
+		facultyId:"uuid_comparison_exp",
 		file:"String_comparison_exp",
 		id:"uuid_comparison_exp",
-		institute_id:"uuid_comparison_exp",
+		instituteId:"uuid_comparison_exp",
 		name:"String_comparison_exp",
 		nature:"String_comparison_exp",
-		status:"String_comparison_exp",
+		status:"Status_enum_comparison_exp",
 		type:"String_comparison_exp",
+		updatedAt:"timestamptz_comparison_exp",
 		updatedById:"uuid_comparison_exp",
-		updated_at:"timestamptz_comparison_exp",
 		venue:"String_comparison_exp"
 	},
 	FdpPdp_constraint: "enum" as const,
+	FdpPdp_inc_input:{
+		cursorId:"bigint"
+	},
 	FdpPdp_insert_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		date_from:"date",
-		date_to:"date",
-		faculty_id:"uuid",
+		cursorId:"bigint",
+		dateFrom:"date",
+		dateTo:"date",
+		facultyId:"uuid",
 		id:"uuid",
-		institute_id:"uuid",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FdpPdp_on_conflict:{
 		constraint:"FdpPdp_constraint",
@@ -348,22 +385,22 @@ export const AllTypesProps: Record<string,any> = {
 		where:"FdpPdp_bool_exp"
 	},
 	FdpPdp_order_by:{
+		createdAt:"order_by",
 		createdById:"order_by",
-		created_at:"order_by",
 		cursorId:"order_by",
-		date_from:"order_by",
-		date_to:"order_by",
+		dateFrom:"order_by",
+		dateTo:"order_by",
 		description:"order_by",
-		faculty_id:"order_by",
+		facultyId:"order_by",
 		file:"order_by",
 		id:"order_by",
-		institute_id:"order_by",
+		instituteId:"order_by",
 		name:"order_by",
 		nature:"order_by",
 		status:"order_by",
 		type:"order_by",
+		updatedAt:"order_by",
 		updatedById:"order_by",
-		updated_at:"order_by",
 		venue:"order_by"
 	},
 	FdpPdp_pk_columns_input:{
@@ -371,33 +408,38 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	FdpPdp_select_column: "enum" as const,
 	FdpPdp_set_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		date_from:"date",
-		date_to:"date",
-		faculty_id:"uuid",
+		cursorId:"bigint",
+		dateFrom:"date",
+		dateTo:"date",
+		facultyId:"uuid",
 		id:"uuid",
-		institute_id:"uuid",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FdpPdp_stream_cursor_input:{
 		initial_value:"FdpPdp_stream_cursor_value_input",
 		ordering:"cursor_ordering"
 	},
 	FdpPdp_stream_cursor_value_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		date_from:"date",
-		date_to:"date",
-		faculty_id:"uuid",
+		cursorId:"bigint",
+		dateFrom:"date",
+		dateTo:"date",
+		facultyId:"uuid",
 		id:"uuid",
-		institute_id:"uuid",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FdpPdp_update_column: "enum" as const,
 	FdpPdp_updates:{
+		_inc:"FdpPdp_inc_input",
 		_set:"FdpPdp_set_input",
 		where:"FdpPdp_bool_exp"
 	},
@@ -410,20 +452,20 @@ export const AllTypesProps: Record<string,any> = {
 		_and:"Genesis_bool_exp",
 		_not:"Genesis_bool_exp",
 		_or:"Genesis_bool_exp",
-		created_at:"timestamp_comparison_exp",
-		email_id:"String_comparison_exp",
+		createdAt:"timestamp_comparison_exp",
+		emailId:"String_comparison_exp",
 		id:"uuid_comparison_exp",
-		is_verified:"Boolean_comparison_exp",
+		isVerified:"Boolean_comparison_exp",
 		name:"String_comparison_exp",
-		phone:"String_comparison_exp",
+		phoneNo:"String_comparison_exp",
 		role:"String_comparison_exp",
-		updated_at:"timestamp_comparison_exp"
+		updatedAt:"timestamp_comparison_exp"
 	},
 	Genesis_constraint: "enum" as const,
 	Genesis_insert_input:{
-		created_at:"timestamp",
+		createdAt:"timestamp",
 		id:"uuid",
-		updated_at:"timestamp"
+		updatedAt:"timestamp"
 	},
 	Genesis_on_conflict:{
 		constraint:"Genesis_constraint",
@@ -431,32 +473,32 @@ export const AllTypesProps: Record<string,any> = {
 		where:"Genesis_bool_exp"
 	},
 	Genesis_order_by:{
-		created_at:"order_by",
-		email_id:"order_by",
+		createdAt:"order_by",
+		emailId:"order_by",
 		id:"order_by",
-		is_verified:"order_by",
+		isVerified:"order_by",
 		name:"order_by",
-		phone:"order_by",
+		phoneNo:"order_by",
 		role:"order_by",
-		updated_at:"order_by"
+		updatedAt:"order_by"
 	},
 	Genesis_pk_columns_input:{
 		id:"uuid"
 	},
 	Genesis_select_column: "enum" as const,
 	Genesis_set_input:{
-		created_at:"timestamp",
+		createdAt:"timestamp",
 		id:"uuid",
-		updated_at:"timestamp"
+		updatedAt:"timestamp"
 	},
 	Genesis_stream_cursor_input:{
 		initial_value:"Genesis_stream_cursor_value_input",
 		ordering:"cursor_ordering"
 	},
 	Genesis_stream_cursor_value_input:{
-		created_at:"timestamp",
+		createdAt:"timestamp",
 		id:"uuid",
-		updated_at:"timestamp"
+		updatedAt:"timestamp"
 	},
 	Genesis_update_column: "enum" as const,
 	Genesis_updates:{
@@ -473,29 +515,34 @@ export const AllTypesProps: Record<string,any> = {
 		_not:"InstituteFunding_bool_exp",
 		_or:"InstituteFunding_bool_exp",
 		amount:"String_comparison_exp",
+		createdAt:"timestamptz_comparison_exp",
 		createdById:"uuid_comparison_exp",
-		created_at:"timestamptz_comparison_exp",
-		cursorId:"String_comparison_exp",
+		cursorId:"bigint_comparison_exp",
 		id:"uuid_comparison_exp",
-		institute_id:"uuid_comparison_exp",
+		instituteId:"uuid_comparison_exp",
 		name:"String_comparison_exp",
 		purpose:"String_comparison_exp",
-		status:"String_comparison_exp",
-		transaction_date:"date_comparison_exp",
-		transaction_type:"String_comparison_exp",
+		status:"Status_enum_comparison_exp",
+		transactionDate:"date_comparison_exp",
+		transactionType:"String_comparison_exp",
 		type:"String_comparison_exp",
-		updatedById:"uuid_comparison_exp",
-		updated_at:"timestamptz_comparison_exp"
+		updatedAt:"timestamptz_comparison_exp",
+		updatedById:"uuid_comparison_exp"
 	},
 	InstituteFunding_constraint: "enum" as const,
+	InstituteFunding_inc_input:{
+		cursorId:"bigint"
+	},
 	InstituteFunding_insert_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
+		cursorId:"bigint",
 		id:"uuid",
-		institute_id:"uuid",
-		transaction_date:"date",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		transactionDate:"date",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	InstituteFunding_on_conflict:{
 		constraint:"InstituteFunding_constraint",
@@ -504,48 +551,53 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	InstituteFunding_order_by:{
 		amount:"order_by",
+		createdAt:"order_by",
 		createdById:"order_by",
-		created_at:"order_by",
 		cursorId:"order_by",
 		id:"order_by",
-		institute_id:"order_by",
+		instituteId:"order_by",
 		name:"order_by",
 		purpose:"order_by",
 		status:"order_by",
-		transaction_date:"order_by",
-		transaction_type:"order_by",
+		transactionDate:"order_by",
+		transactionType:"order_by",
 		type:"order_by",
-		updatedById:"order_by",
-		updated_at:"order_by"
+		updatedAt:"order_by",
+		updatedById:"order_by"
 	},
 	InstituteFunding_pk_columns_input:{
 		id:"uuid"
 	},
 	InstituteFunding_select_column: "enum" as const,
 	InstituteFunding_set_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
+		cursorId:"bigint",
 		id:"uuid",
-		institute_id:"uuid",
-		transaction_date:"date",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		transactionDate:"date",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	InstituteFunding_stream_cursor_input:{
 		initial_value:"InstituteFunding_stream_cursor_value_input",
 		ordering:"cursor_ordering"
 	},
 	InstituteFunding_stream_cursor_value_input:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
+		cursorId:"bigint",
 		id:"uuid",
-		institute_id:"uuid",
-		transaction_date:"date",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		instituteId:"uuid",
+		status:"Status_enum",
+		transactionDate:"date",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	InstituteFunding_update_column: "enum" as const,
 	InstituteFunding_updates:{
+		_inc:"InstituteFunding_inc_input",
 		_set:"InstituteFunding_set_input",
 		where:"InstituteFunding_bool_exp"
 	},
@@ -560,28 +612,35 @@ export const AllTypesProps: Record<string,any> = {
 		_or:"Institute_bool_exp",
 		address:"String_comparison_exp",
 		city:"String_comparison_exp",
-		created_at:"timestamptz_comparison_exp",
-		created_by_id:"uuid_comparison_exp",
-		cursor_id:"String_comparison_exp",
-		date_of_establishment:"date_comparison_exp",
+		createdAt:"timestamptz_comparison_exp",
+		createdById:"uuid_comparison_exp",
+		cursorId:"bigint_comparison_exp",
+		dateOfEstablishment:"date_comparison_exp",
 		id:"uuid_comparison_exp",
+		isVerified:"Boolean_comparison_exp",
 		landmark:"String_comparison_exp",
 		name:"String_comparison_exp",
 		pin:"String_comparison_exp",
 		state:"String_comparison_exp",
+		status:"Status_enum_comparison_exp",
 		type:"String_comparison_exp",
-		updated_at:"timestamptz_comparison_exp",
-		updated_by_id:"uuid_comparison_exp",
+		updatedAt:"timestamptz_comparison_exp",
+		updatedById:"uuid_comparison_exp",
 		website:"String_comparison_exp"
 	},
 	Institute_constraint: "enum" as const,
+	Institute_inc_input:{
+		cursorId:"bigint"
+	},
 	Institute_insert_input:{
-		created_at:"timestamptz",
-		created_by_id:"uuid",
-		date_of_establishment:"date",
+		createdAt:"timestamptz",
+		createdById:"uuid",
+		cursorId:"bigint",
+		dateOfEstablishment:"date",
 		id:"uuid",
-		updated_at:"timestamptz",
-		updated_by_id:"uuid"
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	Institute_on_conflict:{
 		constraint:"Institute_constraint",
@@ -591,18 +650,20 @@ export const AllTypesProps: Record<string,any> = {
 	Institute_order_by:{
 		address:"order_by",
 		city:"order_by",
-		created_at:"order_by",
-		created_by_id:"order_by",
-		cursor_id:"order_by",
-		date_of_establishment:"order_by",
+		createdAt:"order_by",
+		createdById:"order_by",
+		cursorId:"order_by",
+		dateOfEstablishment:"order_by",
 		id:"order_by",
+		isVerified:"order_by",
 		landmark:"order_by",
 		name:"order_by",
 		pin:"order_by",
 		state:"order_by",
+		status:"order_by",
 		type:"order_by",
-		updated_at:"order_by",
-		updated_by_id:"order_by",
+		updatedAt:"order_by",
+		updatedById:"order_by",
 		website:"order_by"
 	},
 	Institute_pk_columns_input:{
@@ -610,32 +671,97 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	Institute_select_column: "enum" as const,
 	Institute_set_input:{
-		created_at:"timestamptz",
-		created_by_id:"uuid",
-		date_of_establishment:"date",
+		createdAt:"timestamptz",
+		createdById:"uuid",
+		cursorId:"bigint",
+		dateOfEstablishment:"date",
 		id:"uuid",
-		updated_at:"timestamptz",
-		updated_by_id:"uuid"
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	Institute_stream_cursor_input:{
 		initial_value:"Institute_stream_cursor_value_input",
 		ordering:"cursor_ordering"
 	},
 	Institute_stream_cursor_value_input:{
-		created_at:"timestamptz",
-		created_by_id:"uuid",
-		date_of_establishment:"date",
+		createdAt:"timestamptz",
+		createdById:"uuid",
+		cursorId:"bigint",
+		dateOfEstablishment:"date",
 		id:"uuid",
-		updated_at:"timestamptz",
-		updated_by_id:"uuid"
+		status:"Status_enum",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	Institute_update_column: "enum" as const,
 	Institute_updates:{
+		_inc:"Institute_inc_input",
 		_set:"Institute_set_input",
 		where:"Institute_bool_exp"
 	},
+	Status_aggregate_fields:{
+		count:{
+			columns:"Status_select_column"
+		}
+	},
+	Status_bool_exp:{
+		_and:"Status_bool_exp",
+		_not:"Status_bool_exp",
+		_or:"Status_bool_exp",
+		value:"String_comparison_exp"
+	},
+	Status_constraint: "enum" as const,
+	Status_enum: "enum" as const,
+	Status_enum_comparison_exp:{
+		_eq:"Status_enum",
+		_in:"Status_enum",
+		_neq:"Status_enum",
+		_nin:"Status_enum"
+	},
+	Status_insert_input:{
+
+	},
+	Status_on_conflict:{
+		constraint:"Status_constraint",
+		update_columns:"Status_update_column",
+		where:"Status_bool_exp"
+	},
+	Status_order_by:{
+		value:"order_by"
+	},
+	Status_pk_columns_input:{
+
+	},
+	Status_select_column: "enum" as const,
+	Status_set_input:{
+
+	},
+	Status_stream_cursor_input:{
+		initial_value:"Status_stream_cursor_value_input",
+		ordering:"cursor_ordering"
+	},
+	Status_stream_cursor_value_input:{
+
+	},
+	Status_update_column: "enum" as const,
+	Status_updates:{
+		_set:"Status_set_input",
+		where:"Status_bool_exp"
+	},
 	String_comparison_exp:{
 
+	},
+	bigint: `scalar.bigint` as const,
+	bigint_comparison_exp:{
+		_eq:"bigint",
+		_gt:"bigint",
+		_gte:"bigint",
+		_in:"bigint",
+		_lt:"bigint",
+		_lte:"bigint",
+		_neq:"bigint",
+		_nin:"bigint"
 	},
 	cursor_ordering: "enum" as const,
 	date: `scalar.date` as const,
@@ -691,6 +817,12 @@ export const AllTypesProps: Record<string,any> = {
 		},
 		delete_Institute_by_pk:{
 			id:"uuid"
+		},
+		delete_Status:{
+			where:"Status_bool_exp"
+		},
+		delete_Status_by_pk:{
+
 		},
 		insert_EGovernance:{
 			objects:"EGovernance_insert_input",
@@ -748,11 +880,21 @@ export const AllTypesProps: Record<string,any> = {
 			object:"Institute_insert_input",
 			on_conflict:"Institute_on_conflict"
 		},
+		insert_Status:{
+			objects:"Status_insert_input",
+			on_conflict:"Status_on_conflict"
+		},
+		insert_Status_one:{
+			object:"Status_insert_input",
+			on_conflict:"Status_on_conflict"
+		},
 		update_EGovernance:{
+			_inc:"EGovernance_inc_input",
 			_set:"EGovernance_set_input",
 			where:"EGovernance_bool_exp"
 		},
 		update_EGovernance_by_pk:{
+			_inc:"EGovernance_inc_input",
 			_set:"EGovernance_set_input",
 			pk_columns:"EGovernance_pk_columns_input"
 		},
@@ -760,14 +902,17 @@ export const AllTypesProps: Record<string,any> = {
 			updates:"EGovernance_updates"
 		},
 		update_Faculty:{
+			_inc:"Faculty_inc_input",
 			_set:"Faculty_set_input",
 			where:"Faculty_bool_exp"
 		},
 		update_FacultyFunding:{
+			_inc:"FacultyFunding_inc_input",
 			_set:"FacultyFunding_set_input",
 			where:"FacultyFunding_bool_exp"
 		},
 		update_FacultyFunding_by_pk:{
+			_inc:"FacultyFunding_inc_input",
 			_set:"FacultyFunding_set_input",
 			pk_columns:"FacultyFunding_pk_columns_input"
 		},
@@ -775,6 +920,7 @@ export const AllTypesProps: Record<string,any> = {
 			updates:"FacultyFunding_updates"
 		},
 		update_Faculty_by_pk:{
+			_inc:"Faculty_inc_input",
 			_set:"Faculty_set_input",
 			pk_columns:"Faculty_pk_columns_input"
 		},
@@ -782,10 +928,12 @@ export const AllTypesProps: Record<string,any> = {
 			updates:"Faculty_updates"
 		},
 		update_FdpPdp:{
+			_inc:"FdpPdp_inc_input",
 			_set:"FdpPdp_set_input",
 			where:"FdpPdp_bool_exp"
 		},
 		update_FdpPdp_by_pk:{
+			_inc:"FdpPdp_inc_input",
 			_set:"FdpPdp_set_input",
 			pk_columns:"FdpPdp_pk_columns_input"
 		},
@@ -804,14 +952,17 @@ export const AllTypesProps: Record<string,any> = {
 			updates:"Genesis_updates"
 		},
 		update_Institute:{
+			_inc:"Institute_inc_input",
 			_set:"Institute_set_input",
 			where:"Institute_bool_exp"
 		},
 		update_InstituteFunding:{
+			_inc:"InstituteFunding_inc_input",
 			_set:"InstituteFunding_set_input",
 			where:"InstituteFunding_bool_exp"
 		},
 		update_InstituteFunding_by_pk:{
+			_inc:"InstituteFunding_inc_input",
 			_set:"InstituteFunding_set_input",
 			pk_columns:"InstituteFunding_pk_columns_input"
 		},
@@ -819,11 +970,23 @@ export const AllTypesProps: Record<string,any> = {
 			updates:"InstituteFunding_updates"
 		},
 		update_Institute_by_pk:{
+			_inc:"Institute_inc_input",
 			_set:"Institute_set_input",
 			pk_columns:"Institute_pk_columns_input"
 		},
 		update_Institute_many:{
 			updates:"Institute_updates"
+		},
+		update_Status:{
+			_set:"Status_set_input",
+			where:"Status_bool_exp"
+		},
+		update_Status_by_pk:{
+			_set:"Status_set_input",
+			pk_columns:"Status_pk_columns_input"
+		},
+		update_Status_many:{
+			updates:"Status_updates"
 		}
 	},
 	order_by: "enum" as const,
@@ -918,6 +1081,19 @@ export const AllTypesProps: Record<string,any> = {
 		},
 		Institute_by_pk:{
 			id:"uuid"
+		},
+		Status:{
+			distinct_on:"Status_select_column",
+			order_by:"Status_order_by",
+			where:"Status_bool_exp"
+		},
+		Status_aggregate:{
+			distinct_on:"Status_select_column",
+			order_by:"Status_order_by",
+			where:"Status_bool_exp"
+		},
+		Status_by_pk:{
+
 		}
 	},
 	subscription_root:{
@@ -1039,6 +1215,23 @@ export const AllTypesProps: Record<string,any> = {
 		Institute_stream:{
 			cursor:"Institute_stream_cursor_input",
 			where:"Institute_bool_exp"
+		},
+		Status:{
+			distinct_on:"Status_select_column",
+			order_by:"Status_order_by",
+			where:"Status_bool_exp"
+		},
+		Status_aggregate:{
+			distinct_on:"Status_select_column",
+			order_by:"Status_order_by",
+			where:"Status_bool_exp"
+		},
+		Status_by_pk:{
+
+		},
+		Status_stream:{
+			cursor:"Status_stream_cursor_input",
+			where:"Status_bool_exp"
 		}
 	},
 	timestamp: `scalar.timestamp` as const,
@@ -1084,21 +1277,21 @@ export const ReturnTypes: Record<string,any> = {
 	EGovernance:{
 		address:"String",
 		area:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
+		cursorId:"bigint",
 		description:"String",
 		file:"String",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		name:"String",
-		phone_no:"String",
-		service_end_date:"date",
-		service_start_date:"date",
-		status:"String",
-		total_amount:"String",
+		phoneNo:"String",
+		serviceEndDate:"date",
+		serviceStartDate:"date",
+		status:"Status_enum",
+		totalAmount:"String",
+		updatedAt:"timestamptz",
 		updatedById:"uuid",
-		updated_at:"timestamptz",
 		website:"String"
 	},
 	EGovernance_aggregate:{
@@ -1106,229 +1299,320 @@ export const ReturnTypes: Record<string,any> = {
 		nodes:"EGovernance"
 	},
 	EGovernance_aggregate_fields:{
+		avg:"EGovernance_avg_fields",
 		count:"Int",
 		max:"EGovernance_max_fields",
-		min:"EGovernance_min_fields"
+		min:"EGovernance_min_fields",
+		stddev:"EGovernance_stddev_fields",
+		stddev_pop:"EGovernance_stddev_pop_fields",
+		stddev_samp:"EGovernance_stddev_samp_fields",
+		sum:"EGovernance_sum_fields",
+		var_pop:"EGovernance_var_pop_fields",
+		var_samp:"EGovernance_var_samp_fields",
+		variance:"EGovernance_variance_fields"
+	},
+	EGovernance_avg_fields:{
+		cursorId:"Float"
 	},
 	EGovernance_max_fields:{
 		address:"String",
 		area:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
+		cursorId:"bigint",
 		description:"String",
 		file:"String",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		name:"String",
-		phone_no:"String",
-		service_end_date:"date",
-		service_start_date:"date",
-		status:"String",
-		total_amount:"String",
+		phoneNo:"String",
+		serviceEndDate:"date",
+		serviceStartDate:"date",
+		totalAmount:"String",
+		updatedAt:"timestamptz",
 		updatedById:"uuid",
-		updated_at:"timestamptz",
 		website:"String"
 	},
 	EGovernance_min_fields:{
 		address:"String",
 		area:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
+		cursorId:"bigint",
 		description:"String",
 		file:"String",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		name:"String",
-		phone_no:"String",
-		service_end_date:"date",
-		service_start_date:"date",
-		status:"String",
-		total_amount:"String",
+		phoneNo:"String",
+		serviceEndDate:"date",
+		serviceStartDate:"date",
+		totalAmount:"String",
+		updatedAt:"timestamptz",
 		updatedById:"uuid",
-		updated_at:"timestamptz",
 		website:"String"
 	},
 	EGovernance_mutation_response:{
 		affected_rows:"Int",
 		returning:"EGovernance"
 	},
+	EGovernance_stddev_fields:{
+		cursorId:"Float"
+	},
+	EGovernance_stddev_pop_fields:{
+		cursorId:"Float"
+	},
+	EGovernance_stddev_samp_fields:{
+		cursorId:"Float"
+	},
+	EGovernance_sum_fields:{
+		cursorId:"bigint"
+	},
+	EGovernance_var_pop_fields:{
+		cursorId:"Float"
+	},
+	EGovernance_var_samp_fields:{
+		cursorId:"Float"
+	},
+	EGovernance_variance_fields:{
+		cursorId:"Float"
+	},
 	Faculty:{
 		address:"String",
 		cast:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
-		date_of_joining:"date",
+		cursorId:"bigint",
+		dateOfJoining:"date",
 		designation:"String",
 		dob:"date",
-		email_id:"String",
+		emailId:"String",
 		experience:"String",
 		gender:"String",
 		id:"uuid",
-		institute_id:"uuid",
-		job_type:"String",
+		instituteId:"uuid",
+		isVerified:"Boolean",
+		jobType:"String",
 		minority:"String",
 		name:"String",
-		pan_card_no:"String",
-		phone:"String",
+		panCardNo:"String",
+		phoneNo:"String",
 		qualification:"String",
 		section:"String",
-		staff_type:"String",
-		status:"String",
-		status_of_approval:"String",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		staffType:"String",
+		status:"Status_enum",
+		statusOfApproval:"String",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FacultyFunding:{
 		amount:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
-		faculty_id:"uuid",
+		cursorId:"bigint",
+		facultyId:"uuid",
 		file:"String",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		nature:"String",
-		status:"String",
-		transaction_date:"date",
-		transaction_type:"String",
+		status:"Status_enum",
+		transactionDate:"date",
+		transactionType:"String",
 		type:"String",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FacultyFunding_aggregate:{
 		aggregate:"FacultyFunding_aggregate_fields",
 		nodes:"FacultyFunding"
 	},
 	FacultyFunding_aggregate_fields:{
+		avg:"FacultyFunding_avg_fields",
 		count:"Int",
 		max:"FacultyFunding_max_fields",
-		min:"FacultyFunding_min_fields"
+		min:"FacultyFunding_min_fields",
+		stddev:"FacultyFunding_stddev_fields",
+		stddev_pop:"FacultyFunding_stddev_pop_fields",
+		stddev_samp:"FacultyFunding_stddev_samp_fields",
+		sum:"FacultyFunding_sum_fields",
+		var_pop:"FacultyFunding_var_pop_fields",
+		var_samp:"FacultyFunding_var_samp_fields",
+		variance:"FacultyFunding_variance_fields"
+	},
+	FacultyFunding_avg_fields:{
+		cursorId:"Float"
 	},
 	FacultyFunding_max_fields:{
 		amount:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
-		faculty_id:"uuid",
+		cursorId:"bigint",
+		facultyId:"uuid",
 		file:"String",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		nature:"String",
-		status:"String",
-		transaction_date:"date",
-		transaction_type:"String",
+		transactionDate:"date",
+		transactionType:"String",
 		type:"String",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FacultyFunding_min_fields:{
 		amount:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
-		faculty_id:"uuid",
+		cursorId:"bigint",
+		facultyId:"uuid",
 		file:"String",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		nature:"String",
-		status:"String",
-		transaction_date:"date",
-		transaction_type:"String",
+		transactionDate:"date",
+		transactionType:"String",
 		type:"String",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	FacultyFunding_mutation_response:{
 		affected_rows:"Int",
 		returning:"FacultyFunding"
+	},
+	FacultyFunding_stddev_fields:{
+		cursorId:"Float"
+	},
+	FacultyFunding_stddev_pop_fields:{
+		cursorId:"Float"
+	},
+	FacultyFunding_stddev_samp_fields:{
+		cursorId:"Float"
+	},
+	FacultyFunding_sum_fields:{
+		cursorId:"bigint"
+	},
+	FacultyFunding_var_pop_fields:{
+		cursorId:"Float"
+	},
+	FacultyFunding_var_samp_fields:{
+		cursorId:"Float"
+	},
+	FacultyFunding_variance_fields:{
+		cursorId:"Float"
 	},
 	Faculty_aggregate:{
 		aggregate:"Faculty_aggregate_fields",
 		nodes:"Faculty"
 	},
 	Faculty_aggregate_fields:{
+		avg:"Faculty_avg_fields",
 		count:"Int",
 		max:"Faculty_max_fields",
-		min:"Faculty_min_fields"
+		min:"Faculty_min_fields",
+		stddev:"Faculty_stddev_fields",
+		stddev_pop:"Faculty_stddev_pop_fields",
+		stddev_samp:"Faculty_stddev_samp_fields",
+		sum:"Faculty_sum_fields",
+		var_pop:"Faculty_var_pop_fields",
+		var_samp:"Faculty_var_samp_fields",
+		variance:"Faculty_variance_fields"
+	},
+	Faculty_avg_fields:{
+		cursorId:"Float"
 	},
 	Faculty_max_fields:{
 		address:"String",
 		cast:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
-		date_of_joining:"date",
+		cursorId:"bigint",
+		dateOfJoining:"date",
 		designation:"String",
 		dob:"date",
-		email_id:"String",
+		emailId:"String",
 		experience:"String",
 		gender:"String",
 		id:"uuid",
-		institute_id:"uuid",
-		job_type:"String",
+		instituteId:"uuid",
+		jobType:"String",
 		minority:"String",
 		name:"String",
-		pan_card_no:"String",
-		phone:"String",
+		panCardNo:"String",
+		phoneNo:"String",
 		qualification:"String",
 		section:"String",
-		staff_type:"String",
-		status:"String",
-		status_of_approval:"String",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		staffType:"String",
+		statusOfApproval:"String",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	Faculty_min_fields:{
 		address:"String",
 		cast:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
-		date_of_joining:"date",
+		cursorId:"bigint",
+		dateOfJoining:"date",
 		designation:"String",
 		dob:"date",
-		email_id:"String",
+		emailId:"String",
 		experience:"String",
 		gender:"String",
 		id:"uuid",
-		institute_id:"uuid",
-		job_type:"String",
+		instituteId:"uuid",
+		jobType:"String",
 		minority:"String",
 		name:"String",
-		pan_card_no:"String",
-		phone:"String",
+		panCardNo:"String",
+		phoneNo:"String",
 		qualification:"String",
 		section:"String",
-		staff_type:"String",
-		status:"String",
-		status_of_approval:"String",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		staffType:"String",
+		statusOfApproval:"String",
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	Faculty_mutation_response:{
 		affected_rows:"Int",
 		returning:"Faculty"
 	},
+	Faculty_stddev_fields:{
+		cursorId:"Float"
+	},
+	Faculty_stddev_pop_fields:{
+		cursorId:"Float"
+	},
+	Faculty_stddev_samp_fields:{
+		cursorId:"Float"
+	},
+	Faculty_sum_fields:{
+		cursorId:"bigint"
+	},
+	Faculty_var_pop_fields:{
+		cursorId:"Float"
+	},
+	Faculty_var_samp_fields:{
+		cursorId:"Float"
+	},
+	Faculty_variance_fields:{
+		cursorId:"Float"
+	},
 	FdpPdp:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
-		date_from:"date",
-		date_to:"date",
+		cursorId:"bigint",
+		dateFrom:"date",
+		dateTo:"date",
 		description:"String",
-		faculty_id:"uuid",
+		facultyId:"uuid",
 		file:"String",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		name:"String",
 		nature:"String",
-		status:"String",
+		status:"Status_enum",
 		type:"String",
+		updatedAt:"timestamptz",
 		updatedById:"uuid",
-		updated_at:"timestamptz",
 		venue:"String"
 	},
 	FdpPdp_aggregate:{
@@ -1336,61 +1620,91 @@ export const ReturnTypes: Record<string,any> = {
 		nodes:"FdpPdp"
 	},
 	FdpPdp_aggregate_fields:{
+		avg:"FdpPdp_avg_fields",
 		count:"Int",
 		max:"FdpPdp_max_fields",
-		min:"FdpPdp_min_fields"
+		min:"FdpPdp_min_fields",
+		stddev:"FdpPdp_stddev_fields",
+		stddev_pop:"FdpPdp_stddev_pop_fields",
+		stddev_samp:"FdpPdp_stddev_samp_fields",
+		sum:"FdpPdp_sum_fields",
+		var_pop:"FdpPdp_var_pop_fields",
+		var_samp:"FdpPdp_var_samp_fields",
+		variance:"FdpPdp_variance_fields"
+	},
+	FdpPdp_avg_fields:{
+		cursorId:"Float"
 	},
 	FdpPdp_max_fields:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
-		date_from:"date",
-		date_to:"date",
+		cursorId:"bigint",
+		dateFrom:"date",
+		dateTo:"date",
 		description:"String",
-		faculty_id:"uuid",
+		facultyId:"uuid",
 		file:"String",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		name:"String",
 		nature:"String",
-		status:"String",
 		type:"String",
+		updatedAt:"timestamptz",
 		updatedById:"uuid",
-		updated_at:"timestamptz",
 		venue:"String"
 	},
 	FdpPdp_min_fields:{
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
-		date_from:"date",
-		date_to:"date",
+		cursorId:"bigint",
+		dateFrom:"date",
+		dateTo:"date",
 		description:"String",
-		faculty_id:"uuid",
+		facultyId:"uuid",
 		file:"String",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		name:"String",
 		nature:"String",
-		status:"String",
 		type:"String",
+		updatedAt:"timestamptz",
 		updatedById:"uuid",
-		updated_at:"timestamptz",
 		venue:"String"
 	},
 	FdpPdp_mutation_response:{
 		affected_rows:"Int",
 		returning:"FdpPdp"
 	},
+	FdpPdp_stddev_fields:{
+		cursorId:"Float"
+	},
+	FdpPdp_stddev_pop_fields:{
+		cursorId:"Float"
+	},
+	FdpPdp_stddev_samp_fields:{
+		cursorId:"Float"
+	},
+	FdpPdp_sum_fields:{
+		cursorId:"bigint"
+	},
+	FdpPdp_var_pop_fields:{
+		cursorId:"Float"
+	},
+	FdpPdp_var_samp_fields:{
+		cursorId:"Float"
+	},
+	FdpPdp_variance_fields:{
+		cursorId:"Float"
+	},
 	Genesis:{
-		created_at:"timestamp",
-		email_id:"String",
+		createdAt:"timestamp",
+		emailId:"String",
 		id:"uuid",
-		is_verified:"Boolean",
+		isVerified:"Boolean",
 		name:"String",
-		phone:"String",
+		phoneNo:"String",
 		role:"String",
-		updated_at:"timestamp"
+		updatedAt:"timestamp"
 	},
 	Genesis_aggregate:{
 		aggregate:"Genesis_aggregate_fields",
@@ -1402,22 +1716,22 @@ export const ReturnTypes: Record<string,any> = {
 		min:"Genesis_min_fields"
 	},
 	Genesis_max_fields:{
-		created_at:"timestamp",
-		email_id:"String",
+		createdAt:"timestamp",
+		emailId:"String",
 		id:"uuid",
 		name:"String",
-		phone:"String",
+		phoneNo:"String",
 		role:"String",
-		updated_at:"timestamp"
+		updatedAt:"timestamp"
 	},
 	Genesis_min_fields:{
-		created_at:"timestamp",
-		email_id:"String",
+		createdAt:"timestamp",
+		emailId:"String",
 		id:"uuid",
 		name:"String",
-		phone:"String",
+		phoneNo:"String",
 		role:"String",
-		updated_at:"timestamp"
+		updatedAt:"timestamp"
 	},
 	Genesis_mutation_response:{
 		affected_rows:"Int",
@@ -1426,128 +1740,215 @@ export const ReturnTypes: Record<string,any> = {
 	Institute:{
 		address:"String",
 		city:"String",
-		created_at:"timestamptz",
-		created_by_id:"uuid",
-		cursor_id:"String",
-		date_of_establishment:"date",
+		createdAt:"timestamptz",
+		createdById:"uuid",
+		cursorId:"bigint",
+		dateOfEstablishment:"date",
 		id:"uuid",
+		isVerified:"Boolean",
 		landmark:"String",
 		name:"String",
 		pin:"String",
 		state:"String",
+		status:"Status_enum",
 		type:"String",
-		updated_at:"timestamptz",
-		updated_by_id:"uuid",
+		updatedAt:"timestamptz",
+		updatedById:"uuid",
 		website:"String"
 	},
 	InstituteFunding:{
 		amount:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
+		cursorId:"bigint",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		name:"String",
 		purpose:"String",
-		status:"String",
-		transaction_date:"date",
-		transaction_type:"String",
+		status:"Status_enum",
+		transactionDate:"date",
+		transactionType:"String",
 		type:"String",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	InstituteFunding_aggregate:{
 		aggregate:"InstituteFunding_aggregate_fields",
 		nodes:"InstituteFunding"
 	},
 	InstituteFunding_aggregate_fields:{
+		avg:"InstituteFunding_avg_fields",
 		count:"Int",
 		max:"InstituteFunding_max_fields",
-		min:"InstituteFunding_min_fields"
+		min:"InstituteFunding_min_fields",
+		stddev:"InstituteFunding_stddev_fields",
+		stddev_pop:"InstituteFunding_stddev_pop_fields",
+		stddev_samp:"InstituteFunding_stddev_samp_fields",
+		sum:"InstituteFunding_sum_fields",
+		var_pop:"InstituteFunding_var_pop_fields",
+		var_samp:"InstituteFunding_var_samp_fields",
+		variance:"InstituteFunding_variance_fields"
+	},
+	InstituteFunding_avg_fields:{
+		cursorId:"Float"
 	},
 	InstituteFunding_max_fields:{
 		amount:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
+		cursorId:"bigint",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		name:"String",
 		purpose:"String",
-		status:"String",
-		transaction_date:"date",
-		transaction_type:"String",
+		transactionDate:"date",
+		transactionType:"String",
 		type:"String",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	InstituteFunding_min_fields:{
 		amount:"String",
+		createdAt:"timestamptz",
 		createdById:"uuid",
-		created_at:"timestamptz",
-		cursorId:"String",
+		cursorId:"bigint",
 		id:"uuid",
-		institute_id:"uuid",
+		instituteId:"uuid",
 		name:"String",
 		purpose:"String",
-		status:"String",
-		transaction_date:"date",
-		transaction_type:"String",
+		transactionDate:"date",
+		transactionType:"String",
 		type:"String",
-		updatedById:"uuid",
-		updated_at:"timestamptz"
+		updatedAt:"timestamptz",
+		updatedById:"uuid"
 	},
 	InstituteFunding_mutation_response:{
 		affected_rows:"Int",
 		returning:"InstituteFunding"
+	},
+	InstituteFunding_stddev_fields:{
+		cursorId:"Float"
+	},
+	InstituteFunding_stddev_pop_fields:{
+		cursorId:"Float"
+	},
+	InstituteFunding_stddev_samp_fields:{
+		cursorId:"Float"
+	},
+	InstituteFunding_sum_fields:{
+		cursorId:"bigint"
+	},
+	InstituteFunding_var_pop_fields:{
+		cursorId:"Float"
+	},
+	InstituteFunding_var_samp_fields:{
+		cursorId:"Float"
+	},
+	InstituteFunding_variance_fields:{
+		cursorId:"Float"
 	},
 	Institute_aggregate:{
 		aggregate:"Institute_aggregate_fields",
 		nodes:"Institute"
 	},
 	Institute_aggregate_fields:{
+		avg:"Institute_avg_fields",
 		count:"Int",
 		max:"Institute_max_fields",
-		min:"Institute_min_fields"
+		min:"Institute_min_fields",
+		stddev:"Institute_stddev_fields",
+		stddev_pop:"Institute_stddev_pop_fields",
+		stddev_samp:"Institute_stddev_samp_fields",
+		sum:"Institute_sum_fields",
+		var_pop:"Institute_var_pop_fields",
+		var_samp:"Institute_var_samp_fields",
+		variance:"Institute_variance_fields"
+	},
+	Institute_avg_fields:{
+		cursorId:"Float"
 	},
 	Institute_max_fields:{
 		address:"String",
 		city:"String",
-		created_at:"timestamptz",
-		created_by_id:"uuid",
-		cursor_id:"String",
-		date_of_establishment:"date",
+		createdAt:"timestamptz",
+		createdById:"uuid",
+		cursorId:"bigint",
+		dateOfEstablishment:"date",
 		id:"uuid",
 		landmark:"String",
 		name:"String",
 		pin:"String",
 		state:"String",
 		type:"String",
-		updated_at:"timestamptz",
-		updated_by_id:"uuid",
+		updatedAt:"timestamptz",
+		updatedById:"uuid",
 		website:"String"
 	},
 	Institute_min_fields:{
 		address:"String",
 		city:"String",
-		created_at:"timestamptz",
-		created_by_id:"uuid",
-		cursor_id:"String",
-		date_of_establishment:"date",
+		createdAt:"timestamptz",
+		createdById:"uuid",
+		cursorId:"bigint",
+		dateOfEstablishment:"date",
 		id:"uuid",
 		landmark:"String",
 		name:"String",
 		pin:"String",
 		state:"String",
 		type:"String",
-		updated_at:"timestamptz",
-		updated_by_id:"uuid",
+		updatedAt:"timestamptz",
+		updatedById:"uuid",
 		website:"String"
 	},
 	Institute_mutation_response:{
 		affected_rows:"Int",
 		returning:"Institute"
 	},
+	Institute_stddev_fields:{
+		cursorId:"Float"
+	},
+	Institute_stddev_pop_fields:{
+		cursorId:"Float"
+	},
+	Institute_stddev_samp_fields:{
+		cursorId:"Float"
+	},
+	Institute_sum_fields:{
+		cursorId:"bigint"
+	},
+	Institute_var_pop_fields:{
+		cursorId:"Float"
+	},
+	Institute_var_samp_fields:{
+		cursorId:"Float"
+	},
+	Institute_variance_fields:{
+		cursorId:"Float"
+	},
+	Status:{
+		value:"String"
+	},
+	Status_aggregate:{
+		aggregate:"Status_aggregate_fields",
+		nodes:"Status"
+	},
+	Status_aggregate_fields:{
+		count:"Int",
+		max:"Status_max_fields",
+		min:"Status_min_fields"
+	},
+	Status_max_fields:{
+		value:"String"
+	},
+	Status_min_fields:{
+		value:"String"
+	},
+	Status_mutation_response:{
+		affected_rows:"Int",
+		returning:"Status"
+	},
+	bigint: `scalar.bigint` as const,
 	date: `scalar.date` as const,
 	mutation_root:{
 		delete_EGovernance:"EGovernance_mutation_response",
@@ -1564,6 +1965,8 @@ export const ReturnTypes: Record<string,any> = {
 		delete_InstituteFunding:"InstituteFunding_mutation_response",
 		delete_InstituteFunding_by_pk:"InstituteFunding",
 		delete_Institute_by_pk:"Institute",
+		delete_Status:"Status_mutation_response",
+		delete_Status_by_pk:"Status",
 		insert_EGovernance:"EGovernance_mutation_response",
 		insert_EGovernance_one:"EGovernance",
 		insert_Faculty:"Faculty_mutation_response",
@@ -1578,6 +1981,8 @@ export const ReturnTypes: Record<string,any> = {
 		insert_InstituteFunding:"InstituteFunding_mutation_response",
 		insert_InstituteFunding_one:"InstituteFunding",
 		insert_Institute_one:"Institute",
+		insert_Status:"Status_mutation_response",
+		insert_Status_one:"Status",
 		update_EGovernance:"EGovernance_mutation_response",
 		update_EGovernance_by_pk:"EGovernance",
 		update_EGovernance_many:"EGovernance_mutation_response",
@@ -1598,7 +2003,10 @@ export const ReturnTypes: Record<string,any> = {
 		update_InstituteFunding_by_pk:"InstituteFunding",
 		update_InstituteFunding_many:"InstituteFunding_mutation_response",
 		update_Institute_by_pk:"Institute",
-		update_Institute_many:"Institute_mutation_response"
+		update_Institute_many:"Institute_mutation_response",
+		update_Status:"Status_mutation_response",
+		update_Status_by_pk:"Status",
+		update_Status_many:"Status_mutation_response"
 	},
 	query_root:{
 		EGovernance:"EGovernance",
@@ -1621,7 +2029,10 @@ export const ReturnTypes: Record<string,any> = {
 		InstituteFunding_aggregate:"InstituteFunding_aggregate",
 		InstituteFunding_by_pk:"InstituteFunding",
 		Institute_aggregate:"Institute_aggregate",
-		Institute_by_pk:"Institute"
+		Institute_by_pk:"Institute",
+		Status:"Status",
+		Status_aggregate:"Status_aggregate",
+		Status_by_pk:"Status"
 	},
 	subscription_root:{
 		EGovernance:"EGovernance",
@@ -1651,7 +2062,11 @@ export const ReturnTypes: Record<string,any> = {
 		InstituteFunding_stream:"InstituteFunding",
 		Institute_aggregate:"Institute_aggregate",
 		Institute_by_pk:"Institute",
-		Institute_stream:"Institute"
+		Institute_stream:"Institute",
+		Status:"Status",
+		Status_aggregate:"Status_aggregate",
+		Status_by_pk:"Status",
+		Status_stream:"Status"
 	},
 	timestamp: `scalar.timestamp` as const,
 	timestamptz: `scalar.timestamptz` as const,

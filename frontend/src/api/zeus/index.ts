@@ -839,6 +839,7 @@ export const $ = <Type extends GraphQLVariableType, Name extends string>(name: N
 };
 type ZEUS_INTERFACES = never
 export type ScalarCoders = {
+	bigint?: ScalarResolver;
 	date?: ScalarResolver;
 	timestamp?: ScalarResolver;
 	timestamptz?: ScalarResolver;
@@ -863,21 +864,21 @@ export type ValueTypes = {
 ["EGovernance"]: AliasType<{
 	address?:boolean | `@${string}`,
 	area?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone_no?:boolean | `@${string}`,
-	service_end_date?:boolean | `@${string}`,
-	service_start_date?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	serviceEndDate?:boolean | `@${string}`,
+	serviceStartDate?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
-	total_amount?:boolean | `@${string}`,
+	totalAmount?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -889,9 +890,22 @@ export type ValueTypes = {
 }>;
 	/** aggregate fields of "EGovernance" */
 ["EGovernance_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["EGovernance_avg_fields"],
 count?: [{	columns?: Array<ValueTypes["EGovernance_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
 	max?:ValueTypes["EGovernance_max_fields"],
 	min?:ValueTypes["EGovernance_min_fields"],
+	stddev?:ValueTypes["EGovernance_stddev_fields"],
+	stddev_pop?:ValueTypes["EGovernance_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["EGovernance_stddev_samp_fields"],
+	sum?:ValueTypes["EGovernance_sum_fields"],
+	var_pop?:ValueTypes["EGovernance_var_pop_fields"],
+	var_samp?:ValueTypes["EGovernance_var_samp_fields"],
+	variance?:ValueTypes["EGovernance_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["EGovernance_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "EGovernance". All fields are combined with a logical 'AND'. */
@@ -901,65 +915,68 @@ count?: [{	columns?: Array<ValueTypes["EGovernance_select_column"]> | undefined 
 	_or?: Array<ValueTypes["EGovernance_bool_exp"]> | undefined | null | Variable<any, string>,
 	address?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	area?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
-	cursorId?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint_comparison_exp"] | undefined | null | Variable<any, string>,
 	description?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	file?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	phone_no?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	service_end_date?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
-	service_start_date?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
-	status?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	total_amount?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	phoneNo?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	serviceEndDate?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
+	serviceStartDate?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum_comparison_exp"] | undefined | null | Variable<any, string>,
+	totalAmount?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
 	website?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>
 };
 	/** unique or primary key constraints on table "EGovernance" */
 ["EGovernance_constraint"]:EGovernance_constraint;
+	/** input type for incrementing numeric columns in table "EGovernance" */
+["EGovernance_inc_input"]: {
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>
+};
 	/** input type for inserting data into table "EGovernance" */
 ["EGovernance_insert_input"]: {
 	address?: string | undefined | null | Variable<any, string>,
 	area?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
 	description?: string | undefined | null | Variable<any, string>,
 	file?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
-	phone_no?: string | undefined | null | Variable<any, string>,
-	service_end_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	service_start_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	total_amount?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
+	serviceEndDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	serviceStartDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	totalAmount?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	website?: string | undefined | null | Variable<any, string>
 };
 	/** aggregate max on columns */
 ["EGovernance_max_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	area?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone_no?:boolean | `@${string}`,
-	service_end_date?:boolean | `@${string}`,
-	service_start_date?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	total_amount?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	serviceEndDate?:boolean | `@${string}`,
+	serviceStartDate?:boolean | `@${string}`,
+	totalAmount?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -967,21 +984,20 @@ count?: [{	columns?: Array<ValueTypes["EGovernance_select_column"]> | undefined 
 ["EGovernance_min_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	area?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone_no?:boolean | `@${string}`,
-	service_end_date?:boolean | `@${string}`,
-	service_start_date?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	total_amount?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	serviceEndDate?:boolean | `@${string}`,
+	serviceStartDate?:boolean | `@${string}`,
+	totalAmount?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -1003,21 +1019,21 @@ count?: [{	columns?: Array<ValueTypes["EGovernance_select_column"]> | undefined 
 ["EGovernance_order_by"]: {
 	address?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	area?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	cursorId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	description?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	file?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	phone_no?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	service_end_date?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	service_start_date?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	phoneNo?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	serviceEndDate?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	serviceStartDate?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	total_amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	totalAmount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	website?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** primary key columns input for table: EGovernance */
@@ -1030,23 +1046,38 @@ count?: [{	columns?: Array<ValueTypes["EGovernance_select_column"]> | undefined 
 ["EGovernance_set_input"]: {
 	address?: string | undefined | null | Variable<any, string>,
 	area?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
 	description?: string | undefined | null | Variable<any, string>,
 	file?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
-	phone_no?: string | undefined | null | Variable<any, string>,
-	service_end_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	service_start_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	total_amount?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
+	serviceEndDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	serviceStartDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	totalAmount?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	website?: string | undefined | null | Variable<any, string>
 };
+	/** aggregate stddev on columns */
+["EGovernance_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["EGovernance_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["EGovernance_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "EGovernance" */
 ["EGovernance_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -1058,77 +1089,100 @@ count?: [{	columns?: Array<ValueTypes["EGovernance_select_column"]> | undefined 
 ["EGovernance_stream_cursor_value_input"]: {
 	address?: string | undefined | null | Variable<any, string>,
 	area?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
 	description?: string | undefined | null | Variable<any, string>,
 	file?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
-	phone_no?: string | undefined | null | Variable<any, string>,
-	service_end_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	service_start_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	total_amount?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
+	serviceEndDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	serviceStartDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	totalAmount?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	website?: string | undefined | null | Variable<any, string>
 };
+	/** aggregate sum on columns */
+["EGovernance_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "EGovernance" */
 ["EGovernance_update_column"]:EGovernance_update_column;
 	["EGovernance_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["EGovernance_inc_input"] | undefined | null | Variable<any, string>,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["EGovernance_set_input"] | undefined | null | Variable<any, string>,
 	/** filter the rows which have to be updated */
 	where: ValueTypes["EGovernance_bool_exp"] | Variable<any, string>
 };
+	/** aggregate var_pop on columns */
+["EGovernance_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["EGovernance_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["EGovernance_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** columns and relationships of "Faculty" */
 ["Faculty"]: AliasType<{
 	address?:boolean | `@${string}`,
 	cast?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_of_joining?:boolean | `@${string}`,
+	dateOfJoining?:boolean | `@${string}`,
 	designation?:boolean | `@${string}`,
 	dob?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	experience?:boolean | `@${string}`,
 	gender?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
-	job_type?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	isVerified?:boolean | `@${string}`,
+	jobType?:boolean | `@${string}`,
 	minority?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	pan_card_no?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	panCardNo?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	qualification?:boolean | `@${string}`,
 	section?:boolean | `@${string}`,
-	staff_type?:boolean | `@${string}`,
+	staffType?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
-	status_of_approval?:boolean | `@${string}`,
+	statusOfApproval?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** columns and relationships of "FacultyFunding" */
 ["FacultyFunding"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregated selection of "FacultyFunding" */
@@ -1139,9 +1193,22 @@ count?: [{	columns?: Array<ValueTypes["EGovernance_select_column"]> | undefined 
 }>;
 	/** aggregate fields of "FacultyFunding" */
 ["FacultyFunding_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["FacultyFunding_avg_fields"],
 count?: [{	columns?: Array<ValueTypes["FacultyFunding_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
 	max?:ValueTypes["FacultyFunding_max_fields"],
 	min?:ValueTypes["FacultyFunding_min_fields"],
+	stddev?:ValueTypes["FacultyFunding_stddev_fields"],
+	stddev_pop?:ValueTypes["FacultyFunding_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["FacultyFunding_stddev_samp_fields"],
+	sum?:ValueTypes["FacultyFunding_sum_fields"],
+	var_pop?:ValueTypes["FacultyFunding_var_pop_fields"],
+	var_samp?:ValueTypes["FacultyFunding_var_samp_fields"],
+	variance?:ValueTypes["FacultyFunding_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["FacultyFunding_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "FacultyFunding". All fields are combined with a logical 'AND'. */
@@ -1150,77 +1217,79 @@ count?: [{	columns?: Array<ValueTypes["FacultyFunding_select_column"]> | undefin
 	_not?: ValueTypes["FacultyFunding_bool_exp"] | undefined | null | Variable<any, string>,
 	_or?: Array<ValueTypes["FacultyFunding_bool_exp"]> | undefined | null | Variable<any, string>,
 	amount?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
-	cursorId?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint_comparison_exp"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
 	file?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
 	nature?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	status?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
-	transaction_type?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum_comparison_exp"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
+	transactionType?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>
 };
 	/** unique or primary key constraints on table "FacultyFunding" */
 ["FacultyFunding_constraint"]:FacultyFunding_constraint;
+	/** input type for incrementing numeric columns in table "FacultyFunding" */
+["FacultyFunding_inc_input"]: {
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>
+};
 	/** input type for inserting data into table "FacultyFunding" */
 ["FacultyFunding_insert_input"]: {
 	amount?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	file?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	nature?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	transaction_type?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	transactionType?: string | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
 };
 	/** aggregate max on columns */
 ["FacultyFunding_max_fields"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["FacultyFunding_min_fields"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** response of any mutation on the table "FacultyFunding" */
@@ -1240,20 +1309,20 @@ count?: [{	columns?: Array<ValueTypes["FacultyFunding_select_column"]> | undefin
 	/** Ordering options when selecting data from "FacultyFunding". */
 ["FacultyFunding_order_by"]: {
 	amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	cursorId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	file?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	nature?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	transaction_type?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	transactionType?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** primary key columns input for table: FacultyFunding */
 ["FacultyFunding_pk_columns_input"]: {
@@ -1264,21 +1333,36 @@ count?: [{	columns?: Array<ValueTypes["FacultyFunding_select_column"]> | undefin
 	/** input type for updating data in table "FacultyFunding" */
 ["FacultyFunding_set_input"]: {
 	amount?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	file?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	nature?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	transaction_type?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	transactionType?: string | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
 };
+	/** aggregate stddev on columns */
+["FacultyFunding_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["FacultyFunding_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["FacultyFunding_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "FacultyFunding" */
 ["FacultyFunding_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -1289,29 +1373,51 @@ count?: [{	columns?: Array<ValueTypes["FacultyFunding_select_column"]> | undefin
 	/** Initial value of the column from where the streaming should start */
 ["FacultyFunding_stream_cursor_value_input"]: {
 	amount?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	file?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	nature?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	transaction_type?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	transactionType?: string | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
 };
+	/** aggregate sum on columns */
+["FacultyFunding_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "FacultyFunding" */
 ["FacultyFunding_update_column"]:FacultyFunding_update_column;
 	["FacultyFunding_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["FacultyFunding_inc_input"] | undefined | null | Variable<any, string>,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["FacultyFunding_set_input"] | undefined | null | Variable<any, string>,
 	/** filter the rows which have to be updated */
 	where: ValueTypes["FacultyFunding_bool_exp"] | Variable<any, string>
 };
+	/** aggregate var_pop on columns */
+["FacultyFunding_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["FacultyFunding_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["FacultyFunding_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** aggregated selection of "Faculty" */
 ["Faculty_aggregate"]: AliasType<{
 	aggregate?:ValueTypes["Faculty_aggregate_fields"],
@@ -1320,9 +1426,22 @@ count?: [{	columns?: Array<ValueTypes["FacultyFunding_select_column"]> | undefin
 }>;
 	/** aggregate fields of "Faculty" */
 ["Faculty_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["Faculty_avg_fields"],
 count?: [{	columns?: Array<ValueTypes["Faculty_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
 	max?:ValueTypes["Faculty_max_fields"],
 	min?:ValueTypes["Faculty_min_fields"],
+	stddev?:ValueTypes["Faculty_stddev_fields"],
+	stddev_pop?:ValueTypes["Faculty_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["Faculty_stddev_samp_fields"],
+	sum?:ValueTypes["Faculty_sum_fields"],
+	var_pop?:ValueTypes["Faculty_var_pop_fields"],
+	var_samp?:ValueTypes["Faculty_var_samp_fields"],
+	variance?:ValueTypes["Faculty_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["Faculty_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "Faculty". All fields are combined with a logical 'AND'. */
@@ -1332,116 +1451,120 @@ count?: [{	columns?: Array<ValueTypes["Faculty_select_column"]> | undefined | nu
 	_or?: Array<ValueTypes["Faculty_bool_exp"]> | undefined | null | Variable<any, string>,
 	address?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	cast?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
-	cursorId?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	date_of_joining?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint_comparison_exp"] | undefined | null | Variable<any, string>,
+	dateOfJoining?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
 	designation?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	dob?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
-	email_id?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	emailId?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	experience?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	gender?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	job_type?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	isVerified?: ValueTypes["Boolean_comparison_exp"] | undefined | null | Variable<any, string>,
+	jobType?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	minority?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	pan_card_no?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	phone?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	panCardNo?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	phoneNo?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	qualification?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	section?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	staff_type?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	status?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	status_of_approval?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>
+	staffType?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum_comparison_exp"] | undefined | null | Variable<any, string>,
+	statusOfApproval?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>
 };
 	/** unique or primary key constraints on table "Faculty" */
 ["Faculty_constraint"]:Faculty_constraint;
+	/** input type for incrementing numeric columns in table "Faculty" */
+["Faculty_inc_input"]: {
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>
+};
 	/** input type for inserting data into table "Faculty" */
 ["Faculty_insert_input"]: {
 	address?: string | undefined | null | Variable<any, string>,
 	cast?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
-	date_of_joining?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	dateOfJoining?: ValueTypes["date"] | undefined | null | Variable<any, string>,
 	designation?: string | undefined | null | Variable<any, string>,
 	dob?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	email_id?: string | undefined | null | Variable<any, string>,
+	emailId?: string | undefined | null | Variable<any, string>,
 	experience?: string | undefined | null | Variable<any, string>,
 	gender?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	job_type?: string | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
+	jobType?: string | undefined | null | Variable<any, string>,
 	minority?: string | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
-	pan_card_no?: string | undefined | null | Variable<any, string>,
-	phone?: string | undefined | null | Variable<any, string>,
+	panCardNo?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
 	qualification?: string | undefined | null | Variable<any, string>,
 	section?: string | undefined | null | Variable<any, string>,
-	staff_type?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	status_of_approval?: string | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>
+	staffType?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	statusOfApproval?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
 };
 	/** aggregate max on columns */
 ["Faculty_max_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	cast?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_of_joining?:boolean | `@${string}`,
+	dateOfJoining?:boolean | `@${string}`,
 	designation?:boolean | `@${string}`,
 	dob?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	experience?:boolean | `@${string}`,
 	gender?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
-	job_type?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	jobType?:boolean | `@${string}`,
 	minority?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	pan_card_no?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	panCardNo?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	qualification?:boolean | `@${string}`,
 	section?:boolean | `@${string}`,
-	staff_type?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	status_of_approval?:boolean | `@${string}`,
+	staffType?:boolean | `@${string}`,
+	statusOfApproval?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["Faculty_min_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	cast?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_of_joining?:boolean | `@${string}`,
+	dateOfJoining?:boolean | `@${string}`,
 	designation?:boolean | `@${string}`,
 	dob?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	experience?:boolean | `@${string}`,
 	gender?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
-	job_type?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	jobType?:boolean | `@${string}`,
 	minority?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	pan_card_no?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	panCardNo?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	qualification?:boolean | `@${string}`,
 	section?:boolean | `@${string}`,
-	staff_type?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	status_of_approval?:boolean | `@${string}`,
+	staffType?:boolean | `@${string}`,
+	statusOfApproval?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** response of any mutation on the table "Faculty" */
@@ -1462,29 +1585,30 @@ count?: [{	columns?: Array<ValueTypes["Faculty_select_column"]> | undefined | nu
 ["Faculty_order_by"]: {
 	address?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	cast?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	cursorId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	date_of_joining?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	dateOfJoining?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	designation?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	dob?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	email_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	emailId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	experience?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	gender?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	job_type?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	isVerified?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	jobType?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	minority?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	pan_card_no?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	phone?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	panCardNo?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	phoneNo?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	qualification?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	section?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	staff_type?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	staffType?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	status_of_approval?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+	statusOfApproval?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** primary key columns input for table: Faculty */
 ["Faculty_pk_columns_input"]: {
@@ -1496,30 +1620,46 @@ count?: [{	columns?: Array<ValueTypes["Faculty_select_column"]> | undefined | nu
 ["Faculty_set_input"]: {
 	address?: string | undefined | null | Variable<any, string>,
 	cast?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
-	date_of_joining?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	dateOfJoining?: ValueTypes["date"] | undefined | null | Variable<any, string>,
 	designation?: string | undefined | null | Variable<any, string>,
 	dob?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	email_id?: string | undefined | null | Variable<any, string>,
+	emailId?: string | undefined | null | Variable<any, string>,
 	experience?: string | undefined | null | Variable<any, string>,
 	gender?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	job_type?: string | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
+	jobType?: string | undefined | null | Variable<any, string>,
 	minority?: string | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
-	pan_card_no?: string | undefined | null | Variable<any, string>,
-	phone?: string | undefined | null | Variable<any, string>,
+	panCardNo?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
 	qualification?: string | undefined | null | Variable<any, string>,
 	section?: string | undefined | null | Variable<any, string>,
-	staff_type?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	status_of_approval?: string | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>
+	staffType?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	statusOfApproval?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
 };
+	/** aggregate stddev on columns */
+["Faculty_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["Faculty_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["Faculty_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "Faculty" */
 ["Faculty_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -1531,56 +1671,79 @@ count?: [{	columns?: Array<ValueTypes["Faculty_select_column"]> | undefined | nu
 ["Faculty_stream_cursor_value_input"]: {
 	address?: string | undefined | null | Variable<any, string>,
 	cast?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
-	date_of_joining?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	dateOfJoining?: ValueTypes["date"] | undefined | null | Variable<any, string>,
 	designation?: string | undefined | null | Variable<any, string>,
 	dob?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	email_id?: string | undefined | null | Variable<any, string>,
+	emailId?: string | undefined | null | Variable<any, string>,
 	experience?: string | undefined | null | Variable<any, string>,
 	gender?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	job_type?: string | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
+	jobType?: string | undefined | null | Variable<any, string>,
 	minority?: string | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
-	pan_card_no?: string | undefined | null | Variable<any, string>,
-	phone?: string | undefined | null | Variable<any, string>,
+	panCardNo?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
 	qualification?: string | undefined | null | Variable<any, string>,
 	section?: string | undefined | null | Variable<any, string>,
-	staff_type?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	status_of_approval?: string | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>
+	staffType?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	statusOfApproval?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
 };
+	/** aggregate sum on columns */
+["Faculty_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "Faculty" */
 ["Faculty_update_column"]:Faculty_update_column;
 	["Faculty_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["Faculty_inc_input"] | undefined | null | Variable<any, string>,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["Faculty_set_input"] | undefined | null | Variable<any, string>,
 	/** filter the rows which have to be updated */
 	where: ValueTypes["Faculty_bool_exp"] | Variable<any, string>
 };
+	/** aggregate var_pop on columns */
+["Faculty_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["Faculty_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["Faculty_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** columns and relationships of "FdpPdp" */
 ["FdpPdp"]: AliasType<{
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_from?:boolean | `@${string}`,
-	date_to?:boolean | `@${string}`,
+	dateFrom?:boolean | `@${string}`,
+	dateTo?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	venue?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -1592,9 +1755,22 @@ count?: [{	columns?: Array<ValueTypes["Faculty_select_column"]> | undefined | nu
 }>;
 	/** aggregate fields of "FdpPdp" */
 ["FdpPdp_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["FdpPdp_avg_fields"],
 count?: [{	columns?: Array<ValueTypes["FdpPdp_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
 	max?:ValueTypes["FdpPdp_max_fields"],
 	min?:ValueTypes["FdpPdp_min_fields"],
+	stddev?:ValueTypes["FdpPdp_stddev_fields"],
+	stddev_pop?:ValueTypes["FdpPdp_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["FdpPdp_stddev_samp_fields"],
+	sum?:ValueTypes["FdpPdp_sum_fields"],
+	var_pop?:ValueTypes["FdpPdp_var_pop_fields"],
+	var_samp?:ValueTypes["FdpPdp_var_samp_fields"],
+	variance?:ValueTypes["FdpPdp_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["FdpPdp_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "FdpPdp". All fields are combined with a logical 'AND'. */
@@ -1602,85 +1778,87 @@ count?: [{	columns?: Array<ValueTypes["FdpPdp_select_column"]> | undefined | nul
 	_and?: Array<ValueTypes["FdpPdp_bool_exp"]> | undefined | null | Variable<any, string>,
 	_not?: ValueTypes["FdpPdp_bool_exp"] | undefined | null | Variable<any, string>,
 	_or?: Array<ValueTypes["FdpPdp_bool_exp"]> | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
-	cursorId?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	date_from?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
-	date_to?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint_comparison_exp"] | undefined | null | Variable<any, string>,
+	dateFrom?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
+	dateTo?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
 	description?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
 	file?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	nature?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	status?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum_comparison_exp"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
 	venue?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>
 };
 	/** unique or primary key constraints on table "FdpPdp" */
 ["FdpPdp_constraint"]:FdpPdp_constraint;
+	/** input type for incrementing numeric columns in table "FdpPdp" */
+["FdpPdp_inc_input"]: {
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>
+};
 	/** input type for inserting data into table "FdpPdp" */
 ["FdpPdp_insert_input"]: {
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
-	date_from?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	date_to?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	dateFrom?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	dateTo?: ValueTypes["date"] | undefined | null | Variable<any, string>,
 	description?: string | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	file?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
 	nature?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	venue?: string | undefined | null | Variable<any, string>
 };
 	/** aggregate max on columns */
 ["FdpPdp_max_fields"]: AliasType<{
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_from?:boolean | `@${string}`,
-	date_to?:boolean | `@${string}`,
+	dateFrom?:boolean | `@${string}`,
+	dateTo?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	venue?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["FdpPdp_min_fields"]: AliasType<{
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_from?:boolean | `@${string}`,
-	date_to?:boolean | `@${string}`,
+	dateFrom?:boolean | `@${string}`,
+	dateTo?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	venue?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -1700,22 +1878,22 @@ count?: [{	columns?: Array<ValueTypes["FdpPdp_select_column"]> | undefined | nul
 };
 	/** Ordering options when selecting data from "FdpPdp". */
 ["FdpPdp_order_by"]: {
+	createdAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	cursorId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	date_from?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	date_to?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	dateFrom?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	dateTo?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	description?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	file?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	nature?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	venue?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** primary key columns input for table: FdpPdp */
@@ -1726,24 +1904,39 @@ count?: [{	columns?: Array<ValueTypes["FdpPdp_select_column"]> | undefined | nul
 ["FdpPdp_select_column"]:FdpPdp_select_column;
 	/** input type for updating data in table "FdpPdp" */
 ["FdpPdp_set_input"]: {
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
-	date_from?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	date_to?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	dateFrom?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	dateTo?: ValueTypes["date"] | undefined | null | Variable<any, string>,
 	description?: string | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	file?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
 	nature?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	venue?: string | undefined | null | Variable<any, string>
 };
+	/** aggregate stddev on columns */
+["FdpPdp_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["FdpPdp_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["FdpPdp_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "FdpPdp" */
 ["FdpPdp_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -1753,42 +1946,64 @@ count?: [{	columns?: Array<ValueTypes["FdpPdp_select_column"]> | undefined | nul
 };
 	/** Initial value of the column from where the streaming should start */
 ["FdpPdp_stream_cursor_value_input"]: {
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
-	date_from?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	date_to?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	dateFrom?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	dateTo?: ValueTypes["date"] | undefined | null | Variable<any, string>,
 	description?: string | undefined | null | Variable<any, string>,
-	faculty_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	facultyId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	file?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
 	nature?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	venue?: string | undefined | null | Variable<any, string>
 };
+	/** aggregate sum on columns */
+["FdpPdp_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "FdpPdp" */
 ["FdpPdp_update_column"]:FdpPdp_update_column;
 	["FdpPdp_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["FdpPdp_inc_input"] | undefined | null | Variable<any, string>,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["FdpPdp_set_input"] | undefined | null | Variable<any, string>,
 	/** filter the rows which have to be updated */
 	where: ValueTypes["FdpPdp_bool_exp"] | Variable<any, string>
 };
+	/** aggregate var_pop on columns */
+["FdpPdp_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["FdpPdp_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["FdpPdp_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** columns and relationships of "Genesis" */
 ["Genesis"]: AliasType<{
-	created_at?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	is_verified?:boolean | `@${string}`,
+	isVerified?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	role?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregated selection of "Genesis" */
@@ -1809,48 +2024,48 @@ count?: [{	columns?: Array<ValueTypes["Genesis_select_column"]> | undefined | nu
 	_and?: Array<ValueTypes["Genesis_bool_exp"]> | undefined | null | Variable<any, string>,
 	_not?: ValueTypes["Genesis_bool_exp"] | undefined | null | Variable<any, string>,
 	_or?: Array<ValueTypes["Genesis_bool_exp"]> | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>,
-	email_id?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>,
+	emailId?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	is_verified?: ValueTypes["Boolean_comparison_exp"] | undefined | null | Variable<any, string>,
+	isVerified?: ValueTypes["Boolean_comparison_exp"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	phone?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	phoneNo?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	role?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>
 };
 	/** unique or primary key constraints on table "Genesis" */
 ["Genesis_constraint"]:Genesis_constraint;
 	/** input type for inserting data into table "Genesis" */
 ["Genesis_insert_input"]: {
-	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
-	email_id?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	emailId?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	is_verified?: boolean | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
-	phone?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
 	role?: string | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
 	/** aggregate max on columns */
 ["Genesis_max_fields"]: AliasType<{
-	created_at?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	role?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["Genesis_min_fields"]: AliasType<{
-	created_at?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	role?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** response of any mutation on the table "Genesis" */
@@ -1869,14 +2084,14 @@ count?: [{	columns?: Array<ValueTypes["Genesis_select_column"]> | undefined | nu
 };
 	/** Ordering options when selecting data from "Genesis". */
 ["Genesis_order_by"]: {
-	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	email_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	emailId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	is_verified?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	isVerified?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	phone?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	phoneNo?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	role?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** primary key columns input for table: Genesis */
 ["Genesis_pk_columns_input"]: {
@@ -1886,14 +2101,14 @@ count?: [{	columns?: Array<ValueTypes["Genesis_select_column"]> | undefined | nu
 ["Genesis_select_column"]:Genesis_select_column;
 	/** input type for updating data in table "Genesis" */
 ["Genesis_set_input"]: {
-	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
-	email_id?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	emailId?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	is_verified?: boolean | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
-	phone?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
 	role?: string | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
 	/** Streaming cursor of the table "Genesis" */
 ["Genesis_stream_cursor_input"]: {
@@ -1904,14 +2119,14 @@ count?: [{	columns?: Array<ValueTypes["Genesis_select_column"]> | undefined | nu
 };
 	/** Initial value of the column from where the streaming should start */
 ["Genesis_stream_cursor_value_input"]: {
-	created_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
-	email_id?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	emailId?: string | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	is_verified?: boolean | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
-	phone?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
 	role?: string | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>
 };
 	/** update columns of table "Genesis" */
 ["Genesis_update_column"]:Genesis_update_column;
@@ -1925,37 +2140,39 @@ count?: [{	columns?: Array<ValueTypes["Genesis_select_column"]> | undefined | nu
 ["Institute"]: AliasType<{
 	address?:boolean | `@${string}`,
 	city?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
-	created_by_id?:boolean | `@${string}`,
-	cursor_id?:boolean | `@${string}`,
-	date_of_establishment?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	dateOfEstablishment?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
+	isVerified?:boolean | `@${string}`,
 	landmark?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	pin?:boolean | `@${string}`,
 	state?:boolean | `@${string}`,
+	status?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
-	updated_by_id?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** columns and relationships of "InstituteFunding" */
 ["InstituteFunding"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	purpose?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregated selection of "InstituteFunding" */
@@ -1966,9 +2183,22 @@ count?: [{	columns?: Array<ValueTypes["Genesis_select_column"]> | undefined | nu
 }>;
 	/** aggregate fields of "InstituteFunding" */
 ["InstituteFunding_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["InstituteFunding_avg_fields"],
 count?: [{	columns?: Array<ValueTypes["InstituteFunding_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
 	max?:ValueTypes["InstituteFunding_max_fields"],
 	min?:ValueTypes["InstituteFunding_min_fields"],
+	stddev?:ValueTypes["InstituteFunding_stddev_fields"],
+	stddev_pop?:ValueTypes["InstituteFunding_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["InstituteFunding_stddev_samp_fields"],
+	sum?:ValueTypes["InstituteFunding_sum_fields"],
+	var_pop?:ValueTypes["InstituteFunding_var_pop_fields"],
+	var_samp?:ValueTypes["InstituteFunding_var_samp_fields"],
+	variance?:ValueTypes["InstituteFunding_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["InstituteFunding_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "InstituteFunding". All fields are combined with a logical 'AND'. */
@@ -1977,73 +2207,75 @@ count?: [{	columns?: Array<ValueTypes["InstituteFunding_select_column"]> | undef
 	_not?: ValueTypes["InstituteFunding_bool_exp"] | undefined | null | Variable<any, string>,
 	_or?: Array<ValueTypes["InstituteFunding_bool_exp"]> | undefined | null | Variable<any, string>,
 	amount?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
-	cursorId?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint_comparison_exp"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	purpose?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	status?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
-	transaction_type?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum_comparison_exp"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
+	transactionType?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>
 };
 	/** unique or primary key constraints on table "InstituteFunding" */
 ["InstituteFunding_constraint"]:InstituteFunding_constraint;
+	/** input type for incrementing numeric columns in table "InstituteFunding" */
+["InstituteFunding_inc_input"]: {
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>
+};
 	/** input type for inserting data into table "InstituteFunding" */
 ["InstituteFunding_insert_input"]: {
 	amount?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
 	purpose?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	transaction_type?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	transactionType?: string | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
 };
 	/** aggregate max on columns */
 ["InstituteFunding_max_fields"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	purpose?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["InstituteFunding_min_fields"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	purpose?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** response of any mutation on the table "InstituteFunding" */
@@ -2063,19 +2295,19 @@ count?: [{	columns?: Array<ValueTypes["InstituteFunding_select_column"]> | undef
 	/** Ordering options when selecting data from "InstituteFunding". */
 ["InstituteFunding_order_by"]: {
 	amount?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	cursorId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	purpose?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	transaction_type?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	transactionType?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** primary key columns input for table: InstituteFunding */
 ["InstituteFunding_pk_columns_input"]: {
@@ -2086,20 +2318,35 @@ count?: [{	columns?: Array<ValueTypes["InstituteFunding_select_column"]> | undef
 	/** input type for updating data in table "InstituteFunding" */
 ["InstituteFunding_set_input"]: {
 	amount?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
 	purpose?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	transaction_type?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	transactionType?: string | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
 };
+	/** aggregate stddev on columns */
+["InstituteFunding_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["InstituteFunding_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["InstituteFunding_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "InstituteFunding" */
 ["InstituteFunding_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -2110,28 +2357,50 @@ count?: [{	columns?: Array<ValueTypes["InstituteFunding_select_column"]> | undef
 	/** Initial value of the column from where the streaming should start */
 ["InstituteFunding_stream_cursor_value_input"]: {
 	amount?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
 	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	cursorId?: string | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	institute_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
 	purpose?: string | undefined | null | Variable<any, string>,
-	status?: string | undefined | null | Variable<any, string>,
-	transaction_date?: ValueTypes["date"] | undefined | null | Variable<any, string>,
-	transaction_type?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	transactionDate?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	transactionType?: string | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
-	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
 };
+	/** aggregate sum on columns */
+["InstituteFunding_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "InstituteFunding" */
 ["InstituteFunding_update_column"]:InstituteFunding_update_column;
 	["InstituteFunding_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["InstituteFunding_inc_input"] | undefined | null | Variable<any, string>,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["InstituteFunding_set_input"] | undefined | null | Variable<any, string>,
 	/** filter the rows which have to be updated */
 	where: ValueTypes["InstituteFunding_bool_exp"] | Variable<any, string>
 };
+	/** aggregate var_pop on columns */
+["InstituteFunding_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["InstituteFunding_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["InstituteFunding_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** aggregated selection of "Institute" */
 ["Institute_aggregate"]: AliasType<{
 	aggregate?:ValueTypes["Institute_aggregate_fields"],
@@ -2140,9 +2409,22 @@ count?: [{	columns?: Array<ValueTypes["InstituteFunding_select_column"]> | undef
 }>;
 	/** aggregate fields of "Institute" */
 ["Institute_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["Institute_avg_fields"],
 count?: [{	columns?: Array<ValueTypes["Institute_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
 	max?:ValueTypes["Institute_max_fields"],
 	min?:ValueTypes["Institute_min_fields"],
+	stddev?:ValueTypes["Institute_stddev_fields"],
+	stddev_pop?:ValueTypes["Institute_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["Institute_stddev_samp_fields"],
+	sum?:ValueTypes["Institute_sum_fields"],
+	var_pop?:ValueTypes["Institute_var_pop_fields"],
+	var_samp?:ValueTypes["Institute_var_samp_fields"],
+	variance?:ValueTypes["Institute_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["Institute_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "Institute". All fields are combined with a logical 'AND'. */
@@ -2152,56 +2434,64 @@ count?: [{	columns?: Array<ValueTypes["Institute_select_column"]> | undefined | 
 	_or?: Array<ValueTypes["Institute_bool_exp"]> | undefined | null | Variable<any, string>,
 	address?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	city?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
-	created_by_id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
-	cursor_id?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	date_of_establishment?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint_comparison_exp"] | undefined | null | Variable<any, string>,
+	dateOfEstablishment?: ValueTypes["date_comparison_exp"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	isVerified?: ValueTypes["Boolean_comparison_exp"] | undefined | null | Variable<any, string>,
 	landmark?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	pin?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
 	state?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum_comparison_exp"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
-	updated_by_id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
 	website?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>
 };
 	/** unique or primary key constraints on table "Institute" */
 ["Institute_constraint"]:Institute_constraint;
+	/** input type for incrementing numeric columns in table "Institute" */
+["Institute_inc_input"]: {
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>
+};
 	/** input type for inserting data into table "Institute" */
 ["Institute_insert_input"]: {
 	address?: string | undefined | null | Variable<any, string>,
 	city?: string | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	created_by_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	cursor_id?: string | undefined | null | Variable<any, string>,
-	date_of_establishment?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	dateOfEstablishment?: ValueTypes["date"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
 	landmark?: string | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
 	pin?: string | undefined | null | Variable<any, string>,
 	state?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	updated_by_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	website?: string | undefined | null | Variable<any, string>
 };
 	/** aggregate max on columns */
 ["Institute_max_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	city?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
-	created_by_id?:boolean | `@${string}`,
-	cursor_id?:boolean | `@${string}`,
-	date_of_establishment?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	dateOfEstablishment?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	landmark?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	pin?:boolean | `@${string}`,
 	state?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
-	updated_by_id?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -2209,18 +2499,18 @@ count?: [{	columns?: Array<ValueTypes["Institute_select_column"]> | undefined | 
 ["Institute_min_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	city?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
-	created_by_id?:boolean | `@${string}`,
-	cursor_id?:boolean | `@${string}`,
-	date_of_establishment?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	dateOfEstablishment?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	landmark?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	pin?:boolean | `@${string}`,
 	state?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
-	updated_by_id?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -2242,18 +2532,20 @@ count?: [{	columns?: Array<ValueTypes["Institute_select_column"]> | undefined | 
 ["Institute_order_by"]: {
 	address?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	city?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	created_by_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	cursor_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	date_of_establishment?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	dateOfEstablishment?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	isVerified?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	landmark?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	pin?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	state?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	type?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
-	updated_by_id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
 	website?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
 };
 	/** primary key columns input for table: Institute */
@@ -2266,20 +2558,37 @@ count?: [{	columns?: Array<ValueTypes["Institute_select_column"]> | undefined | 
 ["Institute_set_input"]: {
 	address?: string | undefined | null | Variable<any, string>,
 	city?: string | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	created_by_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	cursor_id?: string | undefined | null | Variable<any, string>,
-	date_of_establishment?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	dateOfEstablishment?: ValueTypes["date"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
 	landmark?: string | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
 	pin?: string | undefined | null | Variable<any, string>,
 	state?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	updated_by_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	website?: string | undefined | null | Variable<any, string>
 };
+	/** aggregate stddev on columns */
+["Institute_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["Institute_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["Institute_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "Institute" */
 ["Institute_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -2291,27 +2600,148 @@ count?: [{	columns?: Array<ValueTypes["Institute_select_column"]> | undefined | 
 ["Institute_stream_cursor_value_input"]: {
 	address?: string | undefined | null | Variable<any, string>,
 	city?: string | undefined | null | Variable<any, string>,
-	created_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	created_by_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
-	cursor_id?: string | undefined | null | Variable<any, string>,
-	date_of_establishment?: ValueTypes["date"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	dateOfEstablishment?: ValueTypes["date"] | undefined | null | Variable<any, string>,
 	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
 	landmark?: string | undefined | null | Variable<any, string>,
 	name?: string | undefined | null | Variable<any, string>,
 	pin?: string | undefined | null | Variable<any, string>,
 	state?: string | undefined | null | Variable<any, string>,
+	status?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
 	type?: string | undefined | null | Variable<any, string>,
-	updated_at?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
-	updated_by_id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamptz"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
 	website?: string | undefined | null | Variable<any, string>
 };
+	/** aggregate sum on columns */
+["Institute_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "Institute" */
 ["Institute_update_column"]:Institute_update_column;
 	["Institute_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["Institute_inc_input"] | undefined | null | Variable<any, string>,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["Institute_set_input"] | undefined | null | Variable<any, string>,
 	/** filter the rows which have to be updated */
 	where: ValueTypes["Institute_bool_exp"] | Variable<any, string>
+};
+	/** aggregate var_pop on columns */
+["Institute_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["Institute_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["Institute_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** columns and relationships of "Status" */
+["Status"]: AliasType<{
+	value?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregated selection of "Status" */
+["Status_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["Status_aggregate_fields"],
+	nodes?:ValueTypes["Status"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate fields of "Status" */
+["Status_aggregate_fields"]: AliasType<{
+count?: [{	columns?: Array<ValueTypes["Status_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
+	max?:ValueTypes["Status_max_fields"],
+	min?:ValueTypes["Status_min_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** Boolean expression to filter rows from the table "Status". All fields are combined with a logical 'AND'. */
+["Status_bool_exp"]: {
+	_and?: Array<ValueTypes["Status_bool_exp"]> | undefined | null | Variable<any, string>,
+	_not?: ValueTypes["Status_bool_exp"] | undefined | null | Variable<any, string>,
+	_or?: Array<ValueTypes["Status_bool_exp"]> | undefined | null | Variable<any, string>,
+	value?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>
+};
+	/** unique or primary key constraints on table "Status" */
+["Status_constraint"]:Status_constraint;
+	["Status_enum"]:Status_enum;
+	/** Boolean expression to compare columns of type "Status_enum". All fields are combined with logical 'AND'. */
+["Status_enum_comparison_exp"]: {
+	_eq?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	_in?: Array<ValueTypes["Status_enum"]> | undefined | null | Variable<any, string>,
+	_is_null?: boolean | undefined | null | Variable<any, string>,
+	_neq?: ValueTypes["Status_enum"] | undefined | null | Variable<any, string>,
+	_nin?: Array<ValueTypes["Status_enum"]> | undefined | null | Variable<any, string>
+};
+	/** input type for inserting data into table "Status" */
+["Status_insert_input"]: {
+	value?: string | undefined | null | Variable<any, string>
+};
+	/** aggregate max on columns */
+["Status_max_fields"]: AliasType<{
+	value?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate min on columns */
+["Status_min_fields"]: AliasType<{
+	value?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** response of any mutation on the table "Status" */
+["Status_mutation_response"]: AliasType<{
+	/** number of rows affected by the mutation */
+	affected_rows?:boolean | `@${string}`,
+	/** data from the rows affected by the mutation */
+	returning?:ValueTypes["Status"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** on_conflict condition type for table "Status" */
+["Status_on_conflict"]: {
+	constraint: ValueTypes["Status_constraint"] | Variable<any, string>,
+	update_columns: Array<ValueTypes["Status_update_column"]> | Variable<any, string>,
+	where?: ValueTypes["Status_bool_exp"] | undefined | null | Variable<any, string>
+};
+	/** Ordering options when selecting data from "Status". */
+["Status_order_by"]: {
+	value?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** primary key columns input for table: Status */
+["Status_pk_columns_input"]: {
+	value: string | Variable<any, string>
+};
+	/** select columns of table "Status" */
+["Status_select_column"]:Status_select_column;
+	/** input type for updating data in table "Status" */
+["Status_set_input"]: {
+	value?: string | undefined | null | Variable<any, string>
+};
+	/** Streaming cursor of the table "Status" */
+["Status_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ValueTypes["Status_stream_cursor_value_input"] | Variable<any, string>,
+	/** cursor ordering */
+	ordering?: ValueTypes["cursor_ordering"] | undefined | null | Variable<any, string>
+};
+	/** Initial value of the column from where the streaming should start */
+["Status_stream_cursor_value_input"]: {
+	value?: string | undefined | null | Variable<any, string>
+};
+	/** update columns of table "Status" */
+["Status_update_column"]:Status_update_column;
+	["Status_updates"]: {
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["Status_set_input"] | undefined | null | Variable<any, string>,
+	/** filter the rows which have to be updated */
+	where: ValueTypes["Status_bool_exp"] | Variable<any, string>
 };
 	/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 ["String_comparison_exp"]: {
@@ -2344,6 +2774,19 @@ count?: [{	columns?: Array<ValueTypes["Institute_select_column"]> | undefined | 
 	_regex?: string | undefined | null | Variable<any, string>,
 	/** does the column match the given SQL regular expression */
 	_similar?: string | undefined | null | Variable<any, string>
+};
+	["bigint"]:unknown;
+	/** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
+["bigint_comparison_exp"]: {
+	_eq?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	_gt?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	_gte?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	_in?: Array<ValueTypes["bigint"]> | undefined | null | Variable<any, string>,
+	_is_null?: boolean | undefined | null | Variable<any, string>,
+	_lt?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	_lte?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	_neq?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	_nin?: Array<ValueTypes["bigint"]> | undefined | null | Variable<any, string>
 };
 	/** ordering argument of a cursor */
 ["cursor_ordering"]:cursor_ordering;
@@ -2383,6 +2826,9 @@ delete_InstituteFunding?: [{	/** filter the rows which have to be deleted */
 	where: ValueTypes["InstituteFunding_bool_exp"] | Variable<any, string>},ValueTypes["InstituteFunding_mutation_response"]],
 delete_InstituteFunding_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},ValueTypes["InstituteFunding"]],
 delete_Institute_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},ValueTypes["Institute"]],
+delete_Status?: [{	/** filter the rows which have to be deleted */
+	where: ValueTypes["Status_bool_exp"] | Variable<any, string>},ValueTypes["Status_mutation_response"]],
+delete_Status_by_pk?: [{	value: string | Variable<any, string>},ValueTypes["Status"]],
 insert_EGovernance?: [{	/** the rows to be inserted */
 	objects: Array<ValueTypes["EGovernance_insert_input"]> | Variable<any, string>,	/** upsert condition */
 	on_conflict?: ValueTypes["EGovernance_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["EGovernance_mutation_response"]],
@@ -2425,31 +2871,45 @@ insert_InstituteFunding_one?: [{	/** the row to be inserted */
 insert_Institute_one?: [{	/** the row to be inserted */
 	object: ValueTypes["Institute_insert_input"] | Variable<any, string>,	/** upsert condition */
 	on_conflict?: ValueTypes["Institute_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["Institute"]],
-update_EGovernance?: [{	/** sets the columns of the filtered rows to the given values */
+insert_Status?: [{	/** the rows to be inserted */
+	objects: Array<ValueTypes["Status_insert_input"]> | Variable<any, string>,	/** upsert condition */
+	on_conflict?: ValueTypes["Status_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["Status_mutation_response"]],
+insert_Status_one?: [{	/** the row to be inserted */
+	object: ValueTypes["Status_insert_input"] | Variable<any, string>,	/** upsert condition */
+	on_conflict?: ValueTypes["Status_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["Status"]],
+update_EGovernance?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["EGovernance_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["EGovernance_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
 	where: ValueTypes["EGovernance_bool_exp"] | Variable<any, string>},ValueTypes["EGovernance_mutation_response"]],
-update_EGovernance_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_EGovernance_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["EGovernance_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["EGovernance_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["EGovernance_pk_columns_input"] | Variable<any, string>},ValueTypes["EGovernance"]],
 update_EGovernance_many?: [{	/** updates to execute, in order */
 	updates: Array<ValueTypes["EGovernance_updates"]> | Variable<any, string>},ValueTypes["EGovernance_mutation_response"]],
-update_Faculty?: [{	/** sets the columns of the filtered rows to the given values */
+update_Faculty?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["Faculty_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["Faculty_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
 	where: ValueTypes["Faculty_bool_exp"] | Variable<any, string>},ValueTypes["Faculty_mutation_response"]],
-update_FacultyFunding?: [{	/** sets the columns of the filtered rows to the given values */
+update_FacultyFunding?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["FacultyFunding_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["FacultyFunding_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
 	where: ValueTypes["FacultyFunding_bool_exp"] | Variable<any, string>},ValueTypes["FacultyFunding_mutation_response"]],
-update_FacultyFunding_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_FacultyFunding_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["FacultyFunding_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["FacultyFunding_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["FacultyFunding_pk_columns_input"] | Variable<any, string>},ValueTypes["FacultyFunding"]],
 update_FacultyFunding_many?: [{	/** updates to execute, in order */
 	updates: Array<ValueTypes["FacultyFunding_updates"]> | Variable<any, string>},ValueTypes["FacultyFunding_mutation_response"]],
-update_Faculty_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_Faculty_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["Faculty_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["Faculty_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["Faculty_pk_columns_input"] | Variable<any, string>},ValueTypes["Faculty"]],
 update_Faculty_many?: [{	/** updates to execute, in order */
 	updates: Array<ValueTypes["Faculty_updates"]> | Variable<any, string>},ValueTypes["Faculty_mutation_response"]],
-update_FdpPdp?: [{	/** sets the columns of the filtered rows to the given values */
+update_FdpPdp?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["FdpPdp_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["FdpPdp_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
 	where: ValueTypes["FdpPdp_bool_exp"] | Variable<any, string>},ValueTypes["FdpPdp_mutation_response"]],
-update_FdpPdp_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_FdpPdp_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["FdpPdp_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["FdpPdp_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["FdpPdp_pk_columns_input"] | Variable<any, string>},ValueTypes["FdpPdp"]],
 update_FdpPdp_many?: [{	/** updates to execute, in order */
 	updates: Array<ValueTypes["FdpPdp_updates"]> | Variable<any, string>},ValueTypes["FdpPdp_mutation_response"]],
@@ -2460,20 +2920,31 @@ update_Genesis_by_pk?: [{	/** sets the columns of the filtered rows to the given
 	_set?: ValueTypes["Genesis_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["Genesis_pk_columns_input"] | Variable<any, string>},ValueTypes["Genesis"]],
 update_Genesis_many?: [{	/** updates to execute, in order */
 	updates: Array<ValueTypes["Genesis_updates"]> | Variable<any, string>},ValueTypes["Genesis_mutation_response"]],
-update_Institute?: [{	/** sets the columns of the filtered rows to the given values */
+update_Institute?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["Institute_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["Institute_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
 	where: ValueTypes["Institute_bool_exp"] | Variable<any, string>},ValueTypes["Institute_mutation_response"]],
-update_InstituteFunding?: [{	/** sets the columns of the filtered rows to the given values */
+update_InstituteFunding?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["InstituteFunding_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["InstituteFunding_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
 	where: ValueTypes["InstituteFunding_bool_exp"] | Variable<any, string>},ValueTypes["InstituteFunding_mutation_response"]],
-update_InstituteFunding_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_InstituteFunding_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["InstituteFunding_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["InstituteFunding_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["InstituteFunding_pk_columns_input"] | Variable<any, string>},ValueTypes["InstituteFunding"]],
 update_InstituteFunding_many?: [{	/** updates to execute, in order */
 	updates: Array<ValueTypes["InstituteFunding_updates"]> | Variable<any, string>},ValueTypes["InstituteFunding_mutation_response"]],
-update_Institute_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_Institute_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["Institute_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["Institute_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["Institute_pk_columns_input"] | Variable<any, string>},ValueTypes["Institute"]],
 update_Institute_many?: [{	/** updates to execute, in order */
 	updates: Array<ValueTypes["Institute_updates"]> | Variable<any, string>},ValueTypes["Institute_mutation_response"]],
+update_Status?: [{	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["Status_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
+	where: ValueTypes["Status_bool_exp"] | Variable<any, string>},ValueTypes["Status_mutation_response"]],
+update_Status_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["Status_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["Status_pk_columns_input"] | Variable<any, string>},ValueTypes["Status"]],
+update_Status_many?: [{	/** updates to execute, in order */
+	updates: Array<ValueTypes["Status_updates"]> | Variable<any, string>},ValueTypes["Status_mutation_response"]],
 		__typename?: boolean | `@${string}`
 }>;
 	/** column ordering options */
@@ -2570,6 +3041,19 @@ Institute_aggregate?: [{	/** distinct select on columns */
 	order_by?: Array<ValueTypes["Institute_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
 	where?: ValueTypes["Institute_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Institute_aggregate"]],
 Institute_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},ValueTypes["Institute"]],
+Status?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Status_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Status_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Status_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Status"]],
+Status_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Status_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Status_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Status_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Status_aggregate"]],
+Status_by_pk?: [{	value: string | Variable<any, string>},ValueTypes["Status"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["subscription_root"]: AliasType<{
@@ -2692,6 +3176,23 @@ Institute_stream?: [{	/** maximum number of rows returned in a single batch */
 	batch_size: number | Variable<any, string>,	/** cursor to stream the results returned by the query */
 	cursor: Array<ValueTypes["Institute_stream_cursor_input"] | undefined | null> | Variable<any, string>,	/** filter the rows returned */
 	where?: ValueTypes["Institute_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Institute"]],
+Status?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Status_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Status_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Status_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Status"]],
+Status_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Status_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Status_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Status_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Status_aggregate"]],
+Status_by_pk?: [{	value: string | Variable<any, string>},ValueTypes["Status"]],
+Status_stream?: [{	/** maximum number of rows returned in a single batch */
+	batch_size: number | Variable<any, string>,	/** cursor to stream the results returned by the query */
+	cursor: Array<ValueTypes["Status_stream_cursor_input"] | undefined | null> | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Status_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Status"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["timestamp"]:unknown;
@@ -2758,21 +3259,21 @@ export type ResolverInputTypes = {
 ["EGovernance"]: AliasType<{
 	address?:boolean | `@${string}`,
 	area?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone_no?:boolean | `@${string}`,
-	service_end_date?:boolean | `@${string}`,
-	service_start_date?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	serviceEndDate?:boolean | `@${string}`,
+	serviceStartDate?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
-	total_amount?:boolean | `@${string}`,
+	totalAmount?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -2784,9 +3285,22 @@ export type ResolverInputTypes = {
 }>;
 	/** aggregate fields of "EGovernance" */
 ["EGovernance_aggregate_fields"]: AliasType<{
+	avg?:ResolverInputTypes["EGovernance_avg_fields"],
 count?: [{	columns?: Array<ResolverInputTypes["EGovernance_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
 	max?:ResolverInputTypes["EGovernance_max_fields"],
 	min?:ResolverInputTypes["EGovernance_min_fields"],
+	stddev?:ResolverInputTypes["EGovernance_stddev_fields"],
+	stddev_pop?:ResolverInputTypes["EGovernance_stddev_pop_fields"],
+	stddev_samp?:ResolverInputTypes["EGovernance_stddev_samp_fields"],
+	sum?:ResolverInputTypes["EGovernance_sum_fields"],
+	var_pop?:ResolverInputTypes["EGovernance_var_pop_fields"],
+	var_samp?:ResolverInputTypes["EGovernance_var_samp_fields"],
+	variance?:ResolverInputTypes["EGovernance_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["EGovernance_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "EGovernance". All fields are combined with a logical 'AND'. */
@@ -2796,65 +3310,68 @@ count?: [{	columns?: Array<ResolverInputTypes["EGovernance_select_column"]> | un
 	_or?: Array<ResolverInputTypes["EGovernance_bool_exp"]> | undefined | null,
 	address?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	area?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
-	cursorId?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint_comparison_exp"] | undefined | null,
 	description?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	file?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
 	name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	phone_no?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	service_end_date?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
-	service_start_date?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
-	status?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	total_amount?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	phoneNo?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	serviceEndDate?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
+	serviceStartDate?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
+	status?: ResolverInputTypes["Status_enum_comparison_exp"] | undefined | null,
+	totalAmount?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
 	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
 	website?: ResolverInputTypes["String_comparison_exp"] | undefined | null
 };
 	/** unique or primary key constraints on table "EGovernance" */
 ["EGovernance_constraint"]:EGovernance_constraint;
+	/** input type for incrementing numeric columns in table "EGovernance" */
+["EGovernance_inc_input"]: {
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null
+};
 	/** input type for inserting data into table "EGovernance" */
 ["EGovernance_insert_input"]: {
 	address?: string | undefined | null,
 	area?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
 	description?: string | undefined | null,
 	file?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	name?: string | undefined | null,
-	phone_no?: string | undefined | null,
-	service_end_date?: ResolverInputTypes["date"] | undefined | null,
-	service_start_date?: ResolverInputTypes["date"] | undefined | null,
-	status?: string | undefined | null,
-	total_amount?: string | undefined | null,
+	phoneNo?: string | undefined | null,
+	serviceEndDate?: ResolverInputTypes["date"] | undefined | null,
+	serviceStartDate?: ResolverInputTypes["date"] | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	totalAmount?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null,
 	website?: string | undefined | null
 };
 	/** aggregate max on columns */
 ["EGovernance_max_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	area?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone_no?:boolean | `@${string}`,
-	service_end_date?:boolean | `@${string}`,
-	service_start_date?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	total_amount?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	serviceEndDate?:boolean | `@${string}`,
+	serviceStartDate?:boolean | `@${string}`,
+	totalAmount?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -2862,21 +3379,20 @@ count?: [{	columns?: Array<ResolverInputTypes["EGovernance_select_column"]> | un
 ["EGovernance_min_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	area?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone_no?:boolean | `@${string}`,
-	service_end_date?:boolean | `@${string}`,
-	service_start_date?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	total_amount?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	serviceEndDate?:boolean | `@${string}`,
+	serviceStartDate?:boolean | `@${string}`,
+	totalAmount?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -2898,21 +3414,21 @@ count?: [{	columns?: Array<ResolverInputTypes["EGovernance_select_column"]> | un
 ["EGovernance_order_by"]: {
 	address?: ResolverInputTypes["order_by"] | undefined | null,
 	area?: ResolverInputTypes["order_by"] | undefined | null,
+	createdAt?: ResolverInputTypes["order_by"] | undefined | null,
 	createdById?: ResolverInputTypes["order_by"] | undefined | null,
-	created_at?: ResolverInputTypes["order_by"] | undefined | null,
 	cursorId?: ResolverInputTypes["order_by"] | undefined | null,
 	description?: ResolverInputTypes["order_by"] | undefined | null,
 	file?: ResolverInputTypes["order_by"] | undefined | null,
 	id?: ResolverInputTypes["order_by"] | undefined | null,
-	institute_id?: ResolverInputTypes["order_by"] | undefined | null,
+	instituteId?: ResolverInputTypes["order_by"] | undefined | null,
 	name?: ResolverInputTypes["order_by"] | undefined | null,
-	phone_no?: ResolverInputTypes["order_by"] | undefined | null,
-	service_end_date?: ResolverInputTypes["order_by"] | undefined | null,
-	service_start_date?: ResolverInputTypes["order_by"] | undefined | null,
+	phoneNo?: ResolverInputTypes["order_by"] | undefined | null,
+	serviceEndDate?: ResolverInputTypes["order_by"] | undefined | null,
+	serviceStartDate?: ResolverInputTypes["order_by"] | undefined | null,
 	status?: ResolverInputTypes["order_by"] | undefined | null,
-	total_amount?: ResolverInputTypes["order_by"] | undefined | null,
+	totalAmount?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedAt?: ResolverInputTypes["order_by"] | undefined | null,
 	updatedById?: ResolverInputTypes["order_by"] | undefined | null,
-	updated_at?: ResolverInputTypes["order_by"] | undefined | null,
 	website?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** primary key columns input for table: EGovernance */
@@ -2925,23 +3441,38 @@ count?: [{	columns?: Array<ResolverInputTypes["EGovernance_select_column"]> | un
 ["EGovernance_set_input"]: {
 	address?: string | undefined | null,
 	area?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
 	description?: string | undefined | null,
 	file?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	name?: string | undefined | null,
-	phone_no?: string | undefined | null,
-	service_end_date?: ResolverInputTypes["date"] | undefined | null,
-	service_start_date?: ResolverInputTypes["date"] | undefined | null,
-	status?: string | undefined | null,
-	total_amount?: string | undefined | null,
+	phoneNo?: string | undefined | null,
+	serviceEndDate?: ResolverInputTypes["date"] | undefined | null,
+	serviceStartDate?: ResolverInputTypes["date"] | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	totalAmount?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null,
 	website?: string | undefined | null
 };
+	/** aggregate stddev on columns */
+["EGovernance_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["EGovernance_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["EGovernance_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "EGovernance" */
 ["EGovernance_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -2953,77 +3484,100 @@ count?: [{	columns?: Array<ResolverInputTypes["EGovernance_select_column"]> | un
 ["EGovernance_stream_cursor_value_input"]: {
 	address?: string | undefined | null,
 	area?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
 	description?: string | undefined | null,
 	file?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	name?: string | undefined | null,
-	phone_no?: string | undefined | null,
-	service_end_date?: ResolverInputTypes["date"] | undefined | null,
-	service_start_date?: ResolverInputTypes["date"] | undefined | null,
-	status?: string | undefined | null,
-	total_amount?: string | undefined | null,
+	phoneNo?: string | undefined | null,
+	serviceEndDate?: ResolverInputTypes["date"] | undefined | null,
+	serviceStartDate?: ResolverInputTypes["date"] | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	totalAmount?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null,
 	website?: string | undefined | null
 };
+	/** aggregate sum on columns */
+["EGovernance_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "EGovernance" */
 ["EGovernance_update_column"]:EGovernance_update_column;
 	["EGovernance_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["EGovernance_inc_input"] | undefined | null,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["EGovernance_set_input"] | undefined | null,
 	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["EGovernance_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["EGovernance_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["EGovernance_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["EGovernance_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** columns and relationships of "Faculty" */
 ["Faculty"]: AliasType<{
 	address?:boolean | `@${string}`,
 	cast?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_of_joining?:boolean | `@${string}`,
+	dateOfJoining?:boolean | `@${string}`,
 	designation?:boolean | `@${string}`,
 	dob?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	experience?:boolean | `@${string}`,
 	gender?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
-	job_type?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	isVerified?:boolean | `@${string}`,
+	jobType?:boolean | `@${string}`,
 	minority?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	pan_card_no?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	panCardNo?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	qualification?:boolean | `@${string}`,
 	section?:boolean | `@${string}`,
-	staff_type?:boolean | `@${string}`,
+	staffType?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
-	status_of_approval?:boolean | `@${string}`,
+	statusOfApproval?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** columns and relationships of "FacultyFunding" */
 ["FacultyFunding"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregated selection of "FacultyFunding" */
@@ -3034,9 +3588,22 @@ count?: [{	columns?: Array<ResolverInputTypes["EGovernance_select_column"]> | un
 }>;
 	/** aggregate fields of "FacultyFunding" */
 ["FacultyFunding_aggregate_fields"]: AliasType<{
+	avg?:ResolverInputTypes["FacultyFunding_avg_fields"],
 count?: [{	columns?: Array<ResolverInputTypes["FacultyFunding_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
 	max?:ResolverInputTypes["FacultyFunding_max_fields"],
 	min?:ResolverInputTypes["FacultyFunding_min_fields"],
+	stddev?:ResolverInputTypes["FacultyFunding_stddev_fields"],
+	stddev_pop?:ResolverInputTypes["FacultyFunding_stddev_pop_fields"],
+	stddev_samp?:ResolverInputTypes["FacultyFunding_stddev_samp_fields"],
+	sum?:ResolverInputTypes["FacultyFunding_sum_fields"],
+	var_pop?:ResolverInputTypes["FacultyFunding_var_pop_fields"],
+	var_samp?:ResolverInputTypes["FacultyFunding_var_samp_fields"],
+	variance?:ResolverInputTypes["FacultyFunding_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["FacultyFunding_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "FacultyFunding". All fields are combined with a logical 'AND'. */
@@ -3045,77 +3612,79 @@ count?: [{	columns?: Array<ResolverInputTypes["FacultyFunding_select_column"]> |
 	_not?: ResolverInputTypes["FacultyFunding_bool_exp"] | undefined | null,
 	_or?: Array<ResolverInputTypes["FacultyFunding_bool_exp"]> | undefined | null,
 	amount?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
-	cursorId?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	faculty_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint_comparison_exp"] | undefined | null,
+	facultyId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
 	file?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
 	nature?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	status?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	transaction_date?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
-	transaction_type?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	status?: ResolverInputTypes["Status_enum_comparison_exp"] | undefined | null,
+	transactionDate?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
+	transactionType?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	type?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null
 };
 	/** unique or primary key constraints on table "FacultyFunding" */
 ["FacultyFunding_constraint"]:FacultyFunding_constraint;
+	/** input type for incrementing numeric columns in table "FacultyFunding" */
+["FacultyFunding_inc_input"]: {
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null
+};
 	/** input type for inserting data into table "FacultyFunding" */
 ["FacultyFunding_insert_input"]: {
 	amount?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
-	faculty_id?: ResolverInputTypes["uuid"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	facultyId?: ResolverInputTypes["uuid"] | undefined | null,
 	file?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	nature?: string | undefined | null,
-	status?: string | undefined | null,
-	transaction_date?: ResolverInputTypes["date"] | undefined | null,
-	transaction_type?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	transactionDate?: ResolverInputTypes["date"] | undefined | null,
+	transactionType?: string | undefined | null,
 	type?: string | undefined | null,
-	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
 };
 	/** aggregate max on columns */
 ["FacultyFunding_max_fields"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["FacultyFunding_min_fields"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** response of any mutation on the table "FacultyFunding" */
@@ -3135,20 +3704,20 @@ count?: [{	columns?: Array<ResolverInputTypes["FacultyFunding_select_column"]> |
 	/** Ordering options when selecting data from "FacultyFunding". */
 ["FacultyFunding_order_by"]: {
 	amount?: ResolverInputTypes["order_by"] | undefined | null,
+	createdAt?: ResolverInputTypes["order_by"] | undefined | null,
 	createdById?: ResolverInputTypes["order_by"] | undefined | null,
-	created_at?: ResolverInputTypes["order_by"] | undefined | null,
 	cursorId?: ResolverInputTypes["order_by"] | undefined | null,
-	faculty_id?: ResolverInputTypes["order_by"] | undefined | null,
+	facultyId?: ResolverInputTypes["order_by"] | undefined | null,
 	file?: ResolverInputTypes["order_by"] | undefined | null,
 	id?: ResolverInputTypes["order_by"] | undefined | null,
-	institute_id?: ResolverInputTypes["order_by"] | undefined | null,
+	instituteId?: ResolverInputTypes["order_by"] | undefined | null,
 	nature?: ResolverInputTypes["order_by"] | undefined | null,
 	status?: ResolverInputTypes["order_by"] | undefined | null,
-	transaction_date?: ResolverInputTypes["order_by"] | undefined | null,
-	transaction_type?: ResolverInputTypes["order_by"] | undefined | null,
+	transactionDate?: ResolverInputTypes["order_by"] | undefined | null,
+	transactionType?: ResolverInputTypes["order_by"] | undefined | null,
 	type?: ResolverInputTypes["order_by"] | undefined | null,
-	updatedById?: ResolverInputTypes["order_by"] | undefined | null,
-	updated_at?: ResolverInputTypes["order_by"] | undefined | null
+	updatedAt?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedById?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** primary key columns input for table: FacultyFunding */
 ["FacultyFunding_pk_columns_input"]: {
@@ -3159,21 +3728,36 @@ count?: [{	columns?: Array<ResolverInputTypes["FacultyFunding_select_column"]> |
 	/** input type for updating data in table "FacultyFunding" */
 ["FacultyFunding_set_input"]: {
 	amount?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
-	faculty_id?: ResolverInputTypes["uuid"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	facultyId?: ResolverInputTypes["uuid"] | undefined | null,
 	file?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	nature?: string | undefined | null,
-	status?: string | undefined | null,
-	transaction_date?: ResolverInputTypes["date"] | undefined | null,
-	transaction_type?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	transactionDate?: ResolverInputTypes["date"] | undefined | null,
+	transactionType?: string | undefined | null,
 	type?: string | undefined | null,
-	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
 };
+	/** aggregate stddev on columns */
+["FacultyFunding_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["FacultyFunding_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["FacultyFunding_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "FacultyFunding" */
 ["FacultyFunding_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -3184,29 +3768,51 @@ count?: [{	columns?: Array<ResolverInputTypes["FacultyFunding_select_column"]> |
 	/** Initial value of the column from where the streaming should start */
 ["FacultyFunding_stream_cursor_value_input"]: {
 	amount?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
-	faculty_id?: ResolverInputTypes["uuid"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	facultyId?: ResolverInputTypes["uuid"] | undefined | null,
 	file?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	nature?: string | undefined | null,
-	status?: string | undefined | null,
-	transaction_date?: ResolverInputTypes["date"] | undefined | null,
-	transaction_type?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	transactionDate?: ResolverInputTypes["date"] | undefined | null,
+	transactionType?: string | undefined | null,
 	type?: string | undefined | null,
-	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
 };
+	/** aggregate sum on columns */
+["FacultyFunding_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "FacultyFunding" */
 ["FacultyFunding_update_column"]:FacultyFunding_update_column;
 	["FacultyFunding_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["FacultyFunding_inc_input"] | undefined | null,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["FacultyFunding_set_input"] | undefined | null,
 	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["FacultyFunding_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["FacultyFunding_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["FacultyFunding_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["FacultyFunding_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** aggregated selection of "Faculty" */
 ["Faculty_aggregate"]: AliasType<{
 	aggregate?:ResolverInputTypes["Faculty_aggregate_fields"],
@@ -3215,9 +3821,22 @@ count?: [{	columns?: Array<ResolverInputTypes["FacultyFunding_select_column"]> |
 }>;
 	/** aggregate fields of "Faculty" */
 ["Faculty_aggregate_fields"]: AliasType<{
+	avg?:ResolverInputTypes["Faculty_avg_fields"],
 count?: [{	columns?: Array<ResolverInputTypes["Faculty_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
 	max?:ResolverInputTypes["Faculty_max_fields"],
 	min?:ResolverInputTypes["Faculty_min_fields"],
+	stddev?:ResolverInputTypes["Faculty_stddev_fields"],
+	stddev_pop?:ResolverInputTypes["Faculty_stddev_pop_fields"],
+	stddev_samp?:ResolverInputTypes["Faculty_stddev_samp_fields"],
+	sum?:ResolverInputTypes["Faculty_sum_fields"],
+	var_pop?:ResolverInputTypes["Faculty_var_pop_fields"],
+	var_samp?:ResolverInputTypes["Faculty_var_samp_fields"],
+	variance?:ResolverInputTypes["Faculty_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["Faculty_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "Faculty". All fields are combined with a logical 'AND'. */
@@ -3227,116 +3846,120 @@ count?: [{	columns?: Array<ResolverInputTypes["Faculty_select_column"]> | undefi
 	_or?: Array<ResolverInputTypes["Faculty_bool_exp"]> | undefined | null,
 	address?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	cast?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
-	cursorId?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	date_of_joining?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint_comparison_exp"] | undefined | null,
+	dateOfJoining?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
 	designation?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	dob?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
-	email_id?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	emailId?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	experience?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	gender?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	job_type?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	isVerified?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null,
+	jobType?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	minority?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	pan_card_no?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	phone?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	panCardNo?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	phoneNo?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	qualification?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	section?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	staff_type?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	status?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	status_of_approval?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null
+	staffType?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	status?: ResolverInputTypes["Status_enum_comparison_exp"] | undefined | null,
+	statusOfApproval?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null
 };
 	/** unique or primary key constraints on table "Faculty" */
 ["Faculty_constraint"]:Faculty_constraint;
+	/** input type for incrementing numeric columns in table "Faculty" */
+["Faculty_inc_input"]: {
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null
+};
 	/** input type for inserting data into table "Faculty" */
 ["Faculty_insert_input"]: {
 	address?: string | undefined | null,
 	cast?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
-	date_of_joining?: ResolverInputTypes["date"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	dateOfJoining?: ResolverInputTypes["date"] | undefined | null,
 	designation?: string | undefined | null,
 	dob?: ResolverInputTypes["date"] | undefined | null,
-	email_id?: string | undefined | null,
+	emailId?: string | undefined | null,
 	experience?: string | undefined | null,
 	gender?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
-	job_type?: string | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
+	isVerified?: boolean | undefined | null,
+	jobType?: string | undefined | null,
 	minority?: string | undefined | null,
 	name?: string | undefined | null,
-	pan_card_no?: string | undefined | null,
-	phone?: string | undefined | null,
+	panCardNo?: string | undefined | null,
+	phoneNo?: string | undefined | null,
 	qualification?: string | undefined | null,
 	section?: string | undefined | null,
-	staff_type?: string | undefined | null,
-	status?: string | undefined | null,
-	status_of_approval?: string | undefined | null,
-	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null
+	staffType?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	statusOfApproval?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
 };
 	/** aggregate max on columns */
 ["Faculty_max_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	cast?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_of_joining?:boolean | `@${string}`,
+	dateOfJoining?:boolean | `@${string}`,
 	designation?:boolean | `@${string}`,
 	dob?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	experience?:boolean | `@${string}`,
 	gender?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
-	job_type?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	jobType?:boolean | `@${string}`,
 	minority?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	pan_card_no?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	panCardNo?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	qualification?:boolean | `@${string}`,
 	section?:boolean | `@${string}`,
-	staff_type?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	status_of_approval?:boolean | `@${string}`,
+	staffType?:boolean | `@${string}`,
+	statusOfApproval?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["Faculty_min_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	cast?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_of_joining?:boolean | `@${string}`,
+	dateOfJoining?:boolean | `@${string}`,
 	designation?:boolean | `@${string}`,
 	dob?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	experience?:boolean | `@${string}`,
 	gender?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
-	job_type?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	jobType?:boolean | `@${string}`,
 	minority?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	pan_card_no?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	panCardNo?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	qualification?:boolean | `@${string}`,
 	section?:boolean | `@${string}`,
-	staff_type?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	status_of_approval?:boolean | `@${string}`,
+	staffType?:boolean | `@${string}`,
+	statusOfApproval?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** response of any mutation on the table "Faculty" */
@@ -3357,29 +3980,30 @@ count?: [{	columns?: Array<ResolverInputTypes["Faculty_select_column"]> | undefi
 ["Faculty_order_by"]: {
 	address?: ResolverInputTypes["order_by"] | undefined | null,
 	cast?: ResolverInputTypes["order_by"] | undefined | null,
+	createdAt?: ResolverInputTypes["order_by"] | undefined | null,
 	createdById?: ResolverInputTypes["order_by"] | undefined | null,
-	created_at?: ResolverInputTypes["order_by"] | undefined | null,
 	cursorId?: ResolverInputTypes["order_by"] | undefined | null,
-	date_of_joining?: ResolverInputTypes["order_by"] | undefined | null,
+	dateOfJoining?: ResolverInputTypes["order_by"] | undefined | null,
 	designation?: ResolverInputTypes["order_by"] | undefined | null,
 	dob?: ResolverInputTypes["order_by"] | undefined | null,
-	email_id?: ResolverInputTypes["order_by"] | undefined | null,
+	emailId?: ResolverInputTypes["order_by"] | undefined | null,
 	experience?: ResolverInputTypes["order_by"] | undefined | null,
 	gender?: ResolverInputTypes["order_by"] | undefined | null,
 	id?: ResolverInputTypes["order_by"] | undefined | null,
-	institute_id?: ResolverInputTypes["order_by"] | undefined | null,
-	job_type?: ResolverInputTypes["order_by"] | undefined | null,
+	instituteId?: ResolverInputTypes["order_by"] | undefined | null,
+	isVerified?: ResolverInputTypes["order_by"] | undefined | null,
+	jobType?: ResolverInputTypes["order_by"] | undefined | null,
 	minority?: ResolverInputTypes["order_by"] | undefined | null,
 	name?: ResolverInputTypes["order_by"] | undefined | null,
-	pan_card_no?: ResolverInputTypes["order_by"] | undefined | null,
-	phone?: ResolverInputTypes["order_by"] | undefined | null,
+	panCardNo?: ResolverInputTypes["order_by"] | undefined | null,
+	phoneNo?: ResolverInputTypes["order_by"] | undefined | null,
 	qualification?: ResolverInputTypes["order_by"] | undefined | null,
 	section?: ResolverInputTypes["order_by"] | undefined | null,
-	staff_type?: ResolverInputTypes["order_by"] | undefined | null,
+	staffType?: ResolverInputTypes["order_by"] | undefined | null,
 	status?: ResolverInputTypes["order_by"] | undefined | null,
-	status_of_approval?: ResolverInputTypes["order_by"] | undefined | null,
-	updatedById?: ResolverInputTypes["order_by"] | undefined | null,
-	updated_at?: ResolverInputTypes["order_by"] | undefined | null
+	statusOfApproval?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedAt?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedById?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** primary key columns input for table: Faculty */
 ["Faculty_pk_columns_input"]: {
@@ -3391,30 +4015,46 @@ count?: [{	columns?: Array<ResolverInputTypes["Faculty_select_column"]> | undefi
 ["Faculty_set_input"]: {
 	address?: string | undefined | null,
 	cast?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
-	date_of_joining?: ResolverInputTypes["date"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	dateOfJoining?: ResolverInputTypes["date"] | undefined | null,
 	designation?: string | undefined | null,
 	dob?: ResolverInputTypes["date"] | undefined | null,
-	email_id?: string | undefined | null,
+	emailId?: string | undefined | null,
 	experience?: string | undefined | null,
 	gender?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
-	job_type?: string | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
+	isVerified?: boolean | undefined | null,
+	jobType?: string | undefined | null,
 	minority?: string | undefined | null,
 	name?: string | undefined | null,
-	pan_card_no?: string | undefined | null,
-	phone?: string | undefined | null,
+	panCardNo?: string | undefined | null,
+	phoneNo?: string | undefined | null,
 	qualification?: string | undefined | null,
 	section?: string | undefined | null,
-	staff_type?: string | undefined | null,
-	status?: string | undefined | null,
-	status_of_approval?: string | undefined | null,
-	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null
+	staffType?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	statusOfApproval?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
 };
+	/** aggregate stddev on columns */
+["Faculty_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["Faculty_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["Faculty_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "Faculty" */
 ["Faculty_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -3426,56 +4066,79 @@ count?: [{	columns?: Array<ResolverInputTypes["Faculty_select_column"]> | undefi
 ["Faculty_stream_cursor_value_input"]: {
 	address?: string | undefined | null,
 	cast?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
-	date_of_joining?: ResolverInputTypes["date"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	dateOfJoining?: ResolverInputTypes["date"] | undefined | null,
 	designation?: string | undefined | null,
 	dob?: ResolverInputTypes["date"] | undefined | null,
-	email_id?: string | undefined | null,
+	emailId?: string | undefined | null,
 	experience?: string | undefined | null,
 	gender?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
-	job_type?: string | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
+	isVerified?: boolean | undefined | null,
+	jobType?: string | undefined | null,
 	minority?: string | undefined | null,
 	name?: string | undefined | null,
-	pan_card_no?: string | undefined | null,
-	phone?: string | undefined | null,
+	panCardNo?: string | undefined | null,
+	phoneNo?: string | undefined | null,
 	qualification?: string | undefined | null,
 	section?: string | undefined | null,
-	staff_type?: string | undefined | null,
-	status?: string | undefined | null,
-	status_of_approval?: string | undefined | null,
-	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null
+	staffType?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	statusOfApproval?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
 };
+	/** aggregate sum on columns */
+["Faculty_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "Faculty" */
 ["Faculty_update_column"]:Faculty_update_column;
 	["Faculty_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["Faculty_inc_input"] | undefined | null,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["Faculty_set_input"] | undefined | null,
 	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["Faculty_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["Faculty_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["Faculty_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["Faculty_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** columns and relationships of "FdpPdp" */
 ["FdpPdp"]: AliasType<{
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_from?:boolean | `@${string}`,
-	date_to?:boolean | `@${string}`,
+	dateFrom?:boolean | `@${string}`,
+	dateTo?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	venue?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3487,9 +4150,22 @@ count?: [{	columns?: Array<ResolverInputTypes["Faculty_select_column"]> | undefi
 }>;
 	/** aggregate fields of "FdpPdp" */
 ["FdpPdp_aggregate_fields"]: AliasType<{
+	avg?:ResolverInputTypes["FdpPdp_avg_fields"],
 count?: [{	columns?: Array<ResolverInputTypes["FdpPdp_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
 	max?:ResolverInputTypes["FdpPdp_max_fields"],
 	min?:ResolverInputTypes["FdpPdp_min_fields"],
+	stddev?:ResolverInputTypes["FdpPdp_stddev_fields"],
+	stddev_pop?:ResolverInputTypes["FdpPdp_stddev_pop_fields"],
+	stddev_samp?:ResolverInputTypes["FdpPdp_stddev_samp_fields"],
+	sum?:ResolverInputTypes["FdpPdp_sum_fields"],
+	var_pop?:ResolverInputTypes["FdpPdp_var_pop_fields"],
+	var_samp?:ResolverInputTypes["FdpPdp_var_samp_fields"],
+	variance?:ResolverInputTypes["FdpPdp_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["FdpPdp_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "FdpPdp". All fields are combined with a logical 'AND'. */
@@ -3497,85 +4173,87 @@ count?: [{	columns?: Array<ResolverInputTypes["FdpPdp_select_column"]> | undefin
 	_and?: Array<ResolverInputTypes["FdpPdp_bool_exp"]> | undefined | null,
 	_not?: ResolverInputTypes["FdpPdp_bool_exp"] | undefined | null,
 	_or?: Array<ResolverInputTypes["FdpPdp_bool_exp"]> | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
-	cursorId?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	date_from?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
-	date_to?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint_comparison_exp"] | undefined | null,
+	dateFrom?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
+	dateTo?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
 	description?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	faculty_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	facultyId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
 	file?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
 	name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	nature?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	status?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	status?: ResolverInputTypes["Status_enum_comparison_exp"] | undefined | null,
 	type?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
 	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
 	venue?: ResolverInputTypes["String_comparison_exp"] | undefined | null
 };
 	/** unique or primary key constraints on table "FdpPdp" */
 ["FdpPdp_constraint"]:FdpPdp_constraint;
+	/** input type for incrementing numeric columns in table "FdpPdp" */
+["FdpPdp_inc_input"]: {
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null
+};
 	/** input type for inserting data into table "FdpPdp" */
 ["FdpPdp_insert_input"]: {
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
-	date_from?: ResolverInputTypes["date"] | undefined | null,
-	date_to?: ResolverInputTypes["date"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	dateFrom?: ResolverInputTypes["date"] | undefined | null,
+	dateTo?: ResolverInputTypes["date"] | undefined | null,
 	description?: string | undefined | null,
-	faculty_id?: ResolverInputTypes["uuid"] | undefined | null,
+	facultyId?: ResolverInputTypes["uuid"] | undefined | null,
 	file?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	name?: string | undefined | null,
 	nature?: string | undefined | null,
-	status?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
 	type?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null,
 	venue?: string | undefined | null
 };
 	/** aggregate max on columns */
 ["FdpPdp_max_fields"]: AliasType<{
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_from?:boolean | `@${string}`,
-	date_to?:boolean | `@${string}`,
+	dateFrom?:boolean | `@${string}`,
+	dateTo?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	venue?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["FdpPdp_min_fields"]: AliasType<{
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
-	date_from?:boolean | `@${string}`,
-	date_to?:boolean | `@${string}`,
+	dateFrom?:boolean | `@${string}`,
+	dateTo?:boolean | `@${string}`,
 	description?:boolean | `@${string}`,
-	faculty_id?:boolean | `@${string}`,
+	facultyId?:boolean | `@${string}`,
 	file?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	nature?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 	venue?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -3595,22 +4273,22 @@ count?: [{	columns?: Array<ResolverInputTypes["FdpPdp_select_column"]> | undefin
 };
 	/** Ordering options when selecting data from "FdpPdp". */
 ["FdpPdp_order_by"]: {
+	createdAt?: ResolverInputTypes["order_by"] | undefined | null,
 	createdById?: ResolverInputTypes["order_by"] | undefined | null,
-	created_at?: ResolverInputTypes["order_by"] | undefined | null,
 	cursorId?: ResolverInputTypes["order_by"] | undefined | null,
-	date_from?: ResolverInputTypes["order_by"] | undefined | null,
-	date_to?: ResolverInputTypes["order_by"] | undefined | null,
+	dateFrom?: ResolverInputTypes["order_by"] | undefined | null,
+	dateTo?: ResolverInputTypes["order_by"] | undefined | null,
 	description?: ResolverInputTypes["order_by"] | undefined | null,
-	faculty_id?: ResolverInputTypes["order_by"] | undefined | null,
+	facultyId?: ResolverInputTypes["order_by"] | undefined | null,
 	file?: ResolverInputTypes["order_by"] | undefined | null,
 	id?: ResolverInputTypes["order_by"] | undefined | null,
-	institute_id?: ResolverInputTypes["order_by"] | undefined | null,
+	instituteId?: ResolverInputTypes["order_by"] | undefined | null,
 	name?: ResolverInputTypes["order_by"] | undefined | null,
 	nature?: ResolverInputTypes["order_by"] | undefined | null,
 	status?: ResolverInputTypes["order_by"] | undefined | null,
 	type?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedAt?: ResolverInputTypes["order_by"] | undefined | null,
 	updatedById?: ResolverInputTypes["order_by"] | undefined | null,
-	updated_at?: ResolverInputTypes["order_by"] | undefined | null,
 	venue?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** primary key columns input for table: FdpPdp */
@@ -3621,24 +4299,39 @@ count?: [{	columns?: Array<ResolverInputTypes["FdpPdp_select_column"]> | undefin
 ["FdpPdp_select_column"]:FdpPdp_select_column;
 	/** input type for updating data in table "FdpPdp" */
 ["FdpPdp_set_input"]: {
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
-	date_from?: ResolverInputTypes["date"] | undefined | null,
-	date_to?: ResolverInputTypes["date"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	dateFrom?: ResolverInputTypes["date"] | undefined | null,
+	dateTo?: ResolverInputTypes["date"] | undefined | null,
 	description?: string | undefined | null,
-	faculty_id?: ResolverInputTypes["uuid"] | undefined | null,
+	facultyId?: ResolverInputTypes["uuid"] | undefined | null,
 	file?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	name?: string | undefined | null,
 	nature?: string | undefined | null,
-	status?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
 	type?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null,
 	venue?: string | undefined | null
 };
+	/** aggregate stddev on columns */
+["FdpPdp_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["FdpPdp_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["FdpPdp_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "FdpPdp" */
 ["FdpPdp_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -3648,42 +4341,64 @@ count?: [{	columns?: Array<ResolverInputTypes["FdpPdp_select_column"]> | undefin
 };
 	/** Initial value of the column from where the streaming should start */
 ["FdpPdp_stream_cursor_value_input"]: {
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
-	date_from?: ResolverInputTypes["date"] | undefined | null,
-	date_to?: ResolverInputTypes["date"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	dateFrom?: ResolverInputTypes["date"] | undefined | null,
+	dateTo?: ResolverInputTypes["date"] | undefined | null,
 	description?: string | undefined | null,
-	faculty_id?: ResolverInputTypes["uuid"] | undefined | null,
+	facultyId?: ResolverInputTypes["uuid"] | undefined | null,
 	file?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	name?: string | undefined | null,
 	nature?: string | undefined | null,
-	status?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
 	type?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null,
 	venue?: string | undefined | null
 };
+	/** aggregate sum on columns */
+["FdpPdp_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "FdpPdp" */
 ["FdpPdp_update_column"]:FdpPdp_update_column;
 	["FdpPdp_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["FdpPdp_inc_input"] | undefined | null,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["FdpPdp_set_input"] | undefined | null,
 	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["FdpPdp_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["FdpPdp_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["FdpPdp_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["FdpPdp_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** columns and relationships of "Genesis" */
 ["Genesis"]: AliasType<{
-	created_at?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	is_verified?:boolean | `@${string}`,
+	isVerified?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	role?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregated selection of "Genesis" */
@@ -3704,48 +4419,48 @@ count?: [{	columns?: Array<ResolverInputTypes["Genesis_select_column"]> | undefi
 	_and?: Array<ResolverInputTypes["Genesis_bool_exp"]> | undefined | null,
 	_not?: ResolverInputTypes["Genesis_bool_exp"] | undefined | null,
 	_or?: Array<ResolverInputTypes["Genesis_bool_exp"]> | undefined | null,
-	created_at?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null,
-	email_id?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null,
+	emailId?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	is_verified?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null,
+	isVerified?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null,
 	name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	phone?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	phoneNo?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	role?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null
 };
 	/** unique or primary key constraints on table "Genesis" */
 ["Genesis_constraint"]:Genesis_constraint;
 	/** input type for inserting data into table "Genesis" */
 ["Genesis_insert_input"]: {
-	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
-	email_id?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamp"] | undefined | null,
+	emailId?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	is_verified?: boolean | undefined | null,
+	isVerified?: boolean | undefined | null,
 	name?: string | undefined | null,
-	phone?: string | undefined | null,
+	phoneNo?: string | undefined | null,
 	role?: string | undefined | null,
-	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamp"] | undefined | null
 };
 	/** aggregate max on columns */
 ["Genesis_max_fields"]: AliasType<{
-	created_at?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	role?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["Genesis_min_fields"]: AliasType<{
-	created_at?:boolean | `@${string}`,
-	email_id?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	emailId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
-	phone?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
 	role?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** response of any mutation on the table "Genesis" */
@@ -3764,14 +4479,14 @@ count?: [{	columns?: Array<ResolverInputTypes["Genesis_select_column"]> | undefi
 };
 	/** Ordering options when selecting data from "Genesis". */
 ["Genesis_order_by"]: {
-	created_at?: ResolverInputTypes["order_by"] | undefined | null,
-	email_id?: ResolverInputTypes["order_by"] | undefined | null,
+	createdAt?: ResolverInputTypes["order_by"] | undefined | null,
+	emailId?: ResolverInputTypes["order_by"] | undefined | null,
 	id?: ResolverInputTypes["order_by"] | undefined | null,
-	is_verified?: ResolverInputTypes["order_by"] | undefined | null,
+	isVerified?: ResolverInputTypes["order_by"] | undefined | null,
 	name?: ResolverInputTypes["order_by"] | undefined | null,
-	phone?: ResolverInputTypes["order_by"] | undefined | null,
+	phoneNo?: ResolverInputTypes["order_by"] | undefined | null,
 	role?: ResolverInputTypes["order_by"] | undefined | null,
-	updated_at?: ResolverInputTypes["order_by"] | undefined | null
+	updatedAt?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** primary key columns input for table: Genesis */
 ["Genesis_pk_columns_input"]: {
@@ -3781,14 +4496,14 @@ count?: [{	columns?: Array<ResolverInputTypes["Genesis_select_column"]> | undefi
 ["Genesis_select_column"]:Genesis_select_column;
 	/** input type for updating data in table "Genesis" */
 ["Genesis_set_input"]: {
-	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
-	email_id?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamp"] | undefined | null,
+	emailId?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	is_verified?: boolean | undefined | null,
+	isVerified?: boolean | undefined | null,
 	name?: string | undefined | null,
-	phone?: string | undefined | null,
+	phoneNo?: string | undefined | null,
 	role?: string | undefined | null,
-	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamp"] | undefined | null
 };
 	/** Streaming cursor of the table "Genesis" */
 ["Genesis_stream_cursor_input"]: {
@@ -3799,14 +4514,14 @@ count?: [{	columns?: Array<ResolverInputTypes["Genesis_select_column"]> | undefi
 };
 	/** Initial value of the column from where the streaming should start */
 ["Genesis_stream_cursor_value_input"]: {
-	created_at?: ResolverInputTypes["timestamp"] | undefined | null,
-	email_id?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamp"] | undefined | null,
+	emailId?: string | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	is_verified?: boolean | undefined | null,
+	isVerified?: boolean | undefined | null,
 	name?: string | undefined | null,
-	phone?: string | undefined | null,
+	phoneNo?: string | undefined | null,
 	role?: string | undefined | null,
-	updated_at?: ResolverInputTypes["timestamp"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamp"] | undefined | null
 };
 	/** update columns of table "Genesis" */
 ["Genesis_update_column"]:Genesis_update_column;
@@ -3820,37 +4535,39 @@ count?: [{	columns?: Array<ResolverInputTypes["Genesis_select_column"]> | undefi
 ["Institute"]: AliasType<{
 	address?:boolean | `@${string}`,
 	city?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
-	created_by_id?:boolean | `@${string}`,
-	cursor_id?:boolean | `@${string}`,
-	date_of_establishment?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	dateOfEstablishment?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
+	isVerified?:boolean | `@${string}`,
 	landmark?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	pin?:boolean | `@${string}`,
 	state?:boolean | `@${string}`,
+	status?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
-	updated_by_id?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** columns and relationships of "InstituteFunding" */
 ["InstituteFunding"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	purpose?:boolean | `@${string}`,
 	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregated selection of "InstituteFunding" */
@@ -3861,9 +4578,22 @@ count?: [{	columns?: Array<ResolverInputTypes["Genesis_select_column"]> | undefi
 }>;
 	/** aggregate fields of "InstituteFunding" */
 ["InstituteFunding_aggregate_fields"]: AliasType<{
+	avg?:ResolverInputTypes["InstituteFunding_avg_fields"],
 count?: [{	columns?: Array<ResolverInputTypes["InstituteFunding_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
 	max?:ResolverInputTypes["InstituteFunding_max_fields"],
 	min?:ResolverInputTypes["InstituteFunding_min_fields"],
+	stddev?:ResolverInputTypes["InstituteFunding_stddev_fields"],
+	stddev_pop?:ResolverInputTypes["InstituteFunding_stddev_pop_fields"],
+	stddev_samp?:ResolverInputTypes["InstituteFunding_stddev_samp_fields"],
+	sum?:ResolverInputTypes["InstituteFunding_sum_fields"],
+	var_pop?:ResolverInputTypes["InstituteFunding_var_pop_fields"],
+	var_samp?:ResolverInputTypes["InstituteFunding_var_samp_fields"],
+	variance?:ResolverInputTypes["InstituteFunding_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["InstituteFunding_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "InstituteFunding". All fields are combined with a logical 'AND'. */
@@ -3872,73 +4602,75 @@ count?: [{	columns?: Array<ResolverInputTypes["InstituteFunding_select_column"]>
 	_not?: ResolverInputTypes["InstituteFunding_bool_exp"] | undefined | null,
 	_or?: Array<ResolverInputTypes["InstituteFunding_bool_exp"]> | undefined | null,
 	amount?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
-	cursorId?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint_comparison_exp"] | undefined | null,
 	id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
 	name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	purpose?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	status?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	transaction_date?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
-	transaction_type?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	status?: ResolverInputTypes["Status_enum_comparison_exp"] | undefined | null,
+	transactionDate?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
+	transactionType?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	type?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null
 };
 	/** unique or primary key constraints on table "InstituteFunding" */
 ["InstituteFunding_constraint"]:InstituteFunding_constraint;
+	/** input type for incrementing numeric columns in table "InstituteFunding" */
+["InstituteFunding_inc_input"]: {
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null
+};
 	/** input type for inserting data into table "InstituteFunding" */
 ["InstituteFunding_insert_input"]: {
 	amount?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	name?: string | undefined | null,
 	purpose?: string | undefined | null,
-	status?: string | undefined | null,
-	transaction_date?: ResolverInputTypes["date"] | undefined | null,
-	transaction_type?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	transactionDate?: ResolverInputTypes["date"] | undefined | null,
+	transactionType?: string | undefined | null,
 	type?: string | undefined | null,
-	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
 };
 	/** aggregate max on columns */
 ["InstituteFunding_max_fields"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	purpose?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** aggregate min on columns */
 ["InstituteFunding_min_fields"]: AliasType<{
 	amount?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
 	createdById?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
 	cursorId?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
-	institute_id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	purpose?:boolean | `@${string}`,
-	status?:boolean | `@${string}`,
-	transaction_date?:boolean | `@${string}`,
-	transaction_type?:boolean | `@${string}`,
+	transactionDate?:boolean | `@${string}`,
+	transactionType?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
 	updatedById?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** response of any mutation on the table "InstituteFunding" */
@@ -3958,19 +4690,19 @@ count?: [{	columns?: Array<ResolverInputTypes["InstituteFunding_select_column"]>
 	/** Ordering options when selecting data from "InstituteFunding". */
 ["InstituteFunding_order_by"]: {
 	amount?: ResolverInputTypes["order_by"] | undefined | null,
+	createdAt?: ResolverInputTypes["order_by"] | undefined | null,
 	createdById?: ResolverInputTypes["order_by"] | undefined | null,
-	created_at?: ResolverInputTypes["order_by"] | undefined | null,
 	cursorId?: ResolverInputTypes["order_by"] | undefined | null,
 	id?: ResolverInputTypes["order_by"] | undefined | null,
-	institute_id?: ResolverInputTypes["order_by"] | undefined | null,
+	instituteId?: ResolverInputTypes["order_by"] | undefined | null,
 	name?: ResolverInputTypes["order_by"] | undefined | null,
 	purpose?: ResolverInputTypes["order_by"] | undefined | null,
 	status?: ResolverInputTypes["order_by"] | undefined | null,
-	transaction_date?: ResolverInputTypes["order_by"] | undefined | null,
-	transaction_type?: ResolverInputTypes["order_by"] | undefined | null,
+	transactionDate?: ResolverInputTypes["order_by"] | undefined | null,
+	transactionType?: ResolverInputTypes["order_by"] | undefined | null,
 	type?: ResolverInputTypes["order_by"] | undefined | null,
-	updatedById?: ResolverInputTypes["order_by"] | undefined | null,
-	updated_at?: ResolverInputTypes["order_by"] | undefined | null
+	updatedAt?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedById?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** primary key columns input for table: InstituteFunding */
 ["InstituteFunding_pk_columns_input"]: {
@@ -3981,20 +4713,35 @@ count?: [{	columns?: Array<ResolverInputTypes["InstituteFunding_select_column"]>
 	/** input type for updating data in table "InstituteFunding" */
 ["InstituteFunding_set_input"]: {
 	amount?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	name?: string | undefined | null,
 	purpose?: string | undefined | null,
-	status?: string | undefined | null,
-	transaction_date?: ResolverInputTypes["date"] | undefined | null,
-	transaction_type?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	transactionDate?: ResolverInputTypes["date"] | undefined | null,
+	transactionType?: string | undefined | null,
 	type?: string | undefined | null,
-	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
 };
+	/** aggregate stddev on columns */
+["InstituteFunding_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["InstituteFunding_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["InstituteFunding_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "InstituteFunding" */
 ["InstituteFunding_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -4005,28 +4752,50 @@ count?: [{	columns?: Array<ResolverInputTypes["InstituteFunding_select_column"]>
 	/** Initial value of the column from where the streaming should start */
 ["InstituteFunding_stream_cursor_value_input"]: {
 	amount?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
 	createdById?: ResolverInputTypes["uuid"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	cursorId?: string | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
-	institute_id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
 	name?: string | undefined | null,
 	purpose?: string | undefined | null,
-	status?: string | undefined | null,
-	transaction_date?: ResolverInputTypes["date"] | undefined | null,
-	transaction_type?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
+	transactionDate?: ResolverInputTypes["date"] | undefined | null,
+	transactionType?: string | undefined | null,
 	type?: string | undefined | null,
-	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
 };
+	/** aggregate sum on columns */
+["InstituteFunding_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "InstituteFunding" */
 ["InstituteFunding_update_column"]:InstituteFunding_update_column;
 	["InstituteFunding_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["InstituteFunding_inc_input"] | undefined | null,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["InstituteFunding_set_input"] | undefined | null,
 	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["InstituteFunding_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["InstituteFunding_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["InstituteFunding_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["InstituteFunding_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** aggregated selection of "Institute" */
 ["Institute_aggregate"]: AliasType<{
 	aggregate?:ResolverInputTypes["Institute_aggregate_fields"],
@@ -4035,9 +4804,22 @@ count?: [{	columns?: Array<ResolverInputTypes["InstituteFunding_select_column"]>
 }>;
 	/** aggregate fields of "Institute" */
 ["Institute_aggregate_fields"]: AliasType<{
+	avg?:ResolverInputTypes["Institute_avg_fields"],
 count?: [{	columns?: Array<ResolverInputTypes["Institute_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
 	max?:ResolverInputTypes["Institute_max_fields"],
 	min?:ResolverInputTypes["Institute_min_fields"],
+	stddev?:ResolverInputTypes["Institute_stddev_fields"],
+	stddev_pop?:ResolverInputTypes["Institute_stddev_pop_fields"],
+	stddev_samp?:ResolverInputTypes["Institute_stddev_samp_fields"],
+	sum?:ResolverInputTypes["Institute_sum_fields"],
+	var_pop?:ResolverInputTypes["Institute_var_pop_fields"],
+	var_samp?:ResolverInputTypes["Institute_var_samp_fields"],
+	variance?:ResolverInputTypes["Institute_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["Institute_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
 	/** Boolean expression to filter rows from the table "Institute". All fields are combined with a logical 'AND'. */
@@ -4047,56 +4829,64 @@ count?: [{	columns?: Array<ResolverInputTypes["Institute_select_column"]> | unde
 	_or?: Array<ResolverInputTypes["Institute_bool_exp"]> | undefined | null,
 	address?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	city?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
-	created_by_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
-	cursor_id?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	date_of_establishment?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
+	createdById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint_comparison_exp"] | undefined | null,
+	dateOfEstablishment?: ResolverInputTypes["date_comparison_exp"] | undefined | null,
 	id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	isVerified?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null,
 	landmark?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	pin?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
 	state?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	status?: ResolverInputTypes["Status_enum_comparison_exp"] | undefined | null,
 	type?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
-	updated_by_id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz_comparison_exp"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
 	website?: ResolverInputTypes["String_comparison_exp"] | undefined | null
 };
 	/** unique or primary key constraints on table "Institute" */
 ["Institute_constraint"]:Institute_constraint;
+	/** input type for incrementing numeric columns in table "Institute" */
+["Institute_inc_input"]: {
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null
+};
 	/** input type for inserting data into table "Institute" */
 ["Institute_insert_input"]: {
 	address?: string | undefined | null,
 	city?: string | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	created_by_id?: ResolverInputTypes["uuid"] | undefined | null,
-	cursor_id?: string | undefined | null,
-	date_of_establishment?: ResolverInputTypes["date"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	createdById?: ResolverInputTypes["uuid"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	dateOfEstablishment?: ResolverInputTypes["date"] | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
+	isVerified?: boolean | undefined | null,
 	landmark?: string | undefined | null,
 	name?: string | undefined | null,
 	pin?: string | undefined | null,
 	state?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
 	type?: string | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	updated_by_id?: ResolverInputTypes["uuid"] | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
 	website?: string | undefined | null
 };
 	/** aggregate max on columns */
 ["Institute_max_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	city?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
-	created_by_id?:boolean | `@${string}`,
-	cursor_id?:boolean | `@${string}`,
-	date_of_establishment?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	dateOfEstablishment?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	landmark?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	pin?:boolean | `@${string}`,
 	state?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
-	updated_by_id?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -4104,18 +4894,18 @@ count?: [{	columns?: Array<ResolverInputTypes["Institute_select_column"]> | unde
 ["Institute_min_fields"]: AliasType<{
 	address?:boolean | `@${string}`,
 	city?:boolean | `@${string}`,
-	created_at?:boolean | `@${string}`,
-	created_by_id?:boolean | `@${string}`,
-	cursor_id?:boolean | `@${string}`,
-	date_of_establishment?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	dateOfEstablishment?:boolean | `@${string}`,
 	id?:boolean | `@${string}`,
 	landmark?:boolean | `@${string}`,
 	name?:boolean | `@${string}`,
 	pin?:boolean | `@${string}`,
 	state?:boolean | `@${string}`,
 	type?:boolean | `@${string}`,
-	updated_at?:boolean | `@${string}`,
-	updated_by_id?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
 	website?:boolean | `@${string}`,
 		__typename?: boolean | `@${string}`
 }>;
@@ -4137,18 +4927,20 @@ count?: [{	columns?: Array<ResolverInputTypes["Institute_select_column"]> | unde
 ["Institute_order_by"]: {
 	address?: ResolverInputTypes["order_by"] | undefined | null,
 	city?: ResolverInputTypes["order_by"] | undefined | null,
-	created_at?: ResolverInputTypes["order_by"] | undefined | null,
-	created_by_id?: ResolverInputTypes["order_by"] | undefined | null,
-	cursor_id?: ResolverInputTypes["order_by"] | undefined | null,
-	date_of_establishment?: ResolverInputTypes["order_by"] | undefined | null,
+	createdAt?: ResolverInputTypes["order_by"] | undefined | null,
+	createdById?: ResolverInputTypes["order_by"] | undefined | null,
+	cursorId?: ResolverInputTypes["order_by"] | undefined | null,
+	dateOfEstablishment?: ResolverInputTypes["order_by"] | undefined | null,
 	id?: ResolverInputTypes["order_by"] | undefined | null,
+	isVerified?: ResolverInputTypes["order_by"] | undefined | null,
 	landmark?: ResolverInputTypes["order_by"] | undefined | null,
 	name?: ResolverInputTypes["order_by"] | undefined | null,
 	pin?: ResolverInputTypes["order_by"] | undefined | null,
 	state?: ResolverInputTypes["order_by"] | undefined | null,
+	status?: ResolverInputTypes["order_by"] | undefined | null,
 	type?: ResolverInputTypes["order_by"] | undefined | null,
-	updated_at?: ResolverInputTypes["order_by"] | undefined | null,
-	updated_by_id?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedAt?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedById?: ResolverInputTypes["order_by"] | undefined | null,
 	website?: ResolverInputTypes["order_by"] | undefined | null
 };
 	/** primary key columns input for table: Institute */
@@ -4161,20 +4953,37 @@ count?: [{	columns?: Array<ResolverInputTypes["Institute_select_column"]> | unde
 ["Institute_set_input"]: {
 	address?: string | undefined | null,
 	city?: string | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	created_by_id?: ResolverInputTypes["uuid"] | undefined | null,
-	cursor_id?: string | undefined | null,
-	date_of_establishment?: ResolverInputTypes["date"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	createdById?: ResolverInputTypes["uuid"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	dateOfEstablishment?: ResolverInputTypes["date"] | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
+	isVerified?: boolean | undefined | null,
 	landmark?: string | undefined | null,
 	name?: string | undefined | null,
 	pin?: string | undefined | null,
 	state?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
 	type?: string | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	updated_by_id?: ResolverInputTypes["uuid"] | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
 	website?: string | undefined | null
 };
+	/** aggregate stddev on columns */
+["Institute_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["Institute_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["Institute_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** Streaming cursor of the table "Institute" */
 ["Institute_stream_cursor_input"]: {
 	/** Stream column input with initial value */
@@ -4186,27 +4995,148 @@ count?: [{	columns?: Array<ResolverInputTypes["Institute_select_column"]> | unde
 ["Institute_stream_cursor_value_input"]: {
 	address?: string | undefined | null,
 	city?: string | undefined | null,
-	created_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	created_by_id?: ResolverInputTypes["uuid"] | undefined | null,
-	cursor_id?: string | undefined | null,
-	date_of_establishment?: ResolverInputTypes["date"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	createdById?: ResolverInputTypes["uuid"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	dateOfEstablishment?: ResolverInputTypes["date"] | undefined | null,
 	id?: ResolverInputTypes["uuid"] | undefined | null,
+	isVerified?: boolean | undefined | null,
 	landmark?: string | undefined | null,
 	name?: string | undefined | null,
 	pin?: string | undefined | null,
 	state?: string | undefined | null,
+	status?: ResolverInputTypes["Status_enum"] | undefined | null,
 	type?: string | undefined | null,
-	updated_at?: ResolverInputTypes["timestamptz"] | undefined | null,
-	updated_by_id?: ResolverInputTypes["uuid"] | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamptz"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null,
 	website?: string | undefined | null
 };
+	/** aggregate sum on columns */
+["Institute_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** update columns of table "Institute" */
 ["Institute_update_column"]:Institute_update_column;
 	["Institute_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["Institute_inc_input"] | undefined | null,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["Institute_set_input"] | undefined | null,
 	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["Institute_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["Institute_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["Institute_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["Institute_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** columns and relationships of "Status" */
+["Status"]: AliasType<{
+	value?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregated selection of "Status" */
+["Status_aggregate"]: AliasType<{
+	aggregate?:ResolverInputTypes["Status_aggregate_fields"],
+	nodes?:ResolverInputTypes["Status"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate fields of "Status" */
+["Status_aggregate_fields"]: AliasType<{
+count?: [{	columns?: Array<ResolverInputTypes["Status_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
+	max?:ResolverInputTypes["Status_max_fields"],
+	min?:ResolverInputTypes["Status_min_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** Boolean expression to filter rows from the table "Status". All fields are combined with a logical 'AND'. */
+["Status_bool_exp"]: {
+	_and?: Array<ResolverInputTypes["Status_bool_exp"]> | undefined | null,
+	_not?: ResolverInputTypes["Status_bool_exp"] | undefined | null,
+	_or?: Array<ResolverInputTypes["Status_bool_exp"]> | undefined | null,
+	value?: ResolverInputTypes["String_comparison_exp"] | undefined | null
+};
+	/** unique or primary key constraints on table "Status" */
+["Status_constraint"]:Status_constraint;
+	["Status_enum"]:Status_enum;
+	/** Boolean expression to compare columns of type "Status_enum". All fields are combined with logical 'AND'. */
+["Status_enum_comparison_exp"]: {
+	_eq?: ResolverInputTypes["Status_enum"] | undefined | null,
+	_in?: Array<ResolverInputTypes["Status_enum"]> | undefined | null,
+	_is_null?: boolean | undefined | null,
+	_neq?: ResolverInputTypes["Status_enum"] | undefined | null,
+	_nin?: Array<ResolverInputTypes["Status_enum"]> | undefined | null
+};
+	/** input type for inserting data into table "Status" */
+["Status_insert_input"]: {
+	value?: string | undefined | null
+};
+	/** aggregate max on columns */
+["Status_max_fields"]: AliasType<{
+	value?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate min on columns */
+["Status_min_fields"]: AliasType<{
+	value?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** response of any mutation on the table "Status" */
+["Status_mutation_response"]: AliasType<{
+	/** number of rows affected by the mutation */
+	affected_rows?:boolean | `@${string}`,
+	/** data from the rows affected by the mutation */
+	returning?:ResolverInputTypes["Status"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** on_conflict condition type for table "Status" */
+["Status_on_conflict"]: {
+	constraint: ResolverInputTypes["Status_constraint"],
+	update_columns: Array<ResolverInputTypes["Status_update_column"]>,
+	where?: ResolverInputTypes["Status_bool_exp"] | undefined | null
+};
+	/** Ordering options when selecting data from "Status". */
+["Status_order_by"]: {
+	value?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** primary key columns input for table: Status */
+["Status_pk_columns_input"]: {
+	value: string
+};
+	/** select columns of table "Status" */
+["Status_select_column"]:Status_select_column;
+	/** input type for updating data in table "Status" */
+["Status_set_input"]: {
+	value?: string | undefined | null
+};
+	/** Streaming cursor of the table "Status" */
+["Status_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ResolverInputTypes["Status_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null
+};
+	/** Initial value of the column from where the streaming should start */
+["Status_stream_cursor_value_input"]: {
+	value?: string | undefined | null
+};
+	/** update columns of table "Status" */
+["Status_update_column"]:Status_update_column;
+	["Status_updates"]: {
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["Status_set_input"] | undefined | null,
+	/** filter the rows which have to be updated */
+	where: ResolverInputTypes["Status_bool_exp"]
 };
 	/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 ["String_comparison_exp"]: {
@@ -4239,6 +5169,19 @@ count?: [{	columns?: Array<ResolverInputTypes["Institute_select_column"]> | unde
 	_regex?: string | undefined | null,
 	/** does the column match the given SQL regular expression */
 	_similar?: string | undefined | null
+};
+	["bigint"]:unknown;
+	/** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
+["bigint_comparison_exp"]: {
+	_eq?: ResolverInputTypes["bigint"] | undefined | null,
+	_gt?: ResolverInputTypes["bigint"] | undefined | null,
+	_gte?: ResolverInputTypes["bigint"] | undefined | null,
+	_in?: Array<ResolverInputTypes["bigint"]> | undefined | null,
+	_is_null?: boolean | undefined | null,
+	_lt?: ResolverInputTypes["bigint"] | undefined | null,
+	_lte?: ResolverInputTypes["bigint"] | undefined | null,
+	_neq?: ResolverInputTypes["bigint"] | undefined | null,
+	_nin?: Array<ResolverInputTypes["bigint"]> | undefined | null
 };
 	/** ordering argument of a cursor */
 ["cursor_ordering"]:cursor_ordering;
@@ -4278,6 +5221,9 @@ delete_InstituteFunding?: [{	/** filter the rows which have to be deleted */
 	where: ResolverInputTypes["InstituteFunding_bool_exp"]},ResolverInputTypes["InstituteFunding_mutation_response"]],
 delete_InstituteFunding_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["InstituteFunding"]],
 delete_Institute_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["Institute"]],
+delete_Status?: [{	/** filter the rows which have to be deleted */
+	where: ResolverInputTypes["Status_bool_exp"]},ResolverInputTypes["Status_mutation_response"]],
+delete_Status_by_pk?: [{	value: string},ResolverInputTypes["Status"]],
 insert_EGovernance?: [{	/** the rows to be inserted */
 	objects: Array<ResolverInputTypes["EGovernance_insert_input"]>,	/** upsert condition */
 	on_conflict?: ResolverInputTypes["EGovernance_on_conflict"] | undefined | null},ResolverInputTypes["EGovernance_mutation_response"]],
@@ -4320,31 +5266,45 @@ insert_InstituteFunding_one?: [{	/** the row to be inserted */
 insert_Institute_one?: [{	/** the row to be inserted */
 	object: ResolverInputTypes["Institute_insert_input"],	/** upsert condition */
 	on_conflict?: ResolverInputTypes["Institute_on_conflict"] | undefined | null},ResolverInputTypes["Institute"]],
-update_EGovernance?: [{	/** sets the columns of the filtered rows to the given values */
+insert_Status?: [{	/** the rows to be inserted */
+	objects: Array<ResolverInputTypes["Status_insert_input"]>,	/** upsert condition */
+	on_conflict?: ResolverInputTypes["Status_on_conflict"] | undefined | null},ResolverInputTypes["Status_mutation_response"]],
+insert_Status_one?: [{	/** the row to be inserted */
+	object: ResolverInputTypes["Status_insert_input"],	/** upsert condition */
+	on_conflict?: ResolverInputTypes["Status_on_conflict"] | undefined | null},ResolverInputTypes["Status"]],
+update_EGovernance?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["EGovernance_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["EGovernance_set_input"] | undefined | null,	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["EGovernance_bool_exp"]},ResolverInputTypes["EGovernance_mutation_response"]],
-update_EGovernance_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_EGovernance_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["EGovernance_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["EGovernance_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["EGovernance_pk_columns_input"]},ResolverInputTypes["EGovernance"]],
 update_EGovernance_many?: [{	/** updates to execute, in order */
 	updates: Array<ResolverInputTypes["EGovernance_updates"]>},ResolverInputTypes["EGovernance_mutation_response"]],
-update_Faculty?: [{	/** sets the columns of the filtered rows to the given values */
+update_Faculty?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["Faculty_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["Faculty_set_input"] | undefined | null,	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["Faculty_bool_exp"]},ResolverInputTypes["Faculty_mutation_response"]],
-update_FacultyFunding?: [{	/** sets the columns of the filtered rows to the given values */
+update_FacultyFunding?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["FacultyFunding_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["FacultyFunding_set_input"] | undefined | null,	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["FacultyFunding_bool_exp"]},ResolverInputTypes["FacultyFunding_mutation_response"]],
-update_FacultyFunding_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_FacultyFunding_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["FacultyFunding_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["FacultyFunding_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["FacultyFunding_pk_columns_input"]},ResolverInputTypes["FacultyFunding"]],
 update_FacultyFunding_many?: [{	/** updates to execute, in order */
 	updates: Array<ResolverInputTypes["FacultyFunding_updates"]>},ResolverInputTypes["FacultyFunding_mutation_response"]],
-update_Faculty_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_Faculty_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["Faculty_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["Faculty_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["Faculty_pk_columns_input"]},ResolverInputTypes["Faculty"]],
 update_Faculty_many?: [{	/** updates to execute, in order */
 	updates: Array<ResolverInputTypes["Faculty_updates"]>},ResolverInputTypes["Faculty_mutation_response"]],
-update_FdpPdp?: [{	/** sets the columns of the filtered rows to the given values */
+update_FdpPdp?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["FdpPdp_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["FdpPdp_set_input"] | undefined | null,	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["FdpPdp_bool_exp"]},ResolverInputTypes["FdpPdp_mutation_response"]],
-update_FdpPdp_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_FdpPdp_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["FdpPdp_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["FdpPdp_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["FdpPdp_pk_columns_input"]},ResolverInputTypes["FdpPdp"]],
 update_FdpPdp_many?: [{	/** updates to execute, in order */
 	updates: Array<ResolverInputTypes["FdpPdp_updates"]>},ResolverInputTypes["FdpPdp_mutation_response"]],
@@ -4355,20 +5315,31 @@ update_Genesis_by_pk?: [{	/** sets the columns of the filtered rows to the given
 	_set?: ResolverInputTypes["Genesis_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["Genesis_pk_columns_input"]},ResolverInputTypes["Genesis"]],
 update_Genesis_many?: [{	/** updates to execute, in order */
 	updates: Array<ResolverInputTypes["Genesis_updates"]>},ResolverInputTypes["Genesis_mutation_response"]],
-update_Institute?: [{	/** sets the columns of the filtered rows to the given values */
+update_Institute?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["Institute_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["Institute_set_input"] | undefined | null,	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["Institute_bool_exp"]},ResolverInputTypes["Institute_mutation_response"]],
-update_InstituteFunding?: [{	/** sets the columns of the filtered rows to the given values */
+update_InstituteFunding?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["InstituteFunding_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["InstituteFunding_set_input"] | undefined | null,	/** filter the rows which have to be updated */
 	where: ResolverInputTypes["InstituteFunding_bool_exp"]},ResolverInputTypes["InstituteFunding_mutation_response"]],
-update_InstituteFunding_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_InstituteFunding_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["InstituteFunding_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["InstituteFunding_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["InstituteFunding_pk_columns_input"]},ResolverInputTypes["InstituteFunding"]],
 update_InstituteFunding_many?: [{	/** updates to execute, in order */
 	updates: Array<ResolverInputTypes["InstituteFunding_updates"]>},ResolverInputTypes["InstituteFunding_mutation_response"]],
-update_Institute_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+update_Institute_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["Institute_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["Institute_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["Institute_pk_columns_input"]},ResolverInputTypes["Institute"]],
 update_Institute_many?: [{	/** updates to execute, in order */
 	updates: Array<ResolverInputTypes["Institute_updates"]>},ResolverInputTypes["Institute_mutation_response"]],
+update_Status?: [{	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["Status_set_input"] | undefined | null,	/** filter the rows which have to be updated */
+	where: ResolverInputTypes["Status_bool_exp"]},ResolverInputTypes["Status_mutation_response"]],
+update_Status_by_pk?: [{	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["Status_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["Status_pk_columns_input"]},ResolverInputTypes["Status"]],
+update_Status_many?: [{	/** updates to execute, in order */
+	updates: Array<ResolverInputTypes["Status_updates"]>},ResolverInputTypes["Status_mutation_response"]],
 		__typename?: boolean | `@${string}`
 }>;
 	/** column ordering options */
@@ -4465,6 +5436,19 @@ Institute_aggregate?: [{	/** distinct select on columns */
 	order_by?: Array<ResolverInputTypes["Institute_order_by"]> | undefined | null,	/** filter the rows returned */
 	where?: ResolverInputTypes["Institute_bool_exp"] | undefined | null},ResolverInputTypes["Institute_aggregate"]],
 Institute_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["Institute"]],
+Status?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Status_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Status_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Status_bool_exp"] | undefined | null},ResolverInputTypes["Status"]],
+Status_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Status_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Status_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Status_bool_exp"] | undefined | null},ResolverInputTypes["Status_aggregate"]],
+Status_by_pk?: [{	value: string},ResolverInputTypes["Status"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["subscription_root"]: AliasType<{
@@ -4587,6 +5571,23 @@ Institute_stream?: [{	/** maximum number of rows returned in a single batch */
 	batch_size: number,	/** cursor to stream the results returned by the query */
 	cursor: Array<ResolverInputTypes["Institute_stream_cursor_input"] | undefined | null>,	/** filter the rows returned */
 	where?: ResolverInputTypes["Institute_bool_exp"] | undefined | null},ResolverInputTypes["Institute"]],
+Status?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Status_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Status_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Status_bool_exp"] | undefined | null},ResolverInputTypes["Status"]],
+Status_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Status_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Status_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Status_bool_exp"] | undefined | null},ResolverInputTypes["Status_aggregate"]],
+Status_by_pk?: [{	value: string},ResolverInputTypes["Status"]],
+Status_stream?: [{	/** maximum number of rows returned in a single batch */
+	batch_size: number,	/** cursor to stream the results returned by the query */
+	cursor: Array<ResolverInputTypes["Status_stream_cursor_input"] | undefined | null>,	/** filter the rows returned */
+	where?: ResolverInputTypes["Status_bool_exp"] | undefined | null},ResolverInputTypes["Status"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["timestamp"]:unknown;
@@ -4652,21 +5653,21 @@ export type ModelTypes = {
 ["EGovernance"]: {
 		address: string,
 	area: string,
+	createdAt: ModelTypes["timestamptz"],
 	createdById: ModelTypes["uuid"],
-	created_at: ModelTypes["timestamptz"],
-	cursorId: string,
+	cursorId: ModelTypes["bigint"],
 	description: string,
 	file: string,
 	id: ModelTypes["uuid"],
-	institute_id: ModelTypes["uuid"],
+	instituteId: ModelTypes["uuid"],
 	name: string,
-	phone_no: string,
-	service_end_date: ModelTypes["date"],
-	service_start_date: ModelTypes["date"],
-	status: string,
-	total_amount: string,
+	phoneNo: string,
+	serviceEndDate: ModelTypes["date"],
+	serviceStartDate: ModelTypes["date"],
+	status: ModelTypes["Status_enum"],
+	totalAmount: string,
+	updatedAt: ModelTypes["timestamptz"],
 	updatedById: ModelTypes["uuid"],
-	updated_at: ModelTypes["timestamptz"],
 	website: string
 };
 	/** aggregated selection of "EGovernance" */
@@ -4676,9 +5677,21 @@ export type ModelTypes = {
 };
 	/** aggregate fields of "EGovernance" */
 ["EGovernance_aggregate_fields"]: {
-		count: number,
+		avg?: ModelTypes["EGovernance_avg_fields"] | undefined,
+	count: number,
 	max?: ModelTypes["EGovernance_max_fields"] | undefined,
-	min?: ModelTypes["EGovernance_min_fields"] | undefined
+	min?: ModelTypes["EGovernance_min_fields"] | undefined,
+	stddev?: ModelTypes["EGovernance_stddev_fields"] | undefined,
+	stddev_pop?: ModelTypes["EGovernance_stddev_pop_fields"] | undefined,
+	stddev_samp?: ModelTypes["EGovernance_stddev_samp_fields"] | undefined,
+	sum?: ModelTypes["EGovernance_sum_fields"] | undefined,
+	var_pop?: ModelTypes["EGovernance_var_pop_fields"] | undefined,
+	var_samp?: ModelTypes["EGovernance_var_samp_fields"] | undefined,
+	variance?: ModelTypes["EGovernance_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["EGovernance_avg_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "EGovernance". All fields are combined with a logical 'AND'. */
 ["EGovernance_bool_exp"]: {
@@ -4687,85 +5700,87 @@ export type ModelTypes = {
 	_or?: Array<ModelTypes["EGovernance_bool_exp"]> | undefined,
 	address?: ModelTypes["String_comparison_exp"] | undefined,
 	area?: ModelTypes["String_comparison_exp"] | undefined,
+	createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	created_at?: ModelTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: ModelTypes["String_comparison_exp"] | undefined,
+	cursorId?: ModelTypes["bigint_comparison_exp"] | undefined,
 	description?: ModelTypes["String_comparison_exp"] | undefined,
 	file?: ModelTypes["String_comparison_exp"] | undefined,
 	id?: ModelTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: ModelTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: ModelTypes["uuid_comparison_exp"] | undefined,
 	name?: ModelTypes["String_comparison_exp"] | undefined,
-	phone_no?: ModelTypes["String_comparison_exp"] | undefined,
-	service_end_date?: ModelTypes["date_comparison_exp"] | undefined,
-	service_start_date?: ModelTypes["date_comparison_exp"] | undefined,
-	status?: ModelTypes["String_comparison_exp"] | undefined,
-	total_amount?: ModelTypes["String_comparison_exp"] | undefined,
+	phoneNo?: ModelTypes["String_comparison_exp"] | undefined,
+	serviceEndDate?: ModelTypes["date_comparison_exp"] | undefined,
+	serviceStartDate?: ModelTypes["date_comparison_exp"] | undefined,
+	status?: ModelTypes["Status_enum_comparison_exp"] | undefined,
+	totalAmount?: ModelTypes["String_comparison_exp"] | undefined,
+	updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
 	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: ModelTypes["timestamptz_comparison_exp"] | undefined,
 	website?: ModelTypes["String_comparison_exp"] | undefined
 };
 	["EGovernance_constraint"]:EGovernance_constraint;
+	/** input type for incrementing numeric columns in table "EGovernance" */
+["EGovernance_inc_input"]: {
+	cursorId?: ModelTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "EGovernance" */
 ["EGovernance_insert_input"]: {
 	address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: ModelTypes["date"] | undefined,
-	service_start_date?: ModelTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: ModelTypes["date"] | undefined,
+	serviceStartDate?: ModelTypes["date"] | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	website?: string | undefined
 };
 	/** aggregate max on columns */
 ["EGovernance_max_fields"]: {
 		address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: ModelTypes["date"] | undefined,
-	service_start_date?: ModelTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: ModelTypes["date"] | undefined,
+	serviceStartDate?: ModelTypes["date"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	website?: string | undefined
 };
 	/** aggregate min on columns */
 ["EGovernance_min_fields"]: {
 		address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: ModelTypes["date"] | undefined,
-	service_start_date?: ModelTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: ModelTypes["date"] | undefined,
+	serviceStartDate?: ModelTypes["date"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	website?: string | undefined
 };
 	/** response of any mutation on the table "EGovernance" */
@@ -4785,21 +5800,21 @@ export type ModelTypes = {
 ["EGovernance_order_by"]: {
 	address?: ModelTypes["order_by"] | undefined,
 	area?: ModelTypes["order_by"] | undefined,
+	createdAt?: ModelTypes["order_by"] | undefined,
 	createdById?: ModelTypes["order_by"] | undefined,
-	created_at?: ModelTypes["order_by"] | undefined,
 	cursorId?: ModelTypes["order_by"] | undefined,
 	description?: ModelTypes["order_by"] | undefined,
 	file?: ModelTypes["order_by"] | undefined,
 	id?: ModelTypes["order_by"] | undefined,
-	institute_id?: ModelTypes["order_by"] | undefined,
+	instituteId?: ModelTypes["order_by"] | undefined,
 	name?: ModelTypes["order_by"] | undefined,
-	phone_no?: ModelTypes["order_by"] | undefined,
-	service_end_date?: ModelTypes["order_by"] | undefined,
-	service_start_date?: ModelTypes["order_by"] | undefined,
+	phoneNo?: ModelTypes["order_by"] | undefined,
+	serviceEndDate?: ModelTypes["order_by"] | undefined,
+	serviceStartDate?: ModelTypes["order_by"] | undefined,
 	status?: ModelTypes["order_by"] | undefined,
-	total_amount?: ModelTypes["order_by"] | undefined,
+	totalAmount?: ModelTypes["order_by"] | undefined,
+	updatedAt?: ModelTypes["order_by"] | undefined,
 	updatedById?: ModelTypes["order_by"] | undefined,
-	updated_at?: ModelTypes["order_by"] | undefined,
 	website?: ModelTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: EGovernance */
@@ -4811,22 +5826,34 @@ export type ModelTypes = {
 ["EGovernance_set_input"]: {
 	address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: ModelTypes["date"] | undefined,
-	service_start_date?: ModelTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: ModelTypes["date"] | undefined,
+	serviceStartDate?: ModelTypes["date"] | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	website?: string | undefined
+};
+	/** aggregate stddev on columns */
+["EGovernance_stddev_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["EGovernance_stddev_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["EGovernance_stddev_samp_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "EGovernance" */
 ["EGovernance_stream_cursor_input"]: {
@@ -4839,75 +5866,94 @@ export type ModelTypes = {
 ["EGovernance_stream_cursor_value_input"]: {
 	address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: ModelTypes["date"] | undefined,
-	service_start_date?: ModelTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: ModelTypes["date"] | undefined,
+	serviceStartDate?: ModelTypes["date"] | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	website?: string | undefined
+};
+	/** aggregate sum on columns */
+["EGovernance_sum_fields"]: {
+		cursorId?: ModelTypes["bigint"] | undefined
 };
 	["EGovernance_update_column"]:EGovernance_update_column;
 	["EGovernance_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ModelTypes["EGovernance_inc_input"] | undefined,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ModelTypes["EGovernance_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: ModelTypes["EGovernance_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["EGovernance_var_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["EGovernance_var_samp_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["EGovernance_variance_fields"]: {
+		cursorId?: number | undefined
+};
 	/** columns and relationships of "Faculty" */
 ["Faculty"]: {
 		address: string,
 	cast: string,
+	createdAt: ModelTypes["timestamptz"],
 	createdById: ModelTypes["uuid"],
-	created_at: ModelTypes["timestamptz"],
-	cursorId: string,
-	date_of_joining: ModelTypes["date"],
+	cursorId: ModelTypes["bigint"],
+	dateOfJoining: ModelTypes["date"],
 	designation: string,
 	dob: ModelTypes["date"],
-	email_id: string,
+	emailId: string,
 	experience: string,
 	gender: string,
 	id: ModelTypes["uuid"],
-	institute_id: ModelTypes["uuid"],
-	job_type: string,
+	instituteId: ModelTypes["uuid"],
+	isVerified: boolean,
+	jobType: string,
 	minority: string,
 	name: string,
-	pan_card_no: string,
-	phone: string,
+	panCardNo: string,
+	phoneNo: string,
 	qualification: string,
 	section: string,
-	staff_type: string,
-	status: string,
-	status_of_approval: string,
-	updatedById: ModelTypes["uuid"],
-	updated_at: ModelTypes["timestamptz"]
+	staffType: string,
+	status: ModelTypes["Status_enum"],
+	statusOfApproval: string,
+	updatedAt: ModelTypes["timestamptz"],
+	updatedById: ModelTypes["uuid"]
 };
 	/** columns and relationships of "FacultyFunding" */
 ["FacultyFunding"]: {
 		amount: string,
+	createdAt: ModelTypes["timestamptz"],
 	createdById: ModelTypes["uuid"],
-	created_at: ModelTypes["timestamptz"],
-	cursorId: string,
-	faculty_id: ModelTypes["uuid"],
+	cursorId: ModelTypes["bigint"],
+	facultyId: ModelTypes["uuid"],
 	file: string,
 	id: ModelTypes["uuid"],
-	institute_id: ModelTypes["uuid"],
+	instituteId: ModelTypes["uuid"],
 	nature: string,
-	status: string,
-	transaction_date: ModelTypes["date"],
-	transaction_type: string,
+	status: ModelTypes["Status_enum"],
+	transactionDate: ModelTypes["date"],
+	transactionType: string,
 	type: string,
-	updatedById: ModelTypes["uuid"],
-	updated_at: ModelTypes["timestamptz"]
+	updatedAt: ModelTypes["timestamptz"],
+	updatedById: ModelTypes["uuid"]
 };
 	/** aggregated selection of "FacultyFunding" */
 ["FacultyFunding_aggregate"]: {
@@ -4916,9 +5962,21 @@ export type ModelTypes = {
 };
 	/** aggregate fields of "FacultyFunding" */
 ["FacultyFunding_aggregate_fields"]: {
-		count: number,
+		avg?: ModelTypes["FacultyFunding_avg_fields"] | undefined,
+	count: number,
 	max?: ModelTypes["FacultyFunding_max_fields"] | undefined,
-	min?: ModelTypes["FacultyFunding_min_fields"] | undefined
+	min?: ModelTypes["FacultyFunding_min_fields"] | undefined,
+	stddev?: ModelTypes["FacultyFunding_stddev_fields"] | undefined,
+	stddev_pop?: ModelTypes["FacultyFunding_stddev_pop_fields"] | undefined,
+	stddev_samp?: ModelTypes["FacultyFunding_stddev_samp_fields"] | undefined,
+	sum?: ModelTypes["FacultyFunding_sum_fields"] | undefined,
+	var_pop?: ModelTypes["FacultyFunding_var_pop_fields"] | undefined,
+	var_samp?: ModelTypes["FacultyFunding_var_samp_fields"] | undefined,
+	variance?: ModelTypes["FacultyFunding_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["FacultyFunding_avg_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "FacultyFunding". All fields are combined with a logical 'AND'. */
 ["FacultyFunding_bool_exp"]: {
@@ -4926,75 +5984,77 @@ export type ModelTypes = {
 	_not?: ModelTypes["FacultyFunding_bool_exp"] | undefined,
 	_or?: Array<ModelTypes["FacultyFunding_bool_exp"]> | undefined,
 	amount?: ModelTypes["String_comparison_exp"] | undefined,
+	createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	created_at?: ModelTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: ModelTypes["String_comparison_exp"] | undefined,
-	faculty_id?: ModelTypes["uuid_comparison_exp"] | undefined,
+	cursorId?: ModelTypes["bigint_comparison_exp"] | undefined,
+	facultyId?: ModelTypes["uuid_comparison_exp"] | undefined,
 	file?: ModelTypes["String_comparison_exp"] | undefined,
 	id?: ModelTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: ModelTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: ModelTypes["uuid_comparison_exp"] | undefined,
 	nature?: ModelTypes["String_comparison_exp"] | undefined,
-	status?: ModelTypes["String_comparison_exp"] | undefined,
-	transaction_date?: ModelTypes["date_comparison_exp"] | undefined,
-	transaction_type?: ModelTypes["String_comparison_exp"] | undefined,
+	status?: ModelTypes["Status_enum_comparison_exp"] | undefined,
+	transactionDate?: ModelTypes["date_comparison_exp"] | undefined,
+	transactionType?: ModelTypes["String_comparison_exp"] | undefined,
 	type?: ModelTypes["String_comparison_exp"] | undefined,
-	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: ModelTypes["timestamptz_comparison_exp"] | undefined
+	updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
+	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined
 };
 	["FacultyFunding_constraint"]:FacultyFunding_constraint;
+	/** input type for incrementing numeric columns in table "FacultyFunding" */
+["FacultyFunding_inc_input"]: {
+	cursorId?: ModelTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "FacultyFunding" */
 ["FacultyFunding_insert_input"]: {
 	amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** aggregate max on columns */
 ["FacultyFunding_max_fields"]: {
 		amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** aggregate min on columns */
 ["FacultyFunding_min_fields"]: {
 		amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** response of any mutation on the table "FacultyFunding" */
 ["FacultyFunding_mutation_response"]: {
@@ -5012,20 +6072,20 @@ export type ModelTypes = {
 	/** Ordering options when selecting data from "FacultyFunding". */
 ["FacultyFunding_order_by"]: {
 	amount?: ModelTypes["order_by"] | undefined,
+	createdAt?: ModelTypes["order_by"] | undefined,
 	createdById?: ModelTypes["order_by"] | undefined,
-	created_at?: ModelTypes["order_by"] | undefined,
 	cursorId?: ModelTypes["order_by"] | undefined,
-	faculty_id?: ModelTypes["order_by"] | undefined,
+	facultyId?: ModelTypes["order_by"] | undefined,
 	file?: ModelTypes["order_by"] | undefined,
 	id?: ModelTypes["order_by"] | undefined,
-	institute_id?: ModelTypes["order_by"] | undefined,
+	instituteId?: ModelTypes["order_by"] | undefined,
 	nature?: ModelTypes["order_by"] | undefined,
 	status?: ModelTypes["order_by"] | undefined,
-	transaction_date?: ModelTypes["order_by"] | undefined,
-	transaction_type?: ModelTypes["order_by"] | undefined,
+	transactionDate?: ModelTypes["order_by"] | undefined,
+	transactionType?: ModelTypes["order_by"] | undefined,
 	type?: ModelTypes["order_by"] | undefined,
-	updatedById?: ModelTypes["order_by"] | undefined,
-	updated_at?: ModelTypes["order_by"] | undefined
+	updatedAt?: ModelTypes["order_by"] | undefined,
+	updatedById?: ModelTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: FacultyFunding */
 ["FacultyFunding_pk_columns_input"]: {
@@ -5035,20 +6095,32 @@ export type ModelTypes = {
 	/** input type for updating data in table "FacultyFunding" */
 ["FacultyFunding_set_input"]: {
 	amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate stddev on columns */
+["FacultyFunding_stddev_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["FacultyFunding_stddev_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["FacultyFunding_stddev_samp_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "FacultyFunding" */
 ["FacultyFunding_stream_cursor_input"]: {
@@ -5060,27 +6132,45 @@ export type ModelTypes = {
 	/** Initial value of the column from where the streaming should start */
 ["FacultyFunding_stream_cursor_value_input"]: {
 	amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate sum on columns */
+["FacultyFunding_sum_fields"]: {
+		cursorId?: ModelTypes["bigint"] | undefined
 };
 	["FacultyFunding_update_column"]:FacultyFunding_update_column;
 	["FacultyFunding_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ModelTypes["FacultyFunding_inc_input"] | undefined,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ModelTypes["FacultyFunding_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: ModelTypes["FacultyFunding_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["FacultyFunding_var_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["FacultyFunding_var_samp_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["FacultyFunding_variance_fields"]: {
+		cursorId?: number | undefined
 };
 	/** aggregated selection of "Faculty" */
 ["Faculty_aggregate"]: {
@@ -5089,9 +6179,21 @@ export type ModelTypes = {
 };
 	/** aggregate fields of "Faculty" */
 ["Faculty_aggregate_fields"]: {
-		count: number,
+		avg?: ModelTypes["Faculty_avg_fields"] | undefined,
+	count: number,
 	max?: ModelTypes["Faculty_max_fields"] | undefined,
-	min?: ModelTypes["Faculty_min_fields"] | undefined
+	min?: ModelTypes["Faculty_min_fields"] | undefined,
+	stddev?: ModelTypes["Faculty_stddev_fields"] | undefined,
+	stddev_pop?: ModelTypes["Faculty_stddev_pop_fields"] | undefined,
+	stddev_samp?: ModelTypes["Faculty_stddev_samp_fields"] | undefined,
+	sum?: ModelTypes["Faculty_sum_fields"] | undefined,
+	var_pop?: ModelTypes["Faculty_var_pop_fields"] | undefined,
+	var_samp?: ModelTypes["Faculty_var_samp_fields"] | undefined,
+	variance?: ModelTypes["Faculty_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["Faculty_avg_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "Faculty". All fields are combined with a logical 'AND'. */
 ["Faculty_bool_exp"]: {
@@ -5100,114 +6202,118 @@ export type ModelTypes = {
 	_or?: Array<ModelTypes["Faculty_bool_exp"]> | undefined,
 	address?: ModelTypes["String_comparison_exp"] | undefined,
 	cast?: ModelTypes["String_comparison_exp"] | undefined,
+	createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	created_at?: ModelTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: ModelTypes["String_comparison_exp"] | undefined,
-	date_of_joining?: ModelTypes["date_comparison_exp"] | undefined,
+	cursorId?: ModelTypes["bigint_comparison_exp"] | undefined,
+	dateOfJoining?: ModelTypes["date_comparison_exp"] | undefined,
 	designation?: ModelTypes["String_comparison_exp"] | undefined,
 	dob?: ModelTypes["date_comparison_exp"] | undefined,
-	email_id?: ModelTypes["String_comparison_exp"] | undefined,
+	emailId?: ModelTypes["String_comparison_exp"] | undefined,
 	experience?: ModelTypes["String_comparison_exp"] | undefined,
 	gender?: ModelTypes["String_comparison_exp"] | undefined,
 	id?: ModelTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: ModelTypes["uuid_comparison_exp"] | undefined,
-	job_type?: ModelTypes["String_comparison_exp"] | undefined,
+	instituteId?: ModelTypes["uuid_comparison_exp"] | undefined,
+	isVerified?: ModelTypes["Boolean_comparison_exp"] | undefined,
+	jobType?: ModelTypes["String_comparison_exp"] | undefined,
 	minority?: ModelTypes["String_comparison_exp"] | undefined,
 	name?: ModelTypes["String_comparison_exp"] | undefined,
-	pan_card_no?: ModelTypes["String_comparison_exp"] | undefined,
-	phone?: ModelTypes["String_comparison_exp"] | undefined,
+	panCardNo?: ModelTypes["String_comparison_exp"] | undefined,
+	phoneNo?: ModelTypes["String_comparison_exp"] | undefined,
 	qualification?: ModelTypes["String_comparison_exp"] | undefined,
 	section?: ModelTypes["String_comparison_exp"] | undefined,
-	staff_type?: ModelTypes["String_comparison_exp"] | undefined,
-	status?: ModelTypes["String_comparison_exp"] | undefined,
-	status_of_approval?: ModelTypes["String_comparison_exp"] | undefined,
-	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: ModelTypes["timestamptz_comparison_exp"] | undefined
+	staffType?: ModelTypes["String_comparison_exp"] | undefined,
+	status?: ModelTypes["Status_enum_comparison_exp"] | undefined,
+	statusOfApproval?: ModelTypes["String_comparison_exp"] | undefined,
+	updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
+	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined
 };
 	["Faculty_constraint"]:Faculty_constraint;
+	/** input type for incrementing numeric columns in table "Faculty" */
+["Faculty_inc_input"]: {
+	cursorId?: ModelTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "Faculty" */
 ["Faculty_insert_input"]: {
 	address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: ModelTypes["date"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfJoining?: ModelTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: ModelTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** aggregate max on columns */
 ["Faculty_max_fields"]: {
 		address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: ModelTypes["date"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfJoining?: ModelTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: ModelTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** aggregate min on columns */
 ["Faculty_min_fields"]: {
 		address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: ModelTypes["date"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfJoining?: ModelTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: ModelTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** response of any mutation on the table "Faculty" */
 ["Faculty_mutation_response"]: {
@@ -5226,29 +6332,30 @@ export type ModelTypes = {
 ["Faculty_order_by"]: {
 	address?: ModelTypes["order_by"] | undefined,
 	cast?: ModelTypes["order_by"] | undefined,
+	createdAt?: ModelTypes["order_by"] | undefined,
 	createdById?: ModelTypes["order_by"] | undefined,
-	created_at?: ModelTypes["order_by"] | undefined,
 	cursorId?: ModelTypes["order_by"] | undefined,
-	date_of_joining?: ModelTypes["order_by"] | undefined,
+	dateOfJoining?: ModelTypes["order_by"] | undefined,
 	designation?: ModelTypes["order_by"] | undefined,
 	dob?: ModelTypes["order_by"] | undefined,
-	email_id?: ModelTypes["order_by"] | undefined,
+	emailId?: ModelTypes["order_by"] | undefined,
 	experience?: ModelTypes["order_by"] | undefined,
 	gender?: ModelTypes["order_by"] | undefined,
 	id?: ModelTypes["order_by"] | undefined,
-	institute_id?: ModelTypes["order_by"] | undefined,
-	job_type?: ModelTypes["order_by"] | undefined,
+	instituteId?: ModelTypes["order_by"] | undefined,
+	isVerified?: ModelTypes["order_by"] | undefined,
+	jobType?: ModelTypes["order_by"] | undefined,
 	minority?: ModelTypes["order_by"] | undefined,
 	name?: ModelTypes["order_by"] | undefined,
-	pan_card_no?: ModelTypes["order_by"] | undefined,
-	phone?: ModelTypes["order_by"] | undefined,
+	panCardNo?: ModelTypes["order_by"] | undefined,
+	phoneNo?: ModelTypes["order_by"] | undefined,
 	qualification?: ModelTypes["order_by"] | undefined,
 	section?: ModelTypes["order_by"] | undefined,
-	staff_type?: ModelTypes["order_by"] | undefined,
+	staffType?: ModelTypes["order_by"] | undefined,
 	status?: ModelTypes["order_by"] | undefined,
-	status_of_approval?: ModelTypes["order_by"] | undefined,
-	updatedById?: ModelTypes["order_by"] | undefined,
-	updated_at?: ModelTypes["order_by"] | undefined
+	statusOfApproval?: ModelTypes["order_by"] | undefined,
+	updatedAt?: ModelTypes["order_by"] | undefined,
+	updatedById?: ModelTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Faculty */
 ["Faculty_pk_columns_input"]: {
@@ -5259,29 +6366,42 @@ export type ModelTypes = {
 ["Faculty_set_input"]: {
 	address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: ModelTypes["date"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfJoining?: ModelTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: ModelTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate stddev on columns */
+["Faculty_stddev_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["Faculty_stddev_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["Faculty_stddev_samp_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "Faculty" */
 ["Faculty_stream_cursor_input"]: {
@@ -5294,55 +6414,74 @@ export type ModelTypes = {
 ["Faculty_stream_cursor_value_input"]: {
 	address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: ModelTypes["date"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfJoining?: ModelTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: ModelTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate sum on columns */
+["Faculty_sum_fields"]: {
+		cursorId?: ModelTypes["bigint"] | undefined
 };
 	["Faculty_update_column"]:Faculty_update_column;
 	["Faculty_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ModelTypes["Faculty_inc_input"] | undefined,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ModelTypes["Faculty_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: ModelTypes["Faculty_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["Faculty_var_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["Faculty_var_samp_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["Faculty_variance_fields"]: {
+		cursorId?: number | undefined
+};
 	/** columns and relationships of "FdpPdp" */
 ["FdpPdp"]: {
-		createdById: ModelTypes["uuid"],
-	created_at: ModelTypes["timestamptz"],
-	cursorId: string,
-	date_from: ModelTypes["date"],
-	date_to: ModelTypes["date"],
+		createdAt: ModelTypes["timestamptz"],
+	createdById: ModelTypes["uuid"],
+	cursorId: ModelTypes["bigint"],
+	dateFrom: ModelTypes["date"],
+	dateTo: ModelTypes["date"],
 	description: string,
-	faculty_id: ModelTypes["uuid"],
+	facultyId: ModelTypes["uuid"],
 	file: string,
 	id: ModelTypes["uuid"],
-	institute_id: ModelTypes["uuid"],
+	instituteId: ModelTypes["uuid"],
 	name: string,
 	nature: string,
-	status: string,
+	status: ModelTypes["Status_enum"],
 	type: string,
+	updatedAt: ModelTypes["timestamptz"],
 	updatedById: ModelTypes["uuid"],
-	updated_at: ModelTypes["timestamptz"],
 	venue: string
 };
 	/** aggregated selection of "FdpPdp" */
@@ -5352,92 +6491,106 @@ export type ModelTypes = {
 };
 	/** aggregate fields of "FdpPdp" */
 ["FdpPdp_aggregate_fields"]: {
-		count: number,
+		avg?: ModelTypes["FdpPdp_avg_fields"] | undefined,
+	count: number,
 	max?: ModelTypes["FdpPdp_max_fields"] | undefined,
-	min?: ModelTypes["FdpPdp_min_fields"] | undefined
+	min?: ModelTypes["FdpPdp_min_fields"] | undefined,
+	stddev?: ModelTypes["FdpPdp_stddev_fields"] | undefined,
+	stddev_pop?: ModelTypes["FdpPdp_stddev_pop_fields"] | undefined,
+	stddev_samp?: ModelTypes["FdpPdp_stddev_samp_fields"] | undefined,
+	sum?: ModelTypes["FdpPdp_sum_fields"] | undefined,
+	var_pop?: ModelTypes["FdpPdp_var_pop_fields"] | undefined,
+	var_samp?: ModelTypes["FdpPdp_var_samp_fields"] | undefined,
+	variance?: ModelTypes["FdpPdp_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["FdpPdp_avg_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "FdpPdp". All fields are combined with a logical 'AND'. */
 ["FdpPdp_bool_exp"]: {
 	_and?: Array<ModelTypes["FdpPdp_bool_exp"]> | undefined,
 	_not?: ModelTypes["FdpPdp_bool_exp"] | undefined,
 	_or?: Array<ModelTypes["FdpPdp_bool_exp"]> | undefined,
+	createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	created_at?: ModelTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: ModelTypes["String_comparison_exp"] | undefined,
-	date_from?: ModelTypes["date_comparison_exp"] | undefined,
-	date_to?: ModelTypes["date_comparison_exp"] | undefined,
+	cursorId?: ModelTypes["bigint_comparison_exp"] | undefined,
+	dateFrom?: ModelTypes["date_comparison_exp"] | undefined,
+	dateTo?: ModelTypes["date_comparison_exp"] | undefined,
 	description?: ModelTypes["String_comparison_exp"] | undefined,
-	faculty_id?: ModelTypes["uuid_comparison_exp"] | undefined,
+	facultyId?: ModelTypes["uuid_comparison_exp"] | undefined,
 	file?: ModelTypes["String_comparison_exp"] | undefined,
 	id?: ModelTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: ModelTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: ModelTypes["uuid_comparison_exp"] | undefined,
 	name?: ModelTypes["String_comparison_exp"] | undefined,
 	nature?: ModelTypes["String_comparison_exp"] | undefined,
-	status?: ModelTypes["String_comparison_exp"] | undefined,
+	status?: ModelTypes["Status_enum_comparison_exp"] | undefined,
 	type?: ModelTypes["String_comparison_exp"] | undefined,
+	updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
 	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: ModelTypes["timestamptz_comparison_exp"] | undefined,
 	venue?: ModelTypes["String_comparison_exp"] | undefined
 };
 	["FdpPdp_constraint"]:FdpPdp_constraint;
+	/** input type for incrementing numeric columns in table "FdpPdp" */
+["FdpPdp_inc_input"]: {
+	cursorId?: ModelTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "FdpPdp" */
 ["FdpPdp_insert_input"]: {
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: ModelTypes["date"] | undefined,
-	date_to?: ModelTypes["date"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateFrom?: ModelTypes["date"] | undefined,
+	dateTo?: ModelTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
 	type?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	venue?: string | undefined
 };
 	/** aggregate max on columns */
 ["FdpPdp_max_fields"]: {
-		createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: ModelTypes["date"] | undefined,
-	date_to?: ModelTypes["date"] | undefined,
+		createdAt?: ModelTypes["timestamptz"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateFrom?: ModelTypes["date"] | undefined,
+	dateTo?: ModelTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
 	type?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	venue?: string | undefined
 };
 	/** aggregate min on columns */
 ["FdpPdp_min_fields"]: {
-		createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: ModelTypes["date"] | undefined,
-	date_to?: ModelTypes["date"] | undefined,
+		createdAt?: ModelTypes["timestamptz"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateFrom?: ModelTypes["date"] | undefined,
+	dateTo?: ModelTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
 	type?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	venue?: string | undefined
 };
 	/** response of any mutation on the table "FdpPdp" */
@@ -5455,22 +6608,22 @@ export type ModelTypes = {
 };
 	/** Ordering options when selecting data from "FdpPdp". */
 ["FdpPdp_order_by"]: {
+	createdAt?: ModelTypes["order_by"] | undefined,
 	createdById?: ModelTypes["order_by"] | undefined,
-	created_at?: ModelTypes["order_by"] | undefined,
 	cursorId?: ModelTypes["order_by"] | undefined,
-	date_from?: ModelTypes["order_by"] | undefined,
-	date_to?: ModelTypes["order_by"] | undefined,
+	dateFrom?: ModelTypes["order_by"] | undefined,
+	dateTo?: ModelTypes["order_by"] | undefined,
 	description?: ModelTypes["order_by"] | undefined,
-	faculty_id?: ModelTypes["order_by"] | undefined,
+	facultyId?: ModelTypes["order_by"] | undefined,
 	file?: ModelTypes["order_by"] | undefined,
 	id?: ModelTypes["order_by"] | undefined,
-	institute_id?: ModelTypes["order_by"] | undefined,
+	instituteId?: ModelTypes["order_by"] | undefined,
 	name?: ModelTypes["order_by"] | undefined,
 	nature?: ModelTypes["order_by"] | undefined,
 	status?: ModelTypes["order_by"] | undefined,
 	type?: ModelTypes["order_by"] | undefined,
+	updatedAt?: ModelTypes["order_by"] | undefined,
 	updatedById?: ModelTypes["order_by"] | undefined,
-	updated_at?: ModelTypes["order_by"] | undefined,
 	venue?: ModelTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: FdpPdp */
@@ -5480,23 +6633,35 @@ export type ModelTypes = {
 	["FdpPdp_select_column"]:FdpPdp_select_column;
 	/** input type for updating data in table "FdpPdp" */
 ["FdpPdp_set_input"]: {
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: ModelTypes["date"] | undefined,
-	date_to?: ModelTypes["date"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateFrom?: ModelTypes["date"] | undefined,
+	dateTo?: ModelTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
 	type?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	venue?: string | undefined
+};
+	/** aggregate stddev on columns */
+["FdpPdp_stddev_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["FdpPdp_stddev_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["FdpPdp_stddev_samp_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "FdpPdp" */
 ["FdpPdp_stream_cursor_input"]: {
@@ -5507,41 +6672,59 @@ export type ModelTypes = {
 };
 	/** Initial value of the column from where the streaming should start */
 ["FdpPdp_stream_cursor_value_input"]: {
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: ModelTypes["date"] | undefined,
-	date_to?: ModelTypes["date"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateFrom?: ModelTypes["date"] | undefined,
+	dateTo?: ModelTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: ModelTypes["uuid"] | undefined,
+	facultyId?: ModelTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
 	type?: string | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
 	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
 	venue?: string | undefined
+};
+	/** aggregate sum on columns */
+["FdpPdp_sum_fields"]: {
+		cursorId?: ModelTypes["bigint"] | undefined
 };
 	["FdpPdp_update_column"]:FdpPdp_update_column;
 	["FdpPdp_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ModelTypes["FdpPdp_inc_input"] | undefined,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ModelTypes["FdpPdp_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: ModelTypes["FdpPdp_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["FdpPdp_var_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["FdpPdp_var_samp_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["FdpPdp_variance_fields"]: {
+		cursorId?: number | undefined
+};
 	/** columns and relationships of "Genesis" */
 ["Genesis"]: {
-		created_at: ModelTypes["timestamp"],
-	email_id: string,
+		createdAt: ModelTypes["timestamp"],
+	emailId: string,
 	id: ModelTypes["uuid"],
-	is_verified: boolean,
+	isVerified: boolean,
 	name: string,
-	phone: string,
+	phoneNo: string,
 	role: string,
-	updated_at: ModelTypes["timestamp"]
+	updatedAt: ModelTypes["timestamp"]
 };
 	/** aggregated selection of "Genesis" */
 ["Genesis_aggregate"]: {
@@ -5559,46 +6742,46 @@ export type ModelTypes = {
 	_and?: Array<ModelTypes["Genesis_bool_exp"]> | undefined,
 	_not?: ModelTypes["Genesis_bool_exp"] | undefined,
 	_or?: Array<ModelTypes["Genesis_bool_exp"]> | undefined,
-	created_at?: ModelTypes["timestamp_comparison_exp"] | undefined,
-	email_id?: ModelTypes["String_comparison_exp"] | undefined,
+	createdAt?: ModelTypes["timestamp_comparison_exp"] | undefined,
+	emailId?: ModelTypes["String_comparison_exp"] | undefined,
 	id?: ModelTypes["uuid_comparison_exp"] | undefined,
-	is_verified?: ModelTypes["Boolean_comparison_exp"] | undefined,
+	isVerified?: ModelTypes["Boolean_comparison_exp"] | undefined,
 	name?: ModelTypes["String_comparison_exp"] | undefined,
-	phone?: ModelTypes["String_comparison_exp"] | undefined,
+	phoneNo?: ModelTypes["String_comparison_exp"] | undefined,
 	role?: ModelTypes["String_comparison_exp"] | undefined,
-	updated_at?: ModelTypes["timestamp_comparison_exp"] | undefined
+	updatedAt?: ModelTypes["timestamp_comparison_exp"] | undefined
 };
 	["Genesis_constraint"]:Genesis_constraint;
 	/** input type for inserting data into table "Genesis" */
 ["Genesis_insert_input"]: {
-	created_at?: ModelTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+	createdAt?: ModelTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	is_verified?: boolean | undefined,
+	isVerified?: boolean | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: ModelTypes["timestamp"] | undefined
+	updatedAt?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate max on columns */
 ["Genesis_max_fields"]: {
-		created_at?: ModelTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+		createdAt?: ModelTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: ModelTypes["timestamp"] | undefined
+	updatedAt?: ModelTypes["timestamp"] | undefined
 };
 	/** aggregate min on columns */
 ["Genesis_min_fields"]: {
-		created_at?: ModelTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+		createdAt?: ModelTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: ModelTypes["timestamp"] | undefined
+	updatedAt?: ModelTypes["timestamp"] | undefined
 };
 	/** response of any mutation on the table "Genesis" */
 ["Genesis_mutation_response"]: {
@@ -5615,14 +6798,14 @@ export type ModelTypes = {
 };
 	/** Ordering options when selecting data from "Genesis". */
 ["Genesis_order_by"]: {
-	created_at?: ModelTypes["order_by"] | undefined,
-	email_id?: ModelTypes["order_by"] | undefined,
+	createdAt?: ModelTypes["order_by"] | undefined,
+	emailId?: ModelTypes["order_by"] | undefined,
 	id?: ModelTypes["order_by"] | undefined,
-	is_verified?: ModelTypes["order_by"] | undefined,
+	isVerified?: ModelTypes["order_by"] | undefined,
 	name?: ModelTypes["order_by"] | undefined,
-	phone?: ModelTypes["order_by"] | undefined,
+	phoneNo?: ModelTypes["order_by"] | undefined,
 	role?: ModelTypes["order_by"] | undefined,
-	updated_at?: ModelTypes["order_by"] | undefined
+	updatedAt?: ModelTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Genesis */
 ["Genesis_pk_columns_input"]: {
@@ -5631,14 +6814,14 @@ export type ModelTypes = {
 	["Genesis_select_column"]:Genesis_select_column;
 	/** input type for updating data in table "Genesis" */
 ["Genesis_set_input"]: {
-	created_at?: ModelTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+	createdAt?: ModelTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	is_verified?: boolean | undefined,
+	isVerified?: boolean | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: ModelTypes["timestamp"] | undefined
+	updatedAt?: ModelTypes["timestamp"] | undefined
 };
 	/** Streaming cursor of the table "Genesis" */
 ["Genesis_stream_cursor_input"]: {
@@ -5649,14 +6832,14 @@ export type ModelTypes = {
 };
 	/** Initial value of the column from where the streaming should start */
 ["Genesis_stream_cursor_value_input"]: {
-	created_at?: ModelTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+	createdAt?: ModelTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	is_verified?: boolean | undefined,
+	isVerified?: boolean | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: ModelTypes["timestamp"] | undefined
+	updatedAt?: ModelTypes["timestamp"] | undefined
 };
 	["Genesis_update_column"]:Genesis_update_column;
 	["Genesis_updates"]: {
@@ -5669,36 +6852,38 @@ export type ModelTypes = {
 ["Institute"]: {
 		address: string,
 	city: string,
-	created_at: ModelTypes["timestamptz"],
-	created_by_id: ModelTypes["uuid"],
-	cursor_id: string,
-	date_of_establishment: ModelTypes["date"],
+	createdAt: ModelTypes["timestamptz"],
+	createdById: ModelTypes["uuid"],
+	cursorId: ModelTypes["bigint"],
+	dateOfEstablishment: ModelTypes["date"],
 	id: ModelTypes["uuid"],
+	isVerified: boolean,
 	landmark: string,
 	name: string,
 	pin: string,
 	state: string,
+	status: ModelTypes["Status_enum"],
 	type: string,
-	updated_at: ModelTypes["timestamptz"],
-	updated_by_id: ModelTypes["uuid"],
+	updatedAt: ModelTypes["timestamptz"],
+	updatedById: ModelTypes["uuid"],
 	website: string
 };
 	/** columns and relationships of "InstituteFunding" */
 ["InstituteFunding"]: {
 		amount: string,
+	createdAt: ModelTypes["timestamptz"],
 	createdById: ModelTypes["uuid"],
-	created_at: ModelTypes["timestamptz"],
-	cursorId: string,
+	cursorId: ModelTypes["bigint"],
 	id: ModelTypes["uuid"],
-	institute_id: ModelTypes["uuid"],
+	instituteId: ModelTypes["uuid"],
 	name: string,
 	purpose: string,
-	status: string,
-	transaction_date: ModelTypes["date"],
-	transaction_type: string,
+	status: ModelTypes["Status_enum"],
+	transactionDate: ModelTypes["date"],
+	transactionType: string,
 	type: string,
-	updatedById: ModelTypes["uuid"],
-	updated_at: ModelTypes["timestamptz"]
+	updatedAt: ModelTypes["timestamptz"],
+	updatedById: ModelTypes["uuid"]
 };
 	/** aggregated selection of "InstituteFunding" */
 ["InstituteFunding_aggregate"]: {
@@ -5707,9 +6892,21 @@ export type ModelTypes = {
 };
 	/** aggregate fields of "InstituteFunding" */
 ["InstituteFunding_aggregate_fields"]: {
-		count: number,
+		avg?: ModelTypes["InstituteFunding_avg_fields"] | undefined,
+	count: number,
 	max?: ModelTypes["InstituteFunding_max_fields"] | undefined,
-	min?: ModelTypes["InstituteFunding_min_fields"] | undefined
+	min?: ModelTypes["InstituteFunding_min_fields"] | undefined,
+	stddev?: ModelTypes["InstituteFunding_stddev_fields"] | undefined,
+	stddev_pop?: ModelTypes["InstituteFunding_stddev_pop_fields"] | undefined,
+	stddev_samp?: ModelTypes["InstituteFunding_stddev_samp_fields"] | undefined,
+	sum?: ModelTypes["InstituteFunding_sum_fields"] | undefined,
+	var_pop?: ModelTypes["InstituteFunding_var_pop_fields"] | undefined,
+	var_samp?: ModelTypes["InstituteFunding_var_samp_fields"] | undefined,
+	variance?: ModelTypes["InstituteFunding_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["InstituteFunding_avg_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "InstituteFunding". All fields are combined with a logical 'AND'. */
 ["InstituteFunding_bool_exp"]: {
@@ -5717,71 +6914,73 @@ export type ModelTypes = {
 	_not?: ModelTypes["InstituteFunding_bool_exp"] | undefined,
 	_or?: Array<ModelTypes["InstituteFunding_bool_exp"]> | undefined,
 	amount?: ModelTypes["String_comparison_exp"] | undefined,
+	createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	created_at?: ModelTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: ModelTypes["String_comparison_exp"] | undefined,
+	cursorId?: ModelTypes["bigint_comparison_exp"] | undefined,
 	id?: ModelTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: ModelTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: ModelTypes["uuid_comparison_exp"] | undefined,
 	name?: ModelTypes["String_comparison_exp"] | undefined,
 	purpose?: ModelTypes["String_comparison_exp"] | undefined,
-	status?: ModelTypes["String_comparison_exp"] | undefined,
-	transaction_date?: ModelTypes["date_comparison_exp"] | undefined,
-	transaction_type?: ModelTypes["String_comparison_exp"] | undefined,
+	status?: ModelTypes["Status_enum_comparison_exp"] | undefined,
+	transactionDate?: ModelTypes["date_comparison_exp"] | undefined,
+	transactionType?: ModelTypes["String_comparison_exp"] | undefined,
 	type?: ModelTypes["String_comparison_exp"] | undefined,
-	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: ModelTypes["timestamptz_comparison_exp"] | undefined
+	updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
+	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined
 };
 	["InstituteFunding_constraint"]:InstituteFunding_constraint;
+	/** input type for incrementing numeric columns in table "InstituteFunding" */
+["InstituteFunding_inc_input"]: {
+	cursorId?: ModelTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "InstituteFunding" */
 ["InstituteFunding_insert_input"]: {
 	amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** aggregate max on columns */
 ["InstituteFunding_max_fields"]: {
 		amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** aggregate min on columns */
 ["InstituteFunding_min_fields"]: {
 		amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** response of any mutation on the table "InstituteFunding" */
 ["InstituteFunding_mutation_response"]: {
@@ -5799,19 +6998,19 @@ export type ModelTypes = {
 	/** Ordering options when selecting data from "InstituteFunding". */
 ["InstituteFunding_order_by"]: {
 	amount?: ModelTypes["order_by"] | undefined,
+	createdAt?: ModelTypes["order_by"] | undefined,
 	createdById?: ModelTypes["order_by"] | undefined,
-	created_at?: ModelTypes["order_by"] | undefined,
 	cursorId?: ModelTypes["order_by"] | undefined,
 	id?: ModelTypes["order_by"] | undefined,
-	institute_id?: ModelTypes["order_by"] | undefined,
+	instituteId?: ModelTypes["order_by"] | undefined,
 	name?: ModelTypes["order_by"] | undefined,
 	purpose?: ModelTypes["order_by"] | undefined,
 	status?: ModelTypes["order_by"] | undefined,
-	transaction_date?: ModelTypes["order_by"] | undefined,
-	transaction_type?: ModelTypes["order_by"] | undefined,
+	transactionDate?: ModelTypes["order_by"] | undefined,
+	transactionType?: ModelTypes["order_by"] | undefined,
 	type?: ModelTypes["order_by"] | undefined,
-	updatedById?: ModelTypes["order_by"] | undefined,
-	updated_at?: ModelTypes["order_by"] | undefined
+	updatedAt?: ModelTypes["order_by"] | undefined,
+	updatedById?: ModelTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: InstituteFunding */
 ["InstituteFunding_pk_columns_input"]: {
@@ -5821,19 +7020,31 @@ export type ModelTypes = {
 	/** input type for updating data in table "InstituteFunding" */
 ["InstituteFunding_set_input"]: {
 	amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate stddev on columns */
+["InstituteFunding_stddev_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["InstituteFunding_stddev_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["InstituteFunding_stddev_samp_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "InstituteFunding" */
 ["InstituteFunding_stream_cursor_input"]: {
@@ -5845,26 +7056,44 @@ export type ModelTypes = {
 	/** Initial value of the column from where the streaming should start */
 ["InstituteFunding_stream_cursor_value_input"]: {
 	amount?: string | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
 	createdById?: ModelTypes["uuid"] | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
-	institute_id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: ModelTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
+	transactionDate?: ModelTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: ModelTypes["uuid"] | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate sum on columns */
+["InstituteFunding_sum_fields"]: {
+		cursorId?: ModelTypes["bigint"] | undefined
 };
 	["InstituteFunding_update_column"]:InstituteFunding_update_column;
 	["InstituteFunding_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ModelTypes["InstituteFunding_inc_input"] | undefined,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ModelTypes["InstituteFunding_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: ModelTypes["InstituteFunding_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["InstituteFunding_var_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["InstituteFunding_var_samp_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["InstituteFunding_variance_fields"]: {
+		cursorId?: number | undefined
 };
 	/** aggregated selection of "Institute" */
 ["Institute_aggregate"]: {
@@ -5873,9 +7102,21 @@ export type ModelTypes = {
 };
 	/** aggregate fields of "Institute" */
 ["Institute_aggregate_fields"]: {
-		count: number,
+		avg?: ModelTypes["Institute_avg_fields"] | undefined,
+	count: number,
 	max?: ModelTypes["Institute_max_fields"] | undefined,
-	min?: ModelTypes["Institute_min_fields"] | undefined
+	min?: ModelTypes["Institute_min_fields"] | undefined,
+	stddev?: ModelTypes["Institute_stddev_fields"] | undefined,
+	stddev_pop?: ModelTypes["Institute_stddev_pop_fields"] | undefined,
+	stddev_samp?: ModelTypes["Institute_stddev_samp_fields"] | undefined,
+	sum?: ModelTypes["Institute_sum_fields"] | undefined,
+	var_pop?: ModelTypes["Institute_var_pop_fields"] | undefined,
+	var_samp?: ModelTypes["Institute_var_samp_fields"] | undefined,
+	variance?: ModelTypes["Institute_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["Institute_avg_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "Institute". All fields are combined with a logical 'AND'. */
 ["Institute_bool_exp"]: {
@@ -5884,73 +7125,81 @@ export type ModelTypes = {
 	_or?: Array<ModelTypes["Institute_bool_exp"]> | undefined,
 	address?: ModelTypes["String_comparison_exp"] | undefined,
 	city?: ModelTypes["String_comparison_exp"] | undefined,
-	created_at?: ModelTypes["timestamptz_comparison_exp"] | undefined,
-	created_by_id?: ModelTypes["uuid_comparison_exp"] | undefined,
-	cursor_id?: ModelTypes["String_comparison_exp"] | undefined,
-	date_of_establishment?: ModelTypes["date_comparison_exp"] | undefined,
+	createdAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
+	createdById?: ModelTypes["uuid_comparison_exp"] | undefined,
+	cursorId?: ModelTypes["bigint_comparison_exp"] | undefined,
+	dateOfEstablishment?: ModelTypes["date_comparison_exp"] | undefined,
 	id?: ModelTypes["uuid_comparison_exp"] | undefined,
+	isVerified?: ModelTypes["Boolean_comparison_exp"] | undefined,
 	landmark?: ModelTypes["String_comparison_exp"] | undefined,
 	name?: ModelTypes["String_comparison_exp"] | undefined,
 	pin?: ModelTypes["String_comparison_exp"] | undefined,
 	state?: ModelTypes["String_comparison_exp"] | undefined,
+	status?: ModelTypes["Status_enum_comparison_exp"] | undefined,
 	type?: ModelTypes["String_comparison_exp"] | undefined,
-	updated_at?: ModelTypes["timestamptz_comparison_exp"] | undefined,
-	updated_by_id?: ModelTypes["uuid_comparison_exp"] | undefined,
+	updatedAt?: ModelTypes["timestamptz_comparison_exp"] | undefined,
+	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined,
 	website?: ModelTypes["String_comparison_exp"] | undefined
 };
 	["Institute_constraint"]:Institute_constraint;
+	/** input type for incrementing numeric columns in table "Institute" */
+["Institute_inc_input"]: {
+	cursorId?: ModelTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "Institute" */
 ["Institute_insert_input"]: {
 	address?: string | undefined,
 	city?: string | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	created_by_id?: ModelTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: ModelTypes["date"] | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfEstablishment?: ModelTypes["date"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
 	type?: string | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
-	updated_by_id?: ModelTypes["uuid"] | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined,
 	website?: string | undefined
 };
 	/** aggregate max on columns */
 ["Institute_max_fields"]: {
 		address?: string | undefined,
 	city?: string | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	created_by_id?: ModelTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: ModelTypes["date"] | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfEstablishment?: ModelTypes["date"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
 	type?: string | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
-	updated_by_id?: ModelTypes["uuid"] | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined,
 	website?: string | undefined
 };
 	/** aggregate min on columns */
 ["Institute_min_fields"]: {
 		address?: string | undefined,
 	city?: string | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	created_by_id?: ModelTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: ModelTypes["date"] | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfEstablishment?: ModelTypes["date"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
 	type?: string | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
-	updated_by_id?: ModelTypes["uuid"] | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined,
 	website?: string | undefined
 };
 	/** response of any mutation on the table "Institute" */
@@ -5970,18 +7219,20 @@ export type ModelTypes = {
 ["Institute_order_by"]: {
 	address?: ModelTypes["order_by"] | undefined,
 	city?: ModelTypes["order_by"] | undefined,
-	created_at?: ModelTypes["order_by"] | undefined,
-	created_by_id?: ModelTypes["order_by"] | undefined,
-	cursor_id?: ModelTypes["order_by"] | undefined,
-	date_of_establishment?: ModelTypes["order_by"] | undefined,
+	createdAt?: ModelTypes["order_by"] | undefined,
+	createdById?: ModelTypes["order_by"] | undefined,
+	cursorId?: ModelTypes["order_by"] | undefined,
+	dateOfEstablishment?: ModelTypes["order_by"] | undefined,
 	id?: ModelTypes["order_by"] | undefined,
+	isVerified?: ModelTypes["order_by"] | undefined,
 	landmark?: ModelTypes["order_by"] | undefined,
 	name?: ModelTypes["order_by"] | undefined,
 	pin?: ModelTypes["order_by"] | undefined,
 	state?: ModelTypes["order_by"] | undefined,
+	status?: ModelTypes["order_by"] | undefined,
 	type?: ModelTypes["order_by"] | undefined,
-	updated_at?: ModelTypes["order_by"] | undefined,
-	updated_by_id?: ModelTypes["order_by"] | undefined,
+	updatedAt?: ModelTypes["order_by"] | undefined,
+	updatedById?: ModelTypes["order_by"] | undefined,
 	website?: ModelTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Institute */
@@ -5993,19 +7244,33 @@ export type ModelTypes = {
 ["Institute_set_input"]: {
 	address?: string | undefined,
 	city?: string | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	created_by_id?: ModelTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: ModelTypes["date"] | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfEstablishment?: ModelTypes["date"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
 	type?: string | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
-	updated_by_id?: ModelTypes["uuid"] | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined,
 	website?: string | undefined
+};
+	/** aggregate stddev on columns */
+["Institute_stddev_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["Institute_stddev_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["Institute_stddev_samp_fields"]: {
+		cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "Institute" */
 ["Institute_stream_cursor_input"]: {
@@ -6018,26 +7283,134 @@ export type ModelTypes = {
 ["Institute_stream_cursor_value_input"]: {
 	address?: string | undefined,
 	city?: string | undefined,
-	created_at?: ModelTypes["timestamptz"] | undefined,
-	created_by_id?: ModelTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: ModelTypes["date"] | undefined,
+	createdAt?: ModelTypes["timestamptz"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	dateOfEstablishment?: ModelTypes["date"] | undefined,
 	id?: ModelTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
+	status?: ModelTypes["Status_enum"] | undefined,
 	type?: string | undefined,
-	updated_at?: ModelTypes["timestamptz"] | undefined,
-	updated_by_id?: ModelTypes["uuid"] | undefined,
+	updatedAt?: ModelTypes["timestamptz"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined,
 	website?: string | undefined
+};
+	/** aggregate sum on columns */
+["Institute_sum_fields"]: {
+		cursorId?: ModelTypes["bigint"] | undefined
 };
 	["Institute_update_column"]:Institute_update_column;
 	["Institute_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ModelTypes["Institute_inc_input"] | undefined,
 	/** sets the columns of the filtered rows to the given values */
 	_set?: ModelTypes["Institute_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: ModelTypes["Institute_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["Institute_var_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["Institute_var_samp_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["Institute_variance_fields"]: {
+		cursorId?: number | undefined
+};
+	/** columns and relationships of "Status" */
+["Status"]: {
+		value: string
+};
+	/** aggregated selection of "Status" */
+["Status_aggregate"]: {
+		aggregate?: ModelTypes["Status_aggregate_fields"] | undefined,
+	nodes: Array<ModelTypes["Status"]>
+};
+	/** aggregate fields of "Status" */
+["Status_aggregate_fields"]: {
+		count: number,
+	max?: ModelTypes["Status_max_fields"] | undefined,
+	min?: ModelTypes["Status_min_fields"] | undefined
+};
+	/** Boolean expression to filter rows from the table "Status". All fields are combined with a logical 'AND'. */
+["Status_bool_exp"]: {
+	_and?: Array<ModelTypes["Status_bool_exp"]> | undefined,
+	_not?: ModelTypes["Status_bool_exp"] | undefined,
+	_or?: Array<ModelTypes["Status_bool_exp"]> | undefined,
+	value?: ModelTypes["String_comparison_exp"] | undefined
+};
+	["Status_constraint"]:Status_constraint;
+	["Status_enum"]:Status_enum;
+	/** Boolean expression to compare columns of type "Status_enum". All fields are combined with logical 'AND'. */
+["Status_enum_comparison_exp"]: {
+	_eq?: ModelTypes["Status_enum"] | undefined,
+	_in?: Array<ModelTypes["Status_enum"]> | undefined,
+	_is_null?: boolean | undefined,
+	_neq?: ModelTypes["Status_enum"] | undefined,
+	_nin?: Array<ModelTypes["Status_enum"]> | undefined
+};
+	/** input type for inserting data into table "Status" */
+["Status_insert_input"]: {
+	value?: string | undefined
+};
+	/** aggregate max on columns */
+["Status_max_fields"]: {
+		value?: string | undefined
+};
+	/** aggregate min on columns */
+["Status_min_fields"]: {
+		value?: string | undefined
+};
+	/** response of any mutation on the table "Status" */
+["Status_mutation_response"]: {
+		/** number of rows affected by the mutation */
+	affected_rows: number,
+	/** data from the rows affected by the mutation */
+	returning: Array<ModelTypes["Status"]>
+};
+	/** on_conflict condition type for table "Status" */
+["Status_on_conflict"]: {
+	constraint: ModelTypes["Status_constraint"],
+	update_columns: Array<ModelTypes["Status_update_column"]>,
+	where?: ModelTypes["Status_bool_exp"] | undefined
+};
+	/** Ordering options when selecting data from "Status". */
+["Status_order_by"]: {
+	value?: ModelTypes["order_by"] | undefined
+};
+	/** primary key columns input for table: Status */
+["Status_pk_columns_input"]: {
+	value: string
+};
+	["Status_select_column"]:Status_select_column;
+	/** input type for updating data in table "Status" */
+["Status_set_input"]: {
+	value?: string | undefined
+};
+	/** Streaming cursor of the table "Status" */
+["Status_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ModelTypes["Status_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: ModelTypes["cursor_ordering"] | undefined
+};
+	/** Initial value of the column from where the streaming should start */
+["Status_stream_cursor_value_input"]: {
+	value?: string | undefined
+};
+	["Status_update_column"]:Status_update_column;
+	["Status_updates"]: {
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ModelTypes["Status_set_input"] | undefined,
+	/** filter the rows which have to be updated */
+	where: ModelTypes["Status_bool_exp"]
 };
 	/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 ["String_comparison_exp"]: {
@@ -6070,6 +7443,19 @@ export type ModelTypes = {
 	_regex?: string | undefined,
 	/** does the column match the given SQL regular expression */
 	_similar?: string | undefined
+};
+	["bigint"]:any;
+	/** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
+["bigint_comparison_exp"]: {
+	_eq?: ModelTypes["bigint"] | undefined,
+	_gt?: ModelTypes["bigint"] | undefined,
+	_gte?: ModelTypes["bigint"] | undefined,
+	_in?: Array<ModelTypes["bigint"]> | undefined,
+	_is_null?: boolean | undefined,
+	_lt?: ModelTypes["bigint"] | undefined,
+	_lte?: ModelTypes["bigint"] | undefined,
+	_neq?: ModelTypes["bigint"] | undefined,
+	_nin?: Array<ModelTypes["bigint"]> | undefined
 };
 	["cursor_ordering"]:cursor_ordering;
 	["date"]:any;
@@ -6115,6 +7501,10 @@ export type ModelTypes = {
 	delete_InstituteFunding_by_pk?: ModelTypes["InstituteFunding"] | undefined,
 	/** delete single row from the table: "Institute" */
 	delete_Institute_by_pk?: ModelTypes["Institute"] | undefined,
+	/** delete data from the table: "Status" */
+	delete_Status?: ModelTypes["Status_mutation_response"] | undefined,
+	/** delete single row from the table: "Status" */
+	delete_Status_by_pk?: ModelTypes["Status"] | undefined,
 	/** insert data into the table: "EGovernance" */
 	insert_EGovernance?: ModelTypes["EGovernance_mutation_response"] | undefined,
 	/** insert a single row into the table: "EGovernance" */
@@ -6143,6 +7533,10 @@ export type ModelTypes = {
 	insert_InstituteFunding_one?: ModelTypes["InstituteFunding"] | undefined,
 	/** insert a single row into the table: "Institute" */
 	insert_Institute_one?: ModelTypes["Institute"] | undefined,
+	/** insert data into the table: "Status" */
+	insert_Status?: ModelTypes["Status_mutation_response"] | undefined,
+	/** insert a single row into the table: "Status" */
+	insert_Status_one?: ModelTypes["Status"] | undefined,
 	/** update data of the table: "EGovernance" */
 	update_EGovernance?: ModelTypes["EGovernance_mutation_response"] | undefined,
 	/** update single row of the table: "EGovernance" */
@@ -6184,7 +7578,13 @@ export type ModelTypes = {
 	/** update single row of the table: "Institute" */
 	update_Institute_by_pk?: ModelTypes["Institute"] | undefined,
 	/** update multiples rows of table: "Institute" */
-	update_Institute_many?: Array<ModelTypes["Institute_mutation_response"] | undefined> | undefined
+	update_Institute_many?: Array<ModelTypes["Institute_mutation_response"] | undefined> | undefined,
+	/** update data of the table: "Status" */
+	update_Status?: ModelTypes["Status_mutation_response"] | undefined,
+	/** update single row of the table: "Status" */
+	update_Status_by_pk?: ModelTypes["Status"] | undefined,
+	/** update multiples rows of table: "Status" */
+	update_Status_many?: Array<ModelTypes["Status_mutation_response"] | undefined> | undefined
 };
 	["order_by"]:order_by;
 	["query_root"]: {
@@ -6229,7 +7629,13 @@ export type ModelTypes = {
 	/** fetch aggregated fields from the table: "Institute" */
 	Institute_aggregate: ModelTypes["Institute_aggregate"],
 	/** fetch data from the table: "Institute" using primary key columns */
-	Institute_by_pk?: ModelTypes["Institute"] | undefined
+	Institute_by_pk?: ModelTypes["Institute"] | undefined,
+	/** fetch data from the table: "Status" */
+	Status: Array<ModelTypes["Status"]>,
+	/** fetch aggregated fields from the table: "Status" */
+	Status_aggregate: ModelTypes["Status_aggregate"],
+	/** fetch data from the table: "Status" using primary key columns */
+	Status_by_pk?: ModelTypes["Status"] | undefined
 };
 	["subscription_root"]: {
 		/** fetch data from the table: "EGovernance" */
@@ -6287,7 +7693,15 @@ export type ModelTypes = {
 	/** fetch data from the table: "Institute" using primary key columns */
 	Institute_by_pk?: ModelTypes["Institute"] | undefined,
 	/** fetch data from the table in a streaming manner: "Institute" */
-	Institute_stream: Array<ModelTypes["Institute"]>
+	Institute_stream: Array<ModelTypes["Institute"]>,
+	/** fetch data from the table: "Status" */
+	Status: Array<ModelTypes["Status"]>,
+	/** fetch aggregated fields from the table: "Status" */
+	Status_aggregate: ModelTypes["Status_aggregate"],
+	/** fetch data from the table: "Status" using primary key columns */
+	Status_by_pk?: ModelTypes["Status"] | undefined,
+	/** fetch data from the table in a streaming manner: "Status" */
+	Status_stream: Array<ModelTypes["Status"]>
 };
 	["timestamp"]:any;
 	/** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
@@ -6348,21 +7762,21 @@ export type GraphQLTypes = {
 	__typename: "EGovernance",
 	address: string,
 	area: string,
+	createdAt: GraphQLTypes["timestamptz"],
 	createdById: GraphQLTypes["uuid"],
-	created_at: GraphQLTypes["timestamptz"],
-	cursorId: string,
+	cursorId: GraphQLTypes["bigint"],
 	description: string,
 	file: string,
 	id: GraphQLTypes["uuid"],
-	institute_id: GraphQLTypes["uuid"],
+	instituteId: GraphQLTypes["uuid"],
 	name: string,
-	phone_no: string,
-	service_end_date: GraphQLTypes["date"],
-	service_start_date: GraphQLTypes["date"],
-	status: string,
-	total_amount: string,
+	phoneNo: string,
+	serviceEndDate: GraphQLTypes["date"],
+	serviceStartDate: GraphQLTypes["date"],
+	status: GraphQLTypes["Status_enum"],
+	totalAmount: string,
+	updatedAt: GraphQLTypes["timestamptz"],
 	updatedById: GraphQLTypes["uuid"],
-	updated_at: GraphQLTypes["timestamptz"],
 	website: string
 };
 	/** aggregated selection of "EGovernance" */
@@ -6374,9 +7788,22 @@ export type GraphQLTypes = {
 	/** aggregate fields of "EGovernance" */
 ["EGovernance_aggregate_fields"]: {
 	__typename: "EGovernance_aggregate_fields",
+	avg?: GraphQLTypes["EGovernance_avg_fields"] | undefined,
 	count: number,
 	max?: GraphQLTypes["EGovernance_max_fields"] | undefined,
-	min?: GraphQLTypes["EGovernance_min_fields"] | undefined
+	min?: GraphQLTypes["EGovernance_min_fields"] | undefined,
+	stddev?: GraphQLTypes["EGovernance_stddev_fields"] | undefined,
+	stddev_pop?: GraphQLTypes["EGovernance_stddev_pop_fields"] | undefined,
+	stddev_samp?: GraphQLTypes["EGovernance_stddev_samp_fields"] | undefined,
+	sum?: GraphQLTypes["EGovernance_sum_fields"] | undefined,
+	var_pop?: GraphQLTypes["EGovernance_var_pop_fields"] | undefined,
+	var_samp?: GraphQLTypes["EGovernance_var_samp_fields"] | undefined,
+	variance?: GraphQLTypes["EGovernance_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["EGovernance_avg_fields"]: {
+	__typename: "EGovernance_avg_fields",
+	cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "EGovernance". All fields are combined with a logical 'AND'. */
 ["EGovernance_bool_exp"]: {
@@ -6385,44 +7812,48 @@ export type GraphQLTypes = {
 	_or?: Array<GraphQLTypes["EGovernance_bool_exp"]> | undefined,
 	address?: GraphQLTypes["String_comparison_exp"] | undefined,
 	area?: GraphQLTypes["String_comparison_exp"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	created_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: GraphQLTypes["String_comparison_exp"] | undefined,
+	cursorId?: GraphQLTypes["bigint_comparison_exp"] | undefined,
 	description?: GraphQLTypes["String_comparison_exp"] | undefined,
 	file?: GraphQLTypes["String_comparison_exp"] | undefined,
 	id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: GraphQLTypes["uuid_comparison_exp"] | undefined,
 	name?: GraphQLTypes["String_comparison_exp"] | undefined,
-	phone_no?: GraphQLTypes["String_comparison_exp"] | undefined,
-	service_end_date?: GraphQLTypes["date_comparison_exp"] | undefined,
-	service_start_date?: GraphQLTypes["date_comparison_exp"] | undefined,
-	status?: GraphQLTypes["String_comparison_exp"] | undefined,
-	total_amount?: GraphQLTypes["String_comparison_exp"] | undefined,
+	phoneNo?: GraphQLTypes["String_comparison_exp"] | undefined,
+	serviceEndDate?: GraphQLTypes["date_comparison_exp"] | undefined,
+	serviceStartDate?: GraphQLTypes["date_comparison_exp"] | undefined,
+	status?: GraphQLTypes["Status_enum_comparison_exp"] | undefined,
+	totalAmount?: GraphQLTypes["String_comparison_exp"] | undefined,
+	updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
 	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
 	website?: GraphQLTypes["String_comparison_exp"] | undefined
 };
 	/** unique or primary key constraints on table "EGovernance" */
 ["EGovernance_constraint"]: EGovernance_constraint;
+	/** input type for incrementing numeric columns in table "EGovernance" */
+["EGovernance_inc_input"]: {
+		cursorId?: GraphQLTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "EGovernance" */
 ["EGovernance_insert_input"]: {
 		address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: GraphQLTypes["date"] | undefined,
-	service_start_date?: GraphQLTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: GraphQLTypes["date"] | undefined,
+	serviceStartDate?: GraphQLTypes["date"] | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	website?: string | undefined
 };
 	/** aggregate max on columns */
@@ -6430,21 +7861,20 @@ export type GraphQLTypes = {
 	__typename: "EGovernance_max_fields",
 	address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: GraphQLTypes["date"] | undefined,
-	service_start_date?: GraphQLTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: GraphQLTypes["date"] | undefined,
+	serviceStartDate?: GraphQLTypes["date"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	website?: string | undefined
 };
 	/** aggregate min on columns */
@@ -6452,21 +7882,20 @@ export type GraphQLTypes = {
 	__typename: "EGovernance_min_fields",
 	address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: GraphQLTypes["date"] | undefined,
-	service_start_date?: GraphQLTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: GraphQLTypes["date"] | undefined,
+	serviceStartDate?: GraphQLTypes["date"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	website?: string | undefined
 };
 	/** response of any mutation on the table "EGovernance" */
@@ -6487,21 +7916,21 @@ export type GraphQLTypes = {
 ["EGovernance_order_by"]: {
 		address?: GraphQLTypes["order_by"] | undefined,
 	area?: GraphQLTypes["order_by"] | undefined,
+	createdAt?: GraphQLTypes["order_by"] | undefined,
 	createdById?: GraphQLTypes["order_by"] | undefined,
-	created_at?: GraphQLTypes["order_by"] | undefined,
 	cursorId?: GraphQLTypes["order_by"] | undefined,
 	description?: GraphQLTypes["order_by"] | undefined,
 	file?: GraphQLTypes["order_by"] | undefined,
 	id?: GraphQLTypes["order_by"] | undefined,
-	institute_id?: GraphQLTypes["order_by"] | undefined,
+	instituteId?: GraphQLTypes["order_by"] | undefined,
 	name?: GraphQLTypes["order_by"] | undefined,
-	phone_no?: GraphQLTypes["order_by"] | undefined,
-	service_end_date?: GraphQLTypes["order_by"] | undefined,
-	service_start_date?: GraphQLTypes["order_by"] | undefined,
+	phoneNo?: GraphQLTypes["order_by"] | undefined,
+	serviceEndDate?: GraphQLTypes["order_by"] | undefined,
+	serviceStartDate?: GraphQLTypes["order_by"] | undefined,
 	status?: GraphQLTypes["order_by"] | undefined,
-	total_amount?: GraphQLTypes["order_by"] | undefined,
+	totalAmount?: GraphQLTypes["order_by"] | undefined,
+	updatedAt?: GraphQLTypes["order_by"] | undefined,
 	updatedById?: GraphQLTypes["order_by"] | undefined,
-	updated_at?: GraphQLTypes["order_by"] | undefined,
 	website?: GraphQLTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: EGovernance */
@@ -6514,22 +7943,37 @@ export type GraphQLTypes = {
 ["EGovernance_set_input"]: {
 		address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: GraphQLTypes["date"] | undefined,
-	service_start_date?: GraphQLTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: GraphQLTypes["date"] | undefined,
+	serviceStartDate?: GraphQLTypes["date"] | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	website?: string | undefined
+};
+	/** aggregate stddev on columns */
+["EGovernance_stddev_fields"]: {
+	__typename: "EGovernance_stddev_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["EGovernance_stddev_pop_fields"]: {
+	__typename: "EGovernance_stddev_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["EGovernance_stddev_samp_fields"]: {
+	__typename: "EGovernance_stddev_samp_fields",
+	cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "EGovernance" */
 ["EGovernance_stream_cursor_input"]: {
@@ -6542,78 +7986,101 @@ export type GraphQLTypes = {
 ["EGovernance_stream_cursor_value_input"]: {
 		address?: string | undefined,
 	area?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	description?: string | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone_no?: string | undefined,
-	service_end_date?: GraphQLTypes["date"] | undefined,
-	service_start_date?: GraphQLTypes["date"] | undefined,
-	status?: string | undefined,
-	total_amount?: string | undefined,
+	phoneNo?: string | undefined,
+	serviceEndDate?: GraphQLTypes["date"] | undefined,
+	serviceStartDate?: GraphQLTypes["date"] | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	totalAmount?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	website?: string | undefined
+};
+	/** aggregate sum on columns */
+["EGovernance_sum_fields"]: {
+	__typename: "EGovernance_sum_fields",
+	cursorId?: GraphQLTypes["bigint"] | undefined
 };
 	/** update columns of table "EGovernance" */
 ["EGovernance_update_column"]: EGovernance_update_column;
 	["EGovernance_updates"]: {
-		/** sets the columns of the filtered rows to the given values */
+		/** increments the numeric columns with given value of the filtered values */
+	_inc?: GraphQLTypes["EGovernance_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
 	_set?: GraphQLTypes["EGovernance_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: GraphQLTypes["EGovernance_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["EGovernance_var_pop_fields"]: {
+	__typename: "EGovernance_var_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["EGovernance_var_samp_fields"]: {
+	__typename: "EGovernance_var_samp_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["EGovernance_variance_fields"]: {
+	__typename: "EGovernance_variance_fields",
+	cursorId?: number | undefined
 };
 	/** columns and relationships of "Faculty" */
 ["Faculty"]: {
 	__typename: "Faculty",
 	address: string,
 	cast: string,
+	createdAt: GraphQLTypes["timestamptz"],
 	createdById: GraphQLTypes["uuid"],
-	created_at: GraphQLTypes["timestamptz"],
-	cursorId: string,
-	date_of_joining: GraphQLTypes["date"],
+	cursorId: GraphQLTypes["bigint"],
+	dateOfJoining: GraphQLTypes["date"],
 	designation: string,
 	dob: GraphQLTypes["date"],
-	email_id: string,
+	emailId: string,
 	experience: string,
 	gender: string,
 	id: GraphQLTypes["uuid"],
-	institute_id: GraphQLTypes["uuid"],
-	job_type: string,
+	instituteId: GraphQLTypes["uuid"],
+	isVerified: boolean,
+	jobType: string,
 	minority: string,
 	name: string,
-	pan_card_no: string,
-	phone: string,
+	panCardNo: string,
+	phoneNo: string,
 	qualification: string,
 	section: string,
-	staff_type: string,
-	status: string,
-	status_of_approval: string,
-	updatedById: GraphQLTypes["uuid"],
-	updated_at: GraphQLTypes["timestamptz"]
+	staffType: string,
+	status: GraphQLTypes["Status_enum"],
+	statusOfApproval: string,
+	updatedAt: GraphQLTypes["timestamptz"],
+	updatedById: GraphQLTypes["uuid"]
 };
 	/** columns and relationships of "FacultyFunding" */
 ["FacultyFunding"]: {
 	__typename: "FacultyFunding",
 	amount: string,
+	createdAt: GraphQLTypes["timestamptz"],
 	createdById: GraphQLTypes["uuid"],
-	created_at: GraphQLTypes["timestamptz"],
-	cursorId: string,
-	faculty_id: GraphQLTypes["uuid"],
+	cursorId: GraphQLTypes["bigint"],
+	facultyId: GraphQLTypes["uuid"],
 	file: string,
 	id: GraphQLTypes["uuid"],
-	institute_id: GraphQLTypes["uuid"],
+	instituteId: GraphQLTypes["uuid"],
 	nature: string,
-	status: string,
-	transaction_date: GraphQLTypes["date"],
-	transaction_type: string,
+	status: GraphQLTypes["Status_enum"],
+	transactionDate: GraphQLTypes["date"],
+	transactionType: string,
 	type: string,
-	updatedById: GraphQLTypes["uuid"],
-	updated_at: GraphQLTypes["timestamptz"]
+	updatedAt: GraphQLTypes["timestamptz"],
+	updatedById: GraphQLTypes["uuid"]
 };
 	/** aggregated selection of "FacultyFunding" */
 ["FacultyFunding_aggregate"]: {
@@ -6624,9 +8091,22 @@ export type GraphQLTypes = {
 	/** aggregate fields of "FacultyFunding" */
 ["FacultyFunding_aggregate_fields"]: {
 	__typename: "FacultyFunding_aggregate_fields",
+	avg?: GraphQLTypes["FacultyFunding_avg_fields"] | undefined,
 	count: number,
 	max?: GraphQLTypes["FacultyFunding_max_fields"] | undefined,
-	min?: GraphQLTypes["FacultyFunding_min_fields"] | undefined
+	min?: GraphQLTypes["FacultyFunding_min_fields"] | undefined,
+	stddev?: GraphQLTypes["FacultyFunding_stddev_fields"] | undefined,
+	stddev_pop?: GraphQLTypes["FacultyFunding_stddev_pop_fields"] | undefined,
+	stddev_samp?: GraphQLTypes["FacultyFunding_stddev_samp_fields"] | undefined,
+	sum?: GraphQLTypes["FacultyFunding_sum_fields"] | undefined,
+	var_pop?: GraphQLTypes["FacultyFunding_var_pop_fields"] | undefined,
+	var_samp?: GraphQLTypes["FacultyFunding_var_samp_fields"] | undefined,
+	variance?: GraphQLTypes["FacultyFunding_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["FacultyFunding_avg_fields"]: {
+	__typename: "FacultyFunding_avg_fields",
+	cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "FacultyFunding". All fields are combined with a logical 'AND'. */
 ["FacultyFunding_bool_exp"]: {
@@ -6634,78 +8114,80 @@ export type GraphQLTypes = {
 	_not?: GraphQLTypes["FacultyFunding_bool_exp"] | undefined,
 	_or?: Array<GraphQLTypes["FacultyFunding_bool_exp"]> | undefined,
 	amount?: GraphQLTypes["String_comparison_exp"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	created_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: GraphQLTypes["String_comparison_exp"] | undefined,
-	faculty_id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	cursorId?: GraphQLTypes["bigint_comparison_exp"] | undefined,
+	facultyId?: GraphQLTypes["uuid_comparison_exp"] | undefined,
 	file?: GraphQLTypes["String_comparison_exp"] | undefined,
 	id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: GraphQLTypes["uuid_comparison_exp"] | undefined,
 	nature?: GraphQLTypes["String_comparison_exp"] | undefined,
-	status?: GraphQLTypes["String_comparison_exp"] | undefined,
-	transaction_date?: GraphQLTypes["date_comparison_exp"] | undefined,
-	transaction_type?: GraphQLTypes["String_comparison_exp"] | undefined,
+	status?: GraphQLTypes["Status_enum_comparison_exp"] | undefined,
+	transactionDate?: GraphQLTypes["date_comparison_exp"] | undefined,
+	transactionType?: GraphQLTypes["String_comparison_exp"] | undefined,
 	type?: GraphQLTypes["String_comparison_exp"] | undefined,
-	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
+	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined
 };
 	/** unique or primary key constraints on table "FacultyFunding" */
 ["FacultyFunding_constraint"]: FacultyFunding_constraint;
+	/** input type for incrementing numeric columns in table "FacultyFunding" */
+["FacultyFunding_inc_input"]: {
+		cursorId?: GraphQLTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "FacultyFunding" */
 ["FacultyFunding_insert_input"]: {
 		amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** aggregate max on columns */
 ["FacultyFunding_max_fields"]: {
 	__typename: "FacultyFunding_max_fields",
 	amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** aggregate min on columns */
 ["FacultyFunding_min_fields"]: {
 	__typename: "FacultyFunding_min_fields",
 	amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** response of any mutation on the table "FacultyFunding" */
 ["FacultyFunding_mutation_response"]: {
@@ -6724,20 +8206,20 @@ export type GraphQLTypes = {
 	/** Ordering options when selecting data from "FacultyFunding". */
 ["FacultyFunding_order_by"]: {
 		amount?: GraphQLTypes["order_by"] | undefined,
+	createdAt?: GraphQLTypes["order_by"] | undefined,
 	createdById?: GraphQLTypes["order_by"] | undefined,
-	created_at?: GraphQLTypes["order_by"] | undefined,
 	cursorId?: GraphQLTypes["order_by"] | undefined,
-	faculty_id?: GraphQLTypes["order_by"] | undefined,
+	facultyId?: GraphQLTypes["order_by"] | undefined,
 	file?: GraphQLTypes["order_by"] | undefined,
 	id?: GraphQLTypes["order_by"] | undefined,
-	institute_id?: GraphQLTypes["order_by"] | undefined,
+	instituteId?: GraphQLTypes["order_by"] | undefined,
 	nature?: GraphQLTypes["order_by"] | undefined,
 	status?: GraphQLTypes["order_by"] | undefined,
-	transaction_date?: GraphQLTypes["order_by"] | undefined,
-	transaction_type?: GraphQLTypes["order_by"] | undefined,
+	transactionDate?: GraphQLTypes["order_by"] | undefined,
+	transactionType?: GraphQLTypes["order_by"] | undefined,
 	type?: GraphQLTypes["order_by"] | undefined,
-	updatedById?: GraphQLTypes["order_by"] | undefined,
-	updated_at?: GraphQLTypes["order_by"] | undefined
+	updatedAt?: GraphQLTypes["order_by"] | undefined,
+	updatedById?: GraphQLTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: FacultyFunding */
 ["FacultyFunding_pk_columns_input"]: {
@@ -6748,20 +8230,35 @@ export type GraphQLTypes = {
 	/** input type for updating data in table "FacultyFunding" */
 ["FacultyFunding_set_input"]: {
 		amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate stddev on columns */
+["FacultyFunding_stddev_fields"]: {
+	__typename: "FacultyFunding_stddev_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["FacultyFunding_stddev_pop_fields"]: {
+	__typename: "FacultyFunding_stddev_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["FacultyFunding_stddev_samp_fields"]: {
+	__typename: "FacultyFunding_stddev_samp_fields",
+	cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "FacultyFunding" */
 ["FacultyFunding_stream_cursor_input"]: {
@@ -6773,28 +8270,50 @@ export type GraphQLTypes = {
 	/** Initial value of the column from where the streaming should start */
 ["FacultyFunding_stream_cursor_value_input"]: {
 		amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate sum on columns */
+["FacultyFunding_sum_fields"]: {
+	__typename: "FacultyFunding_sum_fields",
+	cursorId?: GraphQLTypes["bigint"] | undefined
 };
 	/** update columns of table "FacultyFunding" */
 ["FacultyFunding_update_column"]: FacultyFunding_update_column;
 	["FacultyFunding_updates"]: {
-		/** sets the columns of the filtered rows to the given values */
+		/** increments the numeric columns with given value of the filtered values */
+	_inc?: GraphQLTypes["FacultyFunding_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
 	_set?: GraphQLTypes["FacultyFunding_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: GraphQLTypes["FacultyFunding_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["FacultyFunding_var_pop_fields"]: {
+	__typename: "FacultyFunding_var_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["FacultyFunding_var_samp_fields"]: {
+	__typename: "FacultyFunding_var_samp_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["FacultyFunding_variance_fields"]: {
+	__typename: "FacultyFunding_variance_fields",
+	cursorId?: number | undefined
 };
 	/** aggregated selection of "Faculty" */
 ["Faculty_aggregate"]: {
@@ -6805,9 +8324,22 @@ export type GraphQLTypes = {
 	/** aggregate fields of "Faculty" */
 ["Faculty_aggregate_fields"]: {
 	__typename: "Faculty_aggregate_fields",
+	avg?: GraphQLTypes["Faculty_avg_fields"] | undefined,
 	count: number,
 	max?: GraphQLTypes["Faculty_max_fields"] | undefined,
-	min?: GraphQLTypes["Faculty_min_fields"] | undefined
+	min?: GraphQLTypes["Faculty_min_fields"] | undefined,
+	stddev?: GraphQLTypes["Faculty_stddev_fields"] | undefined,
+	stddev_pop?: GraphQLTypes["Faculty_stddev_pop_fields"] | undefined,
+	stddev_samp?: GraphQLTypes["Faculty_stddev_samp_fields"] | undefined,
+	sum?: GraphQLTypes["Faculty_sum_fields"] | undefined,
+	var_pop?: GraphQLTypes["Faculty_var_pop_fields"] | undefined,
+	var_samp?: GraphQLTypes["Faculty_var_samp_fields"] | undefined,
+	variance?: GraphQLTypes["Faculty_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["Faculty_avg_fields"]: {
+	__typename: "Faculty_avg_fields",
+	cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "Faculty". All fields are combined with a logical 'AND'. */
 ["Faculty_bool_exp"]: {
@@ -6816,117 +8348,121 @@ export type GraphQLTypes = {
 	_or?: Array<GraphQLTypes["Faculty_bool_exp"]> | undefined,
 	address?: GraphQLTypes["String_comparison_exp"] | undefined,
 	cast?: GraphQLTypes["String_comparison_exp"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	created_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: GraphQLTypes["String_comparison_exp"] | undefined,
-	date_of_joining?: GraphQLTypes["date_comparison_exp"] | undefined,
+	cursorId?: GraphQLTypes["bigint_comparison_exp"] | undefined,
+	dateOfJoining?: GraphQLTypes["date_comparison_exp"] | undefined,
 	designation?: GraphQLTypes["String_comparison_exp"] | undefined,
 	dob?: GraphQLTypes["date_comparison_exp"] | undefined,
-	email_id?: GraphQLTypes["String_comparison_exp"] | undefined,
+	emailId?: GraphQLTypes["String_comparison_exp"] | undefined,
 	experience?: GraphQLTypes["String_comparison_exp"] | undefined,
 	gender?: GraphQLTypes["String_comparison_exp"] | undefined,
 	id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	job_type?: GraphQLTypes["String_comparison_exp"] | undefined,
+	instituteId?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	isVerified?: GraphQLTypes["Boolean_comparison_exp"] | undefined,
+	jobType?: GraphQLTypes["String_comparison_exp"] | undefined,
 	minority?: GraphQLTypes["String_comparison_exp"] | undefined,
 	name?: GraphQLTypes["String_comparison_exp"] | undefined,
-	pan_card_no?: GraphQLTypes["String_comparison_exp"] | undefined,
-	phone?: GraphQLTypes["String_comparison_exp"] | undefined,
+	panCardNo?: GraphQLTypes["String_comparison_exp"] | undefined,
+	phoneNo?: GraphQLTypes["String_comparison_exp"] | undefined,
 	qualification?: GraphQLTypes["String_comparison_exp"] | undefined,
 	section?: GraphQLTypes["String_comparison_exp"] | undefined,
-	staff_type?: GraphQLTypes["String_comparison_exp"] | undefined,
-	status?: GraphQLTypes["String_comparison_exp"] | undefined,
-	status_of_approval?: GraphQLTypes["String_comparison_exp"] | undefined,
-	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined
+	staffType?: GraphQLTypes["String_comparison_exp"] | undefined,
+	status?: GraphQLTypes["Status_enum_comparison_exp"] | undefined,
+	statusOfApproval?: GraphQLTypes["String_comparison_exp"] | undefined,
+	updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
+	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined
 };
 	/** unique or primary key constraints on table "Faculty" */
 ["Faculty_constraint"]: Faculty_constraint;
+	/** input type for incrementing numeric columns in table "Faculty" */
+["Faculty_inc_input"]: {
+		cursorId?: GraphQLTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "Faculty" */
 ["Faculty_insert_input"]: {
 		address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: GraphQLTypes["date"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfJoining?: GraphQLTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: GraphQLTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** aggregate max on columns */
 ["Faculty_max_fields"]: {
 	__typename: "Faculty_max_fields",
 	address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: GraphQLTypes["date"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfJoining?: GraphQLTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: GraphQLTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** aggregate min on columns */
 ["Faculty_min_fields"]: {
 	__typename: "Faculty_min_fields",
 	address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: GraphQLTypes["date"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfJoining?: GraphQLTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: GraphQLTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** response of any mutation on the table "Faculty" */
 ["Faculty_mutation_response"]: {
@@ -6946,29 +8482,30 @@ export type GraphQLTypes = {
 ["Faculty_order_by"]: {
 		address?: GraphQLTypes["order_by"] | undefined,
 	cast?: GraphQLTypes["order_by"] | undefined,
+	createdAt?: GraphQLTypes["order_by"] | undefined,
 	createdById?: GraphQLTypes["order_by"] | undefined,
-	created_at?: GraphQLTypes["order_by"] | undefined,
 	cursorId?: GraphQLTypes["order_by"] | undefined,
-	date_of_joining?: GraphQLTypes["order_by"] | undefined,
+	dateOfJoining?: GraphQLTypes["order_by"] | undefined,
 	designation?: GraphQLTypes["order_by"] | undefined,
 	dob?: GraphQLTypes["order_by"] | undefined,
-	email_id?: GraphQLTypes["order_by"] | undefined,
+	emailId?: GraphQLTypes["order_by"] | undefined,
 	experience?: GraphQLTypes["order_by"] | undefined,
 	gender?: GraphQLTypes["order_by"] | undefined,
 	id?: GraphQLTypes["order_by"] | undefined,
-	institute_id?: GraphQLTypes["order_by"] | undefined,
-	job_type?: GraphQLTypes["order_by"] | undefined,
+	instituteId?: GraphQLTypes["order_by"] | undefined,
+	isVerified?: GraphQLTypes["order_by"] | undefined,
+	jobType?: GraphQLTypes["order_by"] | undefined,
 	minority?: GraphQLTypes["order_by"] | undefined,
 	name?: GraphQLTypes["order_by"] | undefined,
-	pan_card_no?: GraphQLTypes["order_by"] | undefined,
-	phone?: GraphQLTypes["order_by"] | undefined,
+	panCardNo?: GraphQLTypes["order_by"] | undefined,
+	phoneNo?: GraphQLTypes["order_by"] | undefined,
 	qualification?: GraphQLTypes["order_by"] | undefined,
 	section?: GraphQLTypes["order_by"] | undefined,
-	staff_type?: GraphQLTypes["order_by"] | undefined,
+	staffType?: GraphQLTypes["order_by"] | undefined,
 	status?: GraphQLTypes["order_by"] | undefined,
-	status_of_approval?: GraphQLTypes["order_by"] | undefined,
-	updatedById?: GraphQLTypes["order_by"] | undefined,
-	updated_at?: GraphQLTypes["order_by"] | undefined
+	statusOfApproval?: GraphQLTypes["order_by"] | undefined,
+	updatedAt?: GraphQLTypes["order_by"] | undefined,
+	updatedById?: GraphQLTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Faculty */
 ["Faculty_pk_columns_input"]: {
@@ -6980,29 +8517,45 @@ export type GraphQLTypes = {
 ["Faculty_set_input"]: {
 		address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: GraphQLTypes["date"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfJoining?: GraphQLTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: GraphQLTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate stddev on columns */
+["Faculty_stddev_fields"]: {
+	__typename: "Faculty_stddev_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["Faculty_stddev_pop_fields"]: {
+	__typename: "Faculty_stddev_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["Faculty_stddev_samp_fields"]: {
+	__typename: "Faculty_stddev_samp_fields",
+	cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "Faculty" */
 ["Faculty_stream_cursor_input"]: {
@@ -7015,57 +8568,80 @@ export type GraphQLTypes = {
 ["Faculty_stream_cursor_value_input"]: {
 		address?: string | undefined,
 	cast?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_of_joining?: GraphQLTypes["date"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfJoining?: GraphQLTypes["date"] | undefined,
 	designation?: string | undefined,
 	dob?: GraphQLTypes["date"] | undefined,
-	email_id?: string | undefined,
+	emailId?: string | undefined,
 	experience?: string | undefined,
 	gender?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
-	job_type?: string | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	jobType?: string | undefined,
 	minority?: string | undefined,
 	name?: string | undefined,
-	pan_card_no?: string | undefined,
-	phone?: string | undefined,
+	panCardNo?: string | undefined,
+	phoneNo?: string | undefined,
 	qualification?: string | undefined,
 	section?: string | undefined,
-	staff_type?: string | undefined,
-	status?: string | undefined,
-	status_of_approval?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	staffType?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	statusOfApproval?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate sum on columns */
+["Faculty_sum_fields"]: {
+	__typename: "Faculty_sum_fields",
+	cursorId?: GraphQLTypes["bigint"] | undefined
 };
 	/** update columns of table "Faculty" */
 ["Faculty_update_column"]: Faculty_update_column;
 	["Faculty_updates"]: {
-		/** sets the columns of the filtered rows to the given values */
+		/** increments the numeric columns with given value of the filtered values */
+	_inc?: GraphQLTypes["Faculty_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
 	_set?: GraphQLTypes["Faculty_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: GraphQLTypes["Faculty_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["Faculty_var_pop_fields"]: {
+	__typename: "Faculty_var_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["Faculty_var_samp_fields"]: {
+	__typename: "Faculty_var_samp_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["Faculty_variance_fields"]: {
+	__typename: "Faculty_variance_fields",
+	cursorId?: number | undefined
+};
 	/** columns and relationships of "FdpPdp" */
 ["FdpPdp"]: {
 	__typename: "FdpPdp",
+	createdAt: GraphQLTypes["timestamptz"],
 	createdById: GraphQLTypes["uuid"],
-	created_at: GraphQLTypes["timestamptz"],
-	cursorId: string,
-	date_from: GraphQLTypes["date"],
-	date_to: GraphQLTypes["date"],
+	cursorId: GraphQLTypes["bigint"],
+	dateFrom: GraphQLTypes["date"],
+	dateTo: GraphQLTypes["date"],
 	description: string,
-	faculty_id: GraphQLTypes["uuid"],
+	facultyId: GraphQLTypes["uuid"],
 	file: string,
 	id: GraphQLTypes["uuid"],
-	institute_id: GraphQLTypes["uuid"],
+	instituteId: GraphQLTypes["uuid"],
 	name: string,
 	nature: string,
-	status: string,
+	status: GraphQLTypes["Status_enum"],
 	type: string,
+	updatedAt: GraphQLTypes["timestamptz"],
 	updatedById: GraphQLTypes["uuid"],
-	updated_at: GraphQLTypes["timestamptz"],
 	venue: string
 };
 	/** aggregated selection of "FdpPdp" */
@@ -7077,95 +8653,110 @@ export type GraphQLTypes = {
 	/** aggregate fields of "FdpPdp" */
 ["FdpPdp_aggregate_fields"]: {
 	__typename: "FdpPdp_aggregate_fields",
+	avg?: GraphQLTypes["FdpPdp_avg_fields"] | undefined,
 	count: number,
 	max?: GraphQLTypes["FdpPdp_max_fields"] | undefined,
-	min?: GraphQLTypes["FdpPdp_min_fields"] | undefined
+	min?: GraphQLTypes["FdpPdp_min_fields"] | undefined,
+	stddev?: GraphQLTypes["FdpPdp_stddev_fields"] | undefined,
+	stddev_pop?: GraphQLTypes["FdpPdp_stddev_pop_fields"] | undefined,
+	stddev_samp?: GraphQLTypes["FdpPdp_stddev_samp_fields"] | undefined,
+	sum?: GraphQLTypes["FdpPdp_sum_fields"] | undefined,
+	var_pop?: GraphQLTypes["FdpPdp_var_pop_fields"] | undefined,
+	var_samp?: GraphQLTypes["FdpPdp_var_samp_fields"] | undefined,
+	variance?: GraphQLTypes["FdpPdp_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["FdpPdp_avg_fields"]: {
+	__typename: "FdpPdp_avg_fields",
+	cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "FdpPdp". All fields are combined with a logical 'AND'. */
 ["FdpPdp_bool_exp"]: {
 		_and?: Array<GraphQLTypes["FdpPdp_bool_exp"]> | undefined,
 	_not?: GraphQLTypes["FdpPdp_bool_exp"] | undefined,
 	_or?: Array<GraphQLTypes["FdpPdp_bool_exp"]> | undefined,
+	createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	created_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: GraphQLTypes["String_comparison_exp"] | undefined,
-	date_from?: GraphQLTypes["date_comparison_exp"] | undefined,
-	date_to?: GraphQLTypes["date_comparison_exp"] | undefined,
+	cursorId?: GraphQLTypes["bigint_comparison_exp"] | undefined,
+	dateFrom?: GraphQLTypes["date_comparison_exp"] | undefined,
+	dateTo?: GraphQLTypes["date_comparison_exp"] | undefined,
 	description?: GraphQLTypes["String_comparison_exp"] | undefined,
-	faculty_id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	facultyId?: GraphQLTypes["uuid_comparison_exp"] | undefined,
 	file?: GraphQLTypes["String_comparison_exp"] | undefined,
 	id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: GraphQLTypes["uuid_comparison_exp"] | undefined,
 	name?: GraphQLTypes["String_comparison_exp"] | undefined,
 	nature?: GraphQLTypes["String_comparison_exp"] | undefined,
-	status?: GraphQLTypes["String_comparison_exp"] | undefined,
+	status?: GraphQLTypes["Status_enum_comparison_exp"] | undefined,
 	type?: GraphQLTypes["String_comparison_exp"] | undefined,
+	updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
 	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
 	venue?: GraphQLTypes["String_comparison_exp"] | undefined
 };
 	/** unique or primary key constraints on table "FdpPdp" */
 ["FdpPdp_constraint"]: FdpPdp_constraint;
+	/** input type for incrementing numeric columns in table "FdpPdp" */
+["FdpPdp_inc_input"]: {
+		cursorId?: GraphQLTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "FdpPdp" */
 ["FdpPdp_insert_input"]: {
-		createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: GraphQLTypes["date"] | undefined,
-	date_to?: GraphQLTypes["date"] | undefined,
+		createdAt?: GraphQLTypes["timestamptz"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateFrom?: GraphQLTypes["date"] | undefined,
+	dateTo?: GraphQLTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
 	type?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	venue?: string | undefined
 };
 	/** aggregate max on columns */
 ["FdpPdp_max_fields"]: {
 	__typename: "FdpPdp_max_fields",
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: GraphQLTypes["date"] | undefined,
-	date_to?: GraphQLTypes["date"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateFrom?: GraphQLTypes["date"] | undefined,
+	dateTo?: GraphQLTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
 	type?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	venue?: string | undefined
 };
 	/** aggregate min on columns */
 ["FdpPdp_min_fields"]: {
 	__typename: "FdpPdp_min_fields",
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: GraphQLTypes["date"] | undefined,
-	date_to?: GraphQLTypes["date"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateFrom?: GraphQLTypes["date"] | undefined,
+	dateTo?: GraphQLTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
 	type?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	venue?: string | undefined
 };
 	/** response of any mutation on the table "FdpPdp" */
@@ -7184,22 +8775,22 @@ export type GraphQLTypes = {
 };
 	/** Ordering options when selecting data from "FdpPdp". */
 ["FdpPdp_order_by"]: {
-		createdById?: GraphQLTypes["order_by"] | undefined,
-	created_at?: GraphQLTypes["order_by"] | undefined,
+		createdAt?: GraphQLTypes["order_by"] | undefined,
+	createdById?: GraphQLTypes["order_by"] | undefined,
 	cursorId?: GraphQLTypes["order_by"] | undefined,
-	date_from?: GraphQLTypes["order_by"] | undefined,
-	date_to?: GraphQLTypes["order_by"] | undefined,
+	dateFrom?: GraphQLTypes["order_by"] | undefined,
+	dateTo?: GraphQLTypes["order_by"] | undefined,
 	description?: GraphQLTypes["order_by"] | undefined,
-	faculty_id?: GraphQLTypes["order_by"] | undefined,
+	facultyId?: GraphQLTypes["order_by"] | undefined,
 	file?: GraphQLTypes["order_by"] | undefined,
 	id?: GraphQLTypes["order_by"] | undefined,
-	institute_id?: GraphQLTypes["order_by"] | undefined,
+	instituteId?: GraphQLTypes["order_by"] | undefined,
 	name?: GraphQLTypes["order_by"] | undefined,
 	nature?: GraphQLTypes["order_by"] | undefined,
 	status?: GraphQLTypes["order_by"] | undefined,
 	type?: GraphQLTypes["order_by"] | undefined,
+	updatedAt?: GraphQLTypes["order_by"] | undefined,
 	updatedById?: GraphQLTypes["order_by"] | undefined,
-	updated_at?: GraphQLTypes["order_by"] | undefined,
 	venue?: GraphQLTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: FdpPdp */
@@ -7210,23 +8801,38 @@ export type GraphQLTypes = {
 ["FdpPdp_select_column"]: FdpPdp_select_column;
 	/** input type for updating data in table "FdpPdp" */
 ["FdpPdp_set_input"]: {
-		createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: GraphQLTypes["date"] | undefined,
-	date_to?: GraphQLTypes["date"] | undefined,
+		createdAt?: GraphQLTypes["timestamptz"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateFrom?: GraphQLTypes["date"] | undefined,
+	dateTo?: GraphQLTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
 	type?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	venue?: string | undefined
+};
+	/** aggregate stddev on columns */
+["FdpPdp_stddev_fields"]: {
+	__typename: "FdpPdp_stddev_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["FdpPdp_stddev_pop_fields"]: {
+	__typename: "FdpPdp_stddev_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["FdpPdp_stddev_samp_fields"]: {
+	__typename: "FdpPdp_stddev_samp_fields",
+	cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "FdpPdp" */
 ["FdpPdp_stream_cursor_input"]: {
@@ -7237,43 +8843,65 @@ export type GraphQLTypes = {
 };
 	/** Initial value of the column from where the streaming should start */
 ["FdpPdp_stream_cursor_value_input"]: {
-		createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
-	date_from?: GraphQLTypes["date"] | undefined,
-	date_to?: GraphQLTypes["date"] | undefined,
+		createdAt?: GraphQLTypes["timestamptz"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateFrom?: GraphQLTypes["date"] | undefined,
+	dateTo?: GraphQLTypes["date"] | undefined,
 	description?: string | undefined,
-	faculty_id?: GraphQLTypes["uuid"] | undefined,
+	facultyId?: GraphQLTypes["uuid"] | undefined,
 	file?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	nature?: string | undefined,
-	status?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
 	type?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
 	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
 	venue?: string | undefined
+};
+	/** aggregate sum on columns */
+["FdpPdp_sum_fields"]: {
+	__typename: "FdpPdp_sum_fields",
+	cursorId?: GraphQLTypes["bigint"] | undefined
 };
 	/** update columns of table "FdpPdp" */
 ["FdpPdp_update_column"]: FdpPdp_update_column;
 	["FdpPdp_updates"]: {
-		/** sets the columns of the filtered rows to the given values */
+		/** increments the numeric columns with given value of the filtered values */
+	_inc?: GraphQLTypes["FdpPdp_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
 	_set?: GraphQLTypes["FdpPdp_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: GraphQLTypes["FdpPdp_bool_exp"]
 };
+	/** aggregate var_pop on columns */
+["FdpPdp_var_pop_fields"]: {
+	__typename: "FdpPdp_var_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["FdpPdp_var_samp_fields"]: {
+	__typename: "FdpPdp_var_samp_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["FdpPdp_variance_fields"]: {
+	__typename: "FdpPdp_variance_fields",
+	cursorId?: number | undefined
+};
 	/** columns and relationships of "Genesis" */
 ["Genesis"]: {
 	__typename: "Genesis",
-	created_at: GraphQLTypes["timestamp"],
-	email_id: string,
+	createdAt: GraphQLTypes["timestamp"],
+	emailId: string,
 	id: GraphQLTypes["uuid"],
-	is_verified: boolean,
+	isVerified: boolean,
 	name: string,
-	phone: string,
+	phoneNo: string,
 	role: string,
-	updated_at: GraphQLTypes["timestamp"]
+	updatedAt: GraphQLTypes["timestamp"]
 };
 	/** aggregated selection of "Genesis" */
 ["Genesis_aggregate"]: {
@@ -7293,49 +8921,49 @@ export type GraphQLTypes = {
 		_and?: Array<GraphQLTypes["Genesis_bool_exp"]> | undefined,
 	_not?: GraphQLTypes["Genesis_bool_exp"] | undefined,
 	_or?: Array<GraphQLTypes["Genesis_bool_exp"]> | undefined,
-	created_at?: GraphQLTypes["timestamp_comparison_exp"] | undefined,
-	email_id?: GraphQLTypes["String_comparison_exp"] | undefined,
+	createdAt?: GraphQLTypes["timestamp_comparison_exp"] | undefined,
+	emailId?: GraphQLTypes["String_comparison_exp"] | undefined,
 	id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	is_verified?: GraphQLTypes["Boolean_comparison_exp"] | undefined,
+	isVerified?: GraphQLTypes["Boolean_comparison_exp"] | undefined,
 	name?: GraphQLTypes["String_comparison_exp"] | undefined,
-	phone?: GraphQLTypes["String_comparison_exp"] | undefined,
+	phoneNo?: GraphQLTypes["String_comparison_exp"] | undefined,
 	role?: GraphQLTypes["String_comparison_exp"] | undefined,
-	updated_at?: GraphQLTypes["timestamp_comparison_exp"] | undefined
+	updatedAt?: GraphQLTypes["timestamp_comparison_exp"] | undefined
 };
 	/** unique or primary key constraints on table "Genesis" */
 ["Genesis_constraint"]: Genesis_constraint;
 	/** input type for inserting data into table "Genesis" */
 ["Genesis_insert_input"]: {
-		created_at?: GraphQLTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+		createdAt?: GraphQLTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	is_verified?: boolean | undefined,
+	isVerified?: boolean | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: GraphQLTypes["timestamp"] | undefined
+	updatedAt?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate max on columns */
 ["Genesis_max_fields"]: {
 	__typename: "Genesis_max_fields",
-	created_at?: GraphQLTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+	createdAt?: GraphQLTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: GraphQLTypes["timestamp"] | undefined
+	updatedAt?: GraphQLTypes["timestamp"] | undefined
 };
 	/** aggregate min on columns */
 ["Genesis_min_fields"]: {
 	__typename: "Genesis_min_fields",
-	created_at?: GraphQLTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+	createdAt?: GraphQLTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: GraphQLTypes["timestamp"] | undefined
+	updatedAt?: GraphQLTypes["timestamp"] | undefined
 };
 	/** response of any mutation on the table "Genesis" */
 ["Genesis_mutation_response"]: {
@@ -7353,14 +8981,14 @@ export type GraphQLTypes = {
 };
 	/** Ordering options when selecting data from "Genesis". */
 ["Genesis_order_by"]: {
-		created_at?: GraphQLTypes["order_by"] | undefined,
-	email_id?: GraphQLTypes["order_by"] | undefined,
+		createdAt?: GraphQLTypes["order_by"] | undefined,
+	emailId?: GraphQLTypes["order_by"] | undefined,
 	id?: GraphQLTypes["order_by"] | undefined,
-	is_verified?: GraphQLTypes["order_by"] | undefined,
+	isVerified?: GraphQLTypes["order_by"] | undefined,
 	name?: GraphQLTypes["order_by"] | undefined,
-	phone?: GraphQLTypes["order_by"] | undefined,
+	phoneNo?: GraphQLTypes["order_by"] | undefined,
 	role?: GraphQLTypes["order_by"] | undefined,
-	updated_at?: GraphQLTypes["order_by"] | undefined
+	updatedAt?: GraphQLTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Genesis */
 ["Genesis_pk_columns_input"]: {
@@ -7370,14 +8998,14 @@ export type GraphQLTypes = {
 ["Genesis_select_column"]: Genesis_select_column;
 	/** input type for updating data in table "Genesis" */
 ["Genesis_set_input"]: {
-		created_at?: GraphQLTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+		createdAt?: GraphQLTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	is_verified?: boolean | undefined,
+	isVerified?: boolean | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: GraphQLTypes["timestamp"] | undefined
+	updatedAt?: GraphQLTypes["timestamp"] | undefined
 };
 	/** Streaming cursor of the table "Genesis" */
 ["Genesis_stream_cursor_input"]: {
@@ -7388,14 +9016,14 @@ export type GraphQLTypes = {
 };
 	/** Initial value of the column from where the streaming should start */
 ["Genesis_stream_cursor_value_input"]: {
-		created_at?: GraphQLTypes["timestamp"] | undefined,
-	email_id?: string | undefined,
+		createdAt?: GraphQLTypes["timestamp"] | undefined,
+	emailId?: string | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	is_verified?: boolean | undefined,
+	isVerified?: boolean | undefined,
 	name?: string | undefined,
-	phone?: string | undefined,
+	phoneNo?: string | undefined,
 	role?: string | undefined,
-	updated_at?: GraphQLTypes["timestamp"] | undefined
+	updatedAt?: GraphQLTypes["timestamp"] | undefined
 };
 	/** update columns of table "Genesis" */
 ["Genesis_update_column"]: Genesis_update_column;
@@ -7410,37 +9038,39 @@ export type GraphQLTypes = {
 	__typename: "Institute",
 	address: string,
 	city: string,
-	created_at: GraphQLTypes["timestamptz"],
-	created_by_id: GraphQLTypes["uuid"],
-	cursor_id: string,
-	date_of_establishment: GraphQLTypes["date"],
+	createdAt: GraphQLTypes["timestamptz"],
+	createdById: GraphQLTypes["uuid"],
+	cursorId: GraphQLTypes["bigint"],
+	dateOfEstablishment: GraphQLTypes["date"],
 	id: GraphQLTypes["uuid"],
+	isVerified: boolean,
 	landmark: string,
 	name: string,
 	pin: string,
 	state: string,
+	status: GraphQLTypes["Status_enum"],
 	type: string,
-	updated_at: GraphQLTypes["timestamptz"],
-	updated_by_id: GraphQLTypes["uuid"],
+	updatedAt: GraphQLTypes["timestamptz"],
+	updatedById: GraphQLTypes["uuid"],
 	website: string
 };
 	/** columns and relationships of "InstituteFunding" */
 ["InstituteFunding"]: {
 	__typename: "InstituteFunding",
 	amount: string,
+	createdAt: GraphQLTypes["timestamptz"],
 	createdById: GraphQLTypes["uuid"],
-	created_at: GraphQLTypes["timestamptz"],
-	cursorId: string,
+	cursorId: GraphQLTypes["bigint"],
 	id: GraphQLTypes["uuid"],
-	institute_id: GraphQLTypes["uuid"],
+	instituteId: GraphQLTypes["uuid"],
 	name: string,
 	purpose: string,
-	status: string,
-	transaction_date: GraphQLTypes["date"],
-	transaction_type: string,
+	status: GraphQLTypes["Status_enum"],
+	transactionDate: GraphQLTypes["date"],
+	transactionType: string,
 	type: string,
-	updatedById: GraphQLTypes["uuid"],
-	updated_at: GraphQLTypes["timestamptz"]
+	updatedAt: GraphQLTypes["timestamptz"],
+	updatedById: GraphQLTypes["uuid"]
 };
 	/** aggregated selection of "InstituteFunding" */
 ["InstituteFunding_aggregate"]: {
@@ -7451,9 +9081,22 @@ export type GraphQLTypes = {
 	/** aggregate fields of "InstituteFunding" */
 ["InstituteFunding_aggregate_fields"]: {
 	__typename: "InstituteFunding_aggregate_fields",
+	avg?: GraphQLTypes["InstituteFunding_avg_fields"] | undefined,
 	count: number,
 	max?: GraphQLTypes["InstituteFunding_max_fields"] | undefined,
-	min?: GraphQLTypes["InstituteFunding_min_fields"] | undefined
+	min?: GraphQLTypes["InstituteFunding_min_fields"] | undefined,
+	stddev?: GraphQLTypes["InstituteFunding_stddev_fields"] | undefined,
+	stddev_pop?: GraphQLTypes["InstituteFunding_stddev_pop_fields"] | undefined,
+	stddev_samp?: GraphQLTypes["InstituteFunding_stddev_samp_fields"] | undefined,
+	sum?: GraphQLTypes["InstituteFunding_sum_fields"] | undefined,
+	var_pop?: GraphQLTypes["InstituteFunding_var_pop_fields"] | undefined,
+	var_samp?: GraphQLTypes["InstituteFunding_var_samp_fields"] | undefined,
+	variance?: GraphQLTypes["InstituteFunding_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["InstituteFunding_avg_fields"]: {
+	__typename: "InstituteFunding_avg_fields",
+	cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "InstituteFunding". All fields are combined with a logical 'AND'. */
 ["InstituteFunding_bool_exp"]: {
@@ -7461,74 +9104,76 @@ export type GraphQLTypes = {
 	_not?: GraphQLTypes["InstituteFunding_bool_exp"] | undefined,
 	_or?: Array<GraphQLTypes["InstituteFunding_bool_exp"]> | undefined,
 	amount?: GraphQLTypes["String_comparison_exp"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
 	createdById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	created_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
-	cursorId?: GraphQLTypes["String_comparison_exp"] | undefined,
+	cursorId?: GraphQLTypes["bigint_comparison_exp"] | undefined,
 	id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	institute_id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: GraphQLTypes["uuid_comparison_exp"] | undefined,
 	name?: GraphQLTypes["String_comparison_exp"] | undefined,
 	purpose?: GraphQLTypes["String_comparison_exp"] | undefined,
-	status?: GraphQLTypes["String_comparison_exp"] | undefined,
-	transaction_date?: GraphQLTypes["date_comparison_exp"] | undefined,
-	transaction_type?: GraphQLTypes["String_comparison_exp"] | undefined,
+	status?: GraphQLTypes["Status_enum_comparison_exp"] | undefined,
+	transactionDate?: GraphQLTypes["date_comparison_exp"] | undefined,
+	transactionType?: GraphQLTypes["String_comparison_exp"] | undefined,
 	type?: GraphQLTypes["String_comparison_exp"] | undefined,
-	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
+	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined
 };
 	/** unique or primary key constraints on table "InstituteFunding" */
 ["InstituteFunding_constraint"]: InstituteFunding_constraint;
+	/** input type for incrementing numeric columns in table "InstituteFunding" */
+["InstituteFunding_inc_input"]: {
+		cursorId?: GraphQLTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "InstituteFunding" */
 ["InstituteFunding_insert_input"]: {
 		amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** aggregate max on columns */
 ["InstituteFunding_max_fields"]: {
 	__typename: "InstituteFunding_max_fields",
 	amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** aggregate min on columns */
 ["InstituteFunding_min_fields"]: {
 	__typename: "InstituteFunding_min_fields",
 	amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** response of any mutation on the table "InstituteFunding" */
 ["InstituteFunding_mutation_response"]: {
@@ -7547,19 +9192,19 @@ export type GraphQLTypes = {
 	/** Ordering options when selecting data from "InstituteFunding". */
 ["InstituteFunding_order_by"]: {
 		amount?: GraphQLTypes["order_by"] | undefined,
+	createdAt?: GraphQLTypes["order_by"] | undefined,
 	createdById?: GraphQLTypes["order_by"] | undefined,
-	created_at?: GraphQLTypes["order_by"] | undefined,
 	cursorId?: GraphQLTypes["order_by"] | undefined,
 	id?: GraphQLTypes["order_by"] | undefined,
-	institute_id?: GraphQLTypes["order_by"] | undefined,
+	instituteId?: GraphQLTypes["order_by"] | undefined,
 	name?: GraphQLTypes["order_by"] | undefined,
 	purpose?: GraphQLTypes["order_by"] | undefined,
 	status?: GraphQLTypes["order_by"] | undefined,
-	transaction_date?: GraphQLTypes["order_by"] | undefined,
-	transaction_type?: GraphQLTypes["order_by"] | undefined,
+	transactionDate?: GraphQLTypes["order_by"] | undefined,
+	transactionType?: GraphQLTypes["order_by"] | undefined,
 	type?: GraphQLTypes["order_by"] | undefined,
-	updatedById?: GraphQLTypes["order_by"] | undefined,
-	updated_at?: GraphQLTypes["order_by"] | undefined
+	updatedAt?: GraphQLTypes["order_by"] | undefined,
+	updatedById?: GraphQLTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: InstituteFunding */
 ["InstituteFunding_pk_columns_input"]: {
@@ -7570,19 +9215,34 @@ export type GraphQLTypes = {
 	/** input type for updating data in table "InstituteFunding" */
 ["InstituteFunding_set_input"]: {
 		amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate stddev on columns */
+["InstituteFunding_stddev_fields"]: {
+	__typename: "InstituteFunding_stddev_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["InstituteFunding_stddev_pop_fields"]: {
+	__typename: "InstituteFunding_stddev_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["InstituteFunding_stddev_samp_fields"]: {
+	__typename: "InstituteFunding_stddev_samp_fields",
+	cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "InstituteFunding" */
 ["InstituteFunding_stream_cursor_input"]: {
@@ -7594,27 +9254,49 @@ export type GraphQLTypes = {
 	/** Initial value of the column from where the streaming should start */
 ["InstituteFunding_stream_cursor_value_input"]: {
 		amount?: string | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
 	createdById?: GraphQLTypes["uuid"] | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	cursorId?: string | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
-	institute_id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
 	name?: string | undefined,
 	purpose?: string | undefined,
-	status?: string | undefined,
-	transaction_date?: GraphQLTypes["date"] | undefined,
-	transaction_type?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
+	transactionDate?: GraphQLTypes["date"] | undefined,
+	transactionType?: string | undefined,
 	type?: string | undefined,
-	updatedById?: GraphQLTypes["uuid"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate sum on columns */
+["InstituteFunding_sum_fields"]: {
+	__typename: "InstituteFunding_sum_fields",
+	cursorId?: GraphQLTypes["bigint"] | undefined
 };
 	/** update columns of table "InstituteFunding" */
 ["InstituteFunding_update_column"]: InstituteFunding_update_column;
 	["InstituteFunding_updates"]: {
-		/** sets the columns of the filtered rows to the given values */
+		/** increments the numeric columns with given value of the filtered values */
+	_inc?: GraphQLTypes["InstituteFunding_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
 	_set?: GraphQLTypes["InstituteFunding_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: GraphQLTypes["InstituteFunding_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["InstituteFunding_var_pop_fields"]: {
+	__typename: "InstituteFunding_var_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["InstituteFunding_var_samp_fields"]: {
+	__typename: "InstituteFunding_var_samp_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["InstituteFunding_variance_fields"]: {
+	__typename: "InstituteFunding_variance_fields",
+	cursorId?: number | undefined
 };
 	/** aggregated selection of "Institute" */
 ["Institute_aggregate"]: {
@@ -7625,9 +9307,22 @@ export type GraphQLTypes = {
 	/** aggregate fields of "Institute" */
 ["Institute_aggregate_fields"]: {
 	__typename: "Institute_aggregate_fields",
+	avg?: GraphQLTypes["Institute_avg_fields"] | undefined,
 	count: number,
 	max?: GraphQLTypes["Institute_max_fields"] | undefined,
-	min?: GraphQLTypes["Institute_min_fields"] | undefined
+	min?: GraphQLTypes["Institute_min_fields"] | undefined,
+	stddev?: GraphQLTypes["Institute_stddev_fields"] | undefined,
+	stddev_pop?: GraphQLTypes["Institute_stddev_pop_fields"] | undefined,
+	stddev_samp?: GraphQLTypes["Institute_stddev_samp_fields"] | undefined,
+	sum?: GraphQLTypes["Institute_sum_fields"] | undefined,
+	var_pop?: GraphQLTypes["Institute_var_pop_fields"] | undefined,
+	var_samp?: GraphQLTypes["Institute_var_samp_fields"] | undefined,
+	variance?: GraphQLTypes["Institute_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["Institute_avg_fields"]: {
+	__typename: "Institute_avg_fields",
+	cursorId?: number | undefined
 };
 	/** Boolean expression to filter rows from the table "Institute". All fields are combined with a logical 'AND'. */
 ["Institute_bool_exp"]: {
@@ -7636,38 +9331,46 @@ export type GraphQLTypes = {
 	_or?: Array<GraphQLTypes["Institute_bool_exp"]> | undefined,
 	address?: GraphQLTypes["String_comparison_exp"] | undefined,
 	city?: GraphQLTypes["String_comparison_exp"] | undefined,
-	created_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
-	created_by_id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
-	cursor_id?: GraphQLTypes["String_comparison_exp"] | undefined,
-	date_of_establishment?: GraphQLTypes["date_comparison_exp"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
+	createdById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	cursorId?: GraphQLTypes["bigint_comparison_exp"] | undefined,
+	dateOfEstablishment?: GraphQLTypes["date_comparison_exp"] | undefined,
 	id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	isVerified?: GraphQLTypes["Boolean_comparison_exp"] | undefined,
 	landmark?: GraphQLTypes["String_comparison_exp"] | undefined,
 	name?: GraphQLTypes["String_comparison_exp"] | undefined,
 	pin?: GraphQLTypes["String_comparison_exp"] | undefined,
 	state?: GraphQLTypes["String_comparison_exp"] | undefined,
+	status?: GraphQLTypes["Status_enum_comparison_exp"] | undefined,
 	type?: GraphQLTypes["String_comparison_exp"] | undefined,
-	updated_at?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
-	updated_by_id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	updatedAt?: GraphQLTypes["timestamptz_comparison_exp"] | undefined,
+	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
 	website?: GraphQLTypes["String_comparison_exp"] | undefined
 };
 	/** unique or primary key constraints on table "Institute" */
 ["Institute_constraint"]: Institute_constraint;
+	/** input type for incrementing numeric columns in table "Institute" */
+["Institute_inc_input"]: {
+		cursorId?: GraphQLTypes["bigint"] | undefined
+};
 	/** input type for inserting data into table "Institute" */
 ["Institute_insert_input"]: {
 		address?: string | undefined,
 	city?: string | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	created_by_id?: GraphQLTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: GraphQLTypes["date"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfEstablishment?: GraphQLTypes["date"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
 	type?: string | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
-	updated_by_id?: GraphQLTypes["uuid"] | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined,
 	website?: string | undefined
 };
 	/** aggregate max on columns */
@@ -7675,18 +9378,18 @@ export type GraphQLTypes = {
 	__typename: "Institute_max_fields",
 	address?: string | undefined,
 	city?: string | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	created_by_id?: GraphQLTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: GraphQLTypes["date"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfEstablishment?: GraphQLTypes["date"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
 	type?: string | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
-	updated_by_id?: GraphQLTypes["uuid"] | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined,
 	website?: string | undefined
 };
 	/** aggregate min on columns */
@@ -7694,18 +9397,18 @@ export type GraphQLTypes = {
 	__typename: "Institute_min_fields",
 	address?: string | undefined,
 	city?: string | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	created_by_id?: GraphQLTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: GraphQLTypes["date"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfEstablishment?: GraphQLTypes["date"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
 	type?: string | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
-	updated_by_id?: GraphQLTypes["uuid"] | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined,
 	website?: string | undefined
 };
 	/** response of any mutation on the table "Institute" */
@@ -7726,18 +9429,20 @@ export type GraphQLTypes = {
 ["Institute_order_by"]: {
 		address?: GraphQLTypes["order_by"] | undefined,
 	city?: GraphQLTypes["order_by"] | undefined,
-	created_at?: GraphQLTypes["order_by"] | undefined,
-	created_by_id?: GraphQLTypes["order_by"] | undefined,
-	cursor_id?: GraphQLTypes["order_by"] | undefined,
-	date_of_establishment?: GraphQLTypes["order_by"] | undefined,
+	createdAt?: GraphQLTypes["order_by"] | undefined,
+	createdById?: GraphQLTypes["order_by"] | undefined,
+	cursorId?: GraphQLTypes["order_by"] | undefined,
+	dateOfEstablishment?: GraphQLTypes["order_by"] | undefined,
 	id?: GraphQLTypes["order_by"] | undefined,
+	isVerified?: GraphQLTypes["order_by"] | undefined,
 	landmark?: GraphQLTypes["order_by"] | undefined,
 	name?: GraphQLTypes["order_by"] | undefined,
 	pin?: GraphQLTypes["order_by"] | undefined,
 	state?: GraphQLTypes["order_by"] | undefined,
+	status?: GraphQLTypes["order_by"] | undefined,
 	type?: GraphQLTypes["order_by"] | undefined,
-	updated_at?: GraphQLTypes["order_by"] | undefined,
-	updated_by_id?: GraphQLTypes["order_by"] | undefined,
+	updatedAt?: GraphQLTypes["order_by"] | undefined,
+	updatedById?: GraphQLTypes["order_by"] | undefined,
 	website?: GraphQLTypes["order_by"] | undefined
 };
 	/** primary key columns input for table: Institute */
@@ -7750,19 +9455,36 @@ export type GraphQLTypes = {
 ["Institute_set_input"]: {
 		address?: string | undefined,
 	city?: string | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	created_by_id?: GraphQLTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: GraphQLTypes["date"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfEstablishment?: GraphQLTypes["date"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
 	type?: string | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
-	updated_by_id?: GraphQLTypes["uuid"] | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined,
 	website?: string | undefined
+};
+	/** aggregate stddev on columns */
+["Institute_stddev_fields"]: {
+	__typename: "Institute_stddev_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["Institute_stddev_pop_fields"]: {
+	__typename: "Institute_stddev_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["Institute_stddev_samp_fields"]: {
+	__typename: "Institute_stddev_samp_fields",
+	cursorId?: number | undefined
 };
 	/** Streaming cursor of the table "Institute" */
 ["Institute_stream_cursor_input"]: {
@@ -7775,27 +9497,148 @@ export type GraphQLTypes = {
 ["Institute_stream_cursor_value_input"]: {
 		address?: string | undefined,
 	city?: string | undefined,
-	created_at?: GraphQLTypes["timestamptz"] | undefined,
-	created_by_id?: GraphQLTypes["uuid"] | undefined,
-	cursor_id?: string | undefined,
-	date_of_establishment?: GraphQLTypes["date"] | undefined,
+	createdAt?: GraphQLTypes["timestamptz"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	dateOfEstablishment?: GraphQLTypes["date"] | undefined,
 	id?: GraphQLTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
 	landmark?: string | undefined,
 	name?: string | undefined,
 	pin?: string | undefined,
 	state?: string | undefined,
+	status?: GraphQLTypes["Status_enum"] | undefined,
 	type?: string | undefined,
-	updated_at?: GraphQLTypes["timestamptz"] | undefined,
-	updated_by_id?: GraphQLTypes["uuid"] | undefined,
+	updatedAt?: GraphQLTypes["timestamptz"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined,
 	website?: string | undefined
+};
+	/** aggregate sum on columns */
+["Institute_sum_fields"]: {
+	__typename: "Institute_sum_fields",
+	cursorId?: GraphQLTypes["bigint"] | undefined
 };
 	/** update columns of table "Institute" */
 ["Institute_update_column"]: Institute_update_column;
 	["Institute_updates"]: {
-		/** sets the columns of the filtered rows to the given values */
+		/** increments the numeric columns with given value of the filtered values */
+	_inc?: GraphQLTypes["Institute_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
 	_set?: GraphQLTypes["Institute_set_input"] | undefined,
 	/** filter the rows which have to be updated */
 	where: GraphQLTypes["Institute_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["Institute_var_pop_fields"]: {
+	__typename: "Institute_var_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["Institute_var_samp_fields"]: {
+	__typename: "Institute_var_samp_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["Institute_variance_fields"]: {
+	__typename: "Institute_variance_fields",
+	cursorId?: number | undefined
+};
+	/** columns and relationships of "Status" */
+["Status"]: {
+	__typename: "Status",
+	value: string
+};
+	/** aggregated selection of "Status" */
+["Status_aggregate"]: {
+	__typename: "Status_aggregate",
+	aggregate?: GraphQLTypes["Status_aggregate_fields"] | undefined,
+	nodes: Array<GraphQLTypes["Status"]>
+};
+	/** aggregate fields of "Status" */
+["Status_aggregate_fields"]: {
+	__typename: "Status_aggregate_fields",
+	count: number,
+	max?: GraphQLTypes["Status_max_fields"] | undefined,
+	min?: GraphQLTypes["Status_min_fields"] | undefined
+};
+	/** Boolean expression to filter rows from the table "Status". All fields are combined with a logical 'AND'. */
+["Status_bool_exp"]: {
+		_and?: Array<GraphQLTypes["Status_bool_exp"]> | undefined,
+	_not?: GraphQLTypes["Status_bool_exp"] | undefined,
+	_or?: Array<GraphQLTypes["Status_bool_exp"]> | undefined,
+	value?: GraphQLTypes["String_comparison_exp"] | undefined
+};
+	/** unique or primary key constraints on table "Status" */
+["Status_constraint"]: Status_constraint;
+	["Status_enum"]: Status_enum;
+	/** Boolean expression to compare columns of type "Status_enum". All fields are combined with logical 'AND'. */
+["Status_enum_comparison_exp"]: {
+		_eq?: GraphQLTypes["Status_enum"] | undefined,
+	_in?: Array<GraphQLTypes["Status_enum"]> | undefined,
+	_is_null?: boolean | undefined,
+	_neq?: GraphQLTypes["Status_enum"] | undefined,
+	_nin?: Array<GraphQLTypes["Status_enum"]> | undefined
+};
+	/** input type for inserting data into table "Status" */
+["Status_insert_input"]: {
+		value?: string | undefined
+};
+	/** aggregate max on columns */
+["Status_max_fields"]: {
+	__typename: "Status_max_fields",
+	value?: string | undefined
+};
+	/** aggregate min on columns */
+["Status_min_fields"]: {
+	__typename: "Status_min_fields",
+	value?: string | undefined
+};
+	/** response of any mutation on the table "Status" */
+["Status_mutation_response"]: {
+	__typename: "Status_mutation_response",
+	/** number of rows affected by the mutation */
+	affected_rows: number,
+	/** data from the rows affected by the mutation */
+	returning: Array<GraphQLTypes["Status"]>
+};
+	/** on_conflict condition type for table "Status" */
+["Status_on_conflict"]: {
+		constraint: GraphQLTypes["Status_constraint"],
+	update_columns: Array<GraphQLTypes["Status_update_column"]>,
+	where?: GraphQLTypes["Status_bool_exp"] | undefined
+};
+	/** Ordering options when selecting data from "Status". */
+["Status_order_by"]: {
+		value?: GraphQLTypes["order_by"] | undefined
+};
+	/** primary key columns input for table: Status */
+["Status_pk_columns_input"]: {
+		value: string
+};
+	/** select columns of table "Status" */
+["Status_select_column"]: Status_select_column;
+	/** input type for updating data in table "Status" */
+["Status_set_input"]: {
+		value?: string | undefined
+};
+	/** Streaming cursor of the table "Status" */
+["Status_stream_cursor_input"]: {
+		/** Stream column input with initial value */
+	initial_value: GraphQLTypes["Status_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: GraphQLTypes["cursor_ordering"] | undefined
+};
+	/** Initial value of the column from where the streaming should start */
+["Status_stream_cursor_value_input"]: {
+		value?: string | undefined
+};
+	/** update columns of table "Status" */
+["Status_update_column"]: Status_update_column;
+	["Status_updates"]: {
+		/** sets the columns of the filtered rows to the given values */
+	_set?: GraphQLTypes["Status_set_input"] | undefined,
+	/** filter the rows which have to be updated */
+	where: GraphQLTypes["Status_bool_exp"]
 };
 	/** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 ["String_comparison_exp"]: {
@@ -7828,6 +9671,19 @@ export type GraphQLTypes = {
 	_regex?: string | undefined,
 	/** does the column match the given SQL regular expression */
 	_similar?: string | undefined
+};
+	["bigint"]: "scalar" & { name: "bigint" };
+	/** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
+["bigint_comparison_exp"]: {
+		_eq?: GraphQLTypes["bigint"] | undefined,
+	_gt?: GraphQLTypes["bigint"] | undefined,
+	_gte?: GraphQLTypes["bigint"] | undefined,
+	_in?: Array<GraphQLTypes["bigint"]> | undefined,
+	_is_null?: boolean | undefined,
+	_lt?: GraphQLTypes["bigint"] | undefined,
+	_lte?: GraphQLTypes["bigint"] | undefined,
+	_neq?: GraphQLTypes["bigint"] | undefined,
+	_nin?: Array<GraphQLTypes["bigint"]> | undefined
 };
 	/** ordering argument of a cursor */
 ["cursor_ordering"]: cursor_ordering;
@@ -7875,6 +9731,10 @@ export type GraphQLTypes = {
 	delete_InstituteFunding_by_pk?: GraphQLTypes["InstituteFunding"] | undefined,
 	/** delete single row from the table: "Institute" */
 	delete_Institute_by_pk?: GraphQLTypes["Institute"] | undefined,
+	/** delete data from the table: "Status" */
+	delete_Status?: GraphQLTypes["Status_mutation_response"] | undefined,
+	/** delete single row from the table: "Status" */
+	delete_Status_by_pk?: GraphQLTypes["Status"] | undefined,
 	/** insert data into the table: "EGovernance" */
 	insert_EGovernance?: GraphQLTypes["EGovernance_mutation_response"] | undefined,
 	/** insert a single row into the table: "EGovernance" */
@@ -7903,6 +9763,10 @@ export type GraphQLTypes = {
 	insert_InstituteFunding_one?: GraphQLTypes["InstituteFunding"] | undefined,
 	/** insert a single row into the table: "Institute" */
 	insert_Institute_one?: GraphQLTypes["Institute"] | undefined,
+	/** insert data into the table: "Status" */
+	insert_Status?: GraphQLTypes["Status_mutation_response"] | undefined,
+	/** insert a single row into the table: "Status" */
+	insert_Status_one?: GraphQLTypes["Status"] | undefined,
 	/** update data of the table: "EGovernance" */
 	update_EGovernance?: GraphQLTypes["EGovernance_mutation_response"] | undefined,
 	/** update single row of the table: "EGovernance" */
@@ -7944,7 +9808,13 @@ export type GraphQLTypes = {
 	/** update single row of the table: "Institute" */
 	update_Institute_by_pk?: GraphQLTypes["Institute"] | undefined,
 	/** update multiples rows of table: "Institute" */
-	update_Institute_many?: Array<GraphQLTypes["Institute_mutation_response"] | undefined> | undefined
+	update_Institute_many?: Array<GraphQLTypes["Institute_mutation_response"] | undefined> | undefined,
+	/** update data of the table: "Status" */
+	update_Status?: GraphQLTypes["Status_mutation_response"] | undefined,
+	/** update single row of the table: "Status" */
+	update_Status_by_pk?: GraphQLTypes["Status"] | undefined,
+	/** update multiples rows of table: "Status" */
+	update_Status_many?: Array<GraphQLTypes["Status_mutation_response"] | undefined> | undefined
 };
 	/** column ordering options */
 ["order_by"]: order_by;
@@ -7991,7 +9861,13 @@ export type GraphQLTypes = {
 	/** fetch aggregated fields from the table: "Institute" */
 	Institute_aggregate: GraphQLTypes["Institute_aggregate"],
 	/** fetch data from the table: "Institute" using primary key columns */
-	Institute_by_pk?: GraphQLTypes["Institute"] | undefined
+	Institute_by_pk?: GraphQLTypes["Institute"] | undefined,
+	/** fetch data from the table: "Status" */
+	Status: Array<GraphQLTypes["Status"]>,
+	/** fetch aggregated fields from the table: "Status" */
+	Status_aggregate: GraphQLTypes["Status_aggregate"],
+	/** fetch data from the table: "Status" using primary key columns */
+	Status_by_pk?: GraphQLTypes["Status"] | undefined
 };
 	["subscription_root"]: {
 	__typename: "subscription_root",
@@ -8050,7 +9926,15 @@ export type GraphQLTypes = {
 	/** fetch data from the table: "Institute" using primary key columns */
 	Institute_by_pk?: GraphQLTypes["Institute"] | undefined,
 	/** fetch data from the table in a streaming manner: "Institute" */
-	Institute_stream: Array<GraphQLTypes["Institute"]>
+	Institute_stream: Array<GraphQLTypes["Institute"]>,
+	/** fetch data from the table: "Status" */
+	Status: Array<GraphQLTypes["Status"]>,
+	/** fetch aggregated fields from the table: "Status" */
+	Status_aggregate: GraphQLTypes["Status_aggregate"],
+	/** fetch data from the table: "Status" using primary key columns */
+	Status_by_pk?: GraphQLTypes["Status"] | undefined,
+	/** fetch data from the table in a streaming manner: "Status" */
+	Status_stream: Array<GraphQLTypes["Status"]>
 };
 	["timestamp"]: "scalar" & { name: "timestamp" };
 	/** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
@@ -8094,299 +9978,331 @@ export type GraphQLTypes = {
     }
 /** unique or primary key constraints on table "EGovernance" */
 export const enum EGovernance_constraint {
+	EGovernance_cursorId_key = "EGovernance_cursorId_key",
 	EGovernance_pkey = "EGovernance_pkey"
 }
 /** select columns of table "EGovernance" */
 export const enum EGovernance_select_column {
 	address = "address",
 	area = "area",
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
 	description = "description",
 	file = "file",
 	id = "id",
-	institute_id = "institute_id",
+	instituteId = "instituteId",
 	name = "name",
-	phone_no = "phone_no",
-	service_end_date = "service_end_date",
-	service_start_date = "service_start_date",
+	phoneNo = "phoneNo",
+	serviceEndDate = "serviceEndDate",
+	serviceStartDate = "serviceStartDate",
 	status = "status",
-	total_amount = "total_amount",
+	totalAmount = "totalAmount",
+	updatedAt = "updatedAt",
 	updatedById = "updatedById",
-	updated_at = "updated_at",
 	website = "website"
 }
 /** update columns of table "EGovernance" */
 export const enum EGovernance_update_column {
 	address = "address",
 	area = "area",
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
 	description = "description",
 	file = "file",
 	id = "id",
-	institute_id = "institute_id",
+	instituteId = "instituteId",
 	name = "name",
-	phone_no = "phone_no",
-	service_end_date = "service_end_date",
-	service_start_date = "service_start_date",
+	phoneNo = "phoneNo",
+	serviceEndDate = "serviceEndDate",
+	serviceStartDate = "serviceStartDate",
 	status = "status",
-	total_amount = "total_amount",
+	totalAmount = "totalAmount",
+	updatedAt = "updatedAt",
 	updatedById = "updatedById",
-	updated_at = "updated_at",
 	website = "website"
 }
 /** unique or primary key constraints on table "FacultyFunding" */
 export const enum FacultyFunding_constraint {
+	FacultyFunding_cursorId_key = "FacultyFunding_cursorId_key",
 	FacultyFunding_pkey = "FacultyFunding_pkey"
 }
 /** select columns of table "FacultyFunding" */
 export const enum FacultyFunding_select_column {
 	amount = "amount",
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
-	faculty_id = "faculty_id",
+	facultyId = "facultyId",
 	file = "file",
 	id = "id",
-	institute_id = "institute_id",
+	instituteId = "instituteId",
 	nature = "nature",
 	status = "status",
-	transaction_date = "transaction_date",
-	transaction_type = "transaction_type",
+	transactionDate = "transactionDate",
+	transactionType = "transactionType",
 	type = "type",
-	updatedById = "updatedById",
-	updated_at = "updated_at"
+	updatedAt = "updatedAt",
+	updatedById = "updatedById"
 }
 /** update columns of table "FacultyFunding" */
 export const enum FacultyFunding_update_column {
 	amount = "amount",
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
-	faculty_id = "faculty_id",
+	facultyId = "facultyId",
 	file = "file",
 	id = "id",
-	institute_id = "institute_id",
+	instituteId = "instituteId",
 	nature = "nature",
 	status = "status",
-	transaction_date = "transaction_date",
-	transaction_type = "transaction_type",
+	transactionDate = "transactionDate",
+	transactionType = "transactionType",
 	type = "type",
-	updatedById = "updatedById",
-	updated_at = "updated_at"
+	updatedAt = "updatedAt",
+	updatedById = "updatedById"
 }
 /** unique or primary key constraints on table "Faculty" */
 export const enum Faculty_constraint {
+	Faculty_cursorId_key = "Faculty_cursorId_key",
 	Faculty_pkey = "Faculty_pkey"
 }
 /** select columns of table "Faculty" */
 export const enum Faculty_select_column {
 	address = "address",
 	cast = "cast",
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
-	date_of_joining = "date_of_joining",
+	dateOfJoining = "dateOfJoining",
 	designation = "designation",
 	dob = "dob",
-	email_id = "email_id",
+	emailId = "emailId",
 	experience = "experience",
 	gender = "gender",
 	id = "id",
-	institute_id = "institute_id",
-	job_type = "job_type",
+	instituteId = "instituteId",
+	isVerified = "isVerified",
+	jobType = "jobType",
 	minority = "minority",
 	name = "name",
-	pan_card_no = "pan_card_no",
-	phone = "phone",
+	panCardNo = "panCardNo",
+	phoneNo = "phoneNo",
 	qualification = "qualification",
 	section = "section",
-	staff_type = "staff_type",
+	staffType = "staffType",
 	status = "status",
-	status_of_approval = "status_of_approval",
-	updatedById = "updatedById",
-	updated_at = "updated_at"
+	statusOfApproval = "statusOfApproval",
+	updatedAt = "updatedAt",
+	updatedById = "updatedById"
 }
 /** update columns of table "Faculty" */
 export const enum Faculty_update_column {
 	address = "address",
 	cast = "cast",
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
-	date_of_joining = "date_of_joining",
+	dateOfJoining = "dateOfJoining",
 	designation = "designation",
 	dob = "dob",
-	email_id = "email_id",
+	emailId = "emailId",
 	experience = "experience",
 	gender = "gender",
 	id = "id",
-	institute_id = "institute_id",
-	job_type = "job_type",
+	instituteId = "instituteId",
+	isVerified = "isVerified",
+	jobType = "jobType",
 	minority = "minority",
 	name = "name",
-	pan_card_no = "pan_card_no",
-	phone = "phone",
+	panCardNo = "panCardNo",
+	phoneNo = "phoneNo",
 	qualification = "qualification",
 	section = "section",
-	staff_type = "staff_type",
+	staffType = "staffType",
 	status = "status",
-	status_of_approval = "status_of_approval",
-	updatedById = "updatedById",
-	updated_at = "updated_at"
+	statusOfApproval = "statusOfApproval",
+	updatedAt = "updatedAt",
+	updatedById = "updatedById"
 }
 /** unique or primary key constraints on table "FdpPdp" */
 export const enum FdpPdp_constraint {
+	FdpPdp_cursorId_key = "FdpPdp_cursorId_key",
 	FdpPdp_pkey = "FdpPdp_pkey"
 }
 /** select columns of table "FdpPdp" */
 export const enum FdpPdp_select_column {
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
-	date_from = "date_from",
-	date_to = "date_to",
+	dateFrom = "dateFrom",
+	dateTo = "dateTo",
 	description = "description",
-	faculty_id = "faculty_id",
+	facultyId = "facultyId",
 	file = "file",
 	id = "id",
-	institute_id = "institute_id",
+	instituteId = "instituteId",
 	name = "name",
 	nature = "nature",
 	status = "status",
 	type = "type",
+	updatedAt = "updatedAt",
 	updatedById = "updatedById",
-	updated_at = "updated_at",
 	venue = "venue"
 }
 /** update columns of table "FdpPdp" */
 export const enum FdpPdp_update_column {
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
-	date_from = "date_from",
-	date_to = "date_to",
+	dateFrom = "dateFrom",
+	dateTo = "dateTo",
 	description = "description",
-	faculty_id = "faculty_id",
+	facultyId = "facultyId",
 	file = "file",
 	id = "id",
-	institute_id = "institute_id",
+	instituteId = "instituteId",
 	name = "name",
 	nature = "nature",
 	status = "status",
 	type = "type",
+	updatedAt = "updatedAt",
 	updatedById = "updatedById",
-	updated_at = "updated_at",
 	venue = "venue"
 }
 /** unique or primary key constraints on table "Genesis" */
 export const enum Genesis_constraint {
-	Genesis_email_id_key = "Genesis_email_id_key",
-	Genesis_phone_key = "Genesis_phone_key",
+	Genesis_emailId_key = "Genesis_emailId_key",
+	Genesis_phoneNo_key = "Genesis_phoneNo_key",
 	Genesis_pkey = "Genesis_pkey"
 }
 /** select columns of table "Genesis" */
 export const enum Genesis_select_column {
-	created_at = "created_at",
-	email_id = "email_id",
+	createdAt = "createdAt",
+	emailId = "emailId",
 	id = "id",
-	is_verified = "is_verified",
+	isVerified = "isVerified",
 	name = "name",
-	phone = "phone",
+	phoneNo = "phoneNo",
 	role = "role",
-	updated_at = "updated_at"
+	updatedAt = "updatedAt"
 }
 /** update columns of table "Genesis" */
 export const enum Genesis_update_column {
-	created_at = "created_at",
-	email_id = "email_id",
+	createdAt = "createdAt",
+	emailId = "emailId",
 	id = "id",
-	is_verified = "is_verified",
+	isVerified = "isVerified",
 	name = "name",
-	phone = "phone",
+	phoneNo = "phoneNo",
 	role = "role",
-	updated_at = "updated_at"
+	updatedAt = "updatedAt"
 }
 /** unique or primary key constraints on table "InstituteFunding" */
 export const enum InstituteFunding_constraint {
+	InstituteFunding_cursorId_key = "InstituteFunding_cursorId_key",
 	InstituteFunding_pkey = "InstituteFunding_pkey"
 }
 /** select columns of table "InstituteFunding" */
 export const enum InstituteFunding_select_column {
 	amount = "amount",
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
 	id = "id",
-	institute_id = "institute_id",
+	instituteId = "instituteId",
 	name = "name",
 	purpose = "purpose",
 	status = "status",
-	transaction_date = "transaction_date",
-	transaction_type = "transaction_type",
+	transactionDate = "transactionDate",
+	transactionType = "transactionType",
 	type = "type",
-	updatedById = "updatedById",
-	updated_at = "updated_at"
+	updatedAt = "updatedAt",
+	updatedById = "updatedById"
 }
 /** update columns of table "InstituteFunding" */
 export const enum InstituteFunding_update_column {
 	amount = "amount",
+	createdAt = "createdAt",
 	createdById = "createdById",
-	created_at = "created_at",
 	cursorId = "cursorId",
 	id = "id",
-	institute_id = "institute_id",
+	instituteId = "instituteId",
 	name = "name",
 	purpose = "purpose",
 	status = "status",
-	transaction_date = "transaction_date",
-	transaction_type = "transaction_type",
+	transactionDate = "transactionDate",
+	transactionType = "transactionType",
 	type = "type",
-	updatedById = "updatedById",
-	updated_at = "updated_at"
+	updatedAt = "updatedAt",
+	updatedById = "updatedById"
 }
 /** unique or primary key constraints on table "Institute" */
 export const enum Institute_constraint {
+	Institute_cursorId_key = "Institute_cursorId_key",
 	Institute_pkey = "Institute_pkey"
 }
 /** select columns of table "Institute" */
 export const enum Institute_select_column {
 	address = "address",
 	city = "city",
-	created_at = "created_at",
-	created_by_id = "created_by_id",
-	cursor_id = "cursor_id",
-	date_of_establishment = "date_of_establishment",
+	createdAt = "createdAt",
+	createdById = "createdById",
+	cursorId = "cursorId",
+	dateOfEstablishment = "dateOfEstablishment",
 	id = "id",
+	isVerified = "isVerified",
 	landmark = "landmark",
 	name = "name",
 	pin = "pin",
 	state = "state",
+	status = "status",
 	type = "type",
-	updated_at = "updated_at",
-	updated_by_id = "updated_by_id",
+	updatedAt = "updatedAt",
+	updatedById = "updatedById",
 	website = "website"
 }
 /** update columns of table "Institute" */
 export const enum Institute_update_column {
 	address = "address",
 	city = "city",
-	created_at = "created_at",
-	created_by_id = "created_by_id",
-	cursor_id = "cursor_id",
-	date_of_establishment = "date_of_establishment",
+	createdAt = "createdAt",
+	createdById = "createdById",
+	cursorId = "cursorId",
+	dateOfEstablishment = "dateOfEstablishment",
 	id = "id",
+	isVerified = "isVerified",
 	landmark = "landmark",
 	name = "name",
 	pin = "pin",
 	state = "state",
+	status = "status",
 	type = "type",
-	updated_at = "updated_at",
-	updated_by_id = "updated_by_id",
+	updatedAt = "updatedAt",
+	updatedById = "updatedById",
 	website = "website"
+}
+/** unique or primary key constraints on table "Status" */
+export const enum Status_constraint {
+	Status_pkey = "Status_pkey"
+}
+export const enum Status_enum {
+	ACTIVE = "ACTIVE",
+	APPROVED = "APPROVED",
+	DELETED = "DELETED",
+	INACTIVE = "INACTIVE",
+	PENDING = "PENDING",
+	REJECTED = "REJECTED"
+}
+/** select columns of table "Status" */
+export const enum Status_select_column {
+	value = "value"
+}
+/** update columns of table "Status" */
+export const enum Status_update_column {
+	value = "value"
 }
 /** ordering argument of a cursor */
 export const enum cursor_ordering {
@@ -8407,6 +10323,7 @@ type ZEUS_VARIABLES = {
 	["Boolean_comparison_exp"]: ValueTypes["Boolean_comparison_exp"];
 	["EGovernance_bool_exp"]: ValueTypes["EGovernance_bool_exp"];
 	["EGovernance_constraint"]: ValueTypes["EGovernance_constraint"];
+	["EGovernance_inc_input"]: ValueTypes["EGovernance_inc_input"];
 	["EGovernance_insert_input"]: ValueTypes["EGovernance_insert_input"];
 	["EGovernance_on_conflict"]: ValueTypes["EGovernance_on_conflict"];
 	["EGovernance_order_by"]: ValueTypes["EGovernance_order_by"];
@@ -8419,6 +10336,7 @@ type ZEUS_VARIABLES = {
 	["EGovernance_updates"]: ValueTypes["EGovernance_updates"];
 	["FacultyFunding_bool_exp"]: ValueTypes["FacultyFunding_bool_exp"];
 	["FacultyFunding_constraint"]: ValueTypes["FacultyFunding_constraint"];
+	["FacultyFunding_inc_input"]: ValueTypes["FacultyFunding_inc_input"];
 	["FacultyFunding_insert_input"]: ValueTypes["FacultyFunding_insert_input"];
 	["FacultyFunding_on_conflict"]: ValueTypes["FacultyFunding_on_conflict"];
 	["FacultyFunding_order_by"]: ValueTypes["FacultyFunding_order_by"];
@@ -8431,6 +10349,7 @@ type ZEUS_VARIABLES = {
 	["FacultyFunding_updates"]: ValueTypes["FacultyFunding_updates"];
 	["Faculty_bool_exp"]: ValueTypes["Faculty_bool_exp"];
 	["Faculty_constraint"]: ValueTypes["Faculty_constraint"];
+	["Faculty_inc_input"]: ValueTypes["Faculty_inc_input"];
 	["Faculty_insert_input"]: ValueTypes["Faculty_insert_input"];
 	["Faculty_on_conflict"]: ValueTypes["Faculty_on_conflict"];
 	["Faculty_order_by"]: ValueTypes["Faculty_order_by"];
@@ -8443,6 +10362,7 @@ type ZEUS_VARIABLES = {
 	["Faculty_updates"]: ValueTypes["Faculty_updates"];
 	["FdpPdp_bool_exp"]: ValueTypes["FdpPdp_bool_exp"];
 	["FdpPdp_constraint"]: ValueTypes["FdpPdp_constraint"];
+	["FdpPdp_inc_input"]: ValueTypes["FdpPdp_inc_input"];
 	["FdpPdp_insert_input"]: ValueTypes["FdpPdp_insert_input"];
 	["FdpPdp_on_conflict"]: ValueTypes["FdpPdp_on_conflict"];
 	["FdpPdp_order_by"]: ValueTypes["FdpPdp_order_by"];
@@ -8467,6 +10387,7 @@ type ZEUS_VARIABLES = {
 	["Genesis_updates"]: ValueTypes["Genesis_updates"];
 	["InstituteFunding_bool_exp"]: ValueTypes["InstituteFunding_bool_exp"];
 	["InstituteFunding_constraint"]: ValueTypes["InstituteFunding_constraint"];
+	["InstituteFunding_inc_input"]: ValueTypes["InstituteFunding_inc_input"];
 	["InstituteFunding_insert_input"]: ValueTypes["InstituteFunding_insert_input"];
 	["InstituteFunding_on_conflict"]: ValueTypes["InstituteFunding_on_conflict"];
 	["InstituteFunding_order_by"]: ValueTypes["InstituteFunding_order_by"];
@@ -8479,6 +10400,7 @@ type ZEUS_VARIABLES = {
 	["InstituteFunding_updates"]: ValueTypes["InstituteFunding_updates"];
 	["Institute_bool_exp"]: ValueTypes["Institute_bool_exp"];
 	["Institute_constraint"]: ValueTypes["Institute_constraint"];
+	["Institute_inc_input"]: ValueTypes["Institute_inc_input"];
 	["Institute_insert_input"]: ValueTypes["Institute_insert_input"];
 	["Institute_on_conflict"]: ValueTypes["Institute_on_conflict"];
 	["Institute_order_by"]: ValueTypes["Institute_order_by"];
@@ -8489,7 +10411,23 @@ type ZEUS_VARIABLES = {
 	["Institute_stream_cursor_value_input"]: ValueTypes["Institute_stream_cursor_value_input"];
 	["Institute_update_column"]: ValueTypes["Institute_update_column"];
 	["Institute_updates"]: ValueTypes["Institute_updates"];
+	["Status_bool_exp"]: ValueTypes["Status_bool_exp"];
+	["Status_constraint"]: ValueTypes["Status_constraint"];
+	["Status_enum"]: ValueTypes["Status_enum"];
+	["Status_enum_comparison_exp"]: ValueTypes["Status_enum_comparison_exp"];
+	["Status_insert_input"]: ValueTypes["Status_insert_input"];
+	["Status_on_conflict"]: ValueTypes["Status_on_conflict"];
+	["Status_order_by"]: ValueTypes["Status_order_by"];
+	["Status_pk_columns_input"]: ValueTypes["Status_pk_columns_input"];
+	["Status_select_column"]: ValueTypes["Status_select_column"];
+	["Status_set_input"]: ValueTypes["Status_set_input"];
+	["Status_stream_cursor_input"]: ValueTypes["Status_stream_cursor_input"];
+	["Status_stream_cursor_value_input"]: ValueTypes["Status_stream_cursor_value_input"];
+	["Status_update_column"]: ValueTypes["Status_update_column"];
+	["Status_updates"]: ValueTypes["Status_updates"];
 	["String_comparison_exp"]: ValueTypes["String_comparison_exp"];
+	["bigint"]: ValueTypes["bigint"];
+	["bigint_comparison_exp"]: ValueTypes["bigint_comparison_exp"];
 	["cursor_ordering"]: ValueTypes["cursor_ordering"];
 	["date"]: ValueTypes["date"];
 	["date_comparison_exp"]: ValueTypes["date_comparison_exp"];
