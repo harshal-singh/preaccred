@@ -34,7 +34,7 @@ export const useAddInstituteMutation = () => {
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({
-        queryKey: ['VerifiedInstitutes'],
+        queryKey: ['VerificationPendingInstitutes'],
       });
     },
     onError: (error) => {
@@ -69,7 +69,10 @@ export const useUpdateInstituteMutation = () => {
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({
-        queryKey: ['ActiveInstitutes', 'VerifiedInstitutes'],
+        queryKey: ['ActiveInstitutes'],
+      });
+      void queryClient.invalidateQueries({
+        queryKey: ['VerificationPendingInstitutes'],
       });
     },
     onError: (error) => {

@@ -1,6 +1,6 @@
 import { Text } from '@fluentui/react-components';
 import { useUpdateInstituteMutation } from 'api/mutations/useInstituteMutations';
-import { ModelTypes } from 'api/zeus';
+import { ModelTypes, Status_enum } from 'api/zeus';
 import {
   isUpdateDrawerOpenAtom,
   selectedInstituteAtom,
@@ -25,16 +25,20 @@ const useVerification = () => {
   const resetDrawer = useCallback(() => {
     setSelectedInstitute(null);
     setIsUpdateDrawerOpen(false);
-  }, [setSelectedTab, setSelectedInstitute, setIsUpdateDrawerOpen]);
+  }, [setSelectedInstitute, setIsUpdateDrawerOpen]);
 
   const handleUpdateStatus = useCallback(
     async (status: boolean) => {
       if (!selectedInstitute) return;
 
+      const updates = status
+        ? { isVerified: status }
+        : { status: Status_enum.DELETED };
+
       const res = await mutateAsync({
         id: selectedInstitute.id as string,
         data: {
-          isVerified: status,
+          ...updates,
           updatedById: '0d50626e-4395-4a85-94f6-6243a9b1f47f',
         },
       });

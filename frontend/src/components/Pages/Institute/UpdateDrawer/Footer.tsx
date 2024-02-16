@@ -1,17 +1,19 @@
 import { Button, DrawerFooter } from '@fluentui/react-components';
-import { isAddDrawerOpenAtom, selectedTabAtom } from 'atoms';
+import { isUpdateDrawerOpenAtom, selectedTabAtom } from 'atoms';
 import { useAtom, useSetAtom } from 'jotai';
 import { useCallback, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 import useUpdate from 'hooks/Institute/useUpdate';
 
-const useUpdateAndNextButton = () => {
+const useBackNextAndUpdateButton = () => {
   const [selectedTab, setSelectedTab] = useAtom(selectedTabAtom);
+
   const {
     handleSubmit,
     formState: { isValid },
   } = useFormContext();
+
   const { handleUpdateInstitute, isSuccess } = useUpdate();
 
   const prevStep = useCallback(() => {
@@ -52,7 +54,7 @@ const useUpdateAndNextButton = () => {
   };
 };
 
-const BackAndNextButton = () => {
+const BackNextAndUpdateButton = () => {
   const {
     isDetailTabSelected,
     isCriteriasTabSelected,
@@ -61,7 +63,7 @@ const BackAndNextButton = () => {
     isFormValid,
     handleUpdateInstitute,
     isSuccess,
-  } = useUpdateAndNextButton();
+  } = useBackNextAndUpdateButton();
 
   return (
     <div>
@@ -81,7 +83,7 @@ const BackAndNextButton = () => {
           isDetailTabSelected || isCriteriasTabSelected ? 'outline' : 'primary'
         }
         aria-label={
-          isDetailTabSelected || isCriteriasTabSelected ? 'Next' : 'Add'
+          isDetailTabSelected || isCriteriasTabSelected ? 'Next' : 'Update'
         }
         onClick={() => {
           return isDetailTabSelected || isCriteriasTabSelected
@@ -94,14 +96,14 @@ const BackAndNextButton = () => {
           (!isFormValid || isSuccess)
         }
       >
-        {isDetailTabSelected || isCriteriasTabSelected ? 'Next' : 'Add'}
+        {isDetailTabSelected || isCriteriasTabSelected ? 'Next' : 'Update'}
       </Button>
     </div>
   );
 };
 
 const CloseButton = () => {
-  const setIsOpen = useSetAtom(isAddDrawerOpenAtom);
+  const setIsOpen = useSetAtom(isUpdateDrawerOpenAtom);
   const setSelectedTab = useSetAtom(selectedTabAtom);
 
   return (
@@ -121,7 +123,7 @@ const CloseButton = () => {
 const Footer = () => {
   return (
     <DrawerFooter className="!justify-between">
-      <BackAndNextButton />
+      <BackNextAndUpdateButton />
       <CloseButton />
     </DrawerFooter>
   );

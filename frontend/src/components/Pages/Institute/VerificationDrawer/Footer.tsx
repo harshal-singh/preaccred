@@ -10,7 +10,7 @@ const ActionButton = () => {
 
   const actionText = action === 'resendEmail' ? 'resend email' : action;
 
-  const verify = action === 'approve' ? true : false;
+  const verify = action === 'approve';
 
   return (
     <Button

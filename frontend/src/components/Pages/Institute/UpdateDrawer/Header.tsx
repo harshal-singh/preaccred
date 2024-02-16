@@ -4,12 +4,12 @@ import {
   DrawerHeaderTitle,
 } from '@fluentui/react-components';
 import { Dismiss24Regular } from '@fluentui/react-icons';
-import { isAddDrawerOpenAtom, selectedTabAtom } from 'atoms';
+import { isUpdateDrawerOpenAtom, selectedTabAtom } from 'atoms';
 import { useSetAtom } from 'jotai';
 
 const CloseButton = () => {
   const setSelectedTab = useSetAtom(selectedTabAtom);
-  const setIsOpen = useSetAtom(isAddDrawerOpenAtom);
+  const setIsOpen = useSetAtom(isUpdateDrawerOpenAtom);
 
   return (
     <Button

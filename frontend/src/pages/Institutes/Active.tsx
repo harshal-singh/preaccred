@@ -16,8 +16,8 @@ import {
   Filter16Filled,
   MoreHorizontalRegular,
   Edit16Filled,
-  Add16Filled,
   Delete16Filled,
+  CheckmarkStarburst16Filled,
 } from '@fluentui/react-icons';
 import { ModelTypes } from 'api/zeus';
 import {
@@ -47,13 +47,16 @@ import toLocalDateAndTime from 'helpers/toLocalDateAndTime';
 const breadcrumbProps: CustomBreadcrumbProps = {
   links: [
     { name: 'home', url: '/' },
-    { name: 'institutes', url: '' },
+    { name: 'institutes', url: '/institutes/verification' },
     { name: 'active institutes', url: '/institutes/active' },
   ],
 };
 
 const columnSizingOptions: TableColumnSizingOptions = {
   name: {
+    idealWidth: 200,
+  },
+  isVerified: {
     idealWidth: 200,
   },
   type: {
@@ -126,6 +129,24 @@ const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
       ),
     };
   }, [setIsUpdateDrawerOpen, setIsDeleteDrawerOpen, setSelectedInstitute]);
+};
+
+const getVerificationStatus = (): TableColumnDefinition<
+  ModelTypes['Institute']
+> => {
+  return {
+    columnId: 'isVerified',
+    compare: (a, b) => 0,
+    renderHeaderCell: (data) => 'verification status',
+    renderCell: (item) => (
+      <TableCellLayout>
+        <span className=" flex items-center">
+          <CheckmarkStarburst16Filled className="text-greenCyan10 mr-2" />
+          Verified
+        </span>
+      </TableCellLayout>
+    ),
+  };
 };
 
 const getType = (): TableColumnDefinition<ModelTypes['Institute']> => {
@@ -239,6 +260,7 @@ const useTableProps = () => {
   const columns: TableColumnDefinition<ModelTypes['Institute']>[] = useMemo(
     () => [
       name,
+      getVerificationStatus(),
       getType(),
       getDateOfEstablishment(),
       getWebsite(),

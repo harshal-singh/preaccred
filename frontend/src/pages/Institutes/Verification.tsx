@@ -20,7 +20,7 @@ import {
   ThumbDislike16Filled,
   Send16Filled,
   CheckmarkStarburst16Filled,
-  ErrorCircle16Regular,
+  CircleHintHalfVertical16Regular,
 } from '@fluentui/react-icons';
 import { ModelTypes } from 'api/zeus';
 import {
@@ -42,7 +42,7 @@ import AddInstituteDrawer from 'components/Pages/Institute/AddDrawer';
 import VerificationDrawer from 'components/Pages/Institute/VerificationDrawer';
 
 import useDeleteInstitute from 'hooks/Institute/useDelete';
-import useGetVerified from 'hooks/Institute/useGetVerified';
+import useGetVerificationPending from 'hooks/Institute/useGetVerificationPending';
 
 import compareDates from 'helpers/compareDates';
 import compareString from 'helpers/compareString';
@@ -58,6 +58,9 @@ const breadcrumbProps: CustomBreadcrumbProps = {
 
 const columnSizingOptions: TableColumnSizingOptions = {
   name: {
+    idealWidth: 200,
+  },
+  isVerified: {
     idealWidth: 200,
   },
   type: {
@@ -163,25 +166,19 @@ const getVerificationStatus = (): TableColumnDefinition<
     compare: (a, b) => 0,
     renderHeaderCell: (data) => 'verification status',
     renderCell: (item) => (
-      <Tooltip
-        content={item.isVerified ? 'Verified' : ''}
-        relationship="inaccessible"
-        withArrow
-      >
-        <TableCellLayout>
-          {item.isVerified ? (
-            <span className=" flex items-center">
-              <CheckmarkStarburst16Filled className="text-greenCyan10 mr-2" />
-              Verified
-            </span>
-          ) : (
-            <span className="flex items-center">
-              <ErrorCircle16Regular className="text-gray120 mr-2" />
-              Pending
-            </span>
-          )}
-        </TableCellLayout>
-      </Tooltip>
+      <TableCellLayout>
+        {item.isVerified ? (
+          <span className=" flex items-center">
+            <CheckmarkStarburst16Filled className="text-greenCyan10 mr-2" />
+            Verified
+          </span>
+        ) : (
+          <span className="flex items-center">
+            <CircleHintHalfVertical16Regular className="text-gray120 mr-2" />
+            Pending
+          </span>
+        )}
+      </TableCellLayout>
     ),
   };
 };
@@ -277,7 +274,7 @@ const useTableProps = () => {
     isFetchingNextPage,
     error,
     isError,
-  } = useGetVerified();
+  } = useGetVerificationPending();
 
   const name = useName();
 

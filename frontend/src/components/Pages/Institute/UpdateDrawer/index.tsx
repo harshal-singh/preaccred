@@ -1,7 +1,11 @@
 import { Drawer, DrawerBody, DrawerProps } from '@fluentui/react-components';
 import { ModelTypes } from 'api/zeus';
-import { isAddDrawerOpenAtom, selectedTabAtom } from 'atoms';
-import { useSetAtom } from 'jotai';
+import {
+  isUpdateDrawerOpenAtom,
+  selectedInstituteAtom,
+  selectedTabAtom,
+} from 'atoms';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { ReactNode, useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -10,7 +14,7 @@ import Header from './Header';
 import Body from '../Body';
 
 const useDrawerProps = (): DrawerProps => {
-  const setIsOpen = useSetAtom(isAddDrawerOpenAtom);
+  const setIsOpen = useSetAtom(isUpdateDrawerOpenAtom);
   const setSelectedTab = useSetAtom(selectedTabAtom);
 
   return useMemo(
@@ -27,20 +31,24 @@ const useDrawerProps = (): DrawerProps => {
   );
 };
 
-const useAdd = () => {
+const useUpdate = () => {
+  const selectedInstitute = useAtomValue(selectedInstituteAtom);
+
   const formMethods = useForm<Partial<ModelTypes['Institute']>>({
     mode: 'all',
     reValidateMode: 'onChange',
     defaultValues: {
-      name: '',
-      website: '',
-      dateOfEstablishment: '',
-      type: '',
-      address: '',
-      landmark: '',
-      city: '',
-      state: '',
-      pin: '',
+      name: selectedInstitute?.name,
+      website: selectedInstitute?.website,
+      dateOfEstablishment: new Date(
+        selectedInstitute?.dateOfEstablishment as string,
+      ),
+      type: selectedInstitute?.type,
+      address: selectedInstitute?.address,
+      landmark: selectedInstitute?.landmark,
+      city: selectedInstitute?.city,
+      state: selectedInstitute?.state,
+      pin: selectedInstitute?.pin,
     },
   });
 
@@ -50,11 +58,11 @@ const useAdd = () => {
 };
 
 const Form = ({ children }: { children: ReactNode }) => {
-  const { formMethods } = useAdd();
+  const { formMethods } = useUpdate();
   return <FormProvider {...formMethods}>{children}</FormProvider>;
 };
 
-const AddIndustryDrawer = () => {
+const UpdateIndustryDrawer = () => {
   const drawerProps = useDrawerProps();
 
   return (
@@ -70,4 +78,4 @@ const AddIndustryDrawer = () => {
   );
 };
 
-export default AddIndustryDrawer;
+export default UpdateIndustryDrawer;

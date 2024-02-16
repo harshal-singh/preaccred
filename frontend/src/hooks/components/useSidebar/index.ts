@@ -69,18 +69,8 @@ const useSidebar = () => {
             ariaLabel: 'Home',
           },
           {
-            name: 'Institutes Verification',
-            url: '/institutes/verification',
-            iconProps: {
-              iconName: 'EngineeringGroup',
-              ...commonIconProps,
-            },
-            key: '/institutes/verification',
-            ariaLabel: 'Institutes Verification',
-          },
-          {
             name: 'Institute Management',
-            url: '/institutes/active',
+            url: '/institutes/verification',
             iconProps: {
               iconName: 'CityNext',
               ...commonIconProps,
@@ -89,6 +79,16 @@ const useSidebar = () => {
             expandAriaLabel: 'Expand Institute Management',
             collapseAriaLabel: 'Collapse Institute Management',
             links: [
+              {
+                name: 'Verification',
+                url: '/institutes/verification',
+                iconProps: {
+                  iconName: 'HomeGroup',
+                  ...commonIconProps,
+                },
+                key: '/institutes/verification',
+                ariaLabel: 'Verification',
+              },
               {
                 name: 'Active Institute',
                 url: '/institutes/active',
@@ -112,13 +112,14 @@ const useSidebar = () => {
             ],
             isExpanded:
               selectedKey === 'institute-management' ||
+              selectedKey === '/institutes/verification' ||
               selectedKey === '/institutes/active' ||
               selectedKey === '/institutes/deleted',
           },
         ],
       },
     ],
-    [handleLinkClick, selectedKey, showSidebarLinkName],
+    [selectedKey, showSidebarLinkName],
   );
 
   useEffect(() => {

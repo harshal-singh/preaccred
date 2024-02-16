@@ -2,7 +2,7 @@ import { useGetInstitute } from 'api/queries/useInstituteQueries';
 import { Status_enum } from 'api/zeus';
 import { useMemo } from 'react';
 
-const useGetVerified = () => {
+const useGetVerificationPending = () => {
   const {
     data,
     isLoading,
@@ -17,8 +17,11 @@ const useGetVerified = () => {
       status: {
         _eq: Status_enum.ACTIVE,
       },
+      isVerified: {
+        _eq: false,
+      },
     },
-    queryKey: 'VerifiedInstitutes',
+    queryKey: 'VerificationPendingInstitutes',
   });
 
   const institutes = useMemo(() => {
@@ -38,4 +41,4 @@ const useGetVerified = () => {
   };
 };
 
-export default useGetVerified;
+export default useGetVerificationPending;

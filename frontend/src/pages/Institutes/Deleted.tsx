@@ -1,32 +1,19 @@
 import {
   Button,
   Link,
-  Menu,
-  MenuItem,
-  MenuList,
-  MenuPopover,
-  MenuTrigger,
-  TableCellActions,
   TableCellLayout,
   TableColumnDefinition,
   TableColumnSizingOptions,
   Tooltip,
 } from '@fluentui/react-components';
-import {
-  Filter16Filled,
-  MoreHorizontalRegular,
-  Edit16Filled,
-  Add16Filled,
-  Delete16Filled,
-} from '@fluentui/react-icons';
+import { Filter16Filled, DismissCircle16Regular } from '@fluentui/react-icons';
 import { ModelTypes } from 'api/zeus';
 import {
   isDeleteDrawerOpenAtom,
   isAddDrawerOpenAtom,
   isUpdateDrawerOpenAtom,
-  selectedInstituteAtom,
 } from 'atoms';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import { memo, useMemo } from 'react';
 
 import { CustomBreadcrumbProps } from 'components/CustomBreadcrumb';
@@ -47,7 +34,7 @@ import toLocalDateAndTime from 'helpers/toLocalDateAndTime';
 const breadcrumbProps: CustomBreadcrumbProps = {
   links: [
     { name: 'home', url: '/' },
-    { name: 'institutes', url: '/institutes/active' },
+    { name: 'institutes', url: '/institutes/verification' },
     { name: 'deleted institutes', url: '/institutes/deleted' },
   ],
 };
@@ -82,6 +69,24 @@ const getName = (): TableColumnDefinition<ModelTypes['Institute']> => {
       <Tooltip content={item.name} relationship="inaccessible" withArrow>
         <TableCellLayout truncate>{item.name}</TableCellLayout>
       </Tooltip>
+    ),
+  };
+};
+
+const getVerificationStatus = (): TableColumnDefinition<
+  ModelTypes['Institute']
+> => {
+  return {
+    columnId: 'isVerified',
+    compare: (a, b) => 0,
+    renderHeaderCell: (data) => 'verification status',
+    renderCell: (item) => (
+      <TableCellLayout>
+        <span className="flex items-center">
+          <DismissCircle16Regular className="text-gray120 mr-2" />
+          Rejected
+        </span>
+      </TableCellLayout>
     ),
   };
 };
@@ -195,6 +200,7 @@ const useTableProps = () => {
   const columns: TableColumnDefinition<ModelTypes['Institute']>[] = useMemo(
     () => [
       getName(),
+      getVerificationStatus(),
       getType(),
       getDateOfEstablishment(),
       getWebsite(),
@@ -234,19 +240,6 @@ const useTableProps = () => {
   ]);
 };
 
-const Add = memo(() => {
-  const setIsAddDrawerOpen = useSetAtom(isAddDrawerOpenAtom);
-  return (
-    <Button
-      icon={<Add16Filled />}
-      appearance="subtle"
-      onClick={() => setIsAddDrawerOpen(true)}
-    >
-      Add
-    </Button>
-  );
-});
-
 const Filter = memo(() => {
   return (
     <Button icon={<Filter16Filled />} appearance="subtle">
@@ -265,8 +258,7 @@ const Institutes = () => {
 
   return (
     <PageLayout breadcrumb={breadcrumbProps}>
-      <div className="w-full flex items-center justify-between mb-4">
-        <Add />
+      <div className="w-full flex items-center justify-end mb-4">
         <div className="flex items-center gap-2">
           <Filter />
           <CustomSearchBox placeholder="Search institute" />
