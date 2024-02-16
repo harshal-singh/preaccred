@@ -16,7 +16,7 @@ const useStyle = makeStyles({
       backgroundColor: tokens.colorSubtleBackgroundHover,
     },
     '&.active': {
-      borderLeftColor: tokens.colorPaletteBlueBorderActive,
+      borderLeftColor: tokens.colorBrandBackgroundStatic,
       backgroundColor: tokens.colorSubtleBackgroundPressed,
     },
   },

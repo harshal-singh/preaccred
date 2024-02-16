@@ -18,6 +18,9 @@ import {
   Edit16Filled,
   Add16Filled,
   Delete16Filled,
+  ThumbLike16Filled,
+  ThumbDislike16Filled,
+  Send16Filled,
 } from '@fluentui/react-icons';
 import { ModelTypes } from 'api/zeus';
 import {
@@ -25,6 +28,8 @@ import {
   isAddDrawerOpenAtom,
   isUpdateDrawerOpenAtom,
   selectedInstituteAtom,
+  actionAtom,
+  isManageDrawerOpenAtom,
 } from 'atoms';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { memo, useMemo } from 'react';
@@ -38,7 +43,7 @@ import AddInstituteDrawer from 'components/Pages/Institute/AddDrawer';
 import UpdateInstituteDrawer from 'components/Pages/Institute/UpdateDrawer';
 
 import useDeleteInstitute from 'hooks/Institute/useDelete';
-import useActiveInstitutes from 'hooks/Institute/useGetActive';
+import useGetVerified from 'hooks/Institute/useGetVerified';
 
 import compareDates from 'helpers/compareDates';
 import compareString from 'helpers/compareString';
@@ -48,41 +53,35 @@ const breadcrumbProps: CustomBreadcrumbProps = {
   links: [
     { name: 'home', url: '/' },
     { name: 'institutes', url: '' },
-    { name: 'active institutes', url: '/institutes/active' },
+    { name: 'institutes verification', url: '/institutes/verification' },
   ],
 };
 
 const columnSizingOptions: TableColumnSizingOptions = {
   name: {
-    minWidth: 120,
     idealWidth: 200,
   },
   type: {
-    minWidth: 120,
     idealWidth: 200,
   },
   dateOfEstablishment: {
-    minWidth: 120,
     idealWidth: 200,
   },
   website: {
-    minWidth: 120,
     idealWidth: 200,
   },
   address: {
-    minWidth: 120,
     idealWidth: 200,
   },
   createAt: {
-    minWidth: 120,
     idealWidth: 200,
   },
 };
 
 const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
   const setSelectedInstitute = useSetAtom(selectedInstituteAtom);
-  const setIsUpdateDrawerOpen = useSetAtom(isUpdateDrawerOpenAtom);
-  const setIsDeleteDrawerOpen = useSetAtom(isDeleteDrawerOpenAtom);
+  const setIsManageDrawerOpen = useSetAtom(isManageDrawerOpenAtom);
+  const setAction = useSetAtom(actionAtom);
 
   return useMemo(() => {
     return {
@@ -90,48 +89,58 @@ const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
       compare: (a, b) => compareString(a.name, b.name),
       renderHeaderCell: (data) => 'Name',
       renderCell: (item) => (
-        <Tooltip content={item.name} relationship="inaccessible" withArrow>
-          <TableCellLayout truncate>
-            {item.name}
-            <TableCellActions>
-              <Menu>
-                <MenuTrigger>
-                  <Button
-                    appearance="subtle"
-                    aria-label="more"
-                    icon={<MoreHorizontalRegular />}
-                  />
-                </MenuTrigger>
+        <TableCellLayout truncate>
+          {item.name}
+          <TableCellActions>
+            <Menu>
+              <MenuTrigger>
+                <Button
+                  appearance="subtle"
+                  aria-label="TenantVerificationActions"
+                  icon={<MoreHorizontalRegular />}
+                />
+              </MenuTrigger>
 
-                <MenuPopover>
-                  <MenuList>
-                    <MenuItem
-                      icon={<Edit16Filled />}
-                      onClick={() => {
-                        setSelectedInstitute(item);
-                        setIsUpdateDrawerOpen(true);
-                      }}
-                    >
-                      Update
-                    </MenuItem>
-                    <MenuItem
-                      icon={<Delete16Filled />}
-                      onClick={() => {
-                        setSelectedInstitute(item);
-                        setIsDeleteDrawerOpen(true);
-                      }}
-                    >
-                      Delete
-                    </MenuItem>
-                  </MenuList>
-                </MenuPopover>
-              </Menu>
-            </TableCellActions>
-          </TableCellLayout>
-        </Tooltip>
+              <MenuPopover>
+                <MenuList>
+                  <MenuItem
+                    icon={<ThumbLike16Filled />}
+                    onClick={() => {
+                      setSelectedInstitute(item);
+                      setAction('approve');
+                      setIsManageDrawerOpen(true);
+                    }}
+                  >
+                    Approve
+                  </MenuItem>
+                  <MenuItem
+                    icon={<ThumbDislike16Filled />}
+                    onClick={() => {
+                      setSelectedInstitute(item);
+                      setAction('reject');
+                      setIsManageDrawerOpen(true);
+                    }}
+                  >
+                    Reject
+                  </MenuItem>
+                  <MenuItem
+                    icon={<Send16Filled />}
+                    onClick={() => {
+                      setSelectedInstitute(item);
+                      setAction('resendEmail');
+                      setIsManageDrawerOpen(true);
+                    }}
+                  >
+                    Resend Email
+                  </MenuItem>
+                </MenuList>
+              </MenuPopover>
+            </Menu>
+          </TableCellActions>
+        </TableCellLayout>
       ),
     };
-  }, [setIsUpdateDrawerOpen, setIsDeleteDrawerOpen, setSelectedInstitute]);
+  }, [setSelectedInstitute, setAction, setIsManageDrawerOpen]);
 };
 
 const getType = (): TableColumnDefinition<ModelTypes['Institute']> => {
@@ -178,7 +187,14 @@ const getWebsite = (): TableColumnDefinition<ModelTypes['Institute']> => {
     renderCell: (item) => (
       <Tooltip content={item.website} relationship="inaccessible" withArrow>
         <TableCellLayout truncate>
-          <Link href={item.website}>{item.website}</Link>
+          <Link
+            href={item.website}
+            target="_blank"
+            rel="noopener"
+            referrerPolicy="no-referrer"
+          >
+            {item.website}
+          </Link>
         </TableCellLayout>
       </Tooltip>
     ),
@@ -195,8 +211,14 @@ const getAddress = (): TableColumnDefinition<ModelTypes['Institute']> => {
       ),
     renderHeaderCell: (data) => 'Address',
     renderCell: (item) => (
-      <Tooltip content={item.address} relationship="inaccessible" withArrow>
-        <TableCellLayout truncate>{item.address}</TableCellLayout>
+      <Tooltip
+        content={`${item.address}, ${item.landmark}, ${item.city}, ${item.state} ${item.pin}`}
+        relationship="inaccessible"
+        withArrow
+      >
+        <TableCellLayout
+          truncate
+        >{`${item.address}, ${item.landmark}, ${item.city}, ${item.state} ${item.pin}`}</TableCellLayout>
       </Tooltip>
     ),
   };
@@ -225,7 +247,7 @@ const useTableProps = () => {
     isFetchingNextPage,
     error,
     isError,
-  } = useActiveInstitutes();
+  } = useGetVerified();
 
   const name = useName();
 
@@ -292,7 +314,7 @@ const Filter = memo(() => {
   );
 });
 
-const Institutes = () => {
+const Verification = () => {
   const isDeleteDrawerOpen = useAtomValue(isDeleteDrawerOpenAtom);
   const isAddDrawerOpen = useAtomValue(isAddDrawerOpenAtom);
   const isUpdateDrawerOpen = useAtomValue(isUpdateDrawerOpenAtom);
@@ -327,4 +349,4 @@ const Institutes = () => {
   );
 };
 
-export default Institutes;
+export default Verification;

@@ -1,5 +1,9 @@
 // eslint-disable import/no-extraneous-dependencies
-import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import {
+  FluentProvider,
+  webLightTheme,
+  teamsLightTheme,
+} from '@fluentui/react-components';
 import {
   init,
   BrowserTracing,
@@ -64,7 +68,7 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.querySelector('#root')!).render(
   <StrictMode>
-    <FluentProvider theme={webLightTheme}>
+    <FluentProvider theme={teamsLightTheme}>
       <QueryClientProvider client={queryClient}>
         <ToastProvider>
           <BrowserRouter>

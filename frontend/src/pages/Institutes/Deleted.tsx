@@ -38,7 +38,7 @@ import AddInstituteDrawer from 'components/Pages/Institute/AddDrawer';
 import UpdateInstituteDrawer from 'components/Pages/Institute/UpdateDrawer';
 
 import useDeleteInstitute from 'hooks/Institute/useDelete';
-import useActiveInstitutes from 'hooks/Institute/useGetActive';
+import useActiveInstitutes from 'hooks/Institute/useGetDeleted';
 
 import compareDates from 'helpers/compareDates';
 import compareString from 'helpers/compareString';
@@ -67,59 +67,17 @@ const columnSizingOptions: TableColumnSizingOptions = {
   },
 };
 
-const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
-  const setSelectedInstitute = useSetAtom(selectedInstituteAtom);
-  const setIsUpdateDrawerOpen = useSetAtom(isUpdateDrawerOpenAtom);
-  const setIsDeleteDrawerOpen = useSetAtom(isDeleteDrawerOpenAtom);
-
-  return useMemo(() => {
-    return {
-      columnId: 'name',
-      compare: (a, b) => compareString(a.name, b.name),
-      renderHeaderCell: (data) => 'Name',
-      renderCell: (item) => (
-        <Tooltip content={item.name} relationship="inaccessible" withArrow>
-          <TableCellLayout truncate>
-            {item.name}
-            <TableCellActions>
-              <Menu>
-                <MenuTrigger>
-                  <Button
-                    appearance="subtle"
-                    aria-label="more"
-                    icon={<MoreHorizontalRegular />}
-                  />
-                </MenuTrigger>
-
-                <MenuPopover>
-                  <MenuList>
-                    <MenuItem
-                      icon={<Edit16Filled />}
-                      onClick={() => {
-                        setSelectedInstitute(item);
-                        setIsUpdateDrawerOpen(true);
-                      }}
-                    >
-                      Update
-                    </MenuItem>
-                    <MenuItem
-                      icon={<Delete16Filled />}
-                      onClick={() => {
-                        setSelectedInstitute(item);
-                        setIsDeleteDrawerOpen(true);
-                      }}
-                    >
-                      Delete
-                    </MenuItem>
-                  </MenuList>
-                </MenuPopover>
-              </Menu>
-            </TableCellActions>
-          </TableCellLayout>
-        </Tooltip>
-      ),
-    };
-  }, [setIsUpdateDrawerOpen, setIsDeleteDrawerOpen, setSelectedInstitute]);
+const getName = (): TableColumnDefinition<ModelTypes['Institute']> => {
+  return {
+    columnId: 'name',
+    compare: (a, b) => compareString(a.name, b.name),
+    renderHeaderCell: (data) => 'Name',
+    renderCell: (item) => (
+      <Tooltip content={item.name} relationship="inaccessible" withArrow>
+        <TableCellLayout truncate>{item.name}</TableCellLayout>
+      </Tooltip>
+    ),
+  };
 };
 
 const getType = (): TableColumnDefinition<ModelTypes['Institute']> => {
@@ -166,7 +124,14 @@ const getWebsite = (): TableColumnDefinition<ModelTypes['Institute']> => {
     renderCell: (item) => (
       <Tooltip content={item.website} relationship="inaccessible" withArrow>
         <TableCellLayout truncate>
-          <Link href={item.website}>{item.website}</Link>
+          <Link
+            href={item.website}
+            target="_blank"
+            rel="noopener"
+            referrerPolicy="no-referrer"
+          >
+            {item.website}
+          </Link>
         </TableCellLayout>
       </Tooltip>
     ),
@@ -183,8 +148,14 @@ const getAddress = (): TableColumnDefinition<ModelTypes['Institute']> => {
       ),
     renderHeaderCell: (data) => 'Address',
     renderCell: (item) => (
-      <Tooltip content={item.address} relationship="inaccessible" withArrow>
-        <TableCellLayout truncate>{item.address}</TableCellLayout>
+      <Tooltip
+        content={`${item.address}, ${item.landmark}, ${item.city}, ${item.state} ${item.pin}`}
+        relationship="inaccessible"
+        withArrow
+      >
+        <TableCellLayout
+          truncate
+        >{`${item.address}, ${item.landmark}, ${item.city}, ${item.state} ${item.pin}`}</TableCellLayout>
       </Tooltip>
     ),
   };
@@ -215,18 +186,16 @@ const useTableProps = () => {
     isError,
   } = useActiveInstitutes();
 
-  const name = useName();
-
   const columns: TableColumnDefinition<ModelTypes['Institute']>[] = useMemo(
     () => [
-      name,
+      getName(),
       getType(),
       getDateOfEstablishment(),
       getWebsite(),
       getAddress(),
       getCreateAt(),
     ],
-    [name],
+    [],
   );
 
   return useMemo(() => {

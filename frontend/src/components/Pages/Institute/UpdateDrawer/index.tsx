@@ -1,46 +1,46 @@
 import { Drawer, DrawerBody, DrawerProps } from '@fluentui/react-components';
 import { ModelTypes } from 'api/zeus';
-import { isUpdateDrawerOpenAtom, selectedInstituteAtom } from 'atoms';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { isAddDrawerOpenAtom, selectedTabAtom } from 'atoms';
+import { useSetAtom } from 'jotai';
 import { ReactNode, useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Body from './Body';
 import Footer from './Footer';
 import Header from './Header';
+import Body from '../Body';
 
 const useDrawerProps = (): DrawerProps => {
-  const setIsOpen = useSetAtom(isUpdateDrawerOpenAtom);
+  const setIsOpen = useSetAtom(isAddDrawerOpenAtom);
+  const setSelectedTab = useSetAtom(selectedTabAtom);
 
   return useMemo(
     () => ({
-      size: 'small',
+      size: 'large',
       position: 'end',
       open: true,
       onOpenChange: () => {
+        setSelectedTab('details');
         setIsOpen(false);
       },
     }),
-    [setIsOpen],
+    [setIsOpen, setSelectedTab],
   );
 };
 
-const useUpdate = () => {
-  const selectedInstitute = useAtomValue(selectedInstituteAtom);
-
+const useAdd = () => {
   const formMethods = useForm<Partial<ModelTypes['Institute']>>({
     mode: 'all',
     reValidateMode: 'onChange',
     defaultValues: {
-      name: selectedInstitute?.name,
-      website: selectedInstitute?.website,
-      dateOfEstablishment: selectedInstitute?.dateOfEstablishment as string,
-      type: selectedInstitute?.type,
-      address: selectedInstitute?.address,
-      landmark: selectedInstitute?.landmark,
-      city: selectedInstitute?.city,
-      state: selectedInstitute?.state,
-      pin: selectedInstitute?.pin,
+      name: '',
+      website: '',
+      dateOfEstablishment: '',
+      type: '',
+      address: '',
+      landmark: '',
+      city: '',
+      state: '',
+      pin: '',
     },
   });
 
@@ -50,18 +50,18 @@ const useUpdate = () => {
 };
 
 const Form = ({ children }: { children: ReactNode }) => {
-  const { formMethods } = useUpdate();
+  const { formMethods } = useAdd();
   return <FormProvider {...formMethods}>{children}</FormProvider>;
 };
 
-const UpdateInstituteDrawer = () => {
+const AddIndustryDrawer = () => {
   const drawerProps = useDrawerProps();
 
   return (
     <Drawer {...drawerProps}>
       <Header />
       <Form>
-        <DrawerBody className="border-y">
+        <DrawerBody className="flex !overflow-hidden border-y">
           <Body />
         </DrawerBody>
         <Footer />
@@ -70,4 +70,4 @@ const UpdateInstituteDrawer = () => {
   );
 };
 
-export default UpdateInstituteDrawer;
+export default AddIndustryDrawer;

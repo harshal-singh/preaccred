@@ -3,56 +3,53 @@ import {
   SelectTabEvent,
   Tab,
   TabList,
-  TabValue,
 } from '@fluentui/react-components';
 import { Circle24Filled, Circle24Regular } from '@fluentui/react-icons';
-import { Dispatch } from 'react';
+import { selectedTabAtom } from 'atoms';
+import { useAtom } from 'jotai';
 
-const getIcon = (value: string, selectedTabValue: unknown) => {
-  if (selectedTabValue === value) {
+const getIcon = (value: string, selectedTab: unknown) => {
+  if (selectedTab === value) {
     return <Circle24Filled />;
   }
 
   return <Circle24Regular />;
 };
 
-type Props = {
-  selectedTabValue: TabValue;
-  setSelectedTabValue: Dispatch<unknown>;
-};
+const Tabs = () => {
+  const [selectedTab, setSelectedTab] = useAtom(selectedTabAtom);
 
-const Tabs = ({ selectedTabValue, setSelectedTabValue }: Props) => {
   const onTabSelect = (_: SelectTabEvent, data: SelectTabData) => {
-    setSelectedTabValue(data.value);
+    setSelectedTab(data.value as string);
   };
 
   return (
     <TabList
       vertical
-      selectedValue={selectedTabValue}
+      selectedValue={selectedTab}
       onTabSelect={onTabSelect}
       className="w-36 border-r pr-3 mr-6"
     >
       <Tab
-        id="basic"
-        value="basic"
-        icon={getIcon('basic', selectedTabValue)}
+        id="details"
+        value="details"
+        icon={getIcon('details', selectedTab)}
         className="mt-10"
       >
-        Basic
+        Details
       </Tab>
       <Tab
-        id="packages"
-        value="packages"
-        icon={getIcon('packages', selectedTabValue)}
+        id="criterias"
+        value="criterias"
+        icon={getIcon('criterias', selectedTab)}
         className="mt-10"
       >
-        Packages
+        Criteria&apos;s
       </Tab>
       <Tab
         id="finish"
         value="finish"
-        icon={getIcon('finish', selectedTabValue)}
+        icon={getIcon('finish', selectedTab)}
         className="mt-10"
       >
         Finish

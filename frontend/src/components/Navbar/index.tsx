@@ -14,8 +14,6 @@ import { useAtom } from 'jotai';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-import PreaccredLogo_164x30 from 'assets/preaccred-logo-164x30.png';
-
 const useStyle = makeStyles({
   nav: {
     backgroundColor: tokens.colorBrandBackground2,
@@ -34,10 +32,9 @@ const Navbar = () => {
     >
       <Link to="/">
         <Image
-          src={PreaccredLogo_164x30}
+          src="/images/preaccred-logo-180px.png"
           alt="preaccred logo"
-          width={164}
-          height={30}
+          width={180}
         />
       </Link>
 

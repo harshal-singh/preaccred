@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { useInfiniteQuery } from '@tanstack/react-query';
 import client from 'api/client';
 import { ModelTypes, order_by } from 'api/zeus';
@@ -7,14 +8,14 @@ export const useGetInstitute = ({
   filter = {},
 }: {
   queryKey: string;
-  filter?: ModelTypes['institute_bool_exp'];
+  filter?: ModelTypes['Institute_bool_exp'];
 }) =>
   useInfiniteQuery({
     queryKey: [queryKey, filter],
     queryFn: async ({ pageParam: lastCursorId }) => {
       try {
         const res = await client('query')({
-          institute_aggregate: [
+          Institute_aggregate: [
             {},
             {
               aggregate: {
@@ -24,7 +25,7 @@ export const useGetInstitute = ({
               },
             },
           ],
-          institute: [
+          Institute: [
             {
               limit: 100,
               where: {
@@ -37,7 +38,7 @@ export const useGetInstitute = ({
               id: true,
               name: true,
               website: true,
-              date_of_establishment: true,
+              dateOfEstablishment: true,
               type: true,
               address: true,
               landmark: true,
@@ -49,13 +50,14 @@ export const useGetInstitute = ({
               createdAt: true,
               updatedAt: true,
               status: true,
+              isVerified: true,
               cursorId: true,
             },
           ],
         });
 
-        const data = res.institute;
-        const maxCursorId = res.institute_aggregate.aggregate?.max?.cursorId;
+        const data = res.Institute;
+        const maxCursorId = res.Institute_aggregate.aggregate?.max?.cursorId;
         const currentCursorId = data.at(-1)?.cursorId as number;
         const lastCursor =
           maxCursorId === currentCursorId ? undefined : currentCursorId;

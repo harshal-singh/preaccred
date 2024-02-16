@@ -1,6 +1,6 @@
 import { Text } from '@fluentui/react-components';
 import { useUpdateInstituteMutation } from 'api/mutations/useInstituteMutations';
-import { Status } from 'api/zeus';
+import { Status_enum } from 'api/zeus';
 import { isDeleteDrawerOpenAtom, selectedInstituteAtom } from 'atoms';
 import { useAtom, useSetAtom } from 'jotai';
 import { useCallback } from 'react';
@@ -27,7 +27,7 @@ const useDeleteInstitute = () => {
     const res = await mutateAsync({
       id: selectedInstitute.id as string,
       data: {
-        status: Status.DELETED,
+        status: Status_enum.DELETED,
       },
     });
 

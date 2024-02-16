@@ -1,21 +1,23 @@
 import { Text } from '@fluentui/react-components';
 import { useAddInstituteMutation } from 'api/mutations/useInstituteMutations';
 import { ModelTypes } from 'api/zeus';
-import { isAddDrawerOpenAtom } from 'atoms';
+import { isAddDrawerOpenAtom, selectedTabAtom } from 'atoms';
 import { useSetAtom } from 'jotai';
 import { useCallback } from 'react';
 
 import useToast from 'hooks/useToast';
 
 const useAddInstitute = () => {
+  const setSelectedTab = useSetAtom(selectedTabAtom);
   const setIsAddInstituteDrawerOpen = useSetAtom(isAddDrawerOpenAtom);
   const { dispatchToast } = useToast();
 
   const { mutateAsync, isSuccess } = useAddInstituteMutation();
 
   const resetDrawer = useCallback(() => {
+    setSelectedTab('details');
     setIsAddInstituteDrawerOpen(false);
-  }, [setIsAddInstituteDrawerOpen]);
+  }, [setIsAddInstituteDrawerOpen, setSelectedTab]);
 
   const handleAddInstitute = useCallback(
     async (formData: Partial<ModelTypes['Institute']>) => {
@@ -39,7 +41,7 @@ const useAddInstitute = () => {
         dispatchToast({
           intent: 'success',
           title: 'Success',
-          body: `Added ${res.data?.name} institute.`,
+          body: `Added ${res.data?.name} institute details.`,
           onDismiss,
         });
       }
@@ -50,7 +52,7 @@ const useAddInstitute = () => {
           title: 'Error',
           body: (
             <Text>
-              Error occurred while updating institute.
+              Error occurred while adding institute details.
               <br />
               Error: {String(res.error)}
             </Text>

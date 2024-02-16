@@ -5667,7 +5667,7 @@ export type ModelTypes = {
 	status: ModelTypes["Status_enum"],
 	totalAmount: string,
 	updatedAt: ModelTypes["timestamptz"],
-	updatedById: ModelTypes["uuid"],
+	updatedById?: ModelTypes["uuid"] | undefined,
 	website: string
 };
 	/** aggregated selection of "EGovernance" */
@@ -5935,7 +5935,7 @@ export type ModelTypes = {
 	status: ModelTypes["Status_enum"],
 	statusOfApproval: string,
 	updatedAt: ModelTypes["timestamptz"],
-	updatedById: ModelTypes["uuid"]
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** columns and relationships of "FacultyFunding" */
 ["FacultyFunding"]: {
@@ -5953,7 +5953,7 @@ export type ModelTypes = {
 	transactionType: string,
 	type: string,
 	updatedAt: ModelTypes["timestamptz"],
-	updatedById: ModelTypes["uuid"]
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** aggregated selection of "FacultyFunding" */
 ["FacultyFunding_aggregate"]: {
@@ -6481,7 +6481,7 @@ export type ModelTypes = {
 	status: ModelTypes["Status_enum"],
 	type: string,
 	updatedAt: ModelTypes["timestamptz"],
-	updatedById: ModelTypes["uuid"],
+	updatedById?: ModelTypes["uuid"] | undefined,
 	venue: string
 };
 	/** aggregated selection of "FdpPdp" */
@@ -6865,7 +6865,7 @@ export type ModelTypes = {
 	status: ModelTypes["Status_enum"],
 	type: string,
 	updatedAt: ModelTypes["timestamptz"],
-	updatedById: ModelTypes["uuid"],
+	updatedById?: ModelTypes["uuid"] | undefined,
 	website: string
 };
 	/** columns and relationships of "InstituteFunding" */
@@ -6883,7 +6883,7 @@ export type ModelTypes = {
 	transactionType: string,
 	type: string,
 	updatedAt: ModelTypes["timestamptz"],
-	updatedById: ModelTypes["uuid"]
+	updatedById?: ModelTypes["uuid"] | undefined
 };
 	/** aggregated selection of "InstituteFunding" */
 ["InstituteFunding_aggregate"]: {
@@ -7776,7 +7776,7 @@ export type GraphQLTypes = {
 	status: GraphQLTypes["Status_enum"],
 	totalAmount: string,
 	updatedAt: GraphQLTypes["timestamptz"],
-	updatedById: GraphQLTypes["uuid"],
+	updatedById?: GraphQLTypes["uuid"] | undefined,
 	website: string
 };
 	/** aggregated selection of "EGovernance" */
@@ -8061,7 +8061,7 @@ export type GraphQLTypes = {
 	status: GraphQLTypes["Status_enum"],
 	statusOfApproval: string,
 	updatedAt: GraphQLTypes["timestamptz"],
-	updatedById: GraphQLTypes["uuid"]
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** columns and relationships of "FacultyFunding" */
 ["FacultyFunding"]: {
@@ -8080,7 +8080,7 @@ export type GraphQLTypes = {
 	transactionType: string,
 	type: string,
 	updatedAt: GraphQLTypes["timestamptz"],
-	updatedById: GraphQLTypes["uuid"]
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** aggregated selection of "FacultyFunding" */
 ["FacultyFunding_aggregate"]: {
@@ -8641,7 +8641,7 @@ export type GraphQLTypes = {
 	status: GraphQLTypes["Status_enum"],
 	type: string,
 	updatedAt: GraphQLTypes["timestamptz"],
-	updatedById: GraphQLTypes["uuid"],
+	updatedById?: GraphQLTypes["uuid"] | undefined,
 	venue: string
 };
 	/** aggregated selection of "FdpPdp" */
@@ -9051,7 +9051,7 @@ export type GraphQLTypes = {
 	status: GraphQLTypes["Status_enum"],
 	type: string,
 	updatedAt: GraphQLTypes["timestamptz"],
-	updatedById: GraphQLTypes["uuid"],
+	updatedById?: GraphQLTypes["uuid"] | undefined,
 	website: string
 };
 	/** columns and relationships of "InstituteFunding" */
@@ -9070,7 +9070,7 @@ export type GraphQLTypes = {
 	transactionType: string,
 	type: string,
 	updatedAt: GraphQLTypes["timestamptz"],
-	updatedById: GraphQLTypes["uuid"]
+	updatedById?: GraphQLTypes["uuid"] | undefined
 };
 	/** aggregated selection of "InstituteFunding" */
 ["InstituteFunding_aggregate"]: {

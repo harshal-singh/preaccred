@@ -1,59 +1,115 @@
 import { Button, DrawerFooter } from '@fluentui/react-components';
-import { isUpdateDrawerOpenAtom, selectedInstituteAtom } from 'atoms';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { isAddDrawerOpenAtom, selectedTabAtom } from 'atoms';
+import { useAtom, useSetAtom } from 'jotai';
+import { useCallback, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import useUpdateInstitute from 'hooks/Institute/useUpdate';
+import useAdd from 'hooks/Institute/useAdd';
 
-const useUpdateButton = () => {
-  const selectedInstitute = useAtomValue(selectedInstituteAtom);
-  const { handleSubmit, watch } = useFormContext();
-  const { handleUpdateInstitute, isSuccess } = useUpdateInstitute();
-
-  const hasChanges =
-    selectedInstitute?.name !== watch('name') ||
-    selectedInstitute?.website !== watch('website') ||
-    selectedInstitute?.dateOfEstablishment !== watch('dateOfEstablishment') ||
-    selectedInstitute?.type !== watch('type') ||
-    selectedInstitute?.address !== watch('address') ||
-    selectedInstitute?.landmark !== watch('landmark') ||
-    selectedInstitute?.city !== watch('city') ||
-    selectedInstitute?.state !== watch('state') ||
-    selectedInstitute?.pin !== watch('pin');
-
+const useAddAndNextButton = () => {
+  const [selectedTab, setSelectedTab] = useAtom(selectedTabAtom);
   const {
+    handleSubmit,
     formState: { isValid },
   } = useFormContext();
+  const { handleAddInstitute, isSuccess } = useAdd();
+
+  const prevStep = useCallback(() => {
+    if (selectedTab === 'finish') {
+      setSelectedTab('criterias');
+    }
+    if (selectedTab === 'criterias') {
+      setSelectedTab('details');
+    }
+  }, [selectedTab, setSelectedTab]);
+
+  const nextStep = useCallback(() => {
+    if (selectedTab === 'details') {
+      setSelectedTab('criterias');
+    }
+    if (selectedTab === 'criterias') {
+      setSelectedTab('finish');
+    }
+  }, [selectedTab, setSelectedTab]);
+
+  const isDetailTabSelected = useMemo(
+    () => selectedTab === 'details',
+    [selectedTab],
+  );
+  const isCriteriasTabSelected = useMemo(
+    () => selectedTab === 'criterias',
+    [selectedTab],
+  );
 
   return {
-    isFormValid: hasChanges && isValid,
+    isDetailTabSelected,
+    isCriteriasTabSelected,
+    prevStep,
+    nextStep,
+    isFormValid: isValid,
     isSuccess,
-    handleUpdateInstitute: handleSubmit(handleUpdateInstitute),
+    handleAddInstitute: handleSubmit(handleAddInstitute),
   };
 };
 
-const Update = () => {
-  const { isFormValid, handleUpdateInstitute, isSuccess } = useUpdateButton();
+const BackAndNextButton = () => {
+  const {
+    isDetailTabSelected,
+    isCriteriasTabSelected,
+    prevStep,
+    nextStep,
+    isFormValid,
+    handleAddInstitute,
+    isSuccess,
+  } = useAddAndNextButton();
 
   return (
-    <Button
-      appearance="primary"
-      aria-label="Update"
-      onClick={handleUpdateInstitute}
-      disabled={!isFormValid || isSuccess}
-    >
-      Update
-    </Button>
+    <div>
+      <Button
+        className="!mr-2"
+        appearance="outline"
+        aria-label="Back"
+        onClick={() => {
+          prevStep();
+        }}
+        disabled={isDetailTabSelected}
+      >
+        Back
+      </Button>
+      <Button
+        appearance={
+          isDetailTabSelected || isCriteriasTabSelected ? 'outline' : 'primary'
+        }
+        aria-label={
+          isDetailTabSelected || isCriteriasTabSelected ? 'Next' : 'Add'
+        }
+        onClick={() => {
+          return isDetailTabSelected || isCriteriasTabSelected
+            ? nextStep()
+            : handleAddInstitute();
+        }}
+        disabled={
+          !isDetailTabSelected &&
+          !isCriteriasTabSelected &&
+          (!isFormValid || isSuccess)
+        }
+      >
+        {isDetailTabSelected || isCriteriasTabSelected ? 'Next' : 'Add'}
+      </Button>
+    </div>
   );
 };
 
 const CloseButton = () => {
-  const setIsOpen = useSetAtom(isUpdateDrawerOpenAtom);
+  const setIsOpen = useSetAtom(isAddDrawerOpenAtom);
+  const setSelectedTab = useSetAtom(selectedTabAtom);
+
   return (
     <Button
       appearance="outline"
       aria-label="Close panel"
       onClick={() => {
+        setSelectedTab('details');
         setIsOpen(false);
       }}
     >
@@ -64,8 +120,8 @@ const CloseButton = () => {
 
 const Footer = () => {
   return (
-    <DrawerFooter>
-      <Update />
+    <DrawerFooter className="!justify-between">
+      <BackAndNextButton />
       <CloseButton />
     </DrawerFooter>
   );

@@ -1,27 +1,29 @@
 import { Drawer, DrawerBody, DrawerProps } from '@fluentui/react-components';
 import { ModelTypes } from 'api/zeus';
-import { isAddDrawerOpenAtom } from 'atoms';
+import { isAddDrawerOpenAtom, selectedTabAtom } from 'atoms';
 import { useSetAtom } from 'jotai';
 import { ReactNode, useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import Body from './Body';
 import Footer from './Footer';
 import Header from './Header';
+import Body from '../Body';
 
 const useDrawerProps = (): DrawerProps => {
   const setIsOpen = useSetAtom(isAddDrawerOpenAtom);
+  const setSelectedTab = useSetAtom(selectedTabAtom);
 
   return useMemo(
     () => ({
-      size: 'medium',
+      size: 'large',
       position: 'end',
       open: true,
       onOpenChange: () => {
+        setSelectedTab('details');
         setIsOpen(false);
       },
     }),
-    [setIsOpen],
+    [setIsOpen, setSelectedTab],
   );
 };
 
@@ -59,7 +61,7 @@ const AddIndustryDrawer = () => {
     <Drawer {...drawerProps}>
       <Header />
       <Form>
-        <DrawerBody className="border-y">
+        <DrawerBody className="flex !overflow-hidden border-y">
           <Body />
         </DrawerBody>
         <Footer />

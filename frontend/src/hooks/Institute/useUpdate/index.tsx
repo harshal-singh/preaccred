@@ -1,13 +1,18 @@
 import { Text } from '@fluentui/react-components';
 import { useUpdateInstituteMutation } from 'api/mutations/useInstituteMutations';
 import { ModelTypes } from 'api/zeus';
-import { isUpdateDrawerOpenAtom, selectedInstituteAtom } from 'atoms';
+import {
+  isUpdateDrawerOpenAtom,
+  selectedInstituteAtom,
+  selectedTabAtom,
+} from 'atoms';
 import { useAtom, useSetAtom } from 'jotai';
 import { useCallback } from 'react';
 
 import useToast from 'hooks/useToast';
 
 const useUpdateInstitute = () => {
+  const setSelectedTab = useSetAtom(selectedTabAtom);
   const [selectedInstitute, setSelectedInstitute] = useAtom(
     selectedInstituteAtom,
   );
@@ -18,9 +23,10 @@ const useUpdateInstitute = () => {
   const { mutateAsync, isSuccess } = useUpdateInstituteMutation();
 
   const resetDrawer = useCallback(() => {
+    setSelectedTab('details');
     setSelectedInstitute(null);
     setIsUpdateInstituteDrawerOpen(false);
-  }, [setSelectedInstitute, setIsUpdateInstituteDrawerOpen]);
+  }, [setSelectedTab, setSelectedInstitute, setIsUpdateInstituteDrawerOpen]);
 
   const handleUpdateInstitute = useCallback(
     async (formData: Partial<ModelTypes['Institute']>) => {
@@ -38,7 +44,7 @@ const useUpdateInstitute = () => {
           city: formData.city,
           state: formData.state,
           pin: formData.pin,
-          updatedById: formData.updatedById as string,
+          updatedById: '0d50626e-4395-4a85-94f6-6243a9b1f47f',
         },
       });
 
@@ -49,7 +55,7 @@ const useUpdateInstitute = () => {
         dispatchToast({
           intent: 'success',
           title: 'Success',
-          body: `Updated ${res.data?.name} institute.`,
+          body: `Updated ${res.data?.name} institute details.`,
           onDismiss,
         });
       }
@@ -60,7 +66,7 @@ const useUpdateInstitute = () => {
           title: 'Error',
           body: (
             <Text>
-              Error occurred while updating institute detail.
+              Error occurred while updating institute details.
               <br />
               Error: {String(res.error)}
             </Text>

@@ -1,8 +1,8 @@
 import { useGetInstitute } from 'api/queries/useInstituteQueries';
-import { Status } from 'api/zeus';
+import { Status_enum } from 'api/zeus';
 import { useMemo } from 'react';
 
-const useGetDeleted = () => {
+const useGetActive = () => {
   const {
     data,
     isLoading,
@@ -15,10 +15,13 @@ const useGetDeleted = () => {
   } = useGetInstitute({
     filter: {
       status: {
-        _eq: Status.DELETED,
+        _eq: Status_enum.ACTIVE,
+      },
+      isVerified: {
+        _eq: true,
       },
     },
-    queryKey: 'DeletedInstitutes',
+    queryKey: 'ActiveInstitutes',
   });
 
   const institutes = useMemo(() => {
@@ -38,4 +41,4 @@ const useGetDeleted = () => {
   };
 };
 
-export default useGetDeleted;
+export default useGetActive;

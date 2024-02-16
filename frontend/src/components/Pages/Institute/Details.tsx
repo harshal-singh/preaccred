@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   Dropdown,
   Field,
   Input,
   Option,
+  OptionOnSelectData,
+  SelectionEvents,
   Textarea,
 } from '@fluentui/react-components';
 import { DatePicker } from '@fluentui/react-datepicker-compat';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   useFormContext,
   Form,
@@ -16,24 +19,7 @@ import {
   FieldErrors,
 } from 'react-hook-form';
 
-const rules = {
-  textRequired: {
-    required: {
-      value: true,
-      message: 'This field is required',
-    },
-    maxLength: {
-      value: 250,
-      message: 'Maximum length should be 250',
-    },
-  },
-  textNotRequired: {
-    maxLength: {
-      value: 250,
-      message: 'Maximum length should be 250',
-    },
-  },
-};
+import ValidationRules from 'helpers/rules';
 
 const Name = ({
   control,
@@ -46,7 +32,7 @@ const Name = ({
     <Controller
       control={control}
       name="name"
-      rules={rules.textRequired}
+      rules={ValidationRules.textRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
@@ -72,6 +58,24 @@ const Name = ({
   );
 };
 
+const useType = () => {
+  const { setValue } = useFormContext();
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+  const handleOptionSelect = useCallback(
+    (event: SelectionEvents, data: OptionOnSelectData) => {
+      setValue('type', data.optionValue);
+      setSelectedOptions(data.selectedOptions);
+    },
+    [setValue],
+  );
+
+  return {
+    handleOptionSelect,
+    selectedOptions,
+  };
+};
+
 const Type = ({
   control,
   errors,
@@ -79,29 +83,58 @@ const Type = ({
   control: Control<FieldValues, unknown>;
   errors: FieldErrors<FieldValues>;
 }) => {
+  const { handleOptionSelect, selectedOptions } = useType();
+
   return (
     <Controller
       control={control}
       name="type"
-      rules={rules.textRequired}
+      rules={ValidationRules.textRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
           required
           label="Type"
-          className="h-fit"
+          className="h-fit !min-w-min"
           validationState={errors.type && 'error'}
           validationMessage={errors.type?.message as string}
         >
-          <Dropdown placeholder="Select institute type">
+          <Dropdown
+            name={name}
+            value={value}
+            disabled={disabled}
+            onChange={onChange}
+            onBlur={onBlur}
+            ref={ref}
+            selectedOptions={selectedOptions}
+            onOptionSelect={handleOptionSelect}
+            placeholder="Select institute type"
+          >
             {['University', 'Autonomous', 'Affiliated'].map((option) => (
-              <Option key={option}>{option}</Option>
+              <Option key={option} value={option}>
+                {option}
+              </Option>
             ))}
           </Dropdown>
         </Field>
       )}
     />
   );
+};
+
+const useDateOfEstablishment = () => {
+  const { setValue } = useFormContext();
+
+  const handleSelectDate = useCallback(
+    (date: Date | null | undefined) => {
+      setValue('dateOfEstablishment', date);
+    },
+    [setValue],
+  );
+
+  return {
+    handleSelectDate,
+  };
 };
 
 const DateOfEstablishment = ({
@@ -111,27 +144,30 @@ const DateOfEstablishment = ({
   control: Control<FieldValues, unknown>;
   errors: FieldErrors<FieldValues>;
 }) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null | undefined>(
-    null,
-  );
+  const { handleSelectDate } = useDateOfEstablishment();
 
   return (
     <Controller
       control={control}
       name="dateOfEstablishment"
-      rules={rules.textRequired}
+      rules={ValidationRules.textRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
           required
           label="Date Of Establishment"
-          className="h-fit"
+          className="h-fit !min-w-min"
           validationState={errors.dateOfEstablishment && 'error'}
           validationMessage={errors.dateOfEstablishment?.message as string}
         >
           <DatePicker
-            value={selectedDate}
-            onSelectDate={setSelectedDate}
+            name={name}
+            value={value}
+            disabled={disabled}
+            onChange={onChange}
+            onBlur={onBlur}
+            ref={ref}
+            onSelectDate={handleSelectDate}
             placeholder="Select a date"
           />
         </Field>
@@ -151,7 +187,7 @@ const Website = ({
     <Controller
       control={control}
       name="website"
-      rules={rules.textRequired}
+      rules={ValidationRules.urlRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
@@ -188,7 +224,7 @@ const Landmark = ({
     <Controller
       control={control}
       name="landmark"
-      rules={rules.textRequired}
+      rules={ValidationRules.textRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
@@ -225,7 +261,7 @@ const City = ({
     <Controller
       control={control}
       name="city"
-      rules={rules.textRequired}
+      rules={ValidationRules.textRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
@@ -262,7 +298,7 @@ const State = ({
     <Controller
       control={control}
       name="state"
-      rules={rules.textRequired}
+      rules={ValidationRules.textRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
@@ -299,7 +335,7 @@ const PinCode = ({
     <Controller
       control={control}
       name="pin"
-      rules={rules.textRequired}
+      rules={ValidationRules.textRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
@@ -311,7 +347,7 @@ const PinCode = ({
         >
           <Input
             as="input"
-            type="text"
+            type="number"
             name={name}
             value={value}
             disabled={disabled}
@@ -336,7 +372,7 @@ const Address = ({
     <Controller
       control={control}
       name="address"
-      rules={rules.textRequired}
+      rules={ValidationRules.textRequired}
       defaultValue=""
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
@@ -361,7 +397,7 @@ const Address = ({
   );
 };
 
-const Body = () => {
+const Details = () => {
   const {
     control,
     formState: { errors },
@@ -382,4 +418,4 @@ const Body = () => {
   );
 };
 
-export default Body;
+export default Details;

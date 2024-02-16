@@ -38,7 +38,7 @@ import AddInstituteDrawer from 'components/Pages/Institute/AddDrawer';
 import UpdateInstituteDrawer from 'components/Pages/Institute/UpdateDrawer';
 
 import useDeleteInstitute from 'hooks/Institute/useDelete';
-import useActiveInstitutes from 'hooks/Institute/useGetActive';
+import useGetActive from 'hooks/Institute/useGetActive';
 
 import compareDates from 'helpers/compareDates';
 import compareString from 'helpers/compareString';
@@ -178,7 +178,14 @@ const getWebsite = (): TableColumnDefinition<ModelTypes['Institute']> => {
     renderCell: (item) => (
       <Tooltip content={item.website} relationship="inaccessible" withArrow>
         <TableCellLayout truncate>
-          <Link href={item.website}>{item.website}</Link>
+          <Link
+            href={item.website}
+            target="_blank"
+            rel="noopener"
+            referrerPolicy="no-referrer"
+          >
+            {item.website}
+          </Link>
         </TableCellLayout>
       </Tooltip>
     ),
@@ -195,8 +202,14 @@ const getAddress = (): TableColumnDefinition<ModelTypes['Institute']> => {
       ),
     renderHeaderCell: (data) => 'Address',
     renderCell: (item) => (
-      <Tooltip content={item.address} relationship="inaccessible" withArrow>
-        <TableCellLayout truncate>{item.address}</TableCellLayout>
+      <Tooltip
+        content={`${item.address}, ${item.landmark}, ${item.city}, ${item.state} ${item.pin}`}
+        relationship="inaccessible"
+        withArrow
+      >
+        <TableCellLayout
+          truncate
+        >{`${item.address}, ${item.landmark}, ${item.city}, ${item.state} ${item.pin}`}</TableCellLayout>
       </Tooltip>
     ),
   };
@@ -225,7 +238,7 @@ const useTableProps = () => {
     isFetchingNextPage,
     error,
     isError,
-  } = useActiveInstitutes();
+  } = useGetActive();
 
   const name = useName();
 

@@ -67,7 +67,16 @@ const useSidebar = () => {
             },
             key: '/',
             ariaLabel: 'Home',
-            onClick: handleLinkClick,
+          },
+          {
+            name: 'Institutes Verification',
+            url: '/institutes/verification',
+            iconProps: {
+              iconName: 'EngineeringGroup',
+              ...commonIconProps,
+            },
+            key: '/institutes/verification',
+            ariaLabel: 'Institutes Verification',
           },
           {
             name: 'Institute Management',
@@ -76,10 +85,9 @@ const useSidebar = () => {
               iconName: 'CityNext',
               ...commonIconProps,
             },
-            key: 'user-management',
+            key: 'institute-management',
             expandAriaLabel: 'Expand Institute Management',
             collapseAriaLabel: 'Collapse Institute Management',
-            onClick: () => setSelectedKey('/institutes/active'),
             links: [
               {
                 name: 'Active Institute',
@@ -90,7 +98,6 @@ const useSidebar = () => {
                 },
                 key: '/institutes/active',
                 ariaLabel: 'Active Institute',
-                onClick: handleLinkClick,
               },
               {
                 name: 'Deleted Institute',
@@ -101,11 +108,10 @@ const useSidebar = () => {
                 },
                 key: '/institutes/deleted',
                 ariaLabel: 'Deleted Institute',
-                onClick: handleLinkClick,
               },
             ],
             isExpanded:
-              selectedKey === 'user-management' ||
+              selectedKey === 'institute-management' ||
               selectedKey === '/institutes/active' ||
               selectedKey === '/institutes/deleted',
           },

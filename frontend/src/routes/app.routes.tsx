@@ -11,6 +11,9 @@ import HomeSpinner from 'components/Loaders/HomeLoader';
 import PageSkeleton from 'components/Skeletons/PageSkeleton';
 
 const Home = lazy(() => import('pages/Home'));
+const InstitutesVerification = lazy(
+  () => import('pages/Institutes/Verification'),
+);
 const ActiveInstitutes = lazy(() => import('pages/Institutes/Active'));
 const DeletedInstitutes = lazy(() => import('pages/Institutes/Deleted'));
 
@@ -43,6 +46,14 @@ const AppRoutes = () => {
           }
         />
 
+        <Route
+          path="institutes/verification"
+          element={
+            <Element fallback={<PageSkeleton />}>
+              <InstitutesVerification />
+            </Element>
+          }
+        />
         <Route
           path="institutes/active"
           element={

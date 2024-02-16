@@ -102,14 +102,12 @@ const BackAndNextButton = () => {
 
 const CloseButton = () => {
   const setIsOpen = useSetAtom(isAddDrawerOpenAtom);
-  const setSelectedTab = useSetAtom(selectedTabAtom);
 
   return (
     <Button
       appearance="outline"
       aria-label="Close panel"
       onClick={() => {
-        setSelectedTab('details');
         setIsOpen(false);
       }}
     >
