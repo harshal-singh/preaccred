@@ -1,5 +1,5 @@
 import { Button, DrawerFooter } from '@fluentui/react-components';
-import { isAddDrawerOpenAtom, selectedTabAtom } from 'atoms';
+import { isUpdateDrawerOpenAtom, selectedTabAtom } from 'atoms';
 import { useAtom, useSetAtom } from 'jotai';
 import { useCallback, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -101,7 +101,7 @@ const BackAndNextButton = () => {
 };
 
 const CloseButton = () => {
-  const setIsOpen = useSetAtom(isAddDrawerOpenAtom);
+  const setIsOpen = useSetAtom(isUpdateDrawerOpenAtom);
 
   return (
     <Button

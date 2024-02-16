@@ -11,8 +11,6 @@ import { useAtom } from 'jotai';
 import { Controller, Form, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import PreaccredLogo_164x30 from 'assets/preaccred-logo-164x30.png';
-
 const VITE_SUPERADMIN_PASSWORD = import.meta.env
   .VITE_SUPERADMIN_PASSWORD as string;
 
@@ -61,10 +59,9 @@ const Login = () => {
     <div className="w-full min-h-screen grid place-items-center bg-tint40">
       <div className="bg-white border rounded-xl py-9 px-6 grid place-items-center shadow-lg shadow-tint30">
         <Image
-          src={PreaccredLogo_164x30}
+          src="/images/preaccred-logo-180px.png"
           alt="preaccred logo"
-          width={164}
-          height={30}
+          width={180}
         />
         <Divider className="my-4" />
         <Text

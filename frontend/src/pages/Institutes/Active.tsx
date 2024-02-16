@@ -54,27 +54,21 @@ const breadcrumbProps: CustomBreadcrumbProps = {
 
 const columnSizingOptions: TableColumnSizingOptions = {
   name: {
-    minWidth: 120,
     idealWidth: 200,
   },
   type: {
-    minWidth: 120,
     idealWidth: 200,
   },
   dateOfEstablishment: {
-    minWidth: 120,
     idealWidth: 200,
   },
   website: {
-    minWidth: 120,
     idealWidth: 200,
   },
   address: {
-    minWidth: 120,
     idealWidth: 200,
   },
   createAt: {
-    minWidth: 120,
     idealWidth: 200,
   },
 };

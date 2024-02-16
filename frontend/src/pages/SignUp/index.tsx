@@ -2,8 +2,6 @@ import { Button, Divider, Image, Text } from '@fluentui/react-components';
 
 import { useGoogleSignUp } from 'hooks/useSignUp';
 
-import PreaccredLogo_164x30 from 'assets/preaccred-logo-164x30.png';
-
 const SignUp = () => {
   const { handleGoogleSignUp } = useGoogleSignUp();
 
@@ -11,10 +9,9 @@ const SignUp = () => {
     <div className="w-full min-h-screen grid place-items-center bg-tint40">
       <div className="bg-white border rounded-xl py-9 px-6 grid place-items-center shadow-lg shadow-tint30">
         <Image
-          src={PreaccredLogo_164x30}
+          src="/images/preaccred-logo-180px.png"
           alt="preaccred logo"
-          width={164}
-          height={30}
+          width={180}
         />
         <Divider className="my-4" />
         <Text

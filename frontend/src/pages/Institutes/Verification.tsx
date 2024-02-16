@@ -15,9 +15,7 @@ import {
 import {
   Filter16Filled,
   MoreHorizontalRegular,
-  Edit16Filled,
   Add16Filled,
-  Delete16Filled,
   ThumbLike16Filled,
   ThumbDislike16Filled,
   Send16Filled,
@@ -29,7 +27,6 @@ import {
   isUpdateDrawerOpenAtom,
   selectedInstituteAtom,
   actionAtom,
-  isManageDrawerOpenAtom,
 } from 'atoms';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { memo, useMemo } from 'react';
@@ -40,7 +37,7 @@ import CustomTable from 'components/CustomTable';
 import DeleteDrawer from 'components/DeleteDrawer';
 import PageLayout from 'components/PageLayout';
 import AddInstituteDrawer from 'components/Pages/Institute/AddDrawer';
-import UpdateInstituteDrawer from 'components/Pages/Institute/UpdateDrawer';
+import VerificationDrawer from 'components/Pages/Institute/VerificationDrawer';
 
 import useDeleteInstitute from 'hooks/Institute/useDelete';
 import useGetVerified from 'hooks/Institute/useGetVerified';
@@ -80,7 +77,7 @@ const columnSizingOptions: TableColumnSizingOptions = {
 
 const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
   const setSelectedInstitute = useSetAtom(selectedInstituteAtom);
-  const setIsManageDrawerOpen = useSetAtom(isManageDrawerOpenAtom);
+  const setIsUpdateDrawerOpen = useSetAtom(isUpdateDrawerOpenAtom);
   const setAction = useSetAtom(actionAtom);
 
   return useMemo(() => {
@@ -106,9 +103,9 @@ const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
                   <MenuItem
                     icon={<ThumbLike16Filled />}
                     onClick={() => {
-                      setSelectedInstitute(item);
                       setAction('approve');
-                      setIsManageDrawerOpen(true);
+                      setSelectedInstitute(item);
+                      setIsUpdateDrawerOpen(true);
                     }}
                   >
                     Approve
@@ -116,9 +113,9 @@ const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
                   <MenuItem
                     icon={<ThumbDislike16Filled />}
                     onClick={() => {
-                      setSelectedInstitute(item);
                       setAction('reject');
-                      setIsManageDrawerOpen(true);
+                      setSelectedInstitute(item);
+                      setIsUpdateDrawerOpen(true);
                     }}
                   >
                     Reject
@@ -126,9 +123,9 @@ const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
                   <MenuItem
                     icon={<Send16Filled />}
                     onClick={() => {
-                      setSelectedInstitute(item);
                       setAction('resendEmail');
-                      setIsManageDrawerOpen(true);
+                      setSelectedInstitute(item);
+                      setIsUpdateDrawerOpen(true);
                     }}
                   >
                     Resend Email
@@ -140,7 +137,7 @@ const useName = (): TableColumnDefinition<ModelTypes['Institute']> => {
         </TableCellLayout>
       ),
     };
-  }, [setSelectedInstitute, setAction, setIsManageDrawerOpen]);
+  }, [setSelectedInstitute, setAction, setIsUpdateDrawerOpen]);
 };
 
 const getType = (): TableColumnDefinition<ModelTypes['Institute']> => {
@@ -336,7 +333,7 @@ const Verification = () => {
 
       {isAddDrawerOpen && <AddInstituteDrawer />}
 
-      {isUpdateDrawerOpen && <UpdateInstituteDrawer />}
+      {isUpdateDrawerOpen && <VerificationDrawer />}
 
       {isDeleteDrawerOpen && (
         <DeleteDrawer
