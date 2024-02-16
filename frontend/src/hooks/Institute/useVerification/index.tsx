@@ -11,40 +11,30 @@ import { useCallback } from 'react';
 
 import useToast from 'hooks/useToast';
 
-const useUpdateInstitute = () => {
+const useVerification = () => {
   const setSelectedTab = useSetAtom(selectedTabAtom);
   const [selectedInstitute, setSelectedInstitute] = useAtom(
     selectedInstituteAtom,
   );
 
-  const setIsUpdateInstituteDrawerOpen = useSetAtom(isUpdateDrawerOpenAtom);
+  const setIsUpdateDrawerOpen = useSetAtom(isUpdateDrawerOpenAtom);
   const { dispatchToast } = useToast();
 
   const { mutateAsync, isSuccess } = useUpdateInstituteMutation();
 
   const resetDrawer = useCallback(() => {
-    setSelectedTab('details');
     setSelectedInstitute(null);
-    setIsUpdateInstituteDrawerOpen(false);
-  }, [setSelectedTab, setSelectedInstitute, setIsUpdateInstituteDrawerOpen]);
+    setIsUpdateDrawerOpen(false);
+  }, [setSelectedTab, setSelectedInstitute, setIsUpdateDrawerOpen]);
 
-  const handleUpdateInstitute = useCallback(
-    async (formData: Partial<ModelTypes['Institute']>) => {
+  const handleUpdateStatus = useCallback(
+    async (status: boolean) => {
       if (!selectedInstitute) return;
 
       const res = await mutateAsync({
         id: selectedInstitute.id as string,
         data: {
-          name: formData.name,
-          website: formData.website,
-          dateOfEstablishment: formData.dateOfEstablishment as string,
-          type: formData.type,
-          address: formData.address,
-          landmark: formData.landmark,
-          city: formData.city,
-          state: formData.state,
-          pin: formData.pin,
-          isVerified: formData.isVerified,
+          isVerified: status,
           updatedById: '0d50626e-4395-4a85-94f6-6243a9b1f47f',
         },
       });
@@ -80,9 +70,9 @@ const useUpdateInstitute = () => {
   );
 
   return {
-    handleUpdateInstitute,
+    handleUpdateStatus,
     isSuccess,
   };
 };
 
-export default useUpdateInstitute;
+export default useVerification;

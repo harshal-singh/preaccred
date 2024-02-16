@@ -29,7 +29,7 @@ const Header = () => {
 
   return (
     <DrawerHeader>
-      <DrawerHeaderTitle action={<CloseButton />}>
+      <DrawerHeaderTitle action={<CloseButton />} className="capitalize">
         {actionText}
       </DrawerHeaderTitle>
     </DrawerHeader>

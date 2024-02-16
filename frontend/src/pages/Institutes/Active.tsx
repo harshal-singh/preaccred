@@ -278,19 +278,6 @@ const useTableProps = () => {
   ]);
 };
 
-const Add = memo(() => {
-  const setIsAddDrawerOpen = useSetAtom(isAddDrawerOpenAtom);
-  return (
-    <Button
-      icon={<Add16Filled />}
-      appearance="subtle"
-      onClick={() => setIsAddDrawerOpen(true)}
-    >
-      Add
-    </Button>
-  );
-});
-
 const Filter = memo(() => {
   return (
     <Button icon={<Filter16Filled />} appearance="subtle">
@@ -309,8 +296,7 @@ const Institutes = () => {
 
   return (
     <PageLayout breadcrumb={breadcrumbProps}>
-      <div className="w-full flex items-center justify-between mb-4">
-        <Add />
+      <div className="w-full flex items-center justify-end mb-4">
         <div className="flex items-center gap-2">
           <Filter />
           <CustomSearchBox placeholder="Search institute" />

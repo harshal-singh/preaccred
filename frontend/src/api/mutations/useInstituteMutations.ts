@@ -57,20 +57,8 @@ export const useUpdateInstituteMutation = () => {
             {
               id: true,
               name: true,
-              website: true,
-              date_of_establishment: true,
-              type: true,
-              address: true,
-              landmark: true,
-              city: true,
-              state: true,
-              pin: true,
-              createdById: true,
-              updatedById: true,
-              createdAt: true,
-              updatedAt: true,
               status: true,
-              cursorId: true,
+              isVerified: true,
             },
           ],
         });
@@ -81,7 +69,7 @@ export const useUpdateInstituteMutation = () => {
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({
-        queryKey: ['ActiveInstitutes'],
+        queryKey: ['ActiveInstitutes', 'VerifiedInstitutes'],
       });
     },
     onError: (error) => {

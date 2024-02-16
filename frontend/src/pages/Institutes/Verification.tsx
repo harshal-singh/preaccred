@@ -19,6 +19,8 @@ import {
   ThumbLike16Filled,
   ThumbDislike16Filled,
   Send16Filled,
+  CheckmarkStarburst16Filled,
+  ErrorCircle16Regular,
 } from '@fluentui/react-icons';
 import { ModelTypes } from 'api/zeus';
 import {
@@ -153,6 +155,37 @@ const getType = (): TableColumnDefinition<ModelTypes['Institute']> => {
   };
 };
 
+const getVerificationStatus = (): TableColumnDefinition<
+  ModelTypes['Institute']
+> => {
+  return {
+    columnId: 'isVerified',
+    compare: (a, b) => 0,
+    renderHeaderCell: (data) => 'verification status',
+    renderCell: (item) => (
+      <Tooltip
+        content={item.isVerified ? 'Verified' : ''}
+        relationship="inaccessible"
+        withArrow
+      >
+        <TableCellLayout>
+          {item.isVerified ? (
+            <span className=" flex items-center">
+              <CheckmarkStarburst16Filled className="text-greenCyan10 mr-2" />
+              Verified
+            </span>
+          ) : (
+            <span className="flex items-center">
+              <ErrorCircle16Regular className="text-gray120 mr-2" />
+              Pending
+            </span>
+          )}
+        </TableCellLayout>
+      </Tooltip>
+    ),
+  };
+};
+
 const getDateOfEstablishment = (): TableColumnDefinition<
   ModelTypes['Institute']
 > => {
@@ -251,6 +284,7 @@ const useTableProps = () => {
   const columns: TableColumnDefinition<ModelTypes['Institute']>[] = useMemo(
     () => [
       name,
+      getVerificationStatus(),
       getType(),
       getDateOfEstablishment(),
       getWebsite(),

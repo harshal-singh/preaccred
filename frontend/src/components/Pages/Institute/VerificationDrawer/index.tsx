@@ -1,5 +1,5 @@
 import { Drawer, DrawerBody, DrawerProps } from '@fluentui/react-components';
-import { isManageDrawerOpenAtom } from 'atoms';
+import { isUpdateDrawerOpenAtom } from 'atoms';
 import { useSetAtom } from 'jotai';
 import { useMemo } from 'react';
 
@@ -8,7 +8,7 @@ import Footer from './Footer';
 import Header from './Header';
 
 const useDrawerProps = (): DrawerProps => {
-  const setIsOpen = useSetAtom(isManageDrawerOpenAtom);
+  const setIsOpen = useSetAtom(isUpdateDrawerOpenAtom);
 
   return useMemo(
     () => ({
@@ -29,7 +29,7 @@ const VerificationDrawer = () => {
   return (
     <Drawer {...drawerProps}>
       <Header />
-      <DrawerBody className="flex !overflow-hidden border-y">
+      <DrawerBody className="!overflow-hidden border-y">
         <Body />
       </DrawerBody>
       <Footer />

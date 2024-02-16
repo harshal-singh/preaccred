@@ -4,15 +4,15 @@ import { useAtom, useSetAtom } from 'jotai';
 import { useCallback, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import useAdd from 'hooks/Institute/useAdd';
+import useUpdate from 'hooks/Institute/useUpdate';
 
-const useAddAndNextButton = () => {
+const useUpdateAndNextButton = () => {
   const [selectedTab, setSelectedTab] = useAtom(selectedTabAtom);
   const {
     handleSubmit,
     formState: { isValid },
   } = useFormContext();
-  const { handleAddInstitute, isSuccess } = useAdd();
+  const { handleUpdateInstitute, isSuccess } = useUpdate();
 
   const prevStep = useCallback(() => {
     if (selectedTab === 'finish') {
@@ -48,7 +48,7 @@ const useAddAndNextButton = () => {
     nextStep,
     isFormValid: isValid,
     isSuccess,
-    handleAddInstitute: handleSubmit(handleAddInstitute),
+    handleUpdateInstitute: handleSubmit(handleUpdateInstitute),
   };
 };
 
@@ -59,9 +59,9 @@ const BackAndNextButton = () => {
     prevStep,
     nextStep,
     isFormValid,
-    handleAddInstitute,
+    handleUpdateInstitute,
     isSuccess,
-  } = useAddAndNextButton();
+  } = useUpdateAndNextButton();
 
   return (
     <div>
@@ -86,7 +86,7 @@ const BackAndNextButton = () => {
         onClick={() => {
           return isDetailTabSelected || isCriteriasTabSelected
             ? nextStep()
-            : handleAddInstitute();
+            : handleUpdateInstitute();
         }}
         disabled={
           !isDetailTabSelected &&

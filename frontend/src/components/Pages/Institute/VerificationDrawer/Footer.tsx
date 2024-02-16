@@ -1,102 +1,26 @@
 import { Button, DrawerFooter } from '@fluentui/react-components';
-import { isUpdateDrawerOpenAtom, selectedTabAtom } from 'atoms';
-import { useAtom, useSetAtom } from 'jotai';
-import { useCallback, useMemo } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { actionAtom, isUpdateDrawerOpenAtom, selectedTabAtom } from 'atoms';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 
-import useAdd from 'hooks/Institute/useAdd';
+import useVerification from 'hooks/Institute/useVerification';
 
-const useAddAndNextButton = () => {
-  const [selectedTab, setSelectedTab] = useAtom(selectedTabAtom);
-  const {
-    handleSubmit,
-    formState: { isValid },
-  } = useFormContext();
-  const { handleAddInstitute, isSuccess } = useAdd();
+const ActionButton = () => {
+  const action = useAtomValue(actionAtom);
+  const { handleUpdateStatus } = useVerification();
 
-  const prevStep = useCallback(() => {
-    if (selectedTab === 'finish') {
-      setSelectedTab('criterias');
-    }
-    if (selectedTab === 'criterias') {
-      setSelectedTab('details');
-    }
-  }, [selectedTab, setSelectedTab]);
+  const actionText = action === 'resendEmail' ? 'resend email' : action;
 
-  const nextStep = useCallback(() => {
-    if (selectedTab === 'details') {
-      setSelectedTab('criterias');
-    }
-    if (selectedTab === 'criterias') {
-      setSelectedTab('finish');
-    }
-  }, [selectedTab, setSelectedTab]);
-
-  const isDetailTabSelected = useMemo(
-    () => selectedTab === 'details',
-    [selectedTab],
-  );
-  const isCriteriasTabSelected = useMemo(
-    () => selectedTab === 'criterias',
-    [selectedTab],
-  );
-
-  return {
-    isDetailTabSelected,
-    isCriteriasTabSelected,
-    prevStep,
-    nextStep,
-    isFormValid: isValid,
-    isSuccess,
-    handleAddInstitute: handleSubmit(handleAddInstitute),
-  };
-};
-
-const BackAndNextButton = () => {
-  const {
-    isDetailTabSelected,
-    isCriteriasTabSelected,
-    prevStep,
-    nextStep,
-    isFormValid,
-    handleAddInstitute,
-    isSuccess,
-  } = useAddAndNextButton();
+  const verify = action === 'approve' ? true : false;
 
   return (
-    <div>
-      <Button
-        className="!mr-2"
-        appearance="outline"
-        aria-label="Back"
-        onClick={() => {
-          prevStep();
-        }}
-        disabled={isDetailTabSelected}
-      >
-        Back
-      </Button>
-      <Button
-        appearance={
-          isDetailTabSelected || isCriteriasTabSelected ? 'outline' : 'primary'
-        }
-        aria-label={
-          isDetailTabSelected || isCriteriasTabSelected ? 'Next' : 'Add'
-        }
-        onClick={() => {
-          return isDetailTabSelected || isCriteriasTabSelected
-            ? nextStep()
-            : handleAddInstitute();
-        }}
-        disabled={
-          !isDetailTabSelected &&
-          !isCriteriasTabSelected &&
-          (!isFormValid || isSuccess)
-        }
-      >
-        {isDetailTabSelected || isCriteriasTabSelected ? 'Next' : 'Add'}
-      </Button>
-    </div>
+    <Button
+      appearance="primary"
+      aria-label="Verification button"
+      onClick={() => handleUpdateStatus(verify)}
+      className="capitalize"
+    >
+      {actionText}
+    </Button>
   );
 };
 
@@ -118,8 +42,8 @@ const CloseButton = () => {
 
 const Footer = () => {
   return (
-    <DrawerFooter className="!justify-between">
-      <BackAndNextButton />
+    <DrawerFooter>
+      <ActionButton />
       <CloseButton />
     </DrawerFooter>
   );
