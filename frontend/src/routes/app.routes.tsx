@@ -49,7 +49,7 @@ const AppRoutes = () => {
         <Route
           path="institutes/verification"
           element={
-            <Element fallback={<PageSkeleton />}>
+            <Element fallback={<PageSkeleton showAddButton />}>
               <InstitutesVerification />
             </Element>
           }

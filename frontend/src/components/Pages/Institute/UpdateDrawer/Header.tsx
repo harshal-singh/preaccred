@@ -4,12 +4,17 @@ import {
   DrawerHeaderTitle,
 } from '@fluentui/react-components';
 import { Dismiss24Regular } from '@fluentui/react-icons';
-import { isUpdateDrawerOpenAtom, selectedTabAtom } from 'atoms';
+import {
+  isUpdateDrawerOpenAtom,
+  selectedInstituteAtom,
+  selectedTabAtom,
+} from 'atoms';
 import { useSetAtom } from 'jotai';
 
 const CloseButton = () => {
-  const setSelectedTab = useSetAtom(selectedTabAtom);
   const setIsOpen = useSetAtom(isUpdateDrawerOpenAtom);
+  const setSelectedTab = useSetAtom(selectedTabAtom);
+  const setSelectedInstitute = useSetAtom(selectedInstituteAtom);
 
   return (
     <Button
@@ -17,6 +22,7 @@ const CloseButton = () => {
       aria-label="Close panel"
       icon={<Dismiss24Regular />}
       onClick={() => {
+        setSelectedInstitute(null);
         setSelectedTab('details');
         setIsOpen(false);
       }}

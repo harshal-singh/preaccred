@@ -6,17 +6,22 @@ import useVerification from 'hooks/Institute/useVerification';
 
 const ActionButton = () => {
   const action = useAtomValue(actionAtom);
-  const { handleUpdateStatus } = useVerification();
+  const { handleResendEmail, handleUpdateStatus } = useVerification();
 
   const actionText = action === 'resendEmail' ? 'resend email' : action;
 
   const verify = action === 'approve';
 
+  const handleClick =
+    action === 'resendEmail'
+      ? handleResendEmail
+      : () => handleUpdateStatus(verify);
+
   return (
     <Button
       appearance="primary"
       aria-label="Verification button"
-      onClick={() => handleUpdateStatus(verify)}
+      onClick={handleClick}
       className="capitalize"
     >
       {actionText}

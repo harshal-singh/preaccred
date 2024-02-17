@@ -8,10 +8,12 @@ import useAdd from 'hooks/Institute/useAdd';
 
 const useAddAndNextButton = () => {
   const [selectedTab, setSelectedTab] = useAtom(selectedTabAtom);
+
   const {
     handleSubmit,
     formState: { isValid },
   } = useFormContext();
+
   const { handleAddInstitute, isSuccess } = useAdd();
 
   const prevStep = useCallback(() => {

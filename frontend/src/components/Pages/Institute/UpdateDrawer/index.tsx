@@ -16,6 +16,7 @@ import Body from '../Body';
 const useDrawerProps = (): DrawerProps => {
   const setIsOpen = useSetAtom(isUpdateDrawerOpenAtom);
   const setSelectedTab = useSetAtom(selectedTabAtom);
+  const setSelectedInstitute = useSetAtom(selectedInstituteAtom);
 
   return useMemo(
     () => ({
@@ -23,11 +24,12 @@ const useDrawerProps = (): DrawerProps => {
       position: 'end',
       open: true,
       onOpenChange: () => {
+        setSelectedInstitute(null);
         setSelectedTab('details');
         setIsOpen(false);
       },
     }),
-    [setIsOpen, setSelectedTab],
+    [setIsOpen, setSelectedInstitute, setSelectedTab],
   );
 };
 

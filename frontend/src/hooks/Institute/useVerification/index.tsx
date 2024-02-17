@@ -12,7 +12,6 @@ import { useCallback } from 'react';
 import useToast from 'hooks/useToast';
 
 const useVerification = () => {
-  const setSelectedTab = useSetAtom(selectedTabAtom);
   const [selectedInstitute, setSelectedInstitute] = useAtom(
     selectedInstituteAtom,
   );
@@ -26,6 +25,19 @@ const useVerification = () => {
     setSelectedInstitute(null);
     setIsUpdateDrawerOpen(false);
   }, [setSelectedInstitute, setIsUpdateDrawerOpen]);
+
+  const handleResendEmail = useCallback(async () => {
+    if (!selectedInstitute) return;
+    const onDismiss = () => {};
+
+    resetDrawer();
+    dispatchToast({
+      intent: 'success',
+      title: 'Success',
+      body: `Sent verification email to ${selectedInstitute.name} institute.`,
+      onDismiss,
+    });
+  }, [selectedInstitute, resetDrawer, dispatchToast]);
 
   const handleUpdateStatus = useCallback(
     async (status: boolean) => {
@@ -74,6 +86,7 @@ const useVerification = () => {
   );
 
   return {
+    handleResendEmail,
     handleUpdateStatus,
     isSuccess,
   };

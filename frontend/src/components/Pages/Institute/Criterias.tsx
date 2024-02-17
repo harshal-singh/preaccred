@@ -18,24 +18,15 @@ import {
   FieldErrors,
 } from 'react-hook-form';
 
-const rules = {
-  textRequired: {
-    required: {
-      value: true,
-      message: 'This field is required',
-    },
-    maxLength: {
-      value: 250,
-      message: 'Maximum length should be 250',
-    },
-  },
-};
+import ValidationRules from 'helpers/rules';
 
 type EmailStatus = 'none' | 'sending' | 'sent';
 
 const useCriteriasDropdown = () => {
   const { setValue } = useFormContext();
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([
+    'Criteria 6',
+  ]);
 
   const handleOptionSelect = useCallback(
     (event: SelectionEvents, data: OptionOnSelectData) => {
@@ -64,8 +55,8 @@ const CriteriasDropdown = ({
     <Controller
       control={control}
       name="criterias"
-      rules={rules.textRequired}
-      defaultValue=""
+      rules={ValidationRules.textRequired}
+      defaultValue="Criteria 6"
       render={({ field: { value, disabled, name, ref, onChange, onBlur } }) => (
         <Field
           required
@@ -95,7 +86,7 @@ const CriteriasDropdown = ({
               'Criteria 6',
               'Criteria 7',
             ].map((option) => (
-              <Option key={option} value={option}>
+              <Option key={option} value={option} disabled>
                 {option}
               </Option>
             ))}

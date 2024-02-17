@@ -9,7 +9,9 @@ import {
   Textarea,
 } from '@fluentui/react-components';
 import { DatePicker } from '@fluentui/react-datepicker-compat';
-import { useCallback, useState } from 'react';
+import { selectedInstituteAtom } from 'atoms';
+import { useAtomValue } from 'jotai';
+import { useCallback, useEffect, useState } from 'react';
 import {
   useFormContext,
   Form,
@@ -59,8 +61,15 @@ const Name = ({
 };
 
 const useType = () => {
+  const selectedInstitute = useAtomValue(selectedInstituteAtom);
   const { setValue } = useFormContext();
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (selectedInstitute?.type) {
+      setSelectedOptions([selectedInstitute.type]);
+    }
+  }, [selectedInstitute?.type]);
 
   const handleOptionSelect = useCallback(
     (event: SelectionEvents, data: OptionOnSelectData) => {

@@ -1,9 +1,10 @@
-import { Skeleton, SkeletonItem, Text } from '@fluentui/react-components';
-import { ReactElement, ReactNode } from 'react';
+import { Skeleton, SkeletonItem } from '@fluentui/react-components';
 
-import { CustomBreadcrumbProps } from 'components/CustomBreadcrumb';
-
-const PageSkeleton = () => {
+const PageSkeleton = ({
+  showAddButton = false,
+}: {
+  showAddButton?: boolean;
+}) => {
   return (
     <div className="py-5 px-4">
       <Skeleton>
@@ -13,10 +14,16 @@ const PageSkeleton = () => {
         <div className="py-7 w-56">
           <SkeletonItem shape="rectangle" size={40} />
         </div>
-        <div className="flex items-center justify-between">
-          <div className="py-5 w-20">
-            <SkeletonItem shape="rectangle" size={28} />
-          </div>
+        <div
+          className={`flex items-center justify-${
+            showAddButton ? 'between' : 'end'
+          }`}
+        >
+          {showAddButton && (
+            <div className="py-5 w-20">
+              <SkeletonItem shape="rectangle" size={28} />
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <div className="py-5 w-20">
               <SkeletonItem shape="rectangle" size={28} />
