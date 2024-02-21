@@ -1,9 +1,6 @@
 // eslint-disable import/no-extraneous-dependencies
-import {
-  FluentProvider,
-  webLightTheme,
-  teamsLightTheme,
-} from '@fluentui/react-components';
+import { initializeIcons } from '@fluentui/react';
+import { FluentProvider, teamsLightTheme } from '@fluentui/react-components';
 import {
   init,
   BrowserTracing,
@@ -13,7 +10,6 @@ import {
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { getAnalytics } from 'firebase/analytics';
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
 import { StrictMode, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
@@ -38,10 +34,9 @@ const firebaseConfig = {
   measurementId: 'G-S408HQY3H7',
 };
 
-const app = initializeApp(firebaseConfig);
-console.log('🚀 ~ app:', app);
-// const auth = getAuth(app);
-// const analytics = getAnalytics(app);
+initializeApp(firebaseConfig);
+
+initializeIcons();
 
 init({
   dsn: 'https://33997dba42dc2891b29b6b853caf0608@o4506715734147072.ingest.sentry.io/4506715738406912',

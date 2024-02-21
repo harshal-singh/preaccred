@@ -2,8 +2,8 @@ import { withSentryReactRouterV6Routing } from '@sentry/react';
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Login from 'pages/Login';
-import SignUp from 'pages/SignUp';
+import SignIn from 'pages/Auth/SignIn';
+import SignUp from 'pages/Auth/SignUp';
 
 import HomeSpinner from 'components/Loaders/HomeLoader';
 
@@ -13,15 +13,23 @@ const AuthRoutes = () => {
   return (
     <SentryRoutes>
       <Route
-        path="sign-in"
+        path="/"
         element={
           <Suspense fallback={<HomeSpinner />}>
-            <Login />
+            <SignIn />
           </Suspense>
         }
       />
       <Route
-        path="sign-up"
+        path="sign/in"
+        element={
+          <Suspense fallback={<HomeSpinner />}>
+            <SignIn />
+          </Suspense>
+        }
+      />
+      <Route
+        path="sign/up"
         element={
           <Suspense fallback={<HomeSpinner />}>
             <SignUp />

@@ -9,10 +9,11 @@ import {
   makeStyles,
   tokens,
 } from '@fluentui/react-components';
-import { isLoggedInAtom } from 'atoms';
-import { useAtom } from 'jotai';
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
+
+import useCurrentUserDetails from 'hooks/useCurrentUserDetails';
+import { useGoogleSignOut } from 'hooks/useSignUp';
 
 const useStyle = makeStyles({
   nav: {
@@ -20,8 +21,9 @@ const useStyle = makeStyles({
   },
 });
 
-const Navbar = () => {
-  const [, setIsLoggedIn] = useAtom(isLoggedInAtom);
+const Navbar = memo(() => {
+  const { currentUser } = useCurrentUserDetails();
+  const { handleGoogleSignOut } = useGoogleSignOut();
   const classes = useStyle();
 
   console.log('Render Navbar');
@@ -42,16 +44,16 @@ const Navbar = () => {
         <MenuTrigger disableButtonEnhancement>
           <Persona
             className="cursor-pointer"
-            name="Harshal Singh"
-            secondaryText="Tenant admin"
+            name={currentUser?.displayName ?? 'Loading...'}
+            secondaryText={currentUser?.email?.split('@')[0] ?? 'Loading...'}
             presence={{
               status: 'available',
             }}
             avatar={{
               color: 'brand',
-              // image: {
-              //   src: 'https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-react-assets/persona-male.png',
-              // },
+              image: {
+                src: currentUser?.photoURL ?? '',
+              },
             }}
           />
         </MenuTrigger>
@@ -59,8 +61,8 @@ const Navbar = () => {
         <MenuPopover>
           <MenuList>
             <MenuItem
-              onClick={() => {
-                setIsLoggedIn(false);
+              onClick={async () => {
+                await handleGoogleSignOut();
               }}
             >
               Logout
@@ -70,6 +72,6 @@ const Navbar = () => {
       </Menu>
     </div>
   );
-};
+});
 
-export default memo(Navbar);
+export default Navbar;

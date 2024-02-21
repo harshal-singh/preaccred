@@ -1,12 +1,11 @@
 import { isLoggedInAtom } from 'atoms';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 
 import AppRoutes from './app.routes';
 import AuthRoutes from './auth.routes';
 
 const Routes = () => {
-  const [isLoggedIn] = useAtom(isLoggedInAtom);
-
+  const isLoggedIn = useAtomValue(isLoggedInAtom);
   return isLoggedIn ? <AppRoutes /> : <AuthRoutes />;
 };
 

@@ -12,6 +12,7 @@ type ToastDetail = {
   timeout?: number;
 };
 
+export const showSignUpFormAtom = atom<boolean>(false);
 export const isLoggedInAtom = atomWithStorage<boolean>('isLoggedIn', false);
 export const toastDetailAtom = atom<ToastDetail | null>(null);
 

@@ -25,6 +25,30 @@ const ValidationRules = {
       message: 'Maximum length should be 250',
     },
   },
+  passwordRequired: {
+    required: {
+      value: true,
+      message: 'This field is required',
+    },
+    minLength: {
+      value: 8,
+      message: 'Minimum length should be 8',
+    },
+    maxLength: {
+      value: 24,
+      message: 'Maximum length should be 24',
+    },
+  },
+  emailRequired: {
+    required: {
+      value: true,
+      message: 'This field is required',
+    },
+    pattern: {
+      value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+      message: 'Please enter a valid email',
+    },
+  },
   urlRequired: {
     required: {
       value: true,
