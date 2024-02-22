@@ -49,6 +49,16 @@ const ValidationRules = {
       message: 'Please enter a valid email',
     },
   },
+  phoneNoRequired: {
+    required: {
+      value: true,
+      message: 'This field is required',
+    },
+    pattern: {
+      value: /^\+*\({0,1}\d{1,4}\){0,1}[\d\s./-]*$/,
+      message: 'Please enter a valid email',
+    },
+  },
   urlRequired: {
     required: {
       value: true,

@@ -16,6 +16,9 @@ const InstitutesVerification = lazy(
 );
 const ActiveInstitutes = lazy(() => import('pages/Institutes/Active'));
 const DeletedInstitutes = lazy(() => import('pages/Institutes/Deleted'));
+const ContactsVerification = lazy(() => import('pages/Contacts/Verification'));
+const ActiveContacts = lazy(() => import('pages/Contacts/Active'));
+const DeletedContacts = lazy(() => import('pages/Contacts/Deleted'));
 
 const SentryRoutes = withSentryReactRouterV6Routing(Routes);
 
@@ -67,6 +70,31 @@ const AppRoutes = () => {
           element={
             <Element fallback={<PageSkeleton />}>
               <DeletedInstitutes />
+            </Element>
+          }
+        />
+
+        <Route
+          path="contacts/verification"
+          element={
+            <Element fallback={<PageSkeleton showAddButton />}>
+              <ContactsVerification />
+            </Element>
+          }
+        />
+        <Route
+          path="contacts/active"
+          element={
+            <Element fallback={<PageSkeleton />}>
+              <ActiveContacts />
+            </Element>
+          }
+        />
+        <Route
+          path="contacts/deleted"
+          element={
+            <Element fallback={<PageSkeleton />}>
+              <DeletedContacts />
             </Element>
           }
         />

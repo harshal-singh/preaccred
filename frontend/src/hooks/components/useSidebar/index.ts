@@ -116,6 +116,54 @@ const useSidebar = () => {
               selectedKey === '/institutes/active' ||
               selectedKey === '/institutes/deleted',
           },
+          {
+            name: 'Contact Management',
+            url: '/contacts/verification',
+            iconProps: {
+              iconName: 'ContactList',
+              ...commonIconProps,
+            },
+            key: 'contact-management',
+            expandAriaLabel: 'Expand Contact Management',
+            collapseAriaLabel: 'Collapse Contact Management',
+            links: [
+              {
+                name: 'Verification',
+                url: '/contacts/verification',
+                iconProps: {
+                  iconName: 'HomeGroup',
+                  ...commonIconProps,
+                },
+                key: '/contacts/verification',
+                ariaLabel: 'Verification',
+              },
+              {
+                name: 'Active Contact',
+                url: '/contacts/active',
+                iconProps: {
+                  iconName: 'ReceiptCheck',
+                  ...commonIconProps,
+                },
+                key: '/contacts/active',
+                ariaLabel: 'Active Contact',
+              },
+              {
+                name: 'Deleted Contact',
+                url: '/contacts/deleted',
+                iconProps: {
+                  iconName: 'ReceiptUndelivered',
+                  ...commonIconProps,
+                },
+                key: '/contacts/deleted',
+                ariaLabel: 'Deleted Contact',
+              },
+            ],
+            isExpanded:
+              selectedKey === 'contact-management' ||
+              selectedKey === '/contacts/verification' ||
+              selectedKey === '/contacts/active' ||
+              selectedKey === '/contacts/deleted',
+          },
         ],
       },
     ],

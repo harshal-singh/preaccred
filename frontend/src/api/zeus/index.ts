@@ -860,6 +860,250 @@ export type ValueTypes = {
 	_neq?: boolean | undefined | null | Variable<any, string>,
 	_nin?: Array<boolean> | undefined | null | Variable<any, string>
 };
+	/** columns and relationships of "Contact" */
+["Contact"]: AliasType<{
+	collegeName?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	isVerified?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	primaryEmailId?:boolean | `@${string}`,
+	secondaryEmailId?:boolean | `@${string}`,
+	status?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregated selection of "Contact" */
+["Contact_aggregate"]: AliasType<{
+	aggregate?:ValueTypes["Contact_aggregate_fields"],
+	nodes?:ValueTypes["Contact"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate fields of "Contact" */
+["Contact_aggregate_fields"]: AliasType<{
+	avg?:ValueTypes["Contact_avg_fields"],
+count?: [{	columns?: Array<ValueTypes["Contact_select_column"]> | undefined | null | Variable<any, string>,	distinct?: boolean | undefined | null | Variable<any, string>},boolean | `@${string}`],
+	max?:ValueTypes["Contact_max_fields"],
+	min?:ValueTypes["Contact_min_fields"],
+	stddev?:ValueTypes["Contact_stddev_fields"],
+	stddev_pop?:ValueTypes["Contact_stddev_pop_fields"],
+	stddev_samp?:ValueTypes["Contact_stddev_samp_fields"],
+	sum?:ValueTypes["Contact_sum_fields"],
+	var_pop?:ValueTypes["Contact_var_pop_fields"],
+	var_samp?:ValueTypes["Contact_var_samp_fields"],
+	variance?:ValueTypes["Contact_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["Contact_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Boolean expression to filter rows from the table "Contact". All fields are combined with a logical 'AND'. */
+["Contact_bool_exp"]: {
+	_and?: Array<ValueTypes["Contact_bool_exp"]> | undefined | null | Variable<any, string>,
+	_not?: ValueTypes["Contact_bool_exp"] | undefined | null | Variable<any, string>,
+	_or?: Array<ValueTypes["Contact_bool_exp"]> | undefined | null | Variable<any, string>,
+	collegeName?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint_comparison_exp"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>,
+	isVerified?: ValueTypes["Boolean_comparison_exp"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	phoneNo?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	primaryEmailId?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	secondaryEmailId?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["String_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamp_comparison_exp"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid_comparison_exp"] | undefined | null | Variable<any, string>
+};
+	/** unique or primary key constraints on table "Contact" */
+["Contact_constraint"]:Contact_constraint;
+	/** input type for incrementing numeric columns in table "Contact" */
+["Contact_inc_input"]: {
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>
+};
+	/** input type for inserting data into table "Contact" */
+["Contact_insert_input"]: {
+	collegeName?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
+	name?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
+	primaryEmailId?: string | undefined | null | Variable<any, string>,
+	secondaryEmailId?: string | undefined | null | Variable<any, string>,
+	status?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
+};
+	/** aggregate max on columns */
+["Contact_max_fields"]: AliasType<{
+	collegeName?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	primaryEmailId?:boolean | `@${string}`,
+	secondaryEmailId?:boolean | `@${string}`,
+	status?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate min on columns */
+["Contact_min_fields"]: AliasType<{
+	collegeName?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	primaryEmailId?:boolean | `@${string}`,
+	secondaryEmailId?:boolean | `@${string}`,
+	status?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** response of any mutation on the table "Contact" */
+["Contact_mutation_response"]: AliasType<{
+	/** number of rows affected by the mutation */
+	affected_rows?:boolean | `@${string}`,
+	/** data from the rows affected by the mutation */
+	returning?:ValueTypes["Contact"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** on_conflict condition type for table "Contact" */
+["Contact_on_conflict"]: {
+	constraint: ValueTypes["Contact_constraint"] | Variable<any, string>,
+	update_columns: Array<ValueTypes["Contact_update_column"]> | Variable<any, string>,
+	where?: ValueTypes["Contact_bool_exp"] | undefined | null | Variable<any, string>
+};
+	/** Ordering options when selecting data from "Contact". */
+["Contact_order_by"]: {
+	collegeName?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	isVerified?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	name?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	phoneNo?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	primaryEmailId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	secondaryEmailId?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	status?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["order_by"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["order_by"] | undefined | null | Variable<any, string>
+};
+	/** primary key columns input for table: Contact */
+["Contact_pk_columns_input"]: {
+	id: ValueTypes["uuid"] | Variable<any, string>
+};
+	/** select columns of table "Contact" */
+["Contact_select_column"]:Contact_select_column;
+	/** input type for updating data in table "Contact" */
+["Contact_set_input"]: {
+	collegeName?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
+	name?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
+	primaryEmailId?: string | undefined | null | Variable<any, string>,
+	secondaryEmailId?: string | undefined | null | Variable<any, string>,
+	status?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
+};
+	/** aggregate stddev on columns */
+["Contact_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["Contact_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["Contact_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Streaming cursor of the table "Contact" */
+["Contact_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ValueTypes["Contact_stream_cursor_value_input"] | Variable<any, string>,
+	/** cursor ordering */
+	ordering?: ValueTypes["cursor_ordering"] | undefined | null | Variable<any, string>
+};
+	/** Initial value of the column from where the streaming should start */
+["Contact_stream_cursor_value_input"]: {
+	collegeName?: string | undefined | null | Variable<any, string>,
+	createdAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	createdById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	cursorId?: ValueTypes["bigint"] | undefined | null | Variable<any, string>,
+	id?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	instituteId?: ValueTypes["uuid"] | undefined | null | Variable<any, string>,
+	isVerified?: boolean | undefined | null | Variable<any, string>,
+	name?: string | undefined | null | Variable<any, string>,
+	phoneNo?: string | undefined | null | Variable<any, string>,
+	primaryEmailId?: string | undefined | null | Variable<any, string>,
+	secondaryEmailId?: string | undefined | null | Variable<any, string>,
+	status?: string | undefined | null | Variable<any, string>,
+	updatedAt?: ValueTypes["timestamp"] | undefined | null | Variable<any, string>,
+	updatedById?: ValueTypes["uuid"] | undefined | null | Variable<any, string>
+};
+	/** aggregate sum on columns */
+["Contact_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** update columns of table "Contact" */
+["Contact_update_column"]:Contact_update_column;
+	["Contact_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["Contact_inc_input"] | undefined | null | Variable<any, string>,
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["Contact_set_input"] | undefined | null | Variable<any, string>,
+	/** filter the rows which have to be updated */
+	where: ValueTypes["Contact_bool_exp"] | Variable<any, string>
+};
+	/** aggregate var_pop on columns */
+["Contact_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["Contact_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["Contact_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** columns and relationships of "EGovernance" */
 ["EGovernance"]: AliasType<{
 	address?:boolean | `@${string}`,
@@ -2805,6 +3049,9 @@ count?: [{	columns?: Array<ValueTypes["Status_select_column"]> | undefined | nul
 };
 	/** mutation root */
 ["mutation_root"]: AliasType<{
+delete_Contact?: [{	/** filter the rows which have to be deleted */
+	where: ValueTypes["Contact_bool_exp"] | Variable<any, string>},ValueTypes["Contact_mutation_response"]],
+delete_Contact_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},ValueTypes["Contact"]],
 delete_EGovernance?: [{	/** filter the rows which have to be deleted */
 	where: ValueTypes["EGovernance_bool_exp"] | Variable<any, string>},ValueTypes["EGovernance_mutation_response"]],
 delete_EGovernance_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},ValueTypes["EGovernance"]],
@@ -2829,6 +3076,12 @@ delete_Institute_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},Valu
 delete_Status?: [{	/** filter the rows which have to be deleted */
 	where: ValueTypes["Status_bool_exp"] | Variable<any, string>},ValueTypes["Status_mutation_response"]],
 delete_Status_by_pk?: [{	value: string | Variable<any, string>},ValueTypes["Status"]],
+insert_Contact?: [{	/** the rows to be inserted */
+	objects: Array<ValueTypes["Contact_insert_input"]> | Variable<any, string>,	/** upsert condition */
+	on_conflict?: ValueTypes["Contact_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["Contact_mutation_response"]],
+insert_Contact_one?: [{	/** the row to be inserted */
+	object: ValueTypes["Contact_insert_input"] | Variable<any, string>,	/** upsert condition */
+	on_conflict?: ValueTypes["Contact_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["Contact"]],
 insert_EGovernance?: [{	/** the rows to be inserted */
 	objects: Array<ValueTypes["EGovernance_insert_input"]> | Variable<any, string>,	/** upsert condition */
 	on_conflict?: ValueTypes["EGovernance_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["EGovernance_mutation_response"]],
@@ -2877,6 +3130,15 @@ insert_Status?: [{	/** the rows to be inserted */
 insert_Status_one?: [{	/** the row to be inserted */
 	object: ValueTypes["Status_insert_input"] | Variable<any, string>,	/** upsert condition */
 	on_conflict?: ValueTypes["Status_on_conflict"] | undefined | null | Variable<any, string>},ValueTypes["Status"]],
+update_Contact?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["Contact_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["Contact_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
+	where: ValueTypes["Contact_bool_exp"] | Variable<any, string>},ValueTypes["Contact_mutation_response"]],
+update_Contact_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ValueTypes["Contact_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
+	_set?: ValueTypes["Contact_set_input"] | undefined | null | Variable<any, string>,	pk_columns: ValueTypes["Contact_pk_columns_input"] | Variable<any, string>},ValueTypes["Contact"]],
+update_Contact_many?: [{	/** updates to execute, in order */
+	updates: Array<ValueTypes["Contact_updates"]> | Variable<any, string>},ValueTypes["Contact_mutation_response"]],
 update_EGovernance?: [{	/** increments the numeric columns with given value of the filtered values */
 	_inc?: ValueTypes["EGovernance_inc_input"] | undefined | null | Variable<any, string>,	/** sets the columns of the filtered rows to the given values */
 	_set?: ValueTypes["EGovernance_set_input"] | undefined | null | Variable<any, string>,	/** filter the rows which have to be updated */
@@ -2950,6 +3212,19 @@ update_Status_many?: [{	/** updates to execute, in order */
 	/** column ordering options */
 ["order_by"]:order_by;
 	["query_root"]: AliasType<{
+Contact?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Contact_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Contact_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Contact_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Contact"]],
+Contact_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Contact_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Contact_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Contact_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Contact_aggregate"]],
+Contact_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},ValueTypes["Contact"]],
 EGovernance?: [{	/** distinct select on columns */
 	distinct_on?: Array<ValueTypes["EGovernance_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
 	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
@@ -3057,6 +3332,23 @@ Status_by_pk?: [{	value: string | Variable<any, string>},ValueTypes["Status"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["subscription_root"]: AliasType<{
+Contact?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Contact_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Contact_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Contact_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Contact"]],
+Contact_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ValueTypes["Contact_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
+	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null | Variable<any, string>,	/** sort the rows by one or more columns */
+	order_by?: Array<ValueTypes["Contact_order_by"]> | undefined | null | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Contact_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Contact_aggregate"]],
+Contact_by_pk?: [{	id: ValueTypes["uuid"] | Variable<any, string>},ValueTypes["Contact"]],
+Contact_stream?: [{	/** maximum number of rows returned in a single batch */
+	batch_size: number | Variable<any, string>,	/** cursor to stream the results returned by the query */
+	cursor: Array<ValueTypes["Contact_stream_cursor_input"] | undefined | null> | Variable<any, string>,	/** filter the rows returned */
+	where?: ValueTypes["Contact_bool_exp"] | undefined | null | Variable<any, string>},ValueTypes["Contact"]],
 EGovernance?: [{	/** distinct select on columns */
 	distinct_on?: Array<ValueTypes["EGovernance_select_column"]> | undefined | null | Variable<any, string>,	/** limit the number of rows returned */
 	limit?: number | undefined | null | Variable<any, string>,	/** skip the first n rows. Use only with order_by */
@@ -3255,6 +3547,250 @@ export type ResolverInputTypes = {
 	_neq?: boolean | undefined | null,
 	_nin?: Array<boolean> | undefined | null
 };
+	/** columns and relationships of "Contact" */
+["Contact"]: AliasType<{
+	collegeName?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	isVerified?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	primaryEmailId?:boolean | `@${string}`,
+	secondaryEmailId?:boolean | `@${string}`,
+	status?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregated selection of "Contact" */
+["Contact_aggregate"]: AliasType<{
+	aggregate?:ResolverInputTypes["Contact_aggregate_fields"],
+	nodes?:ResolverInputTypes["Contact"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate fields of "Contact" */
+["Contact_aggregate_fields"]: AliasType<{
+	avg?:ResolverInputTypes["Contact_avg_fields"],
+count?: [{	columns?: Array<ResolverInputTypes["Contact_select_column"]> | undefined | null,	distinct?: boolean | undefined | null},boolean | `@${string}`],
+	max?:ResolverInputTypes["Contact_max_fields"],
+	min?:ResolverInputTypes["Contact_min_fields"],
+	stddev?:ResolverInputTypes["Contact_stddev_fields"],
+	stddev_pop?:ResolverInputTypes["Contact_stddev_pop_fields"],
+	stddev_samp?:ResolverInputTypes["Contact_stddev_samp_fields"],
+	sum?:ResolverInputTypes["Contact_sum_fields"],
+	var_pop?:ResolverInputTypes["Contact_var_pop_fields"],
+	var_samp?:ResolverInputTypes["Contact_var_samp_fields"],
+	variance?:ResolverInputTypes["Contact_variance_fields"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate avg on columns */
+["Contact_avg_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Boolean expression to filter rows from the table "Contact". All fields are combined with a logical 'AND'. */
+["Contact_bool_exp"]: {
+	_and?: Array<ResolverInputTypes["Contact_bool_exp"]> | undefined | null,
+	_not?: ResolverInputTypes["Contact_bool_exp"] | undefined | null,
+	_or?: Array<ResolverInputTypes["Contact_bool_exp"]> | undefined | null,
+	collegeName?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	createdAt?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null,
+	createdById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint_comparison_exp"] | undefined | null,
+	id?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null,
+	isVerified?: ResolverInputTypes["Boolean_comparison_exp"] | undefined | null,
+	name?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	phoneNo?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	primaryEmailId?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	secondaryEmailId?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	status?: ResolverInputTypes["String_comparison_exp"] | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamp_comparison_exp"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid_comparison_exp"] | undefined | null
+};
+	/** unique or primary key constraints on table "Contact" */
+["Contact_constraint"]:Contact_constraint;
+	/** input type for incrementing numeric columns in table "Contact" */
+["Contact_inc_input"]: {
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null
+};
+	/** input type for inserting data into table "Contact" */
+["Contact_insert_input"]: {
+	collegeName?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamp"] | undefined | null,
+	createdById?: ResolverInputTypes["uuid"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
+	isVerified?: boolean | undefined | null,
+	name?: string | undefined | null,
+	phoneNo?: string | undefined | null,
+	primaryEmailId?: string | undefined | null,
+	secondaryEmailId?: string | undefined | null,
+	status?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamp"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
+};
+	/** aggregate max on columns */
+["Contact_max_fields"]: AliasType<{
+	collegeName?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	primaryEmailId?:boolean | `@${string}`,
+	secondaryEmailId?:boolean | `@${string}`,
+	status?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate min on columns */
+["Contact_min_fields"]: AliasType<{
+	collegeName?:boolean | `@${string}`,
+	createdAt?:boolean | `@${string}`,
+	createdById?:boolean | `@${string}`,
+	cursorId?:boolean | `@${string}`,
+	id?:boolean | `@${string}`,
+	instituteId?:boolean | `@${string}`,
+	name?:boolean | `@${string}`,
+	phoneNo?:boolean | `@${string}`,
+	primaryEmailId?:boolean | `@${string}`,
+	secondaryEmailId?:boolean | `@${string}`,
+	status?:boolean | `@${string}`,
+	updatedAt?:boolean | `@${string}`,
+	updatedById?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** response of any mutation on the table "Contact" */
+["Contact_mutation_response"]: AliasType<{
+	/** number of rows affected by the mutation */
+	affected_rows?:boolean | `@${string}`,
+	/** data from the rows affected by the mutation */
+	returning?:ResolverInputTypes["Contact"],
+		__typename?: boolean | `@${string}`
+}>;
+	/** on_conflict condition type for table "Contact" */
+["Contact_on_conflict"]: {
+	constraint: ResolverInputTypes["Contact_constraint"],
+	update_columns: Array<ResolverInputTypes["Contact_update_column"]>,
+	where?: ResolverInputTypes["Contact_bool_exp"] | undefined | null
+};
+	/** Ordering options when selecting data from "Contact". */
+["Contact_order_by"]: {
+	collegeName?: ResolverInputTypes["order_by"] | undefined | null,
+	createdAt?: ResolverInputTypes["order_by"] | undefined | null,
+	createdById?: ResolverInputTypes["order_by"] | undefined | null,
+	cursorId?: ResolverInputTypes["order_by"] | undefined | null,
+	id?: ResolverInputTypes["order_by"] | undefined | null,
+	instituteId?: ResolverInputTypes["order_by"] | undefined | null,
+	isVerified?: ResolverInputTypes["order_by"] | undefined | null,
+	name?: ResolverInputTypes["order_by"] | undefined | null,
+	phoneNo?: ResolverInputTypes["order_by"] | undefined | null,
+	primaryEmailId?: ResolverInputTypes["order_by"] | undefined | null,
+	secondaryEmailId?: ResolverInputTypes["order_by"] | undefined | null,
+	status?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedAt?: ResolverInputTypes["order_by"] | undefined | null,
+	updatedById?: ResolverInputTypes["order_by"] | undefined | null
+};
+	/** primary key columns input for table: Contact */
+["Contact_pk_columns_input"]: {
+	id: ResolverInputTypes["uuid"]
+};
+	/** select columns of table "Contact" */
+["Contact_select_column"]:Contact_select_column;
+	/** input type for updating data in table "Contact" */
+["Contact_set_input"]: {
+	collegeName?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamp"] | undefined | null,
+	createdById?: ResolverInputTypes["uuid"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
+	isVerified?: boolean | undefined | null,
+	name?: string | undefined | null,
+	phoneNo?: string | undefined | null,
+	primaryEmailId?: string | undefined | null,
+	secondaryEmailId?: string | undefined | null,
+	status?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamp"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
+};
+	/** aggregate stddev on columns */
+["Contact_stddev_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_pop on columns */
+["Contact_stddev_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate stddev_samp on columns */
+["Contact_stddev_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** Streaming cursor of the table "Contact" */
+["Contact_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ResolverInputTypes["Contact_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: ResolverInputTypes["cursor_ordering"] | undefined | null
+};
+	/** Initial value of the column from where the streaming should start */
+["Contact_stream_cursor_value_input"]: {
+	collegeName?: string | undefined | null,
+	createdAt?: ResolverInputTypes["timestamp"] | undefined | null,
+	createdById?: ResolverInputTypes["uuid"] | undefined | null,
+	cursorId?: ResolverInputTypes["bigint"] | undefined | null,
+	id?: ResolverInputTypes["uuid"] | undefined | null,
+	instituteId?: ResolverInputTypes["uuid"] | undefined | null,
+	isVerified?: boolean | undefined | null,
+	name?: string | undefined | null,
+	phoneNo?: string | undefined | null,
+	primaryEmailId?: string | undefined | null,
+	secondaryEmailId?: string | undefined | null,
+	status?: string | undefined | null,
+	updatedAt?: ResolverInputTypes["timestamp"] | undefined | null,
+	updatedById?: ResolverInputTypes["uuid"] | undefined | null
+};
+	/** aggregate sum on columns */
+["Contact_sum_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** update columns of table "Contact" */
+["Contact_update_column"]:Contact_update_column;
+	["Contact_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["Contact_inc_input"] | undefined | null,
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["Contact_set_input"] | undefined | null,
+	/** filter the rows which have to be updated */
+	where: ResolverInputTypes["Contact_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["Contact_var_pop_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate var_samp on columns */
+["Contact_var_samp_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
+	/** aggregate variance on columns */
+["Contact_variance_fields"]: AliasType<{
+	cursorId?:boolean | `@${string}`,
+		__typename?: boolean | `@${string}`
+}>;
 	/** columns and relationships of "EGovernance" */
 ["EGovernance"]: AliasType<{
 	address?:boolean | `@${string}`,
@@ -5200,6 +5736,9 @@ count?: [{	columns?: Array<ResolverInputTypes["Status_select_column"]> | undefin
 };
 	/** mutation root */
 ["mutation_root"]: AliasType<{
+delete_Contact?: [{	/** filter the rows which have to be deleted */
+	where: ResolverInputTypes["Contact_bool_exp"]},ResolverInputTypes["Contact_mutation_response"]],
+delete_Contact_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["Contact"]],
 delete_EGovernance?: [{	/** filter the rows which have to be deleted */
 	where: ResolverInputTypes["EGovernance_bool_exp"]},ResolverInputTypes["EGovernance_mutation_response"]],
 delete_EGovernance_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["EGovernance"]],
@@ -5224,6 +5763,12 @@ delete_Institute_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["
 delete_Status?: [{	/** filter the rows which have to be deleted */
 	where: ResolverInputTypes["Status_bool_exp"]},ResolverInputTypes["Status_mutation_response"]],
 delete_Status_by_pk?: [{	value: string},ResolverInputTypes["Status"]],
+insert_Contact?: [{	/** the rows to be inserted */
+	objects: Array<ResolverInputTypes["Contact_insert_input"]>,	/** upsert condition */
+	on_conflict?: ResolverInputTypes["Contact_on_conflict"] | undefined | null},ResolverInputTypes["Contact_mutation_response"]],
+insert_Contact_one?: [{	/** the row to be inserted */
+	object: ResolverInputTypes["Contact_insert_input"],	/** upsert condition */
+	on_conflict?: ResolverInputTypes["Contact_on_conflict"] | undefined | null},ResolverInputTypes["Contact"]],
 insert_EGovernance?: [{	/** the rows to be inserted */
 	objects: Array<ResolverInputTypes["EGovernance_insert_input"]>,	/** upsert condition */
 	on_conflict?: ResolverInputTypes["EGovernance_on_conflict"] | undefined | null},ResolverInputTypes["EGovernance_mutation_response"]],
@@ -5272,6 +5817,15 @@ insert_Status?: [{	/** the rows to be inserted */
 insert_Status_one?: [{	/** the row to be inserted */
 	object: ResolverInputTypes["Status_insert_input"],	/** upsert condition */
 	on_conflict?: ResolverInputTypes["Status_on_conflict"] | undefined | null},ResolverInputTypes["Status"]],
+update_Contact?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["Contact_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["Contact_set_input"] | undefined | null,	/** filter the rows which have to be updated */
+	where: ResolverInputTypes["Contact_bool_exp"]},ResolverInputTypes["Contact_mutation_response"]],
+update_Contact_by_pk?: [{	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ResolverInputTypes["Contact_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
+	_set?: ResolverInputTypes["Contact_set_input"] | undefined | null,	pk_columns: ResolverInputTypes["Contact_pk_columns_input"]},ResolverInputTypes["Contact"]],
+update_Contact_many?: [{	/** updates to execute, in order */
+	updates: Array<ResolverInputTypes["Contact_updates"]>},ResolverInputTypes["Contact_mutation_response"]],
 update_EGovernance?: [{	/** increments the numeric columns with given value of the filtered values */
 	_inc?: ResolverInputTypes["EGovernance_inc_input"] | undefined | null,	/** sets the columns of the filtered rows to the given values */
 	_set?: ResolverInputTypes["EGovernance_set_input"] | undefined | null,	/** filter the rows which have to be updated */
@@ -5345,6 +5899,19 @@ update_Status_many?: [{	/** updates to execute, in order */
 	/** column ordering options */
 ["order_by"]:order_by;
 	["query_root"]: AliasType<{
+Contact?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Contact_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Contact_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Contact_bool_exp"] | undefined | null},ResolverInputTypes["Contact"]],
+Contact_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Contact_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Contact_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Contact_bool_exp"] | undefined | null},ResolverInputTypes["Contact_aggregate"]],
+Contact_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["Contact"]],
 EGovernance?: [{	/** distinct select on columns */
 	distinct_on?: Array<ResolverInputTypes["EGovernance_select_column"]> | undefined | null,	/** limit the number of rows returned */
 	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
@@ -5452,6 +6019,23 @@ Status_by_pk?: [{	value: string},ResolverInputTypes["Status"]],
 		__typename?: boolean | `@${string}`
 }>;
 	["subscription_root"]: AliasType<{
+Contact?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Contact_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Contact_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Contact_bool_exp"] | undefined | null},ResolverInputTypes["Contact"]],
+Contact_aggregate?: [{	/** distinct select on columns */
+	distinct_on?: Array<ResolverInputTypes["Contact_select_column"]> | undefined | null,	/** limit the number of rows returned */
+	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
+	offset?: number | undefined | null,	/** sort the rows by one or more columns */
+	order_by?: Array<ResolverInputTypes["Contact_order_by"]> | undefined | null,	/** filter the rows returned */
+	where?: ResolverInputTypes["Contact_bool_exp"] | undefined | null},ResolverInputTypes["Contact_aggregate"]],
+Contact_by_pk?: [{	id: ResolverInputTypes["uuid"]},ResolverInputTypes["Contact"]],
+Contact_stream?: [{	/** maximum number of rows returned in a single batch */
+	batch_size: number,	/** cursor to stream the results returned by the query */
+	cursor: Array<ResolverInputTypes["Contact_stream_cursor_input"] | undefined | null>,	/** filter the rows returned */
+	where?: ResolverInputTypes["Contact_bool_exp"] | undefined | null},ResolverInputTypes["Contact"]],
 EGovernance?: [{	/** distinct select on columns */
 	distinct_on?: Array<ResolverInputTypes["EGovernance_select_column"]> | undefined | null,	/** limit the number of rows returned */
 	limit?: number | undefined | null,	/** skip the first n rows. Use only with order_by */
@@ -5648,6 +6232,233 @@ export type ModelTypes = {
 	_lte?: boolean | undefined,
 	_neq?: boolean | undefined,
 	_nin?: Array<boolean> | undefined
+};
+	/** columns and relationships of "Contact" */
+["Contact"]: {
+		collegeName: string,
+	createdAt: ModelTypes["timestamp"],
+	createdById: ModelTypes["uuid"],
+	cursorId: ModelTypes["bigint"],
+	id: ModelTypes["uuid"],
+	instituteId?: ModelTypes["uuid"] | undefined,
+	isVerified: boolean,
+	name: string,
+	phoneNo: string,
+	primaryEmailId: string,
+	secondaryEmailId: string,
+	status: string,
+	updatedAt: ModelTypes["timestamp"],
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregated selection of "Contact" */
+["Contact_aggregate"]: {
+		aggregate?: ModelTypes["Contact_aggregate_fields"] | undefined,
+	nodes: Array<ModelTypes["Contact"]>
+};
+	/** aggregate fields of "Contact" */
+["Contact_aggregate_fields"]: {
+		avg?: ModelTypes["Contact_avg_fields"] | undefined,
+	count: number,
+	max?: ModelTypes["Contact_max_fields"] | undefined,
+	min?: ModelTypes["Contact_min_fields"] | undefined,
+	stddev?: ModelTypes["Contact_stddev_fields"] | undefined,
+	stddev_pop?: ModelTypes["Contact_stddev_pop_fields"] | undefined,
+	stddev_samp?: ModelTypes["Contact_stddev_samp_fields"] | undefined,
+	sum?: ModelTypes["Contact_sum_fields"] | undefined,
+	var_pop?: ModelTypes["Contact_var_pop_fields"] | undefined,
+	var_samp?: ModelTypes["Contact_var_samp_fields"] | undefined,
+	variance?: ModelTypes["Contact_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["Contact_avg_fields"]: {
+		cursorId?: number | undefined
+};
+	/** Boolean expression to filter rows from the table "Contact". All fields are combined with a logical 'AND'. */
+["Contact_bool_exp"]: {
+	_and?: Array<ModelTypes["Contact_bool_exp"]> | undefined,
+	_not?: ModelTypes["Contact_bool_exp"] | undefined,
+	_or?: Array<ModelTypes["Contact_bool_exp"]> | undefined,
+	collegeName?: ModelTypes["String_comparison_exp"] | undefined,
+	createdAt?: ModelTypes["timestamp_comparison_exp"] | undefined,
+	createdById?: ModelTypes["uuid_comparison_exp"] | undefined,
+	cursorId?: ModelTypes["bigint_comparison_exp"] | undefined,
+	id?: ModelTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: ModelTypes["uuid_comparison_exp"] | undefined,
+	isVerified?: ModelTypes["Boolean_comparison_exp"] | undefined,
+	name?: ModelTypes["String_comparison_exp"] | undefined,
+	phoneNo?: ModelTypes["String_comparison_exp"] | undefined,
+	primaryEmailId?: ModelTypes["String_comparison_exp"] | undefined,
+	secondaryEmailId?: ModelTypes["String_comparison_exp"] | undefined,
+	status?: ModelTypes["String_comparison_exp"] | undefined,
+	updatedAt?: ModelTypes["timestamp_comparison_exp"] | undefined,
+	updatedById?: ModelTypes["uuid_comparison_exp"] | undefined
+};
+	["Contact_constraint"]:Contact_constraint;
+	/** input type for incrementing numeric columns in table "Contact" */
+["Contact_inc_input"]: {
+	cursorId?: ModelTypes["bigint"] | undefined
+};
+	/** input type for inserting data into table "Contact" */
+["Contact_insert_input"]: {
+	collegeName?: string | undefined,
+	createdAt?: ModelTypes["timestamp"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: ModelTypes["timestamp"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate max on columns */
+["Contact_max_fields"]: {
+		collegeName?: string | undefined,
+	createdAt?: ModelTypes["timestamp"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: ModelTypes["timestamp"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate min on columns */
+["Contact_min_fields"]: {
+		collegeName?: string | undefined,
+	createdAt?: ModelTypes["timestamp"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: ModelTypes["timestamp"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** response of any mutation on the table "Contact" */
+["Contact_mutation_response"]: {
+		/** number of rows affected by the mutation */
+	affected_rows: number,
+	/** data from the rows affected by the mutation */
+	returning: Array<ModelTypes["Contact"]>
+};
+	/** on_conflict condition type for table "Contact" */
+["Contact_on_conflict"]: {
+	constraint: ModelTypes["Contact_constraint"],
+	update_columns: Array<ModelTypes["Contact_update_column"]>,
+	where?: ModelTypes["Contact_bool_exp"] | undefined
+};
+	/** Ordering options when selecting data from "Contact". */
+["Contact_order_by"]: {
+	collegeName?: ModelTypes["order_by"] | undefined,
+	createdAt?: ModelTypes["order_by"] | undefined,
+	createdById?: ModelTypes["order_by"] | undefined,
+	cursorId?: ModelTypes["order_by"] | undefined,
+	id?: ModelTypes["order_by"] | undefined,
+	instituteId?: ModelTypes["order_by"] | undefined,
+	isVerified?: ModelTypes["order_by"] | undefined,
+	name?: ModelTypes["order_by"] | undefined,
+	phoneNo?: ModelTypes["order_by"] | undefined,
+	primaryEmailId?: ModelTypes["order_by"] | undefined,
+	secondaryEmailId?: ModelTypes["order_by"] | undefined,
+	status?: ModelTypes["order_by"] | undefined,
+	updatedAt?: ModelTypes["order_by"] | undefined,
+	updatedById?: ModelTypes["order_by"] | undefined
+};
+	/** primary key columns input for table: Contact */
+["Contact_pk_columns_input"]: {
+	id: ModelTypes["uuid"]
+};
+	["Contact_select_column"]:Contact_select_column;
+	/** input type for updating data in table "Contact" */
+["Contact_set_input"]: {
+	collegeName?: string | undefined,
+	createdAt?: ModelTypes["timestamp"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: ModelTypes["timestamp"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate stddev on columns */
+["Contact_stddev_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["Contact_stddev_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["Contact_stddev_samp_fields"]: {
+		cursorId?: number | undefined
+};
+	/** Streaming cursor of the table "Contact" */
+["Contact_stream_cursor_input"]: {
+	/** Stream column input with initial value */
+	initial_value: ModelTypes["Contact_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: ModelTypes["cursor_ordering"] | undefined
+};
+	/** Initial value of the column from where the streaming should start */
+["Contact_stream_cursor_value_input"]: {
+	collegeName?: string | undefined,
+	createdAt?: ModelTypes["timestamp"] | undefined,
+	createdById?: ModelTypes["uuid"] | undefined,
+	cursorId?: ModelTypes["bigint"] | undefined,
+	id?: ModelTypes["uuid"] | undefined,
+	instituteId?: ModelTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: ModelTypes["timestamp"] | undefined,
+	updatedById?: ModelTypes["uuid"] | undefined
+};
+	/** aggregate sum on columns */
+["Contact_sum_fields"]: {
+		cursorId?: ModelTypes["bigint"] | undefined
+};
+	["Contact_update_column"]:Contact_update_column;
+	["Contact_updates"]: {
+	/** increments the numeric columns with given value of the filtered values */
+	_inc?: ModelTypes["Contact_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
+	_set?: ModelTypes["Contact_set_input"] | undefined,
+	/** filter the rows which have to be updated */
+	where: ModelTypes["Contact_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["Contact_var_pop_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["Contact_var_samp_fields"]: {
+		cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["Contact_variance_fields"]: {
+		cursorId?: number | undefined
 };
 	/** columns and relationships of "EGovernance" */
 ["EGovernance"]: {
@@ -7473,7 +8284,11 @@ export type ModelTypes = {
 };
 	/** mutation root */
 ["mutation_root"]: {
-		/** delete data from the table: "EGovernance" */
+		/** delete data from the table: "Contact" */
+	delete_Contact?: ModelTypes["Contact_mutation_response"] | undefined,
+	/** delete single row from the table: "Contact" */
+	delete_Contact_by_pk?: ModelTypes["Contact"] | undefined,
+	/** delete data from the table: "EGovernance" */
 	delete_EGovernance?: ModelTypes["EGovernance_mutation_response"] | undefined,
 	/** delete single row from the table: "EGovernance" */
 	delete_EGovernance_by_pk?: ModelTypes["EGovernance"] | undefined,
@@ -7505,6 +8320,10 @@ export type ModelTypes = {
 	delete_Status?: ModelTypes["Status_mutation_response"] | undefined,
 	/** delete single row from the table: "Status" */
 	delete_Status_by_pk?: ModelTypes["Status"] | undefined,
+	/** insert data into the table: "Contact" */
+	insert_Contact?: ModelTypes["Contact_mutation_response"] | undefined,
+	/** insert a single row into the table: "Contact" */
+	insert_Contact_one?: ModelTypes["Contact"] | undefined,
 	/** insert data into the table: "EGovernance" */
 	insert_EGovernance?: ModelTypes["EGovernance_mutation_response"] | undefined,
 	/** insert a single row into the table: "EGovernance" */
@@ -7537,6 +8356,12 @@ export type ModelTypes = {
 	insert_Status?: ModelTypes["Status_mutation_response"] | undefined,
 	/** insert a single row into the table: "Status" */
 	insert_Status_one?: ModelTypes["Status"] | undefined,
+	/** update data of the table: "Contact" */
+	update_Contact?: ModelTypes["Contact_mutation_response"] | undefined,
+	/** update single row of the table: "Contact" */
+	update_Contact_by_pk?: ModelTypes["Contact"] | undefined,
+	/** update multiples rows of table: "Contact" */
+	update_Contact_many?: Array<ModelTypes["Contact_mutation_response"] | undefined> | undefined,
 	/** update data of the table: "EGovernance" */
 	update_EGovernance?: ModelTypes["EGovernance_mutation_response"] | undefined,
 	/** update single row of the table: "EGovernance" */
@@ -7588,7 +8413,13 @@ export type ModelTypes = {
 };
 	["order_by"]:order_by;
 	["query_root"]: {
-		/** fetch data from the table: "EGovernance" */
+		/** fetch data from the table: "Contact" */
+	Contact: Array<ModelTypes["Contact"]>,
+	/** fetch aggregated fields from the table: "Contact" */
+	Contact_aggregate: ModelTypes["Contact_aggregate"],
+	/** fetch data from the table: "Contact" using primary key columns */
+	Contact_by_pk?: ModelTypes["Contact"] | undefined,
+	/** fetch data from the table: "EGovernance" */
 	EGovernance: Array<ModelTypes["EGovernance"]>,
 	/** fetch aggregated fields from the table: "EGovernance" */
 	EGovernance_aggregate: ModelTypes["EGovernance_aggregate"],
@@ -7638,7 +8469,15 @@ export type ModelTypes = {
 	Status_by_pk?: ModelTypes["Status"] | undefined
 };
 	["subscription_root"]: {
-		/** fetch data from the table: "EGovernance" */
+		/** fetch data from the table: "Contact" */
+	Contact: Array<ModelTypes["Contact"]>,
+	/** fetch aggregated fields from the table: "Contact" */
+	Contact_aggregate: ModelTypes["Contact_aggregate"],
+	/** fetch data from the table: "Contact" using primary key columns */
+	Contact_by_pk?: ModelTypes["Contact"] | undefined,
+	/** fetch data from the table in a streaming manner: "Contact" */
+	Contact_stream: Array<ModelTypes["Contact"]>,
+	/** fetch data from the table: "EGovernance" */
 	EGovernance: Array<ModelTypes["EGovernance"]>,
 	/** fetch aggregated fields from the table: "EGovernance" */
 	EGovernance_aggregate: ModelTypes["EGovernance_aggregate"],
@@ -7756,6 +8595,250 @@ export type GraphQLTypes = {
 	_lte?: boolean | undefined,
 	_neq?: boolean | undefined,
 	_nin?: Array<boolean> | undefined
+};
+	/** columns and relationships of "Contact" */
+["Contact"]: {
+	__typename: "Contact",
+	collegeName: string,
+	createdAt: GraphQLTypes["timestamp"],
+	createdById: GraphQLTypes["uuid"],
+	cursorId: GraphQLTypes["bigint"],
+	id: GraphQLTypes["uuid"],
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	isVerified: boolean,
+	name: string,
+	phoneNo: string,
+	primaryEmailId: string,
+	secondaryEmailId: string,
+	status: string,
+	updatedAt: GraphQLTypes["timestamp"],
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregated selection of "Contact" */
+["Contact_aggregate"]: {
+	__typename: "Contact_aggregate",
+	aggregate?: GraphQLTypes["Contact_aggregate_fields"] | undefined,
+	nodes: Array<GraphQLTypes["Contact"]>
+};
+	/** aggregate fields of "Contact" */
+["Contact_aggregate_fields"]: {
+	__typename: "Contact_aggregate_fields",
+	avg?: GraphQLTypes["Contact_avg_fields"] | undefined,
+	count: number,
+	max?: GraphQLTypes["Contact_max_fields"] | undefined,
+	min?: GraphQLTypes["Contact_min_fields"] | undefined,
+	stddev?: GraphQLTypes["Contact_stddev_fields"] | undefined,
+	stddev_pop?: GraphQLTypes["Contact_stddev_pop_fields"] | undefined,
+	stddev_samp?: GraphQLTypes["Contact_stddev_samp_fields"] | undefined,
+	sum?: GraphQLTypes["Contact_sum_fields"] | undefined,
+	var_pop?: GraphQLTypes["Contact_var_pop_fields"] | undefined,
+	var_samp?: GraphQLTypes["Contact_var_samp_fields"] | undefined,
+	variance?: GraphQLTypes["Contact_variance_fields"] | undefined
+};
+	/** aggregate avg on columns */
+["Contact_avg_fields"]: {
+	__typename: "Contact_avg_fields",
+	cursorId?: number | undefined
+};
+	/** Boolean expression to filter rows from the table "Contact". All fields are combined with a logical 'AND'. */
+["Contact_bool_exp"]: {
+		_and?: Array<GraphQLTypes["Contact_bool_exp"]> | undefined,
+	_not?: GraphQLTypes["Contact_bool_exp"] | undefined,
+	_or?: Array<GraphQLTypes["Contact_bool_exp"]> | undefined,
+	collegeName?: GraphQLTypes["String_comparison_exp"] | undefined,
+	createdAt?: GraphQLTypes["timestamp_comparison_exp"] | undefined,
+	createdById?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	cursorId?: GraphQLTypes["bigint_comparison_exp"] | undefined,
+	id?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	instituteId?: GraphQLTypes["uuid_comparison_exp"] | undefined,
+	isVerified?: GraphQLTypes["Boolean_comparison_exp"] | undefined,
+	name?: GraphQLTypes["String_comparison_exp"] | undefined,
+	phoneNo?: GraphQLTypes["String_comparison_exp"] | undefined,
+	primaryEmailId?: GraphQLTypes["String_comparison_exp"] | undefined,
+	secondaryEmailId?: GraphQLTypes["String_comparison_exp"] | undefined,
+	status?: GraphQLTypes["String_comparison_exp"] | undefined,
+	updatedAt?: GraphQLTypes["timestamp_comparison_exp"] | undefined,
+	updatedById?: GraphQLTypes["uuid_comparison_exp"] | undefined
+};
+	/** unique or primary key constraints on table "Contact" */
+["Contact_constraint"]: Contact_constraint;
+	/** input type for incrementing numeric columns in table "Contact" */
+["Contact_inc_input"]: {
+		cursorId?: GraphQLTypes["bigint"] | undefined
+};
+	/** input type for inserting data into table "Contact" */
+["Contact_insert_input"]: {
+		collegeName?: string | undefined,
+	createdAt?: GraphQLTypes["timestamp"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamp"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate max on columns */
+["Contact_max_fields"]: {
+	__typename: "Contact_max_fields",
+	collegeName?: string | undefined,
+	createdAt?: GraphQLTypes["timestamp"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamp"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate min on columns */
+["Contact_min_fields"]: {
+	__typename: "Contact_min_fields",
+	collegeName?: string | undefined,
+	createdAt?: GraphQLTypes["timestamp"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamp"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** response of any mutation on the table "Contact" */
+["Contact_mutation_response"]: {
+	__typename: "Contact_mutation_response",
+	/** number of rows affected by the mutation */
+	affected_rows: number,
+	/** data from the rows affected by the mutation */
+	returning: Array<GraphQLTypes["Contact"]>
+};
+	/** on_conflict condition type for table "Contact" */
+["Contact_on_conflict"]: {
+		constraint: GraphQLTypes["Contact_constraint"],
+	update_columns: Array<GraphQLTypes["Contact_update_column"]>,
+	where?: GraphQLTypes["Contact_bool_exp"] | undefined
+};
+	/** Ordering options when selecting data from "Contact". */
+["Contact_order_by"]: {
+		collegeName?: GraphQLTypes["order_by"] | undefined,
+	createdAt?: GraphQLTypes["order_by"] | undefined,
+	createdById?: GraphQLTypes["order_by"] | undefined,
+	cursorId?: GraphQLTypes["order_by"] | undefined,
+	id?: GraphQLTypes["order_by"] | undefined,
+	instituteId?: GraphQLTypes["order_by"] | undefined,
+	isVerified?: GraphQLTypes["order_by"] | undefined,
+	name?: GraphQLTypes["order_by"] | undefined,
+	phoneNo?: GraphQLTypes["order_by"] | undefined,
+	primaryEmailId?: GraphQLTypes["order_by"] | undefined,
+	secondaryEmailId?: GraphQLTypes["order_by"] | undefined,
+	status?: GraphQLTypes["order_by"] | undefined,
+	updatedAt?: GraphQLTypes["order_by"] | undefined,
+	updatedById?: GraphQLTypes["order_by"] | undefined
+};
+	/** primary key columns input for table: Contact */
+["Contact_pk_columns_input"]: {
+		id: GraphQLTypes["uuid"]
+};
+	/** select columns of table "Contact" */
+["Contact_select_column"]: Contact_select_column;
+	/** input type for updating data in table "Contact" */
+["Contact_set_input"]: {
+		collegeName?: string | undefined,
+	createdAt?: GraphQLTypes["timestamp"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamp"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate stddev on columns */
+["Contact_stddev_fields"]: {
+	__typename: "Contact_stddev_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_pop on columns */
+["Contact_stddev_pop_fields"]: {
+	__typename: "Contact_stddev_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate stddev_samp on columns */
+["Contact_stddev_samp_fields"]: {
+	__typename: "Contact_stddev_samp_fields",
+	cursorId?: number | undefined
+};
+	/** Streaming cursor of the table "Contact" */
+["Contact_stream_cursor_input"]: {
+		/** Stream column input with initial value */
+	initial_value: GraphQLTypes["Contact_stream_cursor_value_input"],
+	/** cursor ordering */
+	ordering?: GraphQLTypes["cursor_ordering"] | undefined
+};
+	/** Initial value of the column from where the streaming should start */
+["Contact_stream_cursor_value_input"]: {
+		collegeName?: string | undefined,
+	createdAt?: GraphQLTypes["timestamp"] | undefined,
+	createdById?: GraphQLTypes["uuid"] | undefined,
+	cursorId?: GraphQLTypes["bigint"] | undefined,
+	id?: GraphQLTypes["uuid"] | undefined,
+	instituteId?: GraphQLTypes["uuid"] | undefined,
+	isVerified?: boolean | undefined,
+	name?: string | undefined,
+	phoneNo?: string | undefined,
+	primaryEmailId?: string | undefined,
+	secondaryEmailId?: string | undefined,
+	status?: string | undefined,
+	updatedAt?: GraphQLTypes["timestamp"] | undefined,
+	updatedById?: GraphQLTypes["uuid"] | undefined
+};
+	/** aggregate sum on columns */
+["Contact_sum_fields"]: {
+	__typename: "Contact_sum_fields",
+	cursorId?: GraphQLTypes["bigint"] | undefined
+};
+	/** update columns of table "Contact" */
+["Contact_update_column"]: Contact_update_column;
+	["Contact_updates"]: {
+		/** increments the numeric columns with given value of the filtered values */
+	_inc?: GraphQLTypes["Contact_inc_input"] | undefined,
+	/** sets the columns of the filtered rows to the given values */
+	_set?: GraphQLTypes["Contact_set_input"] | undefined,
+	/** filter the rows which have to be updated */
+	where: GraphQLTypes["Contact_bool_exp"]
+};
+	/** aggregate var_pop on columns */
+["Contact_var_pop_fields"]: {
+	__typename: "Contact_var_pop_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate var_samp on columns */
+["Contact_var_samp_fields"]: {
+	__typename: "Contact_var_samp_fields",
+	cursorId?: number | undefined
+};
+	/** aggregate variance on columns */
+["Contact_variance_fields"]: {
+	__typename: "Contact_variance_fields",
+	cursorId?: number | undefined
 };
 	/** columns and relationships of "EGovernance" */
 ["EGovernance"]: {
@@ -9703,6 +10786,10 @@ export type GraphQLTypes = {
 	/** mutation root */
 ["mutation_root"]: {
 	__typename: "mutation_root",
+	/** delete data from the table: "Contact" */
+	delete_Contact?: GraphQLTypes["Contact_mutation_response"] | undefined,
+	/** delete single row from the table: "Contact" */
+	delete_Contact_by_pk?: GraphQLTypes["Contact"] | undefined,
 	/** delete data from the table: "EGovernance" */
 	delete_EGovernance?: GraphQLTypes["EGovernance_mutation_response"] | undefined,
 	/** delete single row from the table: "EGovernance" */
@@ -9735,6 +10822,10 @@ export type GraphQLTypes = {
 	delete_Status?: GraphQLTypes["Status_mutation_response"] | undefined,
 	/** delete single row from the table: "Status" */
 	delete_Status_by_pk?: GraphQLTypes["Status"] | undefined,
+	/** insert data into the table: "Contact" */
+	insert_Contact?: GraphQLTypes["Contact_mutation_response"] | undefined,
+	/** insert a single row into the table: "Contact" */
+	insert_Contact_one?: GraphQLTypes["Contact"] | undefined,
 	/** insert data into the table: "EGovernance" */
 	insert_EGovernance?: GraphQLTypes["EGovernance_mutation_response"] | undefined,
 	/** insert a single row into the table: "EGovernance" */
@@ -9767,6 +10858,12 @@ export type GraphQLTypes = {
 	insert_Status?: GraphQLTypes["Status_mutation_response"] | undefined,
 	/** insert a single row into the table: "Status" */
 	insert_Status_one?: GraphQLTypes["Status"] | undefined,
+	/** update data of the table: "Contact" */
+	update_Contact?: GraphQLTypes["Contact_mutation_response"] | undefined,
+	/** update single row of the table: "Contact" */
+	update_Contact_by_pk?: GraphQLTypes["Contact"] | undefined,
+	/** update multiples rows of table: "Contact" */
+	update_Contact_many?: Array<GraphQLTypes["Contact_mutation_response"] | undefined> | undefined,
 	/** update data of the table: "EGovernance" */
 	update_EGovernance?: GraphQLTypes["EGovernance_mutation_response"] | undefined,
 	/** update single row of the table: "EGovernance" */
@@ -9820,6 +10917,12 @@ export type GraphQLTypes = {
 ["order_by"]: order_by;
 	["query_root"]: {
 	__typename: "query_root",
+	/** fetch data from the table: "Contact" */
+	Contact: Array<GraphQLTypes["Contact"]>,
+	/** fetch aggregated fields from the table: "Contact" */
+	Contact_aggregate: GraphQLTypes["Contact_aggregate"],
+	/** fetch data from the table: "Contact" using primary key columns */
+	Contact_by_pk?: GraphQLTypes["Contact"] | undefined,
 	/** fetch data from the table: "EGovernance" */
 	EGovernance: Array<GraphQLTypes["EGovernance"]>,
 	/** fetch aggregated fields from the table: "EGovernance" */
@@ -9871,6 +10974,14 @@ export type GraphQLTypes = {
 };
 	["subscription_root"]: {
 	__typename: "subscription_root",
+	/** fetch data from the table: "Contact" */
+	Contact: Array<GraphQLTypes["Contact"]>,
+	/** fetch aggregated fields from the table: "Contact" */
+	Contact_aggregate: GraphQLTypes["Contact_aggregate"],
+	/** fetch data from the table: "Contact" using primary key columns */
+	Contact_by_pk?: GraphQLTypes["Contact"] | undefined,
+	/** fetch data from the table in a streaming manner: "Contact" */
+	Contact_stream: Array<GraphQLTypes["Contact"]>,
 	/** fetch data from the table: "EGovernance" */
 	EGovernance: Array<GraphQLTypes["EGovernance"]>,
 	/** fetch aggregated fields from the table: "EGovernance" */
@@ -9976,6 +11087,44 @@ export type GraphQLTypes = {
 	_nin?: Array<GraphQLTypes["uuid"]> | undefined
 }
     }
+/** unique or primary key constraints on table "Contact" */
+export const enum Contact_constraint {
+	Contact_pkey = "Contact_pkey"
+}
+/** select columns of table "Contact" */
+export const enum Contact_select_column {
+	collegeName = "collegeName",
+	createdAt = "createdAt",
+	createdById = "createdById",
+	cursorId = "cursorId",
+	id = "id",
+	instituteId = "instituteId",
+	isVerified = "isVerified",
+	name = "name",
+	phoneNo = "phoneNo",
+	primaryEmailId = "primaryEmailId",
+	secondaryEmailId = "secondaryEmailId",
+	status = "status",
+	updatedAt = "updatedAt",
+	updatedById = "updatedById"
+}
+/** update columns of table "Contact" */
+export const enum Contact_update_column {
+	collegeName = "collegeName",
+	createdAt = "createdAt",
+	createdById = "createdById",
+	cursorId = "cursorId",
+	id = "id",
+	instituteId = "instituteId",
+	isVerified = "isVerified",
+	name = "name",
+	phoneNo = "phoneNo",
+	primaryEmailId = "primaryEmailId",
+	secondaryEmailId = "secondaryEmailId",
+	status = "status",
+	updatedAt = "updatedAt",
+	updatedById = "updatedById"
+}
 /** unique or primary key constraints on table "EGovernance" */
 export const enum EGovernance_constraint {
 	EGovernance_cursorId_key = "EGovernance_cursorId_key",
@@ -10321,6 +11470,19 @@ export const enum order_by {
 
 type ZEUS_VARIABLES = {
 	["Boolean_comparison_exp"]: ValueTypes["Boolean_comparison_exp"];
+	["Contact_bool_exp"]: ValueTypes["Contact_bool_exp"];
+	["Contact_constraint"]: ValueTypes["Contact_constraint"];
+	["Contact_inc_input"]: ValueTypes["Contact_inc_input"];
+	["Contact_insert_input"]: ValueTypes["Contact_insert_input"];
+	["Contact_on_conflict"]: ValueTypes["Contact_on_conflict"];
+	["Contact_order_by"]: ValueTypes["Contact_order_by"];
+	["Contact_pk_columns_input"]: ValueTypes["Contact_pk_columns_input"];
+	["Contact_select_column"]: ValueTypes["Contact_select_column"];
+	["Contact_set_input"]: ValueTypes["Contact_set_input"];
+	["Contact_stream_cursor_input"]: ValueTypes["Contact_stream_cursor_input"];
+	["Contact_stream_cursor_value_input"]: ValueTypes["Contact_stream_cursor_value_input"];
+	["Contact_update_column"]: ValueTypes["Contact_update_column"];
+	["Contact_updates"]: ValueTypes["Contact_updates"];
 	["EGovernance_bool_exp"]: ValueTypes["EGovernance_bool_exp"];
 	["EGovernance_constraint"]: ValueTypes["EGovernance_constraint"];
 	["EGovernance_inc_input"]: ValueTypes["EGovernance_inc_input"];

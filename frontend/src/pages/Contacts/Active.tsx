@@ -1,0 +1,333 @@
+import {
+  Button,
+  Link,
+  Menu,
+  MenuItem,
+  MenuList,
+  MenuPopover,
+  MenuTrigger,
+  TableCellActions,
+  TableCellLayout,
+  TableColumnDefinition,
+  TableColumnSizingOptions,
+  Tooltip,
+} from '@fluentui/react-components';
+import {
+  Filter16Filled,
+  MoreHorizontalRegular,
+  Edit16Filled,
+  Delete16Filled,
+  CheckmarkStarburst16Filled,
+} from '@fluentui/react-icons';
+import { ModelTypes } from 'api/zeus';
+import {
+  isDeleteDrawerOpenAtom,
+  isAddDrawerOpenAtom,
+  isUpdateDrawerOpenAtom,
+  selectedContactAtom,
+} from 'atoms';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { memo, useMemo } from 'react';
+
+import { CustomBreadcrumbProps } from 'components/CustomBreadcrumb';
+import CustomSearchBox from 'components/CustomSearchBox';
+import CustomTable from 'components/CustomTable';
+import DeleteDrawer from 'components/DeleteDrawer';
+import PageLayout from 'components/PageLayout';
+import AddContactDrawer from 'components/Pages/Contact/AddDrawer';
+import UpdateContactDrawer from 'components/Pages/Contact/UpdateDrawer';
+
+import useDeleteContact from 'hooks/Contact/useDelete';
+import useGetActive from 'hooks/Contact/useGetActive';
+
+import compareDates from 'helpers/compareDates';
+import compareString from 'helpers/compareString';
+import toLocalDateAndTime from 'helpers/toLocalDateAndTime';
+
+const breadcrumbProps: CustomBreadcrumbProps = {
+  links: [
+    { name: 'home', url: '/' },
+    { name: 'contacts', url: '/contacts/verification' },
+    { name: 'active contacts', url: '/contacts/active' },
+  ],
+};
+
+const columnSizingOptions: TableColumnSizingOptions = {
+  name: {
+    idealWidth: 200,
+  },
+  isVerified: {
+    idealWidth: 200,
+  },
+  collegeName: {
+    idealWidth: 200,
+  },
+  primaryEmailId: {
+    idealWidth: 200,
+  },
+  secondaryEmailId: {
+    idealWidth: 200,
+  },
+  createAt: {
+    idealWidth: 200,
+  },
+};
+
+const useName = (): TableColumnDefinition<ModelTypes['Contact']> => {
+  const setSelectedContact = useSetAtom(selectedContactAtom);
+  const setIsUpdateDrawerOpen = useSetAtom(isUpdateDrawerOpenAtom);
+  const setIsDeleteDrawerOpen = useSetAtom(isDeleteDrawerOpenAtom);
+
+  return useMemo(() => {
+    return {
+      columnId: 'name',
+      compare: (a, b) => compareString(a.name, b.name),
+      renderHeaderCell: (data) => 'Name',
+      renderCell: (item) => (
+        <Tooltip content={item.name} relationship="inaccessible" withArrow>
+          <TableCellLayout truncate>
+            {item.name}
+            <TableCellActions>
+              <Menu>
+                <MenuTrigger>
+                  <Button
+                    appearance="subtle"
+                    aria-label="more"
+                    icon={<MoreHorizontalRegular />}
+                  />
+                </MenuTrigger>
+
+                <MenuPopover>
+                  <MenuList>
+                    <MenuItem
+                      icon={<Edit16Filled />}
+                      onClick={() => {
+                        setSelectedContact(item);
+                        setIsUpdateDrawerOpen(true);
+                      }}
+                    >
+                      Update
+                    </MenuItem>
+                    <MenuItem
+                      icon={<Delete16Filled />}
+                      onClick={() => {
+                        setSelectedContact(item);
+                        setIsDeleteDrawerOpen(true);
+                      }}
+                    >
+                      Delete
+                    </MenuItem>
+                  </MenuList>
+                </MenuPopover>
+              </Menu>
+            </TableCellActions>
+          </TableCellLayout>
+        </Tooltip>
+      ),
+    };
+  }, [setIsUpdateDrawerOpen, setIsDeleteDrawerOpen, setSelectedContact]);
+};
+
+const getVerificationStatus = (): TableColumnDefinition<
+  ModelTypes['Contact']
+> => {
+  return {
+    columnId: 'isVerified',
+    compare: (a, b) => 0,
+    renderHeaderCell: (data) => 'verification status',
+    renderCell: (item) => (
+      <TableCellLayout>
+        <span className=" flex items-center">
+          <CheckmarkStarburst16Filled className="text-greenCyan10 mr-2" />
+          Verified
+        </span>
+      </TableCellLayout>
+    ),
+  };
+};
+
+const getCollegeName = (): TableColumnDefinition<ModelTypes['Contact']> => {
+  return {
+    columnId: 'collegeName',
+    compare: (a, b) => compareString(a.collegeName, b.collegeName),
+    renderHeaderCell: (data) => 'College Name',
+    renderCell: (item) => (
+      <Tooltip content={item.collegeName} relationship="inaccessible" withArrow>
+        <TableCellLayout truncate>{item.collegeName}</TableCellLayout>
+      </Tooltip>
+    ),
+  };
+};
+
+const getPhoneNo = (): TableColumnDefinition<ModelTypes['Contact']> => {
+  return {
+    columnId: 'phoneNo',
+    compare: (a, b) => compareString(a.phoneNo, b.phoneNo),
+    renderHeaderCell: (data) => 'Phone No',
+    renderCell: (item) => (
+      <Tooltip content={item.phoneNo} relationship="inaccessible" withArrow>
+        <TableCellLayout truncate>
+          <Link href={`tel:${item.phoneNo}`}>{item.phoneNo}</Link>
+        </TableCellLayout>
+      </Tooltip>
+    ),
+  };
+};
+
+const getPrimaryEmailId = (): TableColumnDefinition<ModelTypes['Contact']> => {
+  return {
+    columnId: 'primaryEmailId',
+    compare: (a, b) => compareString(a.primaryEmailId, b.primaryEmailId),
+    renderHeaderCell: (data) => 'Primary EmailId',
+    renderCell: (item) => (
+      <Tooltip
+        content={item.primaryEmailId}
+        relationship="inaccessible"
+        withArrow
+      >
+        <TableCellLayout truncate>
+          <Link href={`mailto:${item.primaryEmailId}`}>
+            {item.primaryEmailId}
+          </Link>
+        </TableCellLayout>
+      </Tooltip>
+    ),
+  };
+};
+
+const getSecondaryEmailId = (): TableColumnDefinition<
+  ModelTypes['Contact']
+> => {
+  return {
+    columnId: 'secondaryEmailId',
+    compare: (a, b) => compareString(a.secondaryEmailId, b.secondaryEmailId),
+    renderHeaderCell: (data) => 'Secondary EmailId',
+    renderCell: (item) => (
+      <Tooltip
+        content={item.secondaryEmailId}
+        relationship="inaccessible"
+        withArrow
+      >
+        <TableCellLayout truncate>
+          <Link href={`mailto:${item.secondaryEmailId}`}>
+            {item.secondaryEmailId}
+          </Link>
+        </TableCellLayout>
+      </Tooltip>
+    ),
+  };
+};
+
+const getCreateAt = (): TableColumnDefinition<ModelTypes['Contact']> => {
+  return {
+    columnId: 'createdAt',
+    compare: (a, b) =>
+      compareDates(a.createdAt as string, b.createdAt as string),
+    renderHeaderCell: (data) => 'Created At',
+    renderCell: (item) => (
+      <TableCellLayout truncate>
+        {item.createdAt && toLocalDateAndTime(item.createdAt as string)}
+      </TableCellLayout>
+    ),
+  };
+};
+
+const useTableProps = () => {
+  const {
+    contacts,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+    error,
+    isError,
+  } = useGetActive();
+
+  const name = useName();
+
+  const columns: TableColumnDefinition<ModelTypes['Contact']>[] = useMemo(
+    () => [
+      name,
+      getVerificationStatus(),
+      getCollegeName(),
+      getPhoneNo(),
+      getPrimaryEmailId(),
+      getSecondaryEmailId(),
+      getCreateAt(),
+    ],
+    [name],
+  );
+
+  return useMemo(() => {
+    return {
+      isLoading,
+      columns,
+      items: contacts,
+      columnSizingOptions,
+      headerProps: {
+        className: 'bg-gray20',
+      },
+      headerCellProps: {
+        className: 'h-11 capitalize',
+      },
+      hasNextPage,
+      fetchNextPage,
+      isFetchingNextPage,
+      isError,
+      error,
+    };
+  }, [
+    contacts,
+    columns,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isError,
+    isFetchingNextPage,
+    isLoading,
+  ]);
+};
+
+const Filter = memo(() => {
+  return (
+    <Button icon={<Filter16Filled />} appearance="subtle">
+      Filter
+    </Button>
+  );
+});
+
+const Contacts = () => {
+  const isDeleteDrawerOpen = useAtomValue(isDeleteDrawerOpenAtom);
+  const isAddDrawerOpen = useAtomValue(isAddDrawerOpenAtom);
+  const isUpdateDrawerOpen = useAtomValue(isUpdateDrawerOpenAtom);
+  const props = useTableProps();
+
+  const { selectedContact, handleDeleteContact } = useDeleteContact();
+
+  return (
+    <PageLayout breadcrumb={breadcrumbProps}>
+      <div className="w-full flex items-center justify-end mb-4">
+        <div className="flex items-center gap-2">
+          <Filter />
+          <CustomSearchBox placeholder="Search contact" />
+        </div>
+      </div>
+
+      <CustomTable {...props} />
+
+      {isAddDrawerOpen && <AddContactDrawer />}
+
+      {isUpdateDrawerOpen && <UpdateContactDrawer />}
+
+      {isDeleteDrawerOpen && (
+        <DeleteDrawer
+          title="Delete contact"
+          message={`Delete ${selectedContact?.name} contact.`}
+          handleDelete={handleDeleteContact}
+        />
+      )}
+    </PageLayout>
+  );
+};
+
+export default Contacts;

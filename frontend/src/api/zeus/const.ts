@@ -4,6 +4,96 @@ export const AllTypesProps: Record<string,any> = {
 	Boolean_comparison_exp:{
 
 	},
+	Contact_aggregate_fields:{
+		count:{
+			columns:"Contact_select_column"
+		}
+	},
+	Contact_bool_exp:{
+		_and:"Contact_bool_exp",
+		_not:"Contact_bool_exp",
+		_or:"Contact_bool_exp",
+		collegeName:"String_comparison_exp",
+		createdAt:"timestamp_comparison_exp",
+		createdById:"uuid_comparison_exp",
+		cursorId:"bigint_comparison_exp",
+		id:"uuid_comparison_exp",
+		instituteId:"uuid_comparison_exp",
+		isVerified:"Boolean_comparison_exp",
+		name:"String_comparison_exp",
+		phoneNo:"String_comparison_exp",
+		primaryEmailId:"String_comparison_exp",
+		secondaryEmailId:"String_comparison_exp",
+		status:"String_comparison_exp",
+		updatedAt:"timestamp_comparison_exp",
+		updatedById:"uuid_comparison_exp"
+	},
+	Contact_constraint: "enum" as const,
+	Contact_inc_input:{
+		cursorId:"bigint"
+	},
+	Contact_insert_input:{
+		createdAt:"timestamp",
+		createdById:"uuid",
+		cursorId:"bigint",
+		id:"uuid",
+		instituteId:"uuid",
+		updatedAt:"timestamp",
+		updatedById:"uuid"
+	},
+	Contact_on_conflict:{
+		constraint:"Contact_constraint",
+		update_columns:"Contact_update_column",
+		where:"Contact_bool_exp"
+	},
+	Contact_order_by:{
+		collegeName:"order_by",
+		createdAt:"order_by",
+		createdById:"order_by",
+		cursorId:"order_by",
+		id:"order_by",
+		instituteId:"order_by",
+		isVerified:"order_by",
+		name:"order_by",
+		phoneNo:"order_by",
+		primaryEmailId:"order_by",
+		secondaryEmailId:"order_by",
+		status:"order_by",
+		updatedAt:"order_by",
+		updatedById:"order_by"
+	},
+	Contact_pk_columns_input:{
+		id:"uuid"
+	},
+	Contact_select_column: "enum" as const,
+	Contact_set_input:{
+		createdAt:"timestamp",
+		createdById:"uuid",
+		cursorId:"bigint",
+		id:"uuid",
+		instituteId:"uuid",
+		updatedAt:"timestamp",
+		updatedById:"uuid"
+	},
+	Contact_stream_cursor_input:{
+		initial_value:"Contact_stream_cursor_value_input",
+		ordering:"cursor_ordering"
+	},
+	Contact_stream_cursor_value_input:{
+		createdAt:"timestamp",
+		createdById:"uuid",
+		cursorId:"bigint",
+		id:"uuid",
+		instituteId:"uuid",
+		updatedAt:"timestamp",
+		updatedById:"uuid"
+	},
+	Contact_update_column: "enum" as const,
+	Contact_updates:{
+		_inc:"Contact_inc_input",
+		_set:"Contact_set_input",
+		where:"Contact_bool_exp"
+	},
 	EGovernance_aggregate_fields:{
 		count:{
 			columns:"EGovernance_select_column"
@@ -776,6 +866,12 @@ export const AllTypesProps: Record<string,any> = {
 		_nin:"date"
 	},
 	mutation_root:{
+		delete_Contact:{
+			where:"Contact_bool_exp"
+		},
+		delete_Contact_by_pk:{
+			id:"uuid"
+		},
 		delete_EGovernance:{
 			where:"EGovernance_bool_exp"
 		},
@@ -823,6 +919,14 @@ export const AllTypesProps: Record<string,any> = {
 		},
 		delete_Status_by_pk:{
 
+		},
+		insert_Contact:{
+			objects:"Contact_insert_input",
+			on_conflict:"Contact_on_conflict"
+		},
+		insert_Contact_one:{
+			object:"Contact_insert_input",
+			on_conflict:"Contact_on_conflict"
 		},
 		insert_EGovernance:{
 			objects:"EGovernance_insert_input",
@@ -887,6 +991,19 @@ export const AllTypesProps: Record<string,any> = {
 		insert_Status_one:{
 			object:"Status_insert_input",
 			on_conflict:"Status_on_conflict"
+		},
+		update_Contact:{
+			_inc:"Contact_inc_input",
+			_set:"Contact_set_input",
+			where:"Contact_bool_exp"
+		},
+		update_Contact_by_pk:{
+			_inc:"Contact_inc_input",
+			_set:"Contact_set_input",
+			pk_columns:"Contact_pk_columns_input"
+		},
+		update_Contact_many:{
+			updates:"Contact_updates"
 		},
 		update_EGovernance:{
 			_inc:"EGovernance_inc_input",
@@ -991,6 +1108,19 @@ export const AllTypesProps: Record<string,any> = {
 	},
 	order_by: "enum" as const,
 	query_root:{
+		Contact:{
+			distinct_on:"Contact_select_column",
+			order_by:"Contact_order_by",
+			where:"Contact_bool_exp"
+		},
+		Contact_aggregate:{
+			distinct_on:"Contact_select_column",
+			order_by:"Contact_order_by",
+			where:"Contact_bool_exp"
+		},
+		Contact_by_pk:{
+			id:"uuid"
+		},
 		EGovernance:{
 			distinct_on:"EGovernance_select_column",
 			order_by:"EGovernance_order_by",
@@ -1097,6 +1227,23 @@ export const AllTypesProps: Record<string,any> = {
 		}
 	},
 	subscription_root:{
+		Contact:{
+			distinct_on:"Contact_select_column",
+			order_by:"Contact_order_by",
+			where:"Contact_bool_exp"
+		},
+		Contact_aggregate:{
+			distinct_on:"Contact_select_column",
+			order_by:"Contact_order_by",
+			where:"Contact_bool_exp"
+		},
+		Contact_by_pk:{
+			id:"uuid"
+		},
+		Contact_stream:{
+			cursor:"Contact_stream_cursor_input",
+			where:"Contact_bool_exp"
+		},
 		EGovernance:{
 			distinct_on:"EGovernance_select_column",
 			order_by:"EGovernance_order_by",
@@ -1273,6 +1420,97 @@ export const ReturnTypes: Record<string,any> = {
 	cached:{
 		ttl:"Int",
 		refresh:"Boolean"
+	},
+	Contact:{
+		collegeName:"String",
+		createdAt:"timestamp",
+		createdById:"uuid",
+		cursorId:"bigint",
+		id:"uuid",
+		instituteId:"uuid",
+		isVerified:"Boolean",
+		name:"String",
+		phoneNo:"String",
+		primaryEmailId:"String",
+		secondaryEmailId:"String",
+		status:"String",
+		updatedAt:"timestamp",
+		updatedById:"uuid"
+	},
+	Contact_aggregate:{
+		aggregate:"Contact_aggregate_fields",
+		nodes:"Contact"
+	},
+	Contact_aggregate_fields:{
+		avg:"Contact_avg_fields",
+		count:"Int",
+		max:"Contact_max_fields",
+		min:"Contact_min_fields",
+		stddev:"Contact_stddev_fields",
+		stddev_pop:"Contact_stddev_pop_fields",
+		stddev_samp:"Contact_stddev_samp_fields",
+		sum:"Contact_sum_fields",
+		var_pop:"Contact_var_pop_fields",
+		var_samp:"Contact_var_samp_fields",
+		variance:"Contact_variance_fields"
+	},
+	Contact_avg_fields:{
+		cursorId:"Float"
+	},
+	Contact_max_fields:{
+		collegeName:"String",
+		createdAt:"timestamp",
+		createdById:"uuid",
+		cursorId:"bigint",
+		id:"uuid",
+		instituteId:"uuid",
+		name:"String",
+		phoneNo:"String",
+		primaryEmailId:"String",
+		secondaryEmailId:"String",
+		status:"String",
+		updatedAt:"timestamp",
+		updatedById:"uuid"
+	},
+	Contact_min_fields:{
+		collegeName:"String",
+		createdAt:"timestamp",
+		createdById:"uuid",
+		cursorId:"bigint",
+		id:"uuid",
+		instituteId:"uuid",
+		name:"String",
+		phoneNo:"String",
+		primaryEmailId:"String",
+		secondaryEmailId:"String",
+		status:"String",
+		updatedAt:"timestamp",
+		updatedById:"uuid"
+	},
+	Contact_mutation_response:{
+		affected_rows:"Int",
+		returning:"Contact"
+	},
+	Contact_stddev_fields:{
+		cursorId:"Float"
+	},
+	Contact_stddev_pop_fields:{
+		cursorId:"Float"
+	},
+	Contact_stddev_samp_fields:{
+		cursorId:"Float"
+	},
+	Contact_sum_fields:{
+		cursorId:"bigint"
+	},
+	Contact_var_pop_fields:{
+		cursorId:"Float"
+	},
+	Contact_var_samp_fields:{
+		cursorId:"Float"
+	},
+	Contact_variance_fields:{
+		cursorId:"Float"
 	},
 	EGovernance:{
 		address:"String",
@@ -1951,6 +2189,8 @@ export const ReturnTypes: Record<string,any> = {
 	bigint: `scalar.bigint` as const,
 	date: `scalar.date` as const,
 	mutation_root:{
+		delete_Contact:"Contact_mutation_response",
+		delete_Contact_by_pk:"Contact",
 		delete_EGovernance:"EGovernance_mutation_response",
 		delete_EGovernance_by_pk:"EGovernance",
 		delete_Faculty:"Faculty_mutation_response",
@@ -1967,6 +2207,8 @@ export const ReturnTypes: Record<string,any> = {
 		delete_Institute_by_pk:"Institute",
 		delete_Status:"Status_mutation_response",
 		delete_Status_by_pk:"Status",
+		insert_Contact:"Contact_mutation_response",
+		insert_Contact_one:"Contact",
 		insert_EGovernance:"EGovernance_mutation_response",
 		insert_EGovernance_one:"EGovernance",
 		insert_Faculty:"Faculty_mutation_response",
@@ -1983,6 +2225,9 @@ export const ReturnTypes: Record<string,any> = {
 		insert_Institute_one:"Institute",
 		insert_Status:"Status_mutation_response",
 		insert_Status_one:"Status",
+		update_Contact:"Contact_mutation_response",
+		update_Contact_by_pk:"Contact",
+		update_Contact_many:"Contact_mutation_response",
 		update_EGovernance:"EGovernance_mutation_response",
 		update_EGovernance_by_pk:"EGovernance",
 		update_EGovernance_many:"EGovernance_mutation_response",
@@ -2009,6 +2254,9 @@ export const ReturnTypes: Record<string,any> = {
 		update_Status_many:"Status_mutation_response"
 	},
 	query_root:{
+		Contact:"Contact",
+		Contact_aggregate:"Contact_aggregate",
+		Contact_by_pk:"Contact",
 		EGovernance:"EGovernance",
 		EGovernance_aggregate:"EGovernance_aggregate",
 		EGovernance_by_pk:"EGovernance",
@@ -2035,6 +2283,10 @@ export const ReturnTypes: Record<string,any> = {
 		Status_by_pk:"Status"
 	},
 	subscription_root:{
+		Contact:"Contact",
+		Contact_aggregate:"Contact_aggregate",
+		Contact_by_pk:"Contact",
+		Contact_stream:"Contact",
 		EGovernance:"EGovernance",
 		EGovernance_aggregate:"EGovernance_aggregate",
 		EGovernance_by_pk:"EGovernance",

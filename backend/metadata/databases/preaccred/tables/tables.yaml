@@ -1,3 +1,4 @@
+- "!include public_Contact.yaml"
 - "!include public_EGovernance.yaml"
 - "!include public_Faculty.yaml"
 - "!include public_FacultyFunding.yaml"

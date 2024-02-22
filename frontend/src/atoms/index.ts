@@ -16,6 +16,9 @@ export const showSignUpFormAtom = atom<boolean>(false);
 export const isLoggedInAtom = atomWithStorage<boolean>('isLoggedIn', false);
 export const toastDetailAtom = atom<ToastDetail | null>(null);
 
+export const selectedTabAtom = atom<string>('details');
+export const actionAtom = atom<string | null>(null);
+
 export const isAddDrawerOpenAtom = atom<boolean>(false);
 export const isManageDrawerOpenAtom = atom<boolean>(false);
 export const isUpdateDrawerOpenAtom = atom<boolean>(false);
@@ -24,6 +27,7 @@ export const isDeleteDrawerOpenAtom = atom<boolean>(false);
 export const selectedInstituteAtom = atom<Partial<
   ModelTypes['Institute']
 > | null>(null);
+export const selectedContactAtom = atom<Partial<
+  ModelTypes['Contact']
+> | null>(null);
 
-export const selectedTabAtom = atom<string>('details');
-export const actionAtom = atom<string | null>(null);
